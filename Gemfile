@@ -6,14 +6,18 @@ git_source(:github) do |repo_name|
 end
 
 # login
-gem "devise"
+gem 'devise'
 # Bootstrap gems
-gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 
 gem 'sprockets', '3.7.1'
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
+
+
+gem 'libv8'
+
 
 gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

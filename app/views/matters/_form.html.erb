@@ -15,27 +15,173 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
+
+  <!--a
+  dd_column :matters, :code, :string
+  add_column :matters, :kind, :string
+  add_column :matters, :prerequisite, :string
+  add_column :matters, :corequisite, :string
+  add_column :matters, :modality, :string
+  add_column :matters, :menu, :string
+ -->
+
+  <div class="panel panel-default">
+    <header class="panel-heading">Detalhes</header>
+    <br>
+
+    <div class="form-group">
+      <%= f.label :name, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :name, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:name) %>
     </div>
-    <%=f.error_span(:name) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :description, :class => 'form-control' %>
+
+    <div class="form-group">
+      <%= f.label :code, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :code, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:code) %>
     </div>
-    <%=f.error_span(:description) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :workload, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :workload, :class => 'form-control' %>
+
+    <div class="form-group">
+      <%= f.label :kind, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :kind, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:kind) %>
     </div>
-    <%=f.error_span(:workload) %>
+
+    <div class="form-group">
+      <%= f.label :prerequisite , :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :prerequisite, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:prerequisite) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :corequisite, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :corequisite, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:corequisite) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :modality, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :modality, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:modality) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :menu, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :menu, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:menu) %>
+    </div>
   </div>
+  <!--
+  add_column :matters, :total_annual_workload, :integer
+  add_column :matters, :total_weekly_workload, :integer
+  add_column :matters, :total_modular_workload, :integer
+  add_column :matters, :weekly_workload, :integer
+  -->
+
+    <div class="col-lg-6" >
+  <div class="panel panel-default" >
+
+    <header class="panel-heading">Carga Horária</header>
+    <br>
+
+    <div class="form-group">
+      <%= f.label :total_annual_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :total_annual_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:total_annual_workload) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :total_weekly_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :total_weekly_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:total_weekly_workload) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :total_modular_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :total_modular_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:total_modular_workload) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :weekly_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :weekly_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:weekly_workload) %>
+    </div>
+
+  </div>
+</div>
+
+  <!--
+  add_column :matters, :pd, :integer
+  add_column :matters, :lc, :integer
+  add_column :matters, :cp, :integer
+  add_column :matters, :es, :integer
+  add_column :matters, :or, :integer
+  -->
+
+  <div class="col-lg-6" >
+
+  <div class="panel panel-default" >
+
+    <header class="panel-heading">Carga Horária</header>
+    <br>
+
+    <div class="form-group">
+      <%= f.label :total_annual_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :total_annual_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:total_annual_workload) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :total_weekly_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :total_weekly_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:total_weekly_workload) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :total_modular_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :total_modular_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:total_modular_workload) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :weekly_workload, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :weekly_workload, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:weekly_workload) %>
+    </div>
+
+  </div>
+</div>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
