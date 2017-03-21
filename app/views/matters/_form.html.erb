@@ -3,7 +3,7 @@
   <% if @matter.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@matter.errors.count, "error") %> prohibited this matter from being saved:</h3>
+        <h3 class="panel-title"> <%= pluralize(@matter.errors.count, "error") %> prohibited this matter from being saved:</h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -26,7 +26,7 @@
  -->
 
   <div class="panel panel-default">
-    <header class="panel-heading">Detalhes</header>
+    <header class="panel-heading"><%= t('details') %></header>
     <br>
 
     <div class="form-group">
@@ -95,7 +95,7 @@
     <div class="col-lg-6" >
   <div class="panel panel-default" >
 
-    <header class="panel-heading">Carga Horária</header>
+    <header class="panel-heading"><%= t('workload') %></header>
     <br>
 
     <div class="form-group">
@@ -145,39 +145,47 @@
 
   <div class="panel panel-default" >
 
-    <header class="panel-heading">Carga Horária</header>
+    <header class="panel-heading"><%= t('codes') %></header>
     <br>
 
     <div class="form-group">
-      <%= f.label :total_annual_workload, :class => 'control-label col-lg-4' %>
+      <%= f.label :pd, :class => 'control-label col-lg-4' %>
       <div class="col-lg-7">
-        <%= f.text_field :total_annual_workload, :class => 'form-control' %>
+        <%= f.text_field :pd, :class => 'form-control' %>
       </div>
-      <%=f.error_span(:total_annual_workload) %>
+      <%=f.error_span(:pd) %>
     </div>
 
     <div class="form-group">
-      <%= f.label :total_weekly_workload, :class => 'control-label col-lg-4' %>
+      <%= f.label :lc, :class => 'control-label col-lg-4' %>
       <div class="col-lg-7">
-        <%= f.text_field :total_weekly_workload, :class => 'form-control' %>
+        <%= f.text_field :lc, :class => 'form-control' %>
       </div>
-      <%=f.error_span(:total_weekly_workload) %>
+      <%=f.error_span(:lc) %>
     </div>
 
     <div class="form-group">
-      <%= f.label :total_modular_workload, :class => 'control-label col-lg-4' %>
+      <%= f.label :cp, :class => 'control-label col-lg-4' %>
       <div class="col-lg-7">
-        <%= f.text_field :total_modular_workload, :class => 'form-control' %>
+        <%= f.text_field :cp, :class => 'form-control' %>
       </div>
-      <%=f.error_span(:total_modular_workload) %>
+      <%=f.error_span(:cp) %>
     </div>
 
     <div class="form-group">
-      <%= f.label :weekly_workload, :class => 'control-label col-lg-4' %>
+      <%= f.label :es, :class => 'control-label col-lg-4' %>
       <div class="col-lg-7">
-        <%= f.text_field :weekly_workload, :class => 'form-control' %>
+        <%= f.text_field :es, :class => 'form-control' %>
       </div>
-      <%=f.error_span(:weekly_workload) %>
+      <%=f.error_span(:es) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :or, :class => 'control-label col-lg-4' %>
+      <div class="col-lg-7">
+        <%= f.text_field :or, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:or) %>
     </div>
 
   </div>

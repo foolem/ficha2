@@ -1,0 +1,33 @@
+"pt-BR":
+  activerecord:
+    models:
+      matter:
+        one: Matéria
+        other: Matérias
+      teacher:
+        one: Professor
+        other: Professores
+
+    attributes:
+      matter:
+        name: "Nome"
+        code: "Código"
+        kind: "Tipo"
+        prerequisite: "Pré-requisito"
+        corequisite: "Co-requisito"
+        modality: "Modalidade"
+        menu: "Natureza"
+
+        total_annual_workload: "Anual Total"
+        total_weekly_workload: "Semanal Total"
+        total_modular_workload: "Semestral Total"
+        weekly_workload: "Semanal"
+
+        pd: "PD"
+        lc: "LC"
+        cp: "CP"
+        es: "ES"
+        or: "OR"
+
+      teacher:
+        name: "Nome"

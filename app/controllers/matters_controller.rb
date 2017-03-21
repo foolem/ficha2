@@ -70,7 +70,8 @@ class MattersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def matter_params
-      params.require(:matter).permit(:name, :description, :workload, :code, :kind, :corequisite, :prerequisite, :modality, :menu,
-      :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload)
+      params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu,
+      :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload,
+      :pd, :lc, :cp, :es, :or)
     end
 end

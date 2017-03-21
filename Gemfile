@@ -17,7 +17,7 @@ gem 'autoprefixer-rails'
 
 
 gem 'libv8'
-
+gem 'rails-i18n'
 
 gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

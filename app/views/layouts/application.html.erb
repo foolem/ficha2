@@ -50,9 +50,9 @@
 
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav" style="aria-hidden="true"">
-            <li><%= link_to :Matters, matters_path  %></li>
-            <li><%= link_to :Teacher, teachers_path  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <li><%= link_to t('matters'), matters_path  %></li>
+            <li><%= link_to t('teachers'), teachers_path  %></li>
+
           </ul>
         </div>
 
@@ -68,19 +68,19 @@
         </div>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
+            <h3>Relacionados</h3>
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header">Links</li>
+              <li><%= link_to "NC-UFPR", "http://www.nc.ufpr.br/", target: :_blank  %></li>
+              <li><%= link_to "PRAE", "http://www.prae.ufpr.br/prae/", target: :_blank  %></li>
+              <li><%= link_to "D. MAT", "http://www.mat.ufpr.br/", target: :_blank  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2017</p>
+        <p>&copy; UFPR - Universidade Federal do Paraná 2017</p>
       </footer>
 
     </div> <!-- /container -->
