@@ -10,12 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314131206) do
+ActiveRecord::Schema.define(version: 20170324130735) do
+
+  create_table "fichas", force: :cascade do |t|
+    t.text     "program"
+    t.text     "general_objective"
+    t.text     "specific_objective"
+    t.text     "didactic_procedures"
+    t.text     "evaluation"
+    t.text     "basic_bibliography"
+    t.text     "bicliography"
+    t.integer  "teacher_id"
+    t.integer  "matter_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["matter_id"], name: "index_fichas_on_matter_id"
+    t.index ["teacher_id"], name: "index_fichas_on_teacher_id"
+  end
 
   create_table "matters", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.integer  "workload"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "code"
