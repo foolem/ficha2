@@ -48,7 +48,9 @@
     <div class="form-group">
       <%= f.label :kind, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-        <%= f.text_field :kind, :class => 'form-control' %>
+
+            <%= select("matter", "kind", %w(Semestral Anual Modular)) %>
+
       </div>
       <%=f.error_span(:kind) %>
     </div>
@@ -72,7 +74,9 @@
     <div class="form-group">
       <%= f.label :modality, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-        <%= f.text_field :modality, :class => 'form-control' %>
+
+          <%= select("matter", "modality", %w(Presencial EaD 20%\ Ead)) %>
+
       </div>
       <%=f.error_span(:modality) %>
     </div>
@@ -80,7 +84,9 @@
     <div class="form-group">
       <%= f.label :menu, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-        <%= f.text_field :menu, :class => 'form-control' %>
+
+          <%= select("matter", "menu", %w(Obrigatória Optativa)) %>
+
       </div>
       <%=f.error_span(:menu) %>
     </div>

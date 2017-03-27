@@ -34,4 +34,12 @@ th {
 ul li:hover {
   color: #fff;
 }
+label {
+  color: #000;
+}
+
+select {
+  color: #000;
+  
+}
 ;
