@@ -7,6 +7,9 @@
       teacher:
         one: Professor
         other: Professores
+      teacher:
+        one: Ficha
+        other: Fichas
 
     attributes:
       matter:
@@ -18,9 +21,9 @@
         modality: "Modalidade"
         menu: "Natureza"
 
-        total_annual_workload: "Anual Total"
-        total_weekly_workload: "Semanal Total"
-        total_modular_workload: "Semestral Total"
+        total_annual_workload: "Anual"
+        total_weekly_workload: "Semestral"
+        total_modular_workload: "Modular"
         weekly_workload: "Semanal"
 
         pd: "PD"
@@ -31,3 +34,15 @@
 
       teacher:
         name: "Nome"
+
+      ficha:
+        matter: "Matéria"
+        teacher: "Professor"
+
+        program: "Programa"
+        general_objective: "Objetivo Geral"
+        specific_objective: "Objetivos Específicos"
+        didactic_procedures: "Procedimentos"
+        evaluation: "Avaliação"
+        basic_bibliography: "Bibliografia Basica"
+        bicliography: "Bibliografia"
