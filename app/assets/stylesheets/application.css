@@ -19,9 +19,7 @@ body {
   color: #ccc;
 }
 
-td {
-  color: #000;
-}
+td { color: #000; }
 
 tr:nth-child(even) {background-color: #ccc}
 
@@ -31,15 +29,10 @@ th {
     background-color: #222;
     color: white;
 }
-ul li:hover {
-  color: #fff;
-}
-label {
-  color: #000;
-}
 
-select {
-  color: #000;
-  
-}
+ul li:hover { color: #fff; }
+
+label { color: #000; }
+
+select { color: #000; }
 ;

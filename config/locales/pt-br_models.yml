@@ -4,10 +4,12 @@
       matter:
         one: Matéria
         other: Matérias
+
       teacher:
         one: Professor
         other: Professores
-      teacher:
+
+      ficha:
         one: Ficha
         other: Fichas
 
