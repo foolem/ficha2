@@ -5,7 +5,9 @@ class MattersController < ApplicationController
   # GET /matters
   # GET /matters.json
   def index
-    @matters = Matter.all
+    @q = Matter.ransack(params[:q])
+    @matters = @q.result
+    order
   end
 
   # GET /matters/1
@@ -73,5 +75,9 @@ class MattersController < ApplicationController
       params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu,
       :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload,
       :pd, :lc, :cp, :es, :or)
+    end
+
+    def order
+      @matters = @matters.sort_by {|matter| matter.name}
     end
 end

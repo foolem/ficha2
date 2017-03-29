@@ -5,7 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# login
+# Ransack
+gem 'ransack'
+# Login
 gem 'devise'
 # Bootstrap gems
 gem 'therubyracer'
