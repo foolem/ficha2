@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170324130735) do
     t.string   "prerequisite"
     t.string   "corequisite"
     t.string   "modality"
+    t.string   "nature"
     t.string   "menu"
     t.integer  "total_annual_workload"
     t.integer  "total_weekly_workload"

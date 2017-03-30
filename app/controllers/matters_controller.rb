@@ -18,6 +18,17 @@ class MattersController < ApplicationController
   # GET /matters/new
   def new
     @matter = Matter.new
+    @matter.prerequisite = "Nenhum"
+    @matter.corequisite = "Nenhum"
+    @matter.total_annual_workload = 0
+    @matter.total_weekly_workload = 0
+    @matter.total_modular_workload = 0
+    @matter.weekly_workload = 0
+    @matter.pd = 0
+    @matter.lc = 0
+    @matter.cp = 0
+    @matter.es = 0
+    @matter.or = 0
   end
 
   # GET /matters/1/edit
@@ -72,7 +83,7 @@ class MattersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def matter_params
-      params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu,
+      params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu, :nature,
       :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload,
       :pd, :lc, :cp, :es, :or)
     end

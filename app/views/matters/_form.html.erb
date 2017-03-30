@@ -76,14 +76,23 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :menu, :class => 'control-label col-lg-2' %>
+      <%= f.label :nature, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
 
-          <%= select("matter", "menu", %w(Obrigatória Optativa)) %>
+          <%= select("matter", "nature", %w(Obrigatória Optativa)) %>
 
+      </div>
+      <%=f.error_span(:nature) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :menu, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+          <%= f.text_field :menu, :class => 'form-control' %>
       </div>
       <%=f.error_span(:menu) %>
     </div>
+
   </div>
   <!-- workload -->
 

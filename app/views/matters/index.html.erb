@@ -6,18 +6,11 @@
 <div style="color: black; float: right;">
   <%= search_form_for @q do |f| %>
 
-  <form class="matter_search" id="matter_search" action="/matters"
-    accept-charset="UTF-8" method="get">
 
-    <div class="input-group">
+      <%= f.text_field :name_cont %>
+      <%= f.submit %>
 
-      <input name="q[name_cont]" id="q_name_cont" type="search"
-             class="form-control" placeholder="Pesquisar" aria-describedby="basic-addon1">
-      <span class="input-group-addon" id="basic-addon1">Nome</span>
 
-    </div>
-
-  </form>
   <% end %>
 </div>
 
