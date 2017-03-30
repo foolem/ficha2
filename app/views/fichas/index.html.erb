@@ -15,8 +15,8 @@
     <% @fichas.each do |ficha| %>
       <tr>
         <td><%= link_to ficha.id, ficha_path(ficha) %></td>
-        <td><%= ficha.teacher.id %></td>
-        <td><%= ficha.matter.name  %></td>
+        <td><%= 'ficha.teacher.name' %></td>
+        <td><%= 'ficha.matter.name' %></td>
         <td>
 
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

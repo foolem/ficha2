@@ -4,7 +4,8 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @q = Teacher.ransack(params[:q])
+    @teachers = @q.result
     order
   end
 
@@ -70,7 +71,7 @@ class TeachersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params.require(:teacher).permit(:name, :matter_id)
+      params.require(:teacher).permit(:name)
     end
 
     def order

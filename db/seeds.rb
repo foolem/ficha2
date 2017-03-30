@@ -29,13 +29,13 @@
 end
 
 matter = Matter.last
-5.times do |i|
+30.times do |i|
 
   name = Faker::Name.name
 
-  id = Random.rand(matter.id)
+  #id = Random.rand(matter.id)
   email = Faker::Internet.safe_email
-  Teacher.create(name: name, email:email, matter_id: id )
+  Teacher.create(name: name, email:email)
 
   puts ("Criando professor #{name}, #{email}, #{matter.name}")
 

@@ -3,7 +3,7 @@ class CreateTeachers < ActiveRecord::Migration[5.0]
     create_table :teachers do |t|
       t.string :name
       t.string :email
-      t.references :matter, foreign_key: true
+      # t.references :matter, foreign_key: true
 
       t.timestamps
     end

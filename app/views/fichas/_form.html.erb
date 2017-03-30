@@ -19,12 +19,12 @@
     <header style="background-color: #222;color: white;"
             class="panel-heading"><%= t('details') %></header>
     <br>
-    
+
     <div class="form-group">
       <%= f.label :matter_id, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
 
-        <%= f.collection_select(:matter_id, Matter.all, :id, :name, include_blank: true) %>
+        <%= f.collection_select(:matter_id, matters_order, :id, :name, include_blank: true) %>
 
       </div>
       <%=f.error_span(:matter_id) %>
@@ -89,7 +89,7 @@
     <div class="form-group">
       <%= f.label :teacher_id, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-        <%= f.collection_select(:teacher_id, Teacher.all, :id, :name, include_blank: true) %>
+        <%= f.collection_select(:teacher_id, teachers_order, :id, :name, include_blank: true) %>
       </div>
       <%=f.error_span(:teacher_id) %>
     </div>

@@ -53,10 +53,8 @@ ActiveRecord::Schema.define(version: 20170324130735) do
   create_table "teachers", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.integer  "matter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["matter_id"], name: "index_teachers_on_matter_id"
   end
 
 end
