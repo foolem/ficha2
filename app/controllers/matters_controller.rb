@@ -7,6 +7,7 @@ class MattersController < ApplicationController
   def index
     @q = Matter.ransack(params[:q])
     @matters = @q.result
+    #@matters = @matters.paginate(:page => params[:page], :per_page => 15)
     order
   end
 

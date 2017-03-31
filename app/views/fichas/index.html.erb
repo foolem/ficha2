@@ -8,7 +8,13 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:teacher_id) %></th>
       <th><%= model_class.human_attribute_name(:matter_id) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th  width="20%">
+        <%=t '.actions', :default => t("helpers.actions") %>
+        <div style=float:right;>
+          <%= link_to '+', new_ficha_path, :class => 'btn btn-primary btn-xs' %>
+        <div>
+      </th>
+
     </tr>
   </thead>
   <tbody>
@@ -31,7 +37,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_ficha_path,
-            :class => 'btn btn-primary' %>

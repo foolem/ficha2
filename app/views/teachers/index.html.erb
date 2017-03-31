@@ -1,14 +1,13 @@
 <%- model_class = Teacher -%>
 <div class="page-header">
-    <h1><%=t('teachers') %></h1>
-</div>
+  <div style="color: black; float: right;">
+    <%= search_form_for @q do |f| %>
+        <%= f.text_field :name_cont %>
+        <%= f.submit %>
+    <% end %>
+  </div>
 
-
-<div style="color: black; float: right;">
-  <%= search_form_for @q do |f| %>
-      <%= f.text_field :name_cont %>
-      <%= f.submit %>
-  <% end %>
+  <h1><%=t('teachers') %></h1>
 </div>
 
 <table class="table table-striped">
@@ -17,7 +16,15 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
         <!-- <th><%= model_class.human_attribute_name(:matter_id) %></th> -->
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th  width="20%">
+        <%=t '.actions', :default => t("helpers.actions") %>
+        <div style=float:right;>
+          <%= link_to '+',
+                      new_teacher_path,
+                      :class => 'btn btn-primary btn-xs' %>
+
+        <div>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -40,7 +47,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_teacher_path,
-            :class => 'btn btn-primary' %>
