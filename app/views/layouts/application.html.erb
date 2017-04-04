@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -55,9 +55,12 @@
             <li><%= link_to t('matters'), matters_path, :class => 'menu_bar'  %></li>
             <li><%= link_to t('teachers'), teachers_path  %></li>
             <li><%= link_to t('fichas'), fichas_path  %></li>
-            <li style="position: absolute; right: 76px;"><%= link_to t('Login'), user_session_path  %></li>
-            <li style="position: absolute; right: 16px;"><%= link_to t('Logout'), destroy_user_session_path, method: :delete %></li>
 
+            <% if !user_signed_in? %>
+              <li style="position: absolute; right: 16px;"><%= link_to t('Login'), user_session_path  %></li>
+            <% else %>
+              <li style="position: absolute; right: 16px;"><%= link_to t('Logout'), destroy_user_session_path, method: :delete %></li>
+            <% end %>
           </ul>
         </div>
 
