@@ -17,7 +17,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th class="form_table"><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:code) %></th>
       <th  width="20%">
         <%=t '.actions', :default => t("helpers.actions") %>
@@ -34,18 +34,19 @@
   <tbody>
     <% @matters.each do |matter| %>
       <tr>
-        <td><%= link_to matter.name, matter_path(matter) %></td>
-        <td><%= matter.code %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_matter_path(matter), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      matter_path(matter),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-
+        <div class="form_table">
+          <td><%= link_to matter.name, matter_path(matter) %></td>
+          <td><%= matter.code %></td>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_matter_path(matter), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        matter_path(matter),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        </div>
       </tr>
     <% end %>
 

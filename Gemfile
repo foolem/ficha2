@@ -10,7 +10,7 @@ gem 'will_paginate', '~> 3.1.0'
 # Ransack
 gem 'ransack'
 # Login
-gem 'devise'
+gem 'devise', '~> 4.0'
 # Bootstrap gems
 gem 'therubyracer'
 gem 'less-rails'

@@ -4,12 +4,12 @@
 </div>
 
 <dl class="dl-horizontal">
+
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @teacher.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @teacher.email %></dd>
-  <!-- <dt><strong><%= model_class.human_attribute_name(:matter) %>:</strong></dt>
-  <dd><%= @teacher.matter.name %></dd> -->
+
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
