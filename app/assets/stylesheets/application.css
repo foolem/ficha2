@@ -21,6 +21,16 @@ body {
 
 }
 
+.resize {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.header {
+  background-color: #222;
+  color: white;
+}
+
 .menu_bar{
   background-color: #222;
   color: white;

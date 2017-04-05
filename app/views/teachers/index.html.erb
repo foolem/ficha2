@@ -2,7 +2,7 @@
 <div class="page-header">
   <div style="color: black; float: right;">
     <%= search_form_for @q do |f| %>
-        <%= f.text_field :name_cont %>
+        <%= f.text_field :name_cont, :autofocus => true %>
         <%= f.submit %>
     <% end %>
   </div>
