@@ -1,12 +1,83 @@
 <%- model_class = Matter -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= t('matter')%>: <%= @matter.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @matter.name %></dd>
 
+  <div class="panel panel-default">
+    <header style="background-color: #222;color: white;"
+            class="panel-heading"><%= t('details') %></header>
+    <br>
+
+      <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+      <dd><%= @matter.name %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
+      <dd><%= @matter.code %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:kind) %>:</strong></dt>
+      <dd><%= @matter.kind %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:prerequisite) %>:</strong></dt>
+      <dd><%= @matter.prerequisite %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:corequisite) %>:</strong></dt>
+      <dd><%= @matter.corequisite %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:modality) %>:</strong></dt>
+      <dd><%= @matter.modality %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:nature) %>:</strong></dt>
+      <dd><%= @matter.nature %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:menu) %>:</strong></dt>
+      <dd><%= @matter.menu %></dd>
+
+      <br>
+  </div>
+
+  <div class="panel panel-default">
+    <header style="background-color: #222;color: white;"
+            class="panel-heading"><%= t('workload') %></header>
+    <br>
+
+      <dt><strong><%= model_class.human_attribute_name(:total_annual_workload) %>:</strong></dt>
+      <dd><%= @matter.total_annual_workload %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:total_modular_workload) %>:</strong></dt>
+      <dd><%= @matter.total_modular_workload %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:total_weekly_workload) %>:</strong></dt>
+      <dd><%= @matter.total_weekly_workload %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:weekly_workload) %>:</strong></dt>
+      <dd><%= @matter.weekly_workload %></dd>
+
+      <br>
+
+  </div>
+
+  <div class="panel panel-default">
+    <header style="background-color: #222;color: white;"
+            class="panel-heading"><%= t('codes') %></header>
+    <br>
+
+      <dt><strong><%= model_class.human_attribute_name(:pd) %>:</strong></dt>
+      <dd><%= @matter.pd %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:lc) %>:</strong></dt>
+      <dd><%= @matter.lc %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:cp) %>:</strong></dt>
+      <dd><%= @matter.cp %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:or) %>:</strong></dt>
+      <dd><%= @matter.or %></dd>
+
+      <br>
+
+  </div>
 
 </dl>
 

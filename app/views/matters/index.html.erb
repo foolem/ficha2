@@ -33,7 +33,7 @@
   </thead>
   <tbody>
     <% @matters.each do |matter| %>
-      <tr>
+      <tr >
         <div class="form_table">
           <td><%= link_to matter.name, matter_path(matter) %></td>
           <td><%= matter.code %></td>
