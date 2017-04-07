@@ -29,12 +29,19 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
 
     respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
-        format.json { render :show, status: :created, location: @teacher }
+
+      if @teacher.name.blank?
+        format.html { redirect_to new_teacher_path, notice: 'Name is required.' }
+
       else
-        format.html { render :new }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
+        if @teacher.save
+
+          format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
+          format.json { render :show, status: :created, location: @teacher }
+        else
+          format.html { render :new }
+          format.json { render json: @teacher.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

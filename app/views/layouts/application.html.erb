@@ -59,6 +59,7 @@
             <% if !user_signed_in? %>
               <li style="position: absolute; right: 16px;" ><%= link_to t('Login'), user_session_path %> </li>
             <% else %>
+            <li style="position: absolute; right: 100px;"><%= link_to t('Change password'), edit_user_password_path %></li>
               <li style="position: absolute; right: 16px;"><%= link_to t('Logout'), destroy_user_session_path, method: :delete %></li>
             <% end %>
           </ul>
@@ -67,6 +68,8 @@
       </div>
 
     </div>
+
+  </div>
 
     <div class="container">
       <div class="row">
