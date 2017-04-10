@@ -1,6 +1,6 @@
 class MattersController < ApplicationController
   before_action :set_matter, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   # GET /matters
   # GET /matters.json

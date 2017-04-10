@@ -4,9 +4,15 @@
 
   matters: "Matérias"
   matter: "Matéria"
+
   teachers: "Professores"
   teacher: "Professor"
+
+  user: "Usuário"
+  users: "Usuários"
+
 
   details: "Detalhes"
   workload: "Carga Horária"
   codes: "Códigos"
+  created_at: "Criado em"
