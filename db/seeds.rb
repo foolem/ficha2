@@ -45,10 +45,10 @@ teacher = Teacher.last
 20.times do |i|
 
   name = Faker::Name.name
-  matter_id = Random.rand(matter.id)
-  teacher_id = Random.rand(teacher.id)
+  matter_id = Random.rand(matter.id - 1)
+  teacher_id = Random.rand(teacher.id - 1)
 
-  Ficha.create(matter_id: matter_id, teacher_id: teacher_id, general_objective: "Desenvolver habilidades em...",
+  Ficha.create(matter_id: matter_id + 1, teacher_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
   specific_objective: "Aprender x\nEntender y\nInterpretar z")
   puts ("Criando ficha: #{matter_id}, #{teacher_id}")
 

@@ -1,5 +1,6 @@
 class MattersController < ApplicationController
   before_action :set_matter, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   # GET /matters
@@ -91,5 +92,9 @@ class MattersController < ApplicationController
 
     def order
       @matters = @matters.sort_by {|matter| matter.name}
+    end
+
+    def authorize_user
+      authorize Matter
     end
 end

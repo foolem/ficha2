@@ -1,5 +1,6 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   # GET /teachers
@@ -84,5 +85,9 @@ class TeachersController < ApplicationController
 
     def order
       @teachers = @teachers.sort_by {|teacher| teacher.name}
+    end
+
+    def authorize_user
+      authorize Teacher
     end
 end

@@ -13,14 +13,13 @@
 
 </div>
 
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th class="form_table"><%= model_class.human_attribute_name(:name) %></th>
       <th width="25%"><%= model_class.human_attribute_name(:code) %></th>
 
-      <% if user_signed_in? %>
+      <% if current_user.admin? %>
         <th  width="20%">
           <%=t '.actions', :default => t("helpers.actions") %>
           <div style=float:right;>
@@ -35,11 +34,11 @@
   </thead>
   <tbody>
     <% @matters.each do |matter| %>
-      <tr >
+      <tr>
         <div class="form_table">
           <td><%= link_to matter.name, matter_path(matter) %></td>
           <td><%= matter.code %></td>
-          <% if user_signed_in? %>
+          <% if current_user.admin? %>
             <td>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                           edit_matter_path(matter), :class => 'btn btn-default btn-xs' %>
@@ -49,7 +48,7 @@
                           :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                           :class => 'btn btn-xs btn-danger' %>
             </td>
-          <% end %>
+            <% end %>
         </div>
       </tr>
     <% end %>

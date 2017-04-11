@@ -1,5 +1,6 @@
 class FichasController < ApplicationController
   before_action :set_ficha, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   # GET /fichas
@@ -71,5 +72,9 @@ class FichasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ficha_params
       params.require(:ficha).permit(:program, :general_objective, :specific_objective, :didactic_procedures, :evaluation, :basic_bibliography, :bicliography, :teacher_id, :matter_id)
+    end
+
+    def authorize_user
+      authorize Ficha
     end
 end
