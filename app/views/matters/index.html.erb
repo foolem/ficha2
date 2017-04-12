@@ -19,7 +19,7 @@
       <th class="form_table"><%= model_class.human_attribute_name(:name) %></th>
       <th width="25%"><%= model_class.human_attribute_name(:code) %></th>
 
-      <% if current_user.admin? %>
+      <% if user_signed_in? && current_user.admin? %>
         <th  width="20%">
           <%=t '.actions', :default => t("helpers.actions") %>
           <div style=float:right;>
@@ -38,7 +38,7 @@
         <div class="form_table">
           <td><%= link_to matter.name, matter_path(matter) %></td>
           <td><%= matter.code %></td>
-          <% if current_user.admin? %>
+          <% if user_signed_in? && current_user.admin? %>
             <td>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                           edit_matter_path(matter), :class => 'btn btn-default btn-xs' %>

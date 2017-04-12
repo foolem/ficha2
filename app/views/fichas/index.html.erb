@@ -8,21 +8,22 @@
       <th><%= t('id') %></th>
       <th><%= t('teacher') %></th>
       <th><%= t('matter') %></th>
+      <th><%= t('status') %></th>
       <th width="15%"><%= t('created_at') %></th>
 
-      <% if user_signed_in? %>
+      <% if user_signed_in? && !current_user.appraiser? %>
 
-        <th  width="20%">
+        <th  width="15%">
           <%=t '.actions', :default => t("helpers.actions") %>
-
-          <% if current_user.admin? or current_user.teacher? %>
-            <div style=float:right;>
-              <%= link_to '+', new_ficha_path, :class => 'btn btn-primary btn-xs' %>
-            <div>
-          <% end %>
-
+          <div style=float:right;>
+            <%= link_to '+', new_ficha_path, :class => 'btn btn-primary btn-xs' %>
+          <div>
         </th>
 
+      <% elsif user_signed_in? %>
+        <th  width="10%">
+          <%=t '.actions', :default => t("helpers.actions") %>
+        </th>
       <% end %>
 
     </tr>
@@ -33,17 +34,27 @@
         <td><%= link_to ficha.id, ficha_path(ficha) %></td>
         <td><%= ficha.teacher.name %></td>
         <td><%= ficha.matter.name %></td>
+        <td><%= ficha.status %></td>
         <td><%= ficha.created_at.strftime("%d/%m/%Y") %></td>
 
+        <% if user_signed_in? && !current_user.appraiser? %>
           <td>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_ficha_path(ficha), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        ficha_path(ficha),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-xs btn-danger' %>
+                        edit_ficha_path(ficha), :class => 'btn btn-default btn-xs', :render => false %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          ficha_path(ficha),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-xs btn-danger' %>
           </td>
+
+        <% elsif user_signed_in? %>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_ficha_path(ficha), :class => 'btn btn-default btn-xs', :render => false %>
+          </td>
+        <% end %>
+
 
       </tr>
     <% end %>

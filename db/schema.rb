@@ -14,16 +14,17 @@ ActiveRecord::Schema.define(version: 20170403124756) do
 
   create_table "fichas", force: :cascade do |t|
     t.text     "program"
-    t.text     "general_objective"
+    t.string   "general_objective"
     t.text     "specific_objective"
     t.text     "didactic_procedures"
     t.text     "evaluation"
     t.text     "basic_bibliography"
     t.text     "bicliography"
+    t.string   "status",              default: "Enviado"
     t.integer  "teacher_id"
     t.integer  "matter_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["matter_id"], name: "index_fichas_on_matter_id"
     t.index ["teacher_id"], name: "index_fichas_on_teacher_id"
   end

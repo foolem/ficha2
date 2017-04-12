@@ -39,11 +39,11 @@
               <li style="position: absolute; right: 16px;" ><%= link_to t('Login'), user_session_path %> </li>
             <% else %>
 
+              <li> <%=current_user.role %> </li>
               <% if current_user.admin? %>
                 <li><%= link_to t('users'), control_users_index_path %></li>
               <% end %>
 
-              <li style="position: absolute; right: 100px;"><%= link_to t('Change password'), edit_user_password_path %></li>
               <li style="position: absolute; right: 16px;"><%= link_to t('Logout'), destroy_user_session_path, method: :delete %></li>
             <% end %>
 

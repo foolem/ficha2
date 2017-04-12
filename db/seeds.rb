@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# rake db:drop db:create db:migrate db:seed
+
 30.times do |i|
 
   name = Faker::Food.ingredient
@@ -53,3 +55,7 @@ teacher = Teacher.last
   puts ("Criando ficha: #{matter_id}, #{teacher_id}")
 
 end
+
+User.create(email: "prof@prof", password: "123123",  role: 0)
+User.create(email: "av@av", password: "123123",  role: 1)
+User.create(email: "adm@adm", password: "123123",  role: 2)
