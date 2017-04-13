@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.text     "basic_bibliography"
     t.text     "bicliography"
     t.string   "status",              default: "Enviado"
+    t.text     "appraisal"
     t.integer  "teacher_id"
     t.integer  "matter_id"
     t.datetime "created_at",                              null: false

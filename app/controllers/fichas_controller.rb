@@ -6,7 +6,7 @@ class FichasController < ApplicationController
   # GET /fichas
   # GET /fichas.json
   def index
-    @fichas = Ficha.all
+    @fichas = Ficha.order(status: :desc)
   end
 
   # GET /fichas/1
@@ -71,7 +71,9 @@ class FichasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ficha_params
-      params.require(:ficha).permit(:program, :general_objective, :specific_objective, :didactic_procedures, :evaluation, :basic_bibliography, :bicliography, :teacher_id, :matter_id)
+      params.require(:ficha).permit(:program, :general_objective, :specific_objective,
+                                    :didactic_procedures, :evaluation, :basic_bibliography,
+                                    :bicliography, :teacher_id, :matter_id, :appraisal, :status)
     end
 
     def authorize_user

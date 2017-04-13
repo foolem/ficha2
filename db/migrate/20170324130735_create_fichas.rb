@@ -11,6 +11,7 @@ class CreateFichas < ActiveRecord::Migration[5.0]
       t.text :bicliography
 
       t.string :status, default: "Enviado"
+      t.text :appraisal
 
       t.references :teacher, foreign_key: true
       t.references :matter, foreign_key: true

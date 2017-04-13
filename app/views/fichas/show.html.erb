@@ -3,26 +3,71 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:program) %>:</strong></dt>
-  <dd><%= @ficha.program %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:general_objective) %>:</strong></dt>
-  <dd><%= @ficha.general_objective %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:specific_objective) %>:</strong></dt>
-  <dd><%= @ficha.specific_objective %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:didactic_procedures) %>:</strong></dt>
-  <dd><%= @ficha.didactic_procedures %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:evaluation) %>:</strong></dt>
-  <dd><%= @ficha.evaluation %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:basic_bibliography) %>:</strong></dt>
-  <dd><%= @ficha.basic_bibliography %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:bicliography) %>:</strong></dt>
-  <dd><%= @ficha.bicliography %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:teacher_id) %>:</strong></dt>
-  <dd><%= @ficha.teacher_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:matter_id) %>:</strong></dt>
-  <dd><%= @ficha.matter_id %></dd>
-</dl>
+
+<div class="panel panel-default">
+  <header style="background-color: #222;color: white;"
+          class="panel-heading"><%= t('details') %></header>
+  <br>
+
+  <dl class="dl-horizontal">
+
+    <dt><strong><%= model_class.human_attribute_name(:matter_id) %>:</strong></dt>
+    <dd><%= @ficha.matter.name %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:teacher_id) %>:</strong></dt>
+    <dd><%= @ficha.teacher.name %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:program) %>:</strong></dt>
+<%= text_area_tag 'program', @ficha.program, disabled: true, rows: 10 %>
+
+    <dd><%= @ficha.program %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:general_objective) %>:</strong></dt>
+    <dd><%= @ficha.general_objective %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:specific_objective) %>:</strong></dt>
+    <dd><%= @ficha.specific_objective %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:didactic_procedures) %>:</strong></dt>
+    <dd><%= @ficha.didactic_procedures %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:evaluation) %>:</strong></dt>
+    <dd><%= @ficha.evaluation %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:basic_bibliography) %>:</strong></dt>
+    <dd><%= @ficha.basic_bibliography %></dd>
+
+    <dt><strong><%= model_class.human_attribute_name(:bicliography) %>:</strong></dt>
+    <dd><%= @ficha.bicliography %></dd>
+  </dl>
+
+</div>
+
+
+
+<div class="panel panel-default">
+  <header style="background-color: #222;color: white;"
+          class="panel-heading"><%= t('details') %></header>
+  <br>
+
+  <div class="form-group">
+    <%= label :matter, :matter, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= text_field_tag 'matter_name', @ficha.matter.name, disabled: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= label :teacher, :teacher, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= text_field_tag 'teacher_name', @ficha.teacher.name, disabled: true %>
+    </div>
+  </div>
+
+
+</div>
+
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               fichas_path, :class => 'btn btn-default'  %>

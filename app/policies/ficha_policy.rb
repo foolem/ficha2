@@ -9,7 +9,7 @@ class FichaPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? or user.appraiser?
+    user.admin? or user.appraiser? or user.teacher?
   end
 
   def update?

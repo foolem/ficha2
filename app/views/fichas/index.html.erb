@@ -5,11 +5,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= t('id') %></th>
       <th><%= t('teacher') %></th>
       <th><%= t('matter') %></th>
-      <th><%= t('status') %></th>
-      <th width="15%"><%= t('created_at') %></th>
+      <th width="15%"><center><%= t('created_at') %></center></th>
+      <th><center><%= t('status') %></center></th>
 
       <% if user_signed_in? && !current_user.appraiser? %>
 
@@ -31,11 +30,10 @@
   <tbody>
     <% @fichas.each do |ficha| %>
       <tr>
-        <td><%= link_to ficha.id, ficha_path(ficha) %></td>
         <td><%= ficha.teacher.name %></td>
         <td><%= ficha.matter.name %></td>
-        <td><%= ficha.status %></td>
-        <td><%= ficha.created_at.strftime("%d/%m/%Y") %></td>
+        <td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>
+        <td><center><%= link_to status_representation(ficha.status), ficha_path(ficha) %></center></td>
 
         <% if user_signed_in? && !current_user.appraiser? %>
           <td>
@@ -48,11 +46,13 @@
                           :class => 'btn btn-xs btn-danger' %>
           </td>
 
-        <% elsif user_signed_in? %>
+        <% elsif user_signed_in? && ficha.status != "Aprovado" %>
           <td>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
                         edit_ficha_path(ficha), :class => 'btn btn-default btn-xs', :render => false %>
           </td>
+        <% elsif user_signed_in? %>
+          <td></td>
         <% end %>
 
 

@@ -41,7 +41,8 @@
       ficha:
         matter: "Matéria"
         teacher: "Professor"
-        status: "Estatus"
+        status: "Status"
+        appraisal: "Comentários"
 
         program: "Programa"
         general_objective: "Objetivo Geral"
