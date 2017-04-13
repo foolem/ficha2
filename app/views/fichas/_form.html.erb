@@ -128,15 +128,29 @@
             class="panel-heading"><%= t('confirmation') %></header>
     <br>
 
-    <div class="form-group">
-      <%= f.label :status, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
 
-          <%= f.select("status", %w(Aprovado Reprovado)) %>
 
-      </div>
-      <%=f.error_span(:status) %>
+  <% if current_user.teacher? %>
+
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+        <%= f.text_field_tag 'ficha_status', @ficha.status, disabled: true %>
     </div>
+  </div>
+  <%else %>
+
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+
+      <%= f.select("status", %w(Aprovado Reprovado)) %>
+
+    </div>
+    <%=f.error_span(:status) %>
+  </div>
+
+  <% end %>
 
     <div class="form-group">
       <%= f.label :appraisal, :class => 'control-label col-lg-3' %>

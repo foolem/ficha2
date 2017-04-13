@@ -11,7 +11,7 @@
     links:
       back: "Voltar"
       cancel: "Cancelar"
-      confirm: "Tem certaza?"
+      confirm: "Tem certeza?"
       destroy: "Deletar"
       new: "Novo"
       edit: "Editar"

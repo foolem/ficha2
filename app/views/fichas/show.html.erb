@@ -4,70 +4,103 @@
 </div>
 
 
-<div class="panel panel-default">
-  <header style="background-color: #222;color: white;"
-          class="panel-heading"><%= t('details') %></header>
-  <br>
+<%= form_for @ficha, :html => { :class => "form-horizontal ficha" } do |f| %>
 
-  <dl class="dl-horizontal">
+  <div class="panel panel-default">
+    <header style="background-color: #222;color: white;"
+            class="panel-heading"><%= t('details') %></header>
+    <br>
 
-    <dt><strong><%= model_class.human_attribute_name(:matter_id) %>:</strong></dt>
-    <dd><%= @ficha.matter.name %></dd>
+    <div class="form-group">
+      <%= f.label :matter, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field_tag 'matter_name', @ficha.matter.name, disabled: true %>
+      </div>
+    </div>
 
-    <dt><strong><%= model_class.human_attribute_name(:teacher_id) %>:</strong></dt>
-    <dd><%= @ficha.teacher.name %></dd>
+    <div class="form-group">
+      <%= f.label :teacher, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field_tag 'teacher_name', @ficha.teacher.name, disabled: true %>
+      </div>
+    </div>
 
-    <dt><strong><%= model_class.human_attribute_name(:program) %>:</strong></dt>
-<%= text_area_tag 'program', @ficha.program, disabled: true, rows: 10 %>
+    <div class="form-group">
+      <%= f.label :general_objective, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.text_field :general_objective, :class => 'form-control', :readonly => true %>
+      </div>
+    </div>
 
-    <dd><%= @ficha.program %></dd>
+    <div class="form-group">
+      <%= f.label :specific_objective, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :specific_objective, :class => 'form-control resize', rows: 4, :readonly => true %>
+      </div>
+    </div>
 
-    <dt><strong><%= model_class.human_attribute_name(:general_objective) %>:</strong></dt>
-    <dd><%= @ficha.general_objective %></dd>
+    <div class="form-group">
+      <%= f.label :program, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :program, :class => 'form-control resize', rows: 4, :readonly => true %>
+      </div>
+    </div>
 
-    <dt><strong><%= model_class.human_attribute_name(:specific_objective) %>:</strong></dt>
-    <dd><%= @ficha.specific_objective %></dd>
+    <div class="form-group">
+      <%= f.label :didactic_procedures, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: 4, :readonly => true%>
+      </div>
+    </div>
 
-    <dt><strong><%= model_class.human_attribute_name(:didactic_procedures) %>:</strong></dt>
-    <dd><%= @ficha.didactic_procedures %></dd>
+    <div class="form-group">
+      <%= f.label :evaluation, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :evaluation, :class => 'form-control resize', rows: 4, :readonly => true %>
+      </div>
+    </div>
 
-    <dt><strong><%= model_class.human_attribute_name(:evaluation) %>:</strong></dt>
-    <dd><%= @ficha.evaluation %></dd>
+    <div class="form-group">
+      <%= f.label :basic_bibliography, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: 4, :readonly => true %>
+      </div>
+    </div>
 
-    <dt><strong><%= model_class.human_attribute_name(:basic_bibliography) %>:</strong></dt>
-    <dd><%= @ficha.basic_bibliography %></dd>
-
-    <dt><strong><%= model_class.human_attribute_name(:bicliography) %>:</strong></dt>
-    <dd><%= @ficha.bicliography %></dd>
-  </dl>
+    <div class="form-group">
+      <%= f.label :bicliography, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :bicliography, :class => 'form-control resize', rows: 4, :readonly => true %>
+      </div>
+    </div>
 
 </div>
 
+  <% if (@ficha.status == "Reprovado")  %>
 
+    <div class="panel panel-default">
+      <header style="background-color: #222;color: white;"
+              class="panel-heading"><%= t('confirmation') %></header>
+      <br>
 
-<div class="panel panel-default">
-  <header style="background-color: #222;color: white;"
-          class="panel-heading"><%= t('details') %></header>
-  <br>
+      <div class="form-group">
+        <%= f.label :status, :class => 'control-label col-lg-3' %>
+        <div class="col-lg-8">
+            <%= f.text_field :status, :class => 'form-control resize', :readonly => true %>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <%= label :matter, :matter, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-9">
-      <%= text_field_tag 'matter_name', @ficha.matter.name, disabled: true %>
+      <div class="form-group">
+        <%= f.label :appraisal, :class => 'control-label col-lg-3' %>
+        <div class="col-lg-8">
+          <%= f.text_area :appraisal, :class => 'form-control resize', rows: 4, :readonly => true %>
+        </div>
+      </div>
+
     </div>
-  </div>
+  <% end %>
 
-  <div class="form-group">
-    <%= label :teacher, :teacher, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-9">
-      <%= text_field_tag 'teacher_name', @ficha.teacher.name, disabled: true %>
-    </div>
-  </div>
-
-
-</div>
-
-
+<% end %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               fichas_path, :class => 'btn btn-default'  %>

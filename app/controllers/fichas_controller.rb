@@ -28,6 +28,8 @@ class FichasController < ApplicationController
   def create
     @ficha = Ficha.new(ficha_params)
 
+        @ficha.teacher = Teacher.first
+
     respond_to do |format|
       if @ficha.save
         format.html { redirect_to @ficha, notice: 'Ficha was successfully created.' }
