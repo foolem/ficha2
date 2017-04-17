@@ -122,7 +122,7 @@
 </div>
 
 
-<% if ((@ficha.status != "Enviado" && current_user.teacher?) || !current_user.teacher?)  %>
+<% if ((@ficha.status == "Reprovado" && current_user.teacher?) || !current_user.teacher?)  %>
   <div class="panel panel-default">
     <header style="background-color: #222;color: white;"
             class="panel-heading"><%= t('confirmation') %></header>
@@ -152,13 +152,13 @@
 
   <% end %>
 
-    <div class="form-group">
-      <%= f.label :appraisal, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_area :appraisal, :class => 'form-control resize', rows: 4, :readonly => current_user.teacher? %>
-      </div>
-      <%=f.error_span(:appraisal) %>
+  <div class="form-group">
+    <%= f.label :appraisal, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :appraisal, :class => 'form-control resize', rows: 4, :readonly => current_user.teacher? %>
     </div>
+    <%=f.error_span(:appraisal) %>
+  </div>
 
   </div>
 <% end %>

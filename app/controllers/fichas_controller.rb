@@ -7,12 +7,31 @@ class FichasController < ApplicationController
   # GET /fichas.json
   def index
     @fichas = Ficha.order(status: :desc)
+
+    if(!user_signed_in?)
+
+      @fichas = Ficha.order(created_at: :desc).where(status: "Aprovado")
+    end
   end
 
   # GET /fichas/1
   # GET /fichas/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text "Hello word"
+
+        send_data pdf.render,
+          filename: "Ficha2 #{@ficha.matter.name} #{@ficha.teacher.name}",
+          type: "application/pdf",
+          disposition: "inline"
+      end
+    end
   end
+
+  # https://www.youtube.com/watch?v=e-A3zBeWDdE
 
   # GET /fichas/new
   def new

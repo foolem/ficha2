@@ -5,18 +5,24 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# prawn
+gem 'prawn'
 
 # pundit
 gem 'pundit'
+
 #will_paginate
 gem 'will_paginate', '~> 3.1.0'
+
 # Ransack
 gem 'ransack'
+
 # Login
 gem 'devise', '~> 4.0'
+
 # Bootstrap gems
 gem 'therubyracer'
-gem 'less-rails'
+gem 'less-rails' # deprecated
 gem 'twitter-bootstrap-rails'
 
 gem 'sprockets', '3.7.1'
