@@ -31,18 +31,44 @@
 end
 
 matter = Matter.last
+
 30.times do |i|
 
   name = Faker::Name.name
   email = Faker::Internet.safe_email
-  Teacher.create(name: name, email:email)
+  User.create(name: name, email:email, password: "123123")
 
   puts ("Criando professor #{name}, #{email}")
 
 end
 
 matter = Matter.last
-teacher = Teacher.last
+teacher = User.where(role: 0).last
+
+10.times do |i|
+
+  name = Faker::Name.name
+  matter_id = Random.rand(matter.id - 1)
+  teacher_id = Random.rand(teacher.id - 1)
+
+  Ficha.create(matter_id: matter_id + 1, user_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
+  specific_objective: "Aprender x\nEntender y\nInterpretar z")
+  puts ("Criando ficha: #{matter_id + 1}, #{teacher_id + 1}")
+
+end
+
+10.times do |i|
+
+  name = Faker::Name.name
+  matter_id = Random.rand(matter.id - 1)
+  teacher_id = Random.rand(teacher.id - 1)
+
+  Ficha.create(matter_id: matter_id + 1, user_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
+  specific_objective: "Aprender x\nEntender y\nInterpretar z", status: "Reprovado", appraisal: "Bibliografia fora das normas")
+  puts ("Criando ficha: #{matter_id + 1}, #{teacher_id + 1}, status: Reprovado")
+
+end
+
 
 20.times do |i|
 
@@ -50,12 +76,22 @@ teacher = Teacher.last
   matter_id = Random.rand(matter.id - 1)
   teacher_id = Random.rand(teacher.id - 1)
 
-  Ficha.create(matter_id: matter_id + 1, teacher_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
-  specific_objective: "Aprender x\nEntender y\nInterpretar z")
-  puts ("Criando ficha: #{matter_id}, #{teacher_id}")
+  Ficha.create(matter_id: matter_id + 1, user_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
+  specific_objective: "Aprender x\nEntender y\nInterpretar z", status: "Aprovado")
+  puts ("Criando ficha: #{matter_id + 1}, #{teacher_id + 1}, status: Aprovado")
 
 end
 
-User.create(email: "prof@prof", password: "123123",  role: 0)
-User.create(email: "av@av", password: "123123",  role: 1)
-User.create(email: "adm@adm", password: "123123",  role: 2)
+
+User.create(name: "Professor", email: "prof@prof", password: "123123",  role: 0)
+User.create(name: "Avaliador", email: "av@av", password: "123123",  role: 1)
+User.create(name: "Admin", email: "adm@adm", password: "123123",  role: 2)
+
+Ficha.create(matter_id: 1, user_id: 31, general_objective: "Desenvolver habilidades em...",
+specific_objective: "Aprender x\nEntender y\nInterpretar z", status: "Aprovado")
+
+Ficha.create(matter_id: 2, user_id: 31, general_objective: "Desenvolver habilidades em...",
+specific_objective: "Aprender x\nEntender y\nInterpretar z", status: "Reprovado", appraisal: "Melhore x e y")
+
+Ficha.create(matter_id: 3, user_id: 31, general_objective: "Desenvolver habilidades em...",
+specific_objective: "Aprender x\nEntender y\nInterpretar z")

@@ -1,7 +1,6 @@
 module TeachersHelper
 
-  def teachers_order
-    @teachers = Teacher.all
-    @teachers = @teachers.sort_by {|teacher| teacher.name}
+  def users_order
+    @teachers = User.all.where("role = 0").order(name: :asc)
   end
 end

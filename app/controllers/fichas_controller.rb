@@ -6,11 +6,13 @@ class FichasController < ApplicationController
   # GET /fichas
   # GET /fichas.json
   def index
-    @fichas = Ficha.order(status: :desc)
 
     if(!user_signed_in?)
-
       @fichas = Ficha.order(created_at: :desc).where(status: "Aprovado")
+    elsif current_user.teacher?
+      @fichas = Ficha.order(status: :desc).where(user: current_user)
+    else
+      @fichas = Ficha.order(status: :desc)
     end
   end
 
@@ -24,7 +26,7 @@ class FichasController < ApplicationController
         pdf.text "Hello word"
 
         send_data pdf.render,
-          filename: "Ficha2 #{@ficha.matter.name} #{@ficha.teacher.name}",
+          filename: "Ficha2 #{@ficha.matter.name} #{@ficha.user.name}",
           type: "application/pdf",
           disposition: "inline"
       end
@@ -47,7 +49,9 @@ class FichasController < ApplicationController
   def create
     @ficha = Ficha.new(ficha_params)
 
-        @ficha.teacher = Teacher.first
+    if(!current_user.admin?)
+      @ficha.user = current_user
+    end
 
     respond_to do |format|
       if @ficha.save
@@ -94,7 +98,7 @@ class FichasController < ApplicationController
     def ficha_params
       params.require(:ficha).permit(:program, :general_objective, :specific_objective,
                                     :didactic_procedures, :evaluation, :basic_bibliography,
-                                    :bicliography, :teacher_id, :matter_id, :appraisal, :status)
+                                    :bicliography, :user_id, :matter_id, :appraisal, :status)
     end
 
     def authorize_user

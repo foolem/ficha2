@@ -5,10 +5,17 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= t('teacher') %></th>
+      <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? %>
+        <th><%= t('teacher') %></th>
+      <% end %>
+
       <th><%= t('matter') %></th>
+
       <th width="15%"><center><%= t('created_at') %></center></th>
-      <th><center><%= t('status') %></center></th>
+
+      <% if user_signed_in?%>
+        <th><center><%= t('status') %></center></th>
+      <% end %>
 
       <% if user_signed_in? && !current_user.appraiser? %>
 
@@ -23,6 +30,10 @@
         <th  width="10%">
           <%=t '.actions', :default => t("helpers.actions") %>
         </th>
+      <% else %>
+        <th  width="10%"> <center>
+          <%=t '.actions', :default => t("helpers.actions") %>
+        </center> </th>
       <% end %>
 
     </tr>
@@ -30,10 +41,15 @@
   <tbody>
     <% @fichas.each do |ficha| %>
       <tr>
-        <td><%= ficha.teacher.name %></td>
+        <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in?%>
+          <td><%= ficha.user.name %></td>
+        <% end %>
         <td><%= ficha.matter.name %></td>
         <td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>
-        <td><center><%= link_to status_representation(ficha.status), ficha_path(ficha) %></center></td>
+
+        <% if user_signed_in?%>
+          <td><center><%= link_to status_representation(ficha.status), ficha_path(ficha) %></center></td>
+        <% end %>
 
         <% if user_signed_in? && !current_user.appraiser? %>
           <td>
@@ -58,6 +74,10 @@
           </td>
         <% elsif user_signed_in? %>
           <td></td>
+        <% else %>
+          <td> <center>
+            <%= link_to t('Download'), ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-xs' %>
+          </center> </td>
         <% end %>
 
       </tr>

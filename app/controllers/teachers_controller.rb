@@ -6,9 +6,8 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-    @q = Teacher.ransack(params[:q])
-    @teachers = @q.result
-    order
+    @q = User.ransack(params[:q])
+    @teachers = @q.result.where("role = 0").order(name: :asc)
   end
 
   # GET /teachers/1
@@ -18,7 +17,7 @@ class TeachersController < ApplicationController
 
   # GET /teachers/new
   def new
-    @teacher = Teacher.new
+    @teacher = User.new
   end
 
   # GET /teachers/1/edit
@@ -28,7 +27,7 @@ class TeachersController < ApplicationController
   # POST /teachers
   # POST /teachers.json
   def create
-    @teacher = Teacher.new(teacher_params)
+    @teacher = User.new(teacher_params)
 
     respond_to do |format|
 
@@ -75,7 +74,7 @@ class TeachersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_teacher
-      @teacher = Teacher.find(params[:id])
+      @teacher = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -83,11 +82,7 @@ class TeachersController < ApplicationController
       params.require(:teacher).permit(:name)
     end
 
-    def order
-      @teachers = @teachers.sort_by {|teacher| teacher.name}
-    end
-
     def authorize_user
-      authorize Teacher
+      authorize User
     end
 end

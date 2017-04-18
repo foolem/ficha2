@@ -17,3 +17,7 @@
   codes: "Códigos"
   created_at: "Criado em"
   confirmation: "Confirmação"
+  role: "Função"
+  appraiser: "Avaliador"
+  admin: "Administrador"
+  name: "Nome"

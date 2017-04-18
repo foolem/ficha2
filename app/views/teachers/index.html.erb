@@ -1,9 +1,10 @@
-<%- model_class = Teacher -%>
+<%- model_class = User -%>
 <div class="page-header">
+
   <div style="color: black; float: right;">
-    <%= search_form_for @q do |f| %>
+    <%= search_form_for @q, url: "/teachers" do |f| %>
         <%= f.text_field :name_cont, :autofocus => true, placeholder: "procurar nome" %>
-        <%= f.submit %>
+        <%= f.submit%>
     <% end %>
   </div>
 

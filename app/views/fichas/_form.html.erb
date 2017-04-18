@@ -37,9 +37,9 @@
       <div class="form-group">
         <%= f.label :teacher, :class => 'control-label col-lg-2' %>
         <div class="col-lg-9">
-          <%= f.collection_select(:teacher_id, teachers_order, :id, :name, include_blank: true) %>
+          <%= f.collection_select(:user_id, users_order, :id, :name, include_blank: true) %>
         </div>
-        <%=f.error_span(:teacher_id) %>
+        <%=f.error_span(:user_id) %>
       </div>
 
     <% end %>
@@ -56,7 +56,7 @@
     <div class="form-group">
       <%= f.label :teacher, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-        <%= f.text_field_tag 'teacher_name', @ficha.teacher.name, disabled: true %>
+        <%= f.text_field_tag 'user_name', @ficha.user.name, disabled: true %>
       </div>
     </div>
 

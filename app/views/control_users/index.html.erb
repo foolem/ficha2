@@ -6,16 +6,18 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>id</th>
+      <th><%=t('name') %></th>
       <th>Email</th>
+      <th><center><%=t('role') %></center></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <td><center><%= t(user.role) %></center></td>
       </tr>
     <% end %>
   </tbody>

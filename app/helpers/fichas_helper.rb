@@ -4,7 +4,6 @@ module FichasHelper
     if(status == "Aprovado")
       return "✓"
     end
-
       return status
   end
 end

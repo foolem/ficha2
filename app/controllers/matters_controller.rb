@@ -7,9 +7,7 @@ class MattersController < ApplicationController
   # GET /matters.json
   def index
     @q = Matter.ransack(params[:q])
-    @matters = @q.result
-    #@matters = @matters.paginate(:page => params[:page], :per_page => 15)
-    order
+    @matters = @q.result.order(name: :asc)
   end
 
   # GET /matters/1
@@ -88,10 +86,6 @@ class MattersController < ApplicationController
       params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu, :nature,
       :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload,
       :pd, :lc, :cp, :es, :or)
-    end
-
-    def order
-      @matters = @matters.sort_by {|matter| matter.name}
     end
 
     def authorize_user

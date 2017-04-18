@@ -1,8 +1,7 @@
 module MattersHelper
 
   def matters_order
-    @matters = Matter.all
-    @matters = @matters.sort_by {|matter| matter.name}
+    @matters = Matter.all.order(name: :asc)
   end
 
 end
