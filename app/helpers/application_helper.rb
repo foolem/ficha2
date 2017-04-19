@@ -16,15 +16,19 @@ module ApplicationHelper
   end
 
   def user_not_appriser
-    user_signed_in? && current_user.appraiser?
+    user_signed_in? && !current_user.appraiser?
   end
 
   def user_admin
     user_signed_in? && current_user.admin?
   end
 
-  def user_admin
+  def user_not_admin
     user_signed_in? && !current_user.admin?
+  end
+
+  def status_ready(status)
+    status == "Aprovado"
   end
 
   def record_edditable(status)

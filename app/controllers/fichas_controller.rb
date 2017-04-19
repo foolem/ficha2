@@ -19,18 +19,7 @@ class FichasController < ApplicationController
   # GET /fichas/1
   # GET /fichas/1.json
   def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = Prawn::Document.new
-        pdf.text "Hello word"
-
-        send_data pdf.render,
-          filename: "Ficha2 #{@ficha.matter.name} #{@ficha.user.name}",
-          type: "application/pdf",
-          disposition: "inline"
-      end
-    end
+    pdf_generate
   end
 
   # https://www.youtube.com/watch?v=e-A3zBeWDdE
@@ -103,5 +92,19 @@ class FichasController < ApplicationController
 
     def authorize_user
       authorize Ficha
+    end
+
+    def pdf_generate
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = RecordPdf.new(@ficha)
+
+          send_data pdf.render,
+            filename: "Ficha2 #{@ficha.matter.name} #{@ficha.user.name}",
+            type: "application/pdf",
+            disposition: "inline"
+        end
+      end
     end
 end
