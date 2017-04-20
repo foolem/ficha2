@@ -32,15 +32,15 @@ ActiveRecord::Schema.define(version: 20170403124756) do
 
   create_table "matters", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "code"
     t.string   "kind"
     t.string   "prerequisite"
     t.string   "corequisite"
     t.string   "modality"
     t.string   "nature"
-    t.string   "menu"
+    t.string   "menu",                   default: ""
     t.integer  "total_annual_workload"
     t.integer  "total_weekly_workload"
     t.integer  "total_modular_workload"

@@ -6,7 +6,7 @@ class AddFielsToMatter < ActiveRecord::Migration[5.0]
     add_column :matters, :corequisite, :string
     add_column :matters, :modality, :string
     add_column :matters, :nature, :string
-    add_column :matters, :menu, :string
+    add_column :matters, :menu, :string,  default: ""
 
     add_column :matters, :total_annual_workload, :integer
     add_column :matters, :total_weekly_workload, :integer
