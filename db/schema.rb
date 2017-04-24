@@ -13,15 +13,14 @@
 ActiveRecord::Schema.define(version: 20170403124756) do
 
   create_table "fichas", force: :cascade do |t|
-    t.text     "program"
     t.string   "general_objective"
-    t.text     "specific_objective"
-    t.text     "didactic_procedures"
-    t.text     "evaluation"
-    t.text     "basic_bibliography"
-    t.text     "bicliography"
+    t.text     "specific_objective",  default: ""
+    t.text     "didactic_procedures", default: ""
+    t.text     "evaluation",          default: ""
+    t.text     "basic_bibliography",  default: ""
+    t.text     "bibliography",        default: ""
     t.string   "status",              default: "Enviado"
-    t.text     "appraisal"
+    t.text     "appraisal",           default: ""
     t.integer  "user_id"
     t.integer  "matter_id"
     t.datetime "created_at",                              null: false
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.integer  "cp"
     t.integer  "es"
     t.integer  "or"
+    t.text     "program",                default: ""
   end
 
   create_table "teachers", force: :cascade do |t|

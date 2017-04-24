@@ -85,9 +85,9 @@ class FichasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ficha_params
-      params.require(:ficha).permit(:program, :general_objective, :specific_objective,
+      params.require(:ficha).permit(:general_objective, :specific_objective,
                                     :didactic_procedures, :evaluation, :basic_bibliography,
-                                    :bicliography, :user_id, :matter_id, :appraisal, :status)
+                                    :bibliography, :user_id, :matter_id, :appraisal, :status)
     end
 
     def authorize_user

@@ -28,6 +28,18 @@ class RecordPdf < Prawn::Document
 
   end
 
+  def title_generate(title)
+    move_down 20
+    text_box title, size: 12, style: :bold, :at => [0,cursor], align: :center
+    move_down 15
+  end
+
+  def show_value(value, x)
+    font("app/fonts/DejaVuSans.ttf") do
+      text_box value, size: 11, :at => [x,cursor]
+    end
+  end
+
   def matter_generate
 
     header_generate
@@ -106,20 +118,17 @@ class RecordPdf < Prawn::Document
       move_down 25
       transparent (0.5) { stroke_horizontal_rule }
 
-      move_down 15
-      text_box "EMENTA", size: 12, style: :bold, :at => [0,415], align: :center
-
-      move_down 15
+      title_generate("EMENTA")
       text_box @ficha.matter.menu.to_s, size: 11, :at => [10,cursor]
 
-      move_down 30
+      move_down (@ficha.matter.menu.to_s.lines.count * 14) + 10
       transparent (0.5) { stroke_horizontal_rule }
 
-      move_down 15
-      text_box "PROGRAMA", size: 12, style: :bold, :at => [0,355], align: :center
+      title_generate("PROGRAMA")
 
-      move_down 15
-      text_box @ficha.program, size: 11, :at => [10,cursor]
+
+      text_box @ficha.matter.program , size: 11, :at => [10,cursor]
+
 
   end
 
@@ -131,39 +140,48 @@ class RecordPdf < Prawn::Document
 
       move_down 5
       text_box "Professor:", size: 11, style: :bold, :at => [10,cursor]
-      text_box @ficha.user.name(), size: 11, :at => [70,cursor]
+      show_value(@ficha.user.name(), 70)
 
       move_down 15
       transparent (0.5) { stroke_horizontal_rule }
 
+      title_generate("OBJETIVO GERAL")
+      show_value(@ficha.general_objective, 10)
 
-      move_down 15
-      text_box "OBJETIVO GERAL", size: 12, style: :bold, :at => [0,560], align: :center
+      title_generate("OBJETIVOS ESPECÍFICOS")
+      show_value(@ficha.specific_objective, 10)
 
-      move_down 15
-      text_box @ficha.general_objective, size: 11, :at => [10,cursor]
-
-
-      move_down 30
+      move_down(@ficha.specific_objective.lines.count * 14)+ 10
       transparent (0.5) { stroke_horizontal_rule }
 
+      title_generate("PROCEDIMENTOS DIDÁTICOS")
+      show_value(@ficha.didactic_procedures, 10)
 
-      move_down 30
-      text_box "OBJETIVOS ESPECÍFICOS", size: 12, style: :bold, :at => [0,500], align: :center
+      move_down (@ficha.didactic_procedures.lines.count * 14)+ 10
+      transparent (0.5) { stroke_horizontal_rule }
 
-      move_down 15
-      text_box @ficha.specific_objective, size: 11, :at => [10,cursor]
+      title_generate("FORMAS DE AVALIAÇÃO")
+      show_value(@ficha.evaluation, 10)
+
+      move_down (@ficha.evaluation.lines.count * 14)+ 10
+      transparent (0.5) { stroke_horizontal_rule }
+
+      title_generate("BIBLIOGRAFIA BÁSICA")
+      show_value(@ficha.basic_bibliography, 10)
+
+      move_down (@ficha.basic_bibliography.lines.count * 14) + 10
+
+      title_generate("BIBLIOGRAFIA COMPLEMENTAR")
+      show_value(@ficha.bibliography, 10)
 
     end
 
   end
 
+  #http://prawnpdf.org/docs/0.11.1/index.html
+  #http://prawnpdf.org/manual.pdf
 
-
-#http://prawnpdf.org/docs/0.11.1/index.html
-#http://prawnpdf.org/manual.pdf
-
-#https://github.com/prawnpdf/prawn-table
+  #https://github.com/prawnpdf/prawn-table
 
   end
 
