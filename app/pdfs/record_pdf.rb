@@ -17,7 +17,6 @@ class RecordPdf < Prawn::Document
     SETOR DE CIÊNCIAS EXATAS", size: 11, :at => [100,735]
 
     text_box  "DEPARTAMENTO DE MATEMÁTICA", size: 11, :at => [100,680]
-
     move_down 80
     stroke_horizontal_rule
 
@@ -29,7 +28,7 @@ class RecordPdf < Prawn::Document
   end
 
   def title_generate(title)
-    move_down 20
+    move_down 15
     text_box title, size: 12, style: :bold, :at => [0,cursor], align: :center
     move_down 15
   end
@@ -38,6 +37,23 @@ class RecordPdf < Prawn::Document
     font("app/fonts/DejaVuSans.ttf") do
       text_box value, size: 11, :at => [x,cursor]
     end
+  end
+
+  def count_lines(text)
+    ((text.length / 80) + text.lines.count) * 14 + 5
+  end
+
+  def page_limit(cursor)
+    puts "Cursor: #{cursor}"
+
+    if(cursor.to_i < 300.00)
+        start_new_page
+        move_up 145
+        header_generate
+        return true
+    end
+
+    return false
   end
 
   def matter_generate
@@ -125,10 +141,9 @@ class RecordPdf < Prawn::Document
       transparent (0.5) { stroke_horizontal_rule }
 
       title_generate("PROGRAMA")
+      show_value(@ficha.matter.program, 10)
 
-
-      text_box @ficha.matter.program , size: 11, :at => [10,cursor]
-
+    end
 
   end
 
@@ -148,31 +163,41 @@ class RecordPdf < Prawn::Document
       title_generate("OBJETIVO GERAL")
       show_value(@ficha.general_objective, 10)
 
+      move_down(count_lines(@ficha.general_objective))
+
       title_generate("OBJETIVOS ESPECÍFICOS")
       show_value(@ficha.specific_objective, 10)
 
-      move_down(@ficha.specific_objective.lines.count * 14)+ 10
+      move_down(count_lines(@ficha.specific_objective))
       transparent (0.5) { stroke_horizontal_rule }
 
       title_generate("PROCEDIMENTOS DIDÁTICOS")
       show_value(@ficha.didactic_procedures, 10)
 
-      move_down (@ficha.didactic_procedures.lines.count * 14)+ 10
+      move_down (count_lines(@ficha.didactic_procedures))
       transparent (0.5) { stroke_horizontal_rule }
 
       title_generate("FORMAS DE AVALIAÇÃO")
       show_value(@ficha.evaluation, 10)
 
-      move_down (@ficha.evaluation.lines.count * 14)+ 10
+      move_down (count_lines(@ficha.evaluation))
       transparent (0.5) { stroke_horizontal_rule }
 
       title_generate("BIBLIOGRAFIA BÁSICA")
       show_value(@ficha.basic_bibliography, 10)
 
-      move_down (@ficha.basic_bibliography.lines.count * 14) + 10
+      if(page_limit(cursor))
+        bounding_box([0,cursor],:width=>450,:height=>cursor) do
+        transparent(0.5){stroke_bounds}
+          title_generate("BIBLIOGRAFIA COMPLEMENTAR")
+          show_value(@ficha.bibliography, 10)
+        end
+      else
+        move_down (count_lines(@ficha.basic_bibliography))
+        title_generate("BIBLIOGRAFIA COMPLEMENTAR")
+        show_value(@ficha.bibliography, 10)
+      end
 
-      title_generate("BIBLIOGRAFIA COMPLEMENTAR")
-      show_value(@ficha.bibliography, 10)
 
     end
 
@@ -182,7 +207,4 @@ class RecordPdf < Prawn::Document
   #http://prawnpdf.org/manual.pdf
 
   #https://github.com/prawnpdf/prawn-table
-
-  end
-
 end
