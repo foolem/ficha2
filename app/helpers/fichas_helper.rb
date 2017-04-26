@@ -6,4 +6,9 @@ module FichasHelper
     end
       return status
   end
+
+  def count_lines(text)
+    ((text.length / 80) + text.lines.count) 
+  end
+
 end

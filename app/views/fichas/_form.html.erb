@@ -74,7 +74,7 @@
     <div class="form-group">
       <%= f.label :specific_objective, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :specific_objective, :class => 'form-control resize', rows: 4, :readonly => current_user.appraiser? %>
+        <%= f.text_area :specific_objective, :class => 'form-control resize', rows: count_lines(@ficha.specific_objective), :readonly => current_user.appraiser? %>
       </div>
       <%=f.error_span(:specific_objective) %>
     </div>
@@ -82,7 +82,7 @@
     <div class="form-group">
       <%= f.label :didactic_procedures, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: 4, :readonly => current_user.appraiser?%>
+        <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: count_lines(@ficha.didactic_procedures), :readonly => current_user.appraiser?%>
       </div>
       <%=f.error_span(:didactic_procedures) %>
     </div>
@@ -90,7 +90,7 @@
     <div class="form-group">
       <%= f.label :evaluation, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :evaluation, :class => 'form-control resize', rows: 4, :readonly => current_user.appraiser? %>
+        <%= f.text_area :evaluation, :class => 'form-control resize', rows: count_lines(@ficha.evaluation), :readonly => current_user.appraiser? %>
       </div>
       <%=f.error_span(:evaluation) %>
     </div>
@@ -98,7 +98,7 @@
     <div class="form-group">
       <%= f.label :basic_bibliography, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: 4, :readonly => current_user.appraiser? %>
+        <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: count_lines(@ficha.basic_bibliography), :readonly => current_user.appraiser? %>
       </div>
       <%=f.error_span(:basic_bibliography) %>
     </div>
@@ -106,7 +106,7 @@
     <div class="form-group">
       <%= f.label :bibliography, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :bibliography, :class => 'form-control resize', rows: 4, :readonly => current_user.appraiser? %>
+        <%= f.text_area :bibliography, :class => 'form-control resize', rows: count_lines(@ficha.bibliography), :readonly => current_user.appraiser? %>
       </div>
       <%=f.error_span(:bicliography) %>
     </div>
@@ -147,7 +147,7 @@
   <div class="form-group">
     <%= f.label :appraisal, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8">
-      <%= f.text_area :appraisal, :class => 'form-control resize', rows: 4, :readonly => current_user.teacher? %>
+      <%= f.text_area :appraisal, :class => 'form-control resize', rows: count_lines(@ficha.appraisal), :readonly => current_user.teacher? %>
     </div>
     <%=f.error_span(:appraisal) %>
   </div>

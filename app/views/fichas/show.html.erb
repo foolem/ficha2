@@ -35,35 +35,35 @@
     <div class="form-group">
       <%= f.label :specific_objective, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :specific_objective, :class => 'form-control resize', rows: 4, :readonly => true %>
+        <%= f.text_area :specific_objective, :class => 'form-control resize', rows: count_lines(@ficha.specific_objective), :readonly => true %>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :didactic_procedures, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: 4, :readonly => true%>
+        <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: count_lines(@ficha.didactic_procedures), :readonly => true%>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :evaluation, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :evaluation, :class => 'form-control resize', rows: 4, :readonly => true %>
+        <%= f.text_area :evaluation, :class => 'form-control resize', rows: count_lines(@ficha.evaluation), :readonly => true %>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :basic_bibliography, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: 4, :readonly => true %>
+        <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: count_lines(@ficha.basic_bibliography), :readonly => true %>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :bibliography, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.text_area :bibliography, :class => 'form-control resize', rows: 4, :readonly => true %>
+        <%= f.text_area :bibliography, :class => 'form-control resize', rows: count_lines(@ficha.bibliography), :readonly => true %>
       </div>
     </div>
 
@@ -86,7 +86,7 @@
       <div class="form-group">
         <%= f.label :appraisal, :class => 'control-label col-lg-3' %>
         <div class="col-lg-8">
-          <%= f.text_area :appraisal, :class => 'form-control resize', rows: 4, :readonly => true %>
+          <%= f.text_area :appraisal, :class => 'form-control resize', rows: count_lines(@ficha.appraisal), :readonly => true %>
         </div>
       </div>
 
