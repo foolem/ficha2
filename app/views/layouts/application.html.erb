@@ -13,6 +13,7 @@
 
     <%= javascript_include_tag "application" %>
 
+
   </head>
 
   <body>
@@ -39,12 +40,14 @@
               <li style="position: absolute; right: 16px;" ><%= link_to t('Login'), user_session_path %> </li>
             <% else %>
 
-              <li> <%=current_user.role %> </li>
               <% if current_user.admin? %>
                 <li><%= link_to t('users'), control_users_index_path %></li>
               <% end %>
 
-              <li style="position: absolute; right: 16px;"><%= link_to t('Logout'), destroy_user_session_path, method: :delete %></li>
+              <li style="position: absolute; right: 16px;">
+                <%= link_to t('Logout'), destroy_user_session_path, :method => :delete %>
+              </li>
+
             <% end %>
 
           </ul>
@@ -60,6 +63,11 @@
       <div class="row">
         <div class="col-lg-9">
           <%= bootstrap_flash %>
+
+          <% if(user_signed_in?) %>
+            <h4><%=current_user.role%></h4>
+          <% end %>
+
           <%= yield %>
         </div>
 

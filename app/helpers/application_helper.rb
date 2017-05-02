@@ -35,4 +35,19 @@ module ApplicationHelper
     user_signed_in? && status != "Aprovado"
   end
 
+  def remove_button
+    '<i class="glyphicon glyphicon-remove"></i>'
+  end
+
+  def edit_button
+    '<i class="glyphicon glyphicon-edit"></i> Editar'
+  end
+
+  def new_button
+    '<i class="glyphicon glyphicon-plus"></i>'
+  end
+  def download_button
+    '<i class="glyphicon glyphicon-save"></i> Baixar'
+  end
+
 end
