@@ -8,11 +8,11 @@ class FichasController < ApplicationController
   def index
 
     if(!user_signed_in?)
-      @fichas = Ficha.order(created_at: :desc).where(status: "Aprovado")
+      @fichas = Ficha.order(created_at: :desc).where(status: "Aprovado").paginate(:per_page => 10, :page => params[:page])
     elsif current_user.teacher?
-      @fichas = Ficha.order(status: :desc).where(user: current_user)
+      @fichas = Ficha.order(status: :desc).where(user: current_user).paginate(:per_page => 10, :page => params[:page])
     else
-      @fichas = Ficha.order(status: :desc)
+      @fichas = Ficha.order(status: :desc).paginate(:per_page => 10, :page => params[:page])
     end
   end
 

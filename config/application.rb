@@ -14,6 +14,7 @@ module Ficha2
     config.i18n.default_locale = "pt-BR"
 
     config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  end
+
+    end
 
 end
