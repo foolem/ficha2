@@ -46,41 +46,79 @@ module ApplicationHelper
   def new_button
     '<i class="glyphicon glyphicon-plus"></i>'
   end
+
   def download_button
     '<i class="glyphicon glyphicon-save"></i> Baixar'
   end
 
 
 
-
   def render_pages(list, page)
-    resto = pages_count(list.length)
-    if(page.blank?)
+    pages = pages_count(list)
+
+    if(pages < 1)
+      return ' '
+    end
+    page = page.to_i
+    if(page.blank? or page == 0 )
       page = 1;
     end
 
-    disable = 'class="disabled"'
-    active = 'class="active"'
-    first_page = '<li><a href="/fichas?page=5">5</a></li>'
+    inicial = 1
+    if(page >= 4)
+      inicial = page - 2
 
-      ṕre_page =
-      '<li #>
-        <a href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>'
+      if page + 2 > pages
+        inicial -= 2
+      end
+
+    end
+
+    if page == inicial + 4 && inicial + 5 <= pages
+      inicial += 1
+    end
+
+    maximo = inicial + 4
+    if(pages < 5)
+      maximo = pages
+    end
+
+    resultado = ' '
+    for i in inicial..maximo
+      if i == page
+        puts "Page: #{page}"
+        puts "I: #{i}"
+        resultado = resultado + ' <li class="active black"><a href="/fichas?page=' + i.to_s + '">' + i.to_s + '</a></li>'
+      else
+        resultado = resultado + ' <li><a href="/fichas?page=' + i.to_s + '">' + i.to_s + '</a></li>'
+      end
+    end
+
+      if(page <= 1)
+        classe = 'class="disabled"'
+        puts "Page: #{page}"
+        link = "/fichas?page=#{page.to_s}"
+      else
+        classe = ''
+        link = "/fichas?page=#{(page-1).to_s}"
+      end
+
+      pre_page ='<li '+ classe +' > <a href="'+ link +
+      '" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>'
+
+      if(page >= pages)
+        classe = 'class="disabled"'
+        link = "/fichas?page=#{page.to_s}"
+      else
+        classe = ''
+        link = "/fichas?page=#{(page+1).to_s}"
+      end
 
       next_page =
-      '<li>
-        <a href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>'
+      '<li '+ classe +' > <a href="'+ link +
+      '" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>'
 
-      result = pre_page + ' ' + page_1 + ' ' +
-               page_2 + ' ' + page_3 + ' ' +
-               page_4 + ' ' + page_5 + ' ' +
-               next_page
+      result = pre_page +' '+ resultado +' '+ next_page
 
     return result
   end
@@ -88,10 +126,9 @@ module ApplicationHelper
   def pages_count(num)
     pages = num/10
     resto = num.remainder 10
-    if( resto >= 0)
+    if( resto > 0)
       pages=pages+1
     end
-
     pages
   end
 

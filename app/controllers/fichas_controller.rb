@@ -7,13 +7,12 @@ class FichasController < ApplicationController
   # GET /fichas.json
   def index
 
-    if(!user_signed_in?)
-      @fichas = Ficha.order(created_at: :desc).where(status: "Aprovado").paginate(:per_page => 10, :page => params[:page])
-    elsif current_user.teacher?
-      @fichas = Ficha.order(status: :desc).where(user: current_user).paginate(:per_page => 10, :page => params[:page])
-    else
-      @fichas = Ficha.order(status: :desc).paginate(:per_page => 10, :page => params[:page])
-    end
+    @page = params[:page].to_i
+    @fichas = getFichas
+    @elements = @fichas.length
+    @page = pages_verify(@page, @elements)
+    @fichas = @fichas.paginate(:per_page => 10, :page => @page)
+
   end
 
   # GET /fichas/1
@@ -76,6 +75,40 @@ class FichasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+public
+  def getFichas
+    if !user_signed_in?
+      Ficha.order(created_at: :desc).where(status: "Aprovado")
+    elsif current_user.teacher?
+      Ficha.order(status: :desc).where(user: current_user)
+    else
+      Ficha.order(status: :desc)
+    end
+  end
+
+  def pages_verify(page, lines)
+    pages = pages_count(lines)
+    puts "Page teste  : #{page}"
+    if(page < 1)
+
+      page = 1
+    elsif page > pages
+      page = pages
+    end
+
+    page
+  end
+
+  def pages_count(num)
+    pages = num/10
+    resto = num.remainder 10
+    if( resto > 0)
+      pages=pages+1
+    end
+    pages
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
