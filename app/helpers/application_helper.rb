@@ -53,8 +53,8 @@ module ApplicationHelper
 
 
 
-  def render_pages(list, page)
-    pages = pages_count(list)
+  def render_pages(list, page, path, length)
+    pages = pages_count(list, length)
 
     if(pages < 1)
       return ' '
@@ -65,13 +65,14 @@ module ApplicationHelper
     end
 
     inicial = 1
-    if(page >= 4)
+    if(page > 4)
       inicial = page - 2
 
       if page + 2 > pages
         inicial -= 2
       end
-
+    elsif page == 4 && pages > page + 1
+      inicial = page - 2
     end
 
     if page == inicial + 4 && inicial + 5 <= pages
@@ -88,19 +89,19 @@ module ApplicationHelper
       if i == page
         puts "Page: #{page}"
         puts "I: #{i}"
-        resultado = resultado + ' <li class="active black"><a href="/fichas?page=' + i.to_s + '">' + i.to_s + '</a></li>'
+        resultado = resultado + ' <li class="active black"><a href="' + path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
       else
-        resultado = resultado + ' <li><a href="/fichas?page=' + i.to_s + '">' + i.to_s + '</a></li>'
+        resultado = resultado + ' <li><a href="'+ path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
       end
     end
 
       if(page <= 1)
         classe = 'class="disabled"'
         puts "Page: #{page}"
-        link = "/fichas?page=#{page.to_s}"
+        link = path + "?page=#{page.to_s}"
       else
         classe = ''
-        link = "/fichas?page=#{(page-1).to_s}"
+        link = path + "?page=#{(page-1).to_s}"
       end
 
       pre_page ='<li '+ classe +' > <a href="'+ link +
@@ -108,10 +109,10 @@ module ApplicationHelper
 
       if(page >= pages)
         classe = 'class="disabled"'
-        link = "/fichas?page=#{page.to_s}"
+        link = path + "?page=#{page.to_s}"
       else
         classe = ''
-        link = "/fichas?page=#{(page+1).to_s}"
+        link = path +"?page=#{(page+1).to_s}"
       end
 
       next_page =
@@ -123,9 +124,9 @@ module ApplicationHelper
     return result
   end
 
-  def pages_count(num)
-    pages = num/10
-    resto = num.remainder 10
+  def pages_count(num, length)
+    pages = num/length
+    resto = num.remainder length
     if( resto > 0)
       pages=pages+1
     end

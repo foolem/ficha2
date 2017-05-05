@@ -76,7 +76,6 @@ class FichasController < ApplicationController
     end
   end
 
-public
   def getFichas
     if !user_signed_in?
       Ficha.order(created_at: :desc).where(status: "Aprovado")
@@ -89,7 +88,6 @@ public
 
   def pages_verify(page, lines)
     pages = pages_count(lines)
-    puts "Page teste  : #{page}"
     if(page < 1)
 
       page = 1

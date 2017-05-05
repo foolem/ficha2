@@ -45,7 +45,7 @@ end
 matter = Matter.last
 teacher = User.where(role: 0).last
 
-10.times do |i|
+15.times do |i|
 
   name = Faker::Name.name
   matter_id = Random.rand(matter.id - 1)
@@ -57,7 +57,7 @@ teacher = User.where(role: 0).last
 
 end
 
-10.times do |i|
+20.times do |i|
 
   name = Faker::Name.name
   matter_id = Random.rand(matter.id - 1)
@@ -70,7 +70,7 @@ end
 end
 
 
-20.times do |i|
+30.times do |i|
 
   name = Faker::Name.name
   matter_id = Random.rand(matter.id - 1)

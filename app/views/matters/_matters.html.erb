@@ -1,0 +1,46 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="form_table"><%= t('name') %></th>
+      <th width="25%"><%= t('code') %></th>
+
+      <% if user_signed_in? && current_user.admin? %>
+        <th  width="15%">
+          <center>
+          <%=t '.actions', :default => t("helpers.actions") %>
+
+        <div style=float:right;>
+            <%= link_to new_button.html_safe, new_matter_path, :class => 'btn btn-primary btn-xs' %>
+          <div>
+        </center>
+      </th>
+      <% end %>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @matters.each do |matter| %>
+      <tr>
+        <div class="form_table">
+          <td><%= link_to matter.name, matter_path(matter) %></td>
+          <td><%= matter.code %></td>
+
+          <% if user_signed_in? && current_user.admin? %>
+            <td>
+              <%= link_to edit_button.html_safe,
+                          edit_matter_path(matter), :class => 'btn btn-default btn-sm' %>
+
+              <%= link_to remove_button.html_safe,
+                          matter_path(matter),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-sm btn-danger' %>
+            </td>
+          <% end %>
+
+        </div>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

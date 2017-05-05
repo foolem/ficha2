@@ -34,7 +34,7 @@
   <tbody>
     <% @fichas.each do |ficha| %>
       <tr>
-        <% if user_not_teacher_not_logged %>
+        <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? %>
           <td><%= ficha.user.name %></td>
         <% end %>
         <td><%= ficha.matter.name %></td>

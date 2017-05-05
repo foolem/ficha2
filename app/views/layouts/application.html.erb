@@ -18,7 +18,7 @@
 
   </head>
 
-  <body>
+  <body class="body">
 
     <div class="navbar navbar-default navbar navbar-inverse menu_bar" style="color: white;">
       <div class="container">
@@ -67,7 +67,7 @@
           <%= bootstrap_flash %>
 
           <% if(user_signed_in?) %>
-            <h4><%=current_user.role%></h4>
+          <!--   <h4><%=current_user.role%></h4> -->
           <% end %>
 
           <%= yield %>
@@ -86,11 +86,12 @@
         </div><!--/span-->
       </div><!--/row-->
 
-      <footer>
-        <p>&copy; UFPR - Universidade Federal do Paraná 2017</p>
-      </footer>
 
     </div> <!-- /container -->
 
   </body>
+
+  <footer class="footer">
+    &copy; UFPR - Universidade Federal do Paraná 2017
+  </footer>
 </html>

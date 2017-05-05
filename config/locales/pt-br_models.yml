@@ -29,11 +29,11 @@
         total_modular_workload: "Modular"
         weekly_workload: "Semanal"
 
-        pd: "PD"
-        lc: "LC"
-        cp: "CP"
-        es: "ES"
-        or: "OR"
+        pd: "Padrão"
+        lc: "Laboratório"
+        cp: "Campo"
+        es: "Estágio"
+        or: "Orientada"
 
       teacher:
         name: "Nome"

@@ -216,7 +216,7 @@ class RecordPdf < Prawn::Document
 
   def show_value(value, x)
     font("app/fonts/DejaVuSans.ttf") do
-      text_box value, size: 11, :at => [x,cursor], :width => 435
+      text_box value, size: 11, :at => [x,cursor], :width => 435, :align => :justify
     end
   end
 

@@ -6,8 +6,17 @@ class MattersController < ApplicationController
   # GET /matters
   # GET /matters.json
   def index
+
+    @page = params[:page].to_i
+    length_verify()
     @q = Matter.ransack(params[:q])
     @matters = @q.result.order(name: :asc)
+    puts "Params 'q'#{params[:q]}"
+
+    @elements = @matters.length
+    @page = pages_verify(@page, @elements)
+
+    @matters = @matters.paginate(:per_page => @length, :page => @page)
   end
 
   # GET /matters/1
@@ -72,6 +81,35 @@ class MattersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to matters_url, notice: 'Matter was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def pages_verify(page, lines)
+    pages = pages_count(lines)
+    puts "Page teste  : #{page}"
+    if(page < 1)
+
+      page = 1
+    elsif page > pages
+      page = pages
+    end
+
+    page
+  end
+
+  def pages_count(num)
+    result = num/@length
+    resto = num.remainder @length
+    if( resto > 0)
+      result=result+1
+    end
+    result
+  end
+
+  def length_verify
+    @length = 15
+    if(user_signed_in? and current_user.admin? )
+      @length = 10
     end
   end
 

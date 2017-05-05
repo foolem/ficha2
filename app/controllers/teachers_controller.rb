@@ -6,8 +6,15 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
+
+
     @q = User.ransack(params[:q])
-    @teachers = @q.result.where("role = 0").order(name: :asc)
+    length_verify()
+    @page = params[:page].to_i
+      @teachers = @q.result.where("role = 0").order(name: :asc)
+    @elements = @teachers.length
+    @page = pages_verify(@page, @elements)
+    @teachers = @teachers.paginate(:per_page => @length, :page => @page)
   end
 
   # GET /teachers/1
@@ -68,6 +75,36 @@ class TeachersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to teachers_url, notice: 'Teacher was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def pages_verify(page, lines)
+    pages = pages_count(lines)
+    puts "Page teste  : #{page}"
+    if(page < 1)
+
+      page = 1
+    elsif page > pages
+      page = pages
+    end
+
+    page
+  end
+
+  def pages_count(num)
+    result = num/@length
+    resto = num.remainder @length
+    if( resto > 0)
+      result=result+1
+    end
+    result
+  end
+
+
+  def length_verify
+    @length = 15
+    if(user_signed_in? and current_user.admin? )
+      @length = 10
     end
   end
 

@@ -17,8 +17,18 @@ body {
   margin: 0 auto 0 auto;
   /*background-color: #555;*/
   background: #efefef;
-  background:#A9A9A9;
+  background: #A9A9A9;
+}
 
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  background: #222;
+  text-align: center;
+  color: white;
 }
 
 .resize {
