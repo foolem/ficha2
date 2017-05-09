@@ -13,6 +13,12 @@ class FichasController < ApplicationController
     @page = pages_verify(@page, @elements)
     @fichas = @fichas.paginate(:per_page => 10, :page => @page)
 
+
+  end
+
+  def search
+    index
+    render :index
   end
 
   # GET /fichas/1
@@ -82,7 +88,13 @@ class FichasController < ApplicationController
     elsif current_user.teacher?
       Ficha.order(status: :desc).where(user: current_user)
     else
-      Ficha.order(status: :desc)
+      if(@kind == "Enviado")
+        puts "Kind: #{@kind}"
+        Ficha.order(status: :desc).where(status: "Enviado")
+      else
+        puts "Kind: #{@kind}"
+        Ficha.order(status: :desc)
+      end
     end
   end
 

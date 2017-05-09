@@ -6,15 +6,18 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-
-
-    @q = User.ransack(params[:q])
+    @q = User.search(params[:q])
     length_verify()
     @page = params[:page].to_i
-      @teachers = @q.result.where("role = 0").order(name: :asc)
+    @teachers = @q.result.where("role = 0").order(name: :asc)
     @elements = @teachers.length
     @page = pages_verify(@page, @elements)
     @teachers = @teachers.paginate(:per_page => @length, :page => @page)
+  end
+
+  def search
+    index
+    render :index
   end
 
   # GET /teachers/1

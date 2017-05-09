@@ -89,19 +89,19 @@ module ApplicationHelper
       if i == page
         puts "Page: #{page}"
         puts "I: #{i}"
-        resultado = resultado + ' <li class="active black"><a href="' + path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
+        resultado = resultado + ' <li class="active black"><a href="' + path +'/search?page=' + i.to_s + '">' + i.to_s + '</a></li>'
       else
-        resultado = resultado + ' <li><a href="'+ path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
+        resultado = resultado + ' <li><a href="'+ path +'/search?page=' + i.to_s + '">' + i.to_s + '</a></li>'
       end
     end
 
       if(page <= 1)
         classe = 'class="disabled"'
         puts "Page: #{page}"
-        link = path + "?page=#{page.to_s}"
+        link = path + "/search?page=#{page.to_s}"
       else
         classe = ''
-        link = path + "?page=#{(page-1).to_s}"
+        link = path + "/search?page=#{(page-1).to_s}"
       end
 
       pre_page ='<li '+ classe +' > <a href="'+ link +
@@ -109,10 +109,10 @@ module ApplicationHelper
 
       if(page >= pages)
         classe = 'class="disabled"'
-        link = path + "?page=#{page.to_s}"
+        link = path + "/search?page=#{page.to_s}"
       else
         classe = ''
-        link = path +"?page=#{(page+1).to_s}"
+        link = path +"/search?page=#{(page+1).to_s}"
       end
 
       next_page =
@@ -132,5 +132,5 @@ module ApplicationHelper
     end
     pages
   end
-
+  
 end
