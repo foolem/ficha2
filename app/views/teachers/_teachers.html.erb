@@ -28,7 +28,7 @@
         <% if user_signed_in? && current_user.admin? %>
           <td>
             <%= link_to edit_button.html_safe,
-                        edit_user_registration_path(teacher), :class => 'btn btn-default btn-sm' %>
+                        edit_user_registration_path(User.first), :class => 'btn btn-default btn-sm' %>
 
             <%= link_to remove_button.html_safe,
                         teacher_path(teacher),

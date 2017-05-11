@@ -115,7 +115,7 @@ class RecordPdf < Prawn::Document
       transparent (0.5) { stroke_horizontal_rule }
 
       title_generate("PROGRAMA")
-      show_value(@ficha.matter.program, 10)
+      show_value(@ficha.program, 10)
 
     end
 

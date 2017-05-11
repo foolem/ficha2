@@ -23,11 +23,9 @@
   <% if !current_user.appraiser? %>
 
     <div class="form-group">
-      <%= f.label :matter, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
-
+      <%= f.label :matter, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
         <%= f.collection_select(:matter_id, matters_order, :id, :name, include_blank: true) %>
-
       </div>
       <%=f.error_span(:matter_id) %>
     </div>
@@ -35,8 +33,8 @@
     <% if current_user.admin? %>
 
       <div class="form-group">
-        <%= f.label :teacher, :class => 'control-label col-lg-2' %>
-        <div class="col-lg-9">
+        <%= f.label :teacher, :class => 'control-label col-lg-3' %>
+        <div class="col-lg-8">
           <%= f.collection_select(:user_id, users_order, :id, :name, include_blank: true) %>
         </div>
         <%=f.error_span(:user_id) %>
@@ -47,69 +45,77 @@
   <% else %>
 
     <div class="form-group">
-      <%= f.label :matter, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+      <%= f.label :matter, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
         <%= f.text_field_tag 'matter_name', @ficha.matter.name, disabled: true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :teacher, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+      <%= f.label :teacher, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
         <%= f.text_field_tag 'user_name', @ficha.user.name, disabled: true %>
       </div>
     </div>
 
   <% end %>
 
-
-    <div class="form-group">
-      <%= f.label :general_objective, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
-        <%= f.text_field :general_objective, :class => 'form-control', :readonly => current_user.appraiser? %>
-      </div>
-      <%=f.error_span(:general_objective) %>
+  <div class="form-group">
+    <%= f.label :program, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :program, :class => 'form-control resize', rows: count_lines(@ficha.program) %>
     </div>
+    <%=f.error_span(:program) %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :specific_objective, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_area :specific_objective, :class => 'form-control resize', rows: count_lines(@ficha.specific_objective), :readonly => current_user.appraiser? %>
-      </div>
-      <%=f.error_span(:specific_objective) %>
+  <div class="form-group">
+    <%= f.label :general_objective, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :general_objective, :class => 'form-control resize', rows: count_lines(@ficha.general_objective), :readonly => current_user.appraiser? %>
     </div>
+    <%=f.error_span(:general_objective) %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :didactic_procedures, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: count_lines(@ficha.didactic_procedures), :readonly => current_user.appraiser?%>
-      </div>
-      <%=f.error_span(:didactic_procedures) %>
+  <div class="form-group">
+    <%= f.label :specific_objective, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :specific_objective, :class => 'form-control resize', rows: count_lines(@ficha.specific_objective), :readonly => current_user.appraiser? %>
     </div>
+    <%=f.error_span(:specific_objective) %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :evaluation, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_area :evaluation, :class => 'form-control resize', rows: count_lines(@ficha.evaluation), :readonly => current_user.appraiser? %>
-      </div>
-      <%=f.error_span(:evaluation) %>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :basic_bibliography, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: count_lines(@ficha.basic_bibliography), :readonly => current_user.appraiser? %>
-      </div>
-      <%=f.error_span(:basic_bibliography) %>
+  <div class="form-group">
+    <%= f.label :didactic_procedures, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: count_lines(@ficha.didactic_procedures), :readonly => current_user.appraiser?%>
     </div>
+    <%=f.error_span(:didactic_procedures) %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :bibliography, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_area :bibliography, :class => 'form-control resize', rows: count_lines(@ficha.bibliography), :readonly => current_user.appraiser? %>
-      </div>
-      <%=f.error_span(:bicliography) %>
+  <div class="form-group">
+    <%= f.label :evaluation, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :evaluation, :class => 'form-control resize', rows: count_lines(@ficha.evaluation), :readonly => current_user.appraiser? %>
     </div>
+    <%=f.error_span(:evaluation) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :basic_bibliography, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: count_lines(@ficha.basic_bibliography), :readonly => current_user.appraiser? %>
+    </div>
+    <%=f.error_span(:basic_bibliography) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :bibliography, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-8">
+      <%= f.text_area :bibliography, :class => 'form-control resize', rows: count_lines(@ficha.bibliography), :readonly => current_user.appraiser? %>
+    </div>
+    <%=f.error_span(:bicliography) %>
+  </div>
 
 </div>
 

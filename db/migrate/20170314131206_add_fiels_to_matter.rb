@@ -19,8 +19,6 @@ class AddFielsToMatter < ActiveRecord::Migration[5.0]
     add_column :matters, :es, :integer
     add_column :matters, :or, :integer
 
-    add_column :matters, :program, :text,  default: ""
-
   end
 
 end

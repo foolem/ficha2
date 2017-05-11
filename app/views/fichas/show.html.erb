@@ -12,23 +12,30 @@
     <br>
 
     <div class="form-group">
-      <%= f.label :matter, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+      <%= f.label :matter, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
         <%= f.text_field_tag 'matter_name', @ficha.matter.name, disabled: true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :teacher, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
-        <%= f.text_field_tag 'matter_name', @ficha.user.name, disabled: true %>
+      <%= f.label :teacher, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_field_tag 'user_name', @ficha.user.name, disabled: true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :general_objective, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
-        <%= f.text_field :general_objective, :class => 'form-control', :readonly => true %>
+      <%= f.label :program, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :program, :class => 'form-control resize', rows: count_lines(@ficha.program), :readonly => true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :general_objective, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_area :general_objective, :class => 'form-control resize', rows: count_lines(@ficha.general_objective), :readonly => true %>
       </div>
     </div>
 

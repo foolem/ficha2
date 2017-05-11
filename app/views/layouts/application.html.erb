@@ -43,11 +43,15 @@
             <% else %>
 
               <% if current_user.admin? %>
-                <li><%= link_to t('users'), control_users_index_path %></li>
+                <li><%= link_to t('users'), users_path %></li>
               <% end %>
 
               <li style="position: absolute; right: 16px;">
                 <%= link_to t('Logout'), destroy_user_session_path, :method => :delete %>
+              </li>
+
+              <li style="position: absolute; right: 150px;">
+                <%= link_to t('user') +": "+ current_user.name , edit_user_path(current_user) %>
               </li>
 
             <% end %>

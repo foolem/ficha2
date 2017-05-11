@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   get 'control_users/index'
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  resources :users, controller: 'users'
 
   resources :fichas do
     collection do

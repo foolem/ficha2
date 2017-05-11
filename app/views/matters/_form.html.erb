@@ -88,22 +88,13 @@
     <div class="form-group">
       <%= f.label :menu, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-          <%= f.text_field :menu, :class => 'form-control' %>
+
+          <%= f.text_area :menu, :class => 'form-control resize', rows: count_lines(@matter.menu)%>
       </div>
       <%=f.error_span(:menu) %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :program, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_area :program, :class => 'form-control resize', rows: 4 %>
-      </div>
-      <%=f.error_span(:program) %>
-    </div>
-
   </div>
-  <!-- workload -->
-
 
   <div class="panel panel-default" >
 
@@ -146,9 +137,6 @@
     </div>
 
   </div>
-
-
-  <!-- Codes  -->
 
   <div class="panel panel-default" >
 

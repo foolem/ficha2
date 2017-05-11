@@ -187,3 +187,6 @@ a:visited {
 }
 
 ;
+.collection_select {
+  size: 100px;
+}

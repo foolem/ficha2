@@ -10,8 +10,4 @@ module FichasHelper
     end
   end
 
-  def count_lines(text)
-    ((text.length / 80) + text.lines.count)
-  end
-  
 end

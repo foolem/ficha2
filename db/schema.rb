@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20170403124756) do
   create_table "fichas", force: :cascade do |t|
     t.string   "general_objective"
     t.text     "specific_objective",  default: ""
+    t.text     "program",             default: ""
     t.text     "didactic_procedures", default: ""
     t.text     "evaluation",          default: ""
     t.text     "basic_bibliography",  default: ""
@@ -49,7 +50,6 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.integer  "cp"
     t.integer  "es"
     t.integer  "or"
-    t.text     "program",                default: ""
   end
 
   create_table "teachers", force: :cascade do |t|
