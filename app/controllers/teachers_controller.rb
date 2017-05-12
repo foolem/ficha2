@@ -105,10 +105,7 @@ class TeachersController < ApplicationController
 
 
   def length_verify
-    @length = 15
-    if(user_signed_in? and current_user.admin? )
-      @length = 10
-    end
+    @length = 10
   end
 
   private

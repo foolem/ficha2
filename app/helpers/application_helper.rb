@@ -51,6 +51,11 @@ module ApplicationHelper
     '<i class="glyphicon glyphicon-save"></i> Baixar'
   end
 
+  def show_button
+    '<i class="glyphicon glyphicon-chevron-right"></i>'
+  end
+
+
 
 
   def render_pages(list, page, path, length)

@@ -5,15 +5,21 @@
       <th width="25%"><%= t('code') %></th>
 
       <% if user_signed_in? && current_user.admin? %>
-        <th  width="15%">
+        <th  width="19%">
+          <center>
+            <%=t '.actions', :default => t("helpers.actions") %>
+
+            <div style=float:right;>
+              <%= link_to new_button.html_safe, new_matter_path, :class => 'btn btn-primary btn-xs' %>
+            <div>
+          </center>
+        </th>
+      <% else %>
+        <th  width="8%">
           <center>
           <%=t '.actions', :default => t("helpers.actions") %>
-
-        <div style=float:right;>
-            <%= link_to new_button.html_safe, new_matter_path, :class => 'btn btn-primary btn-xs' %>
-          <div>
-        </center>
-      </th>
+          </center>
+        </th>
       <% end %>
 
     </tr>
@@ -27,6 +33,9 @@
 
           <% if user_signed_in? && current_user.admin? %>
             <td>
+
+              <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm' %>
+
               <%= link_to edit_button.html_safe,
                           edit_matter_path(matter), :class => 'btn btn-default btn-sm' %>
 
@@ -35,6 +44,12 @@
                           :method => :delete,
                           :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                           :class => 'btn btn-sm btn-danger' %>
+            </td>
+          <% else %>
+            <td>
+              <center>
+              <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm' %>
+            </center>
             </td>
           <% end %>
 

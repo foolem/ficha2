@@ -14,13 +14,13 @@
       <% end %>
 
       <% if(!user_signed_in? || user_appriser) %>
-        <th  width="8%">
+        <th  width="15%">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
           </center>
         </th>
       <% else %>
-        <th  width="15%">
+        <th  width="20%">
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
             <div style=float:right;>
               <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn btn-primary btn-xs' %>
@@ -45,6 +45,8 @@
         <% end %>
 
         <td> <center>
+
+          <%= link_to show_button.html_safe, ficha, :class => 'btn btn-default btn-sm' %>
 
           <% if status_ready(ficha.status) %>
               <%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm'%>

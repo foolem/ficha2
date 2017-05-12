@@ -5,7 +5,7 @@
       <th><%= t('email') %></th>
 
       <% if user_signed_in? && current_user.admin? %>
-        <th  width="15%">
+        <th  width="19%">
           <center>
           <%=t '.actions', :default => t("helpers.actions") %>
 
@@ -15,7 +15,13 @@
 
           </center>
          </th>
-      <% end %>
+       <% else %>
+         <th  width="8%">
+           <center>
+           <%=t '.actions', :default => t("helpers.actions") %>
+           </center>
+         </th>
+       <% end %>
 
     </tr>
   </thead>
@@ -27,8 +33,10 @@
 
         <% if user_signed_in? && current_user.admin? %>
           <td>
+            <%= link_to show_button.html_safe, teacher, :class => 'btn btn-default btn-sm' %>
+
             <%= link_to edit_button.html_safe,
-                        edit_user_registration_path(User.first), :class => 'btn btn-default btn-sm' %>
+                        edit_user_registration_path(teacher), :class => 'btn btn-default btn-sm' %>
 
             <%= link_to remove_button.html_safe,
                         teacher_path(teacher),
@@ -36,7 +44,14 @@
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-sm btn-danger' %>
           </td>
+        <% else %>
+          <td>
+            <center>
+            <%= link_to show_button.html_safe, teacher, :class => 'btn btn-default btn-sm' %>
+          </center>
+          </td>
         <% end %>
+
       </tr>
     <% end %>
   </tbody>
