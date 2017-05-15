@@ -1,3 +1,20 @@
 // Place all the styles related to the Teachers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+a.disable {
+  opacity:0.85;
+  color: white;
+}
+
+a.disable:link {
+  color: white;
+}
+
+a.disable:hover {
+  color: white;
+}
+
+a.disable:visited {
+  color: white;
+}

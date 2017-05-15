@@ -74,9 +74,16 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    @teacher.destroy
+    @teacher.actived = !@teacher.actived
+    @teacher.save
+
     respond_to do |format|
-      format.html { redirect_to teachers_url, notice: 'Teacher was successfully destroyed.' }
+      if(@teacher.actived?)
+        format.html { redirect_to teachers_url, notice: 'Professor ativado com sucesso.' }
+      else
+        format.html { redirect_to teachers_url, notice: 'Professor desativado com sucesso.' }
+      end
+
       format.json { head :no_content }
     end
   end

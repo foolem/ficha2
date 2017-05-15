@@ -39,6 +39,15 @@ module ApplicationHelper
     '<i class="glyphicon glyphicon-remove"></i>'
   end
 
+
+  def enable_button
+    '<i class="glyphicon glyphicon-off"></i>'
+  end
+
+  def desable_button
+    '<i class="glyphicon glyphicon-off"></i>'
+  end
+
   def edit_button
     '<i class="glyphicon glyphicon-edit"></i> Editar'
   end
@@ -52,9 +61,8 @@ module ApplicationHelper
   end
 
   def show_button
-    '<i class="glyphicon glyphicon-chevron-right"></i>'
+    '<i class="glyphicon glyphicon-eye-open"></i>'
   end
-
 
 
 

@@ -38,11 +38,19 @@
             <%= link_to edit_button.html_safe,
                         edit_user_registration_path(teacher), :class => 'btn btn-default btn-sm' %>
 
-            <%= link_to remove_button.html_safe,
-                        teacher_path(teacher),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-sm btn-danger' %>
+            <% if teacher.actived? %>
+
+              <%= link_to desable_button.html_safe, teacher_path(teacher), :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-sm btn-danger disable' %>
+            <% else %>
+
+              <%= link_to enable_button.html_safe, teacher_path(teacher), :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-success dropdown-toggle btn-sm disable' %>
+
+            <% end %>
+
           </td>
         <% else %>
           <td>
