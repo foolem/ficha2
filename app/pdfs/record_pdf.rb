@@ -109,10 +109,13 @@ class RecordPdf < Prawn::Document
       transparent (0.5) { stroke_horizontal_rule }
 
       title_generate("EMENTA")
-      text_box @ficha.matter.menu.to_s, size: 11, :at => [10,cursor]
+      show_value(@ficha.matter.menu.to_s, 10)
 
-      move_down (@ficha.matter.menu.to_s.lines.count * 14) + 10
-      transparent (0.5) { stroke_horizontal_rule }
+      move_down(count_lines(@ficha.matter.menu.to_s))
+
+    #  if(!new_page(@ficha.program))
+        transparent (0.5) { stroke_horizontal_rule }
+    #  end
 
       title_generate("PROGRAMA")
       show_value(@ficha.program, 10)
@@ -158,10 +161,10 @@ class RecordPdf < Prawn::Document
 
       move_down (count_lines(@ficha.evaluation))
 
-
       if(!new_page(@ficha.basic_bibliography))
         transparent (0.5) { stroke_horizontal_rule }
       end
+
       title_generate("BIBLIOGRAFIA BÁSICA")
       show_value(@ficha.basic_bibliography, 10)
 
@@ -216,12 +219,12 @@ class RecordPdf < Prawn::Document
 
   def show_value(value, x)
     font("app/fonts/DejaVuSans.ttf") do
-      text_box value, size: 11, :at => [x,cursor], :width => 435, :align => :justify
+      text_box value, size: 10, :at => [x,cursor], :width => 435, :align => :justify
     end
   end
 
   def count_lines(text)
-    ((text.length / 80) + text.lines.count) * 14 + 5
+    ((text.length / 80) + text.lines.count) * 12 + 5
   end
 
   def count_total_lines(text)
