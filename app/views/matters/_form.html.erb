@@ -90,8 +90,7 @@
       <div class="col-lg-9">
 
         <%= f.text_area :menu, :class => 'form-control resize', :align => "justify", rows: count_lines(@matter.menu)%>
-        <p align="justify" > <%= @matter.menu %> </p>
-
+        
       </div>
       <%=f.error_span(:menu) %>
     </div>

@@ -113,6 +113,9 @@ class TeachersController < ApplicationController
 
   def length_verify
     @length = 10
+    if(!user_signed_in?)
+      @length = 15
+    end
   end
 
   private

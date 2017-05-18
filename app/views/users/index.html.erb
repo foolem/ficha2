@@ -8,7 +8,7 @@
       <th><%=t('name') %></th>
       <th>Email</th>
       <th><center><%=t('role') %></center></th>
-      <th width="19%" ><center>Ações</center></th>
+      <th width="15%" ><center>Ações</center></th>
     </tr>
   </thead>
 
@@ -19,7 +19,7 @@
         <td><%= user.email %></td>
         <td><center><%= t(user.role) %></center></td>
         <td>
-          <%= link_to show_button.html_safe, user, :class => 'btn btn-default btn-sm' %>
+        <!--  <%= link_to show_button.html_safe, user, :class => 'btn btn-default btn-sm' %> -->
           <%= link_to edit_button.html_safe, edit_user_path(user), :class => 'btn btn-default btn-sm' %>
           <%= link_to remove_button.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %>
         </td>

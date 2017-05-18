@@ -5,7 +5,7 @@
       <th><%= t('email') %></th>
 
       <% if user_signed_in? && current_user.admin? %>
-        <th  width="19%">
+        <th  width="15%">
           <center>
           <%=t '.actions', :default => t("helpers.actions") %>
 
@@ -15,12 +15,7 @@
 
           </center>
          </th>
-       <% else %>
-         <th  width="8%">
-           <center>
-           <%=t '.actions', :default => t("helpers.actions") %>
-           </center>
-         </th>
+
        <% end %>
 
     </tr>
@@ -28,12 +23,13 @@
   <tbody>
     <% @teachers.each do |teacher| %>
       <tr>
-        <td><%= link_to teacher.name, teacher_path(teacher) %></td>
+        <td><%= teacher.name %></td>
+
         <td><%= teacher.email %></td>
 
         <% if user_signed_in? && current_user.admin? %>
           <td>
-            <%= link_to show_button.html_safe, teacher, :class => 'btn btn-default btn-sm' %>
+            <!-- <%= link_to show_button.html_safe, teacher, :class => 'btn btn-default btn-sm' %> -->
 
             <%= link_to edit_button.html_safe,
                         edit_user_registration_path(teacher), :class => 'btn btn-default btn-sm' %>
@@ -51,12 +47,6 @@
 
             <% end %>
 
-          </td>
-        <% else %>
-          <td>
-            <center>
-            <%= link_to show_button.html_safe, teacher, :class => 'btn btn-default btn-sm' %>
-          </center>
           </td>
         <% end %>
 

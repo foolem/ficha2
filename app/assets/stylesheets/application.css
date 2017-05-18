@@ -30,6 +30,10 @@ body {
   text-align: center;
   color: white;
 }
+.footer2 {
+  text-align: center;
+  
+}
 
 textarea.resize {
   max-width: 100%;

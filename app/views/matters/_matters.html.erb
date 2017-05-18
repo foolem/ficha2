@@ -28,7 +28,8 @@
     <% @matters.each do |matter| %>
       <tr>
         <div class="form_table">
-          <td><%= link_to matter.name, matter_path(matter) %></td>
+          <td><%= matter.name %></td>
+          
           <td><%= matter.code %></td>
 
           <% if user_signed_in? && current_user.admin? %>
