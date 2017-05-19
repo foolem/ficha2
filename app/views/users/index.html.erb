@@ -1,30 +1,26 @@
+<%- model_class = User -%>
+
 <div class="page-header">
-  <h1><%= t('users') %></h1>
+
+  <div style="color: black; float: right;">
+
+    <%= search_form_for @q, url: search_users_path,html: { method: :post } do |f| %>
+        <%= f.text_field :name_cont, :autofocus => true, placeholder: "procurar nome" %>
+        <%= f.submit%>
+    <% end %>
+  </div>
+
+  <h1><%=t('users') %></h1>
 </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%=t('name') %></th>
-      <th>Email</th>
-      <th><center><%=t('role') %></center></th>
-      <th width="15%" ><center>Ações</center></th>
-    </tr>
-  </thead>
+<div id="users">
+  <%= render 'users' %>
+</div>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><center><%= t(user.role) %></center></td>
-        <td>
-        <!--  <%= link_to show_button.html_safe, user, :class => 'btn btn-default btn-sm' %> -->
-          <%= link_to edit_button.html_safe, edit_user_path(user), :class => 'btn btn-default btn-sm' %>
-          <%= link_to remove_button.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger disable' %>
-        </td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<center>
+  <nav aria-label="Page navigation">
+    <ul class="pagination pagination-sm">
+      <%= render_pages(@elements, @page, "/users", @length).html_safe %>
+    </ul>
+  </nav>
+</center>

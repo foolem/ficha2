@@ -1,8 +1,37 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   def index
-    @users = User.where("role = 1 or role = 2")
+
+    if(@kind.blank?)
+      @kind = "role = 1 or role = 2"
+      puts @kind
+    end
+    puts @kind
+
+    @q = User.search(params[:q])
+    length_verify()
+    @page = params[:page].to_i
+    @users = @q.result.where(@kind).order(name: :asc)
+    @elements = @users.length
+    @page = pages_verify(@page, @elements)
+    @users = @users.paginate(:per_page => @length, :page => @page)
+
+  end
+
+  def search
+    index
+    render :index
+  end
+
+  def teachers
+    @kind = "role = 0"
+    puts @kind
+    index
+    render :index
+
   end
 
   def show
@@ -42,10 +71,49 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @user.actived = !@user.actived
+    @user.save
+
     respond_to do |format|
+
+      if(@user.actived?)
+        format.html { redirect_to users_url, notice: 'Usuário ativado com sucesso.' }
+      else
+        format.html { redirect_to users_url, notice: 'Usuário desativado com sucesso.' }
+      end
+
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def pages_verify(page, lines)
+    pages = pages_count(lines)
+    puts "Page teste  : #{page}"
+    if(page < 1)
+
+      page = 1
+    elsif page > pages
+      page = pages
+    end
+
+    page
+  end
+
+  def pages_count(num)
+    result = num/@length
+    resto = num.remainder @length
+    if( resto > 0)
+      result=result+1
+    end
+    result
+  end
+
+
+  def length_verify
+    @length = 10
+    if(!user_signed_in? or !current_user.admin?)
+      @length = 13
     end
   end
 
@@ -57,5 +125,9 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:name, :password, :email, :password_confirmation, :role)
+    end
+
+    def authorize_user
+      authorize User
     end
 end

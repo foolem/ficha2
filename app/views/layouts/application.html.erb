@@ -35,7 +35,7 @@
 
           <ul class="nav navbar-nav" style="aria-hidden='true'">
             <li><%= link_to t('matters'), matters_path, :class => 'menu_bar'  %></li>
-            <li><%= link_to t('teachers'), teachers_path  %></li>
+            <li><%= link_to t('teachers'), teachers_users_path  %></li>
             <li><%= link_to t('fichas'), fichas_path  %></li>
 
             <% if !user_signed_in? %>
@@ -100,5 +100,5 @@
   <footer class="footer2">
     &copy; UFPR - Universidade Federal do Paraná 2017
   </footer>
-  
+
 </html>
