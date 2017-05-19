@@ -18,6 +18,7 @@ body {
   /*background-color: #555;*/
   background: #efefef;
   background: #A9A9A9;
+
 }
 
 .footer {
@@ -30,15 +31,33 @@ body {
   text-align: center;
   color: white;
 }
+
 .footer2 {
   text-align: center;
-  
+
 }
+
+a.disable {
+  opacity:0.85;
+  color: white;
+}
+
+a.disable:link {
+  color: white;
+}
+
+a.disable:hover {
+  color: white;
+}
+
+a.disable:visited {
+  color: white;
+}
+
 
 textarea.resize {
   max-width: 100%;
   min-width: 100%;
-  text-align: justify;
 }
 
 .header {
@@ -51,16 +70,8 @@ textarea.resize {
   color: white;
 }
 
-
-.menu_bar li a:focus {
-    color: #323232;
-    background-color: #efefef;
-    background-color: transparent;
-}
-
-
 h1 {
-  color: #555;
+  color: #444;
 }
 
 td { color: #000; }

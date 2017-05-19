@@ -21,7 +21,7 @@
         <td>
         <!--  <%= link_to show_button.html_safe, user, :class => 'btn btn-default btn-sm' %> -->
           <%= link_to edit_button.html_safe, edit_user_path(user), :class => 'btn btn-default btn-sm' %>
-          <%= link_to remove_button.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %>
+          <%= link_to remove_button.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger disable' %>
         </td>
 
       </tr>

@@ -5,7 +5,7 @@
       <th width="25%"><%= t('code') %></th>
 
       <% if user_signed_in? && current_user.admin? %>
-        <th  width="19%">
+        <th  width="20%">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
 
@@ -29,30 +29,37 @@
       <tr>
         <div class="form_table">
           <td><%= matter.name %></td>
-          
+
           <td><%= matter.code %></td>
 
           <% if user_signed_in? && current_user.admin? %>
             <td>
+              <center>
 
               <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm' %>
 
               <%= link_to edit_button.html_safe,
                           edit_matter_path(matter), :class => 'btn btn-default btn-sm' %>
 
-              <%= link_to remove_button.html_safe,
-                          matter_path(matter),
-                          :method => :delete,
+              <% if matter.actived? %>
+                <%= link_to desable_button.html_safe, matter_path(matter), :method => :delete,
                           :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                          :class => 'btn btn-sm btn-danger' %>
-            </td>
+                          :class => 'btn btn-sm btn-danger disable' %>
+              <% else %>
+                <%= link_to enable_button.html_safe, matter_path(matter), :method => :delete,
+                            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                            :class => 'btn btn-success dropdown-toggle btn-sm disable' %>
+              <% end %>
+
+            </center>
+           </td>
           <% else %>
             <td>
               <center>
               <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm' %>
             </center>
             </td>
-          <% end %>
+            <% end %>
 
         </div>
       </tr>

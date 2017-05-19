@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 20170403124756) do
 
   create_table "matters", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.boolean  "actived",                default: true, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "code"
     t.string   "kind"
     t.string   "prerequisite"
@@ -41,15 +42,15 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.string   "modality"
     t.string   "nature"
     t.string   "menu",                   default: ""
-    t.integer  "total_annual_workload"
-    t.integer  "total_weekly_workload"
-    t.integer  "total_modular_workload"
-    t.integer  "weekly_workload"
-    t.integer  "pd"
-    t.integer  "lc"
-    t.integer  "cp"
-    t.integer  "es"
-    t.integer  "or"
+    t.integer  "total_annual_workload",  default: 0
+    t.integer  "total_weekly_workload",  default: 0
+    t.integer  "total_modular_workload", default: 0
+    t.integer  "weekly_workload",        default: 0
+    t.integer  "pd",                     default: 0
+    t.integer  "lc",                     default: 0
+    t.integer  "cp",                     default: 0
+    t.integer  "es",                     default: 0
+    t.integer  "or",                     default: 0
   end
 
   create_table "teachers", force: :cascade do |t|

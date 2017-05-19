@@ -77,9 +77,16 @@ class MattersController < ApplicationController
   # DELETE /matters/1
   # DELETE /matters/1.json
   def destroy
-    @matter.destroy
+    @matter.actived = !@matter.actived
+    @matter.save
+
     respond_to do |format|
-      format.html { redirect_to matters_url, notice: 'Matter was successfully destroyed.' }
+      if(@matter.actived?)
+        format.html { redirect_to matters_url, notice: 'Matéria ativada com sucesso.' }
+      else
+        format.html { redirect_to matters_url, notice: 'Matéria desativada com sucesso.' }
+      end
+
       format.json { head :no_content }
     end
   end
