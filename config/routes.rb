@@ -5,14 +5,21 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'users#search', via: [:get, :post], as: :search
 
-      match 'teachers' => 'users#teachers', via: [:get], as: :teachers
+      match 'teachers', :to => 'users#teachers', via: [:get], as: :teachers
+      match 'teachers/search' => 'users#teacher_search', via: [:get, :post], as: :teacher_search
     end
   end
 
   resources :fichas do
+
+    #collection { get :copy }
+
     collection do
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
+
+      match "copy/:id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
     end
+
   end
 
   get 'welcome/index'

@@ -26,12 +26,15 @@ class UsersController < ApplicationController
     render :index
   end
 
+  def teacher_search
+    @kind = "role = 0"
+    teachers
+    render :teachers
+  end
+
   def teachers
     @kind = "role = 0"
-    puts @kind
     index
-    render :index
-
   end
 
   def show
@@ -81,8 +84,7 @@ class UsersController < ApplicationController
       else
         format.html { redirect_to users_url, notice: 'Usuário desativado com sucesso.' }
       end
-
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      
       format.json { head :no_content }
     end
   end

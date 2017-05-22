@@ -64,6 +64,9 @@ module ApplicationHelper
     '<i class="glyphicon glyphicon-eye-open"></i>'
   end
 
+  def duplicate_button
+    '<i class="glyphicon glyphicon-duplicate"></i>'
+  end
 
 
   def render_pages(list, page, path, length)

@@ -20,7 +20,7 @@
           </center>
         </th>
       <% else %>
-        <th  width="20%">
+        <th  width="25%">
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
             <div style=float:right;>
               <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn btn-primary btn-xs' %>
@@ -56,8 +56,14 @@
           <% if user_signed_in? && !status_ready(ficha.status)  %>
             <%= link_to edit_button.html_safe,
                         edit_ficha_path(ficha), :class => 'btn btn-default btn-sm' %>
-
           <% end %>
+
+          <% if user_signed_in? && user_not_appriser  %>
+
+            <%= link_to duplicate_button.html_safe,
+                        copy_fichas_path(ficha), :class => 'btn btn-default btn-sm' %>
+
+          <% end  %>
 
           <% if (user_not_appriser && !status_ready(ficha.status)) || user_admin %>
 

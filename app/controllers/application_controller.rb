@@ -13,3 +13,6 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 end
+
+
+# https://www.youtube.com/watch?v=do6hLrds3Ss
