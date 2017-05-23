@@ -23,6 +23,19 @@
   <% if !current_user.appraiser? %>
 
     <div class="form-group">
+      <%= f.label :semester, :class => 'control-label col-lg-3', :for => "select_year" %>
+
+      <div class="col-lg-8">
+        <%= select("ficha", "semester", %w(1 2)) %>
+        <span> / </span>
+        <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1) %>
+      </div>
+
+      <%=f.error_span(:year) %>
+      <%=f.error_span(:semester) %>
+    </div>
+
+    <div class="form-group">
       <%= f.label :matter, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
         <%= f.collection_select(:matter_id, matters_order, :id, :name, include_blank: true) %>
@@ -43,6 +56,12 @@
     <% end %>
 
   <% else %>
+    <div class="form-group">
+      <%= f.label :semester, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_field_tag 'year', getSemester(@ficha), disabled: true %>
+      </div>
+    </div>
 
     <div class="form-group">
       <%= f.label :matter, :class => 'control-label col-lg-3' %>

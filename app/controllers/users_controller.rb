@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
 
     if(@kind.blank?)
-      @kind = "role = 1 or role = 2"
+      @kind = "role != 0"
       puts @kind
     end
     puts @kind
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
       else
         format.html { redirect_to users_url, notice: 'Usuário desativado com sucesso.' }
       end
-      
+
       format.json { head :no_content }
     end
   end

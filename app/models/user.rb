@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  enum role: [:teacher, :appraiser, :admin]
+  enum role: [:teacher, :appraiser, :admin, :secretary]
 
   has_many :ficha
 

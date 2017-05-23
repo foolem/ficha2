@@ -13,6 +13,26 @@ def create_users()
   User.create(name: "Admin", email: "adm@adm", password: "123123",  role: 2)
   User.create(name: "Professor", email: "prof@prof", password: "123123",  role: 0)
   User.create(name: "Avaliador", email: "av@av", password: "123123",  role: 1)
+  User.create(name: "Secretário", email: "se@se", password: "123123",  role: 3)
+
+end
+
+def randomize_semester()
+  return  Random.rand(2) + 1
+end
+
+def randomize_year()
+  random = Random.rand(3)
+  operator = Random.rand(2)
+
+  year = Time.now.year
+  if(operator == 1)
+    year-= random
+  else
+    year += random
+  end
+
+  return year
 end
 
 def create_matters(quantity)
@@ -72,14 +92,22 @@ def create_fichas(quantity, status, appraisal)
   matter = Matter.last
   teacher = User.where(role: 0).last
 
+
   quantity.times do |i|
 
+    semester = randomize_semester
+    year = 2017
+    if(status == "Aprovado")
+      year = randomize_year
+    end
     name = Faker::Name.name
     matter_id = Random.rand(matter.id - 1)
     teacher_id = Random.rand(teacher.id - 1)
 
     Ficha.create(matter_id: matter_id + 1, user_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
-    specific_objective: "Aprender x\nEntender y\nInterpretar z", status: status, appraisal: appraisal)
+    specific_objective: "Aprender x\nEntender y\nInterpretar z", status: status, appraisal: appraisal,
+    year: year, semester: semester)
+
     puts ("Criando ficha: #{matter_id + 1}, #{teacher_id + 1}")
 
   end

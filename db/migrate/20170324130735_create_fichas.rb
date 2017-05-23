@@ -13,6 +13,9 @@ class CreateFichas < ActiveRecord::Migration[5.0]
       t.string :status, default: "Enviado"
       t.text :appraisal,default: ""
 
+      t.integer :year, default: 2017
+      t.integer :semester, default: 1
+
       t.references :user, foreign_key: true
       t.references :matter, foreign_key: true
 

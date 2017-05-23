@@ -7,7 +7,7 @@
 
       <th><%= t('matter') %></th>
 
-      <th width="15%"><center><%= t('created_at') %></center></th>
+      <th width="15%"><center><%= t('semester') %></center></th>
 
       <% if user_signed_in?%>
         <th width="10%"><center><%= t('status') %></center></th>
@@ -38,7 +38,8 @@
           <td><%= ficha.user.name %></td>
         <% end %>
         <td><%= ficha.matter.name %></td>
-        <td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>
+
+        <td><center><%= getSemester(ficha) %></center></td>
 
         <% if user_signed_in?%>
           <td><center><%= status_representation(ficha.status).html_safe %></center></td>

@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.text     "bibliography",        default: ""
     t.string   "status",              default: "Enviado"
     t.text     "appraisal",           default: ""
+    t.integer  "year",                default: 2017
+    t.integer  "semester",            default: 1
     t.integer  "user_id"
     t.integer  "matter_id"
     t.datetime "created_at",                              null: false

@@ -56,6 +56,7 @@ class FichasController < ApplicationController
 
   # GET /fichas/1/edit
   def edit
+
   end
 
   # POST /fichas
@@ -81,8 +82,15 @@ class FichasController < ApplicationController
   # PATCH/PUT /fichas/1
   # PATCH/PUT /fichas/1.json
   def update
+    list = ficha_params
+
+    if(current_user.teacher?)
+      list[:status] = "Enviado"
+    end
+
     respond_to do |format|
-      if @ficha.update(ficha_params)
+      if @ficha.update(list)
+        puts params[:status]
         format.html { redirect_to @ficha, notice: 'Ficha was successfully updated.' }
         format.json { render :show, status: :ok, location: @ficha }
       else
@@ -104,15 +112,13 @@ class FichasController < ApplicationController
 
   def getFichas
     if !user_signed_in?
-      Ficha.order(created_at: :desc).where(status: "Aprovado")
+      Ficha.order(year: :desc).where(status: "Aprovado")
     elsif current_user.teacher?
-      Ficha.order(status: :desc).where(user: current_user)
+      Ficha.order(year: :desc).where(user: current_user)
     else
       if(@kind == "Enviado")
-        puts "Kind: #{@kind}"
         Ficha.order(status: :desc).where(status: "Enviado")
       else
-        puts "Kind: #{@kind}"
         Ficha.order(status: :desc)
       end
     end
@@ -150,7 +156,7 @@ class FichasController < ApplicationController
     def ficha_params
       params.require(:ficha).permit(:general_objective, :specific_objective, :program,
                                     :didactic_procedures, :evaluation, :basic_bibliography,
-                                    :bibliography, :user_id, :matter_id, :appraisal, :status)
+                                    :bibliography, :user_id, :matter_id, :appraisal, :status, :semester, :year)
     end
 
     def authorize_user

@@ -10,4 +10,9 @@ module FichasHelper
     end
   end
 
+  def getSemester(ficha)
+    return ficha.semester.to_s + " / " + ficha.year.to_s
+  end
+
+#<td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>
 end
