@@ -108,7 +108,7 @@ module ApplicationHelper
       if i == page
         puts "Page: #{page}"
         puts "I: #{i}"
-        resultado = resultado + ' <li class="active black"><a href="' + path +'/search?page=' + i.to_s + '">' + i.to_s + '</a></li>'
+        resultado = resultado + ' <li class="active black"><a href="' + path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
       else
         resultado = resultado + ' <li><a href="'+ path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
       end

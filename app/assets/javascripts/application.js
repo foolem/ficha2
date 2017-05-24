@@ -15,11 +15,16 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree
-
 $(function(){
 
-  $('#q_name_cont').keyup(function() {
-    $('#matter_search').submit();
+  $(document).on('click', '.pagination a',function(){
+    $.getScript(this.href);
+    return false;
+  });
+
+  $('#matter_search input').keyup(function() {
+    $.get($("#matter_search").attr("action"), $("#matter_search").serialize(), null, "script");
+    return false;
   });
 
 });
