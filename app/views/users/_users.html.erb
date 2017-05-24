@@ -3,7 +3,10 @@
     <tr>
       <th><%= t('name') %></th>
       <th><%= t('email') %></th>
-      <th><center><%=t('role') %></center></th>
+
+      <% if @kind == "role != 0" %>
+        <th><center><%=t('role') %></center></th>
+      <% end %>
 
       <% if user_signed_in? && current_user.admin? %>
         <th  width="15%">
@@ -11,7 +14,8 @@
           <%=t '.actions', :default => t("helpers.actions") %>
 
           <div style=float:right;>
-            <%= link_to new_button.html_safe,  new_user_path, :class => 'btn btn-primary btn-xs' %>
+            <%= link_to new_button.html_safe,  new_user_path, :class => 'btn btn-primary btn-xs',
+            title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
           <div>
 
           </center>
@@ -28,25 +32,31 @@
 
         <td><%= user.email %></td>
 
-        <td><center><%= t(user.role) %></center></td>
+        <% if @kind == "role != 0" %>
+          <td><center><%= t(user.role) %></center></td>
+        <% end %>
 
         <% if user_signed_in? && current_user.admin? %>
           <td>
-            <!-- <%= link_to show_button.html_safe, user, :class => 'btn btn-default btn-sm' %> -->
+            <!-- <%= link_to show_button.html_safe, user, :class => 'btn btn-default btn-sm',
+            title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
             <%= link_to edit_button.html_safe,
-                        edit_user_path(user), :class => 'btn btn-default btn-sm' %>
+                        edit_user_path(user), :class => 'btn btn-default btn-sm',
+                        title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
 
             <% if user.actived? %>
 
               <%= link_to desable_button.html_safe, user_path(user), :method => :delete,
-                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                          :class => 'btn btn-sm btn-danger disable' %>
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Desativar usuário?')) },
+                          :class => 'btn btn-sm btn-danger disable',
+                          title: 'Desabilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
             <% else %>
 
               <%= link_to enable_button.html_safe, user_path(user), :method => :delete,
-                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                          :class => 'btn btn-success dropdown-toggle btn-sm disable' %>
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Ativar usuário?')) },
+                          :class => 'btn btn-success dropdown-toggle btn-sm disable',
+                          title: 'Habilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
 
             <% end %>
 

@@ -15,3 +15,11 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree
+
+$(function(){
+
+  $('#q_name_cont').keyup(function() {
+    $('#matter_search').submit();
+  });
+
+});

@@ -89,7 +89,7 @@ class FichasController < ApplicationController
     end
 
     respond_to do |format|
-      if @ficha.update(list)
+      if @ficha.update(list )
         puts params[:status]
         format.html { redirect_to @ficha, notice: 'Ficha was successfully updated.' }
         format.json { render :show, status: :ok, location: @ficha }

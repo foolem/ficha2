@@ -68,6 +68,9 @@ module ApplicationHelper
     '<i class="glyphicon glyphicon-duplicate"></i>'
   end
 
+  def search_button
+    '<i class="glyphicon glyphicon-search"></i>'
+  end
 
   def render_pages(list, page, path, length)
     pages = pages_count(list, length)
