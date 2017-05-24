@@ -139,7 +139,7 @@ module ApplicationHelper
       '" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>'
 
       result = pre_page +' '+ resultado +' '+ next_page
-
+ 
     return result
   end
 
