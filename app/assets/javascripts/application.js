@@ -15,16 +15,27 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree
-$(function(){
 
-  $(document).on('click', '.pagination a',function(){
-    $.getScript(this.href);
-    return false;
-  });
+document.addEventListener("turbolinks:load", function() {
 
-  $('#matter_search input').keyup(function() {
-    $.get($("#matter_search").attr("action"), $("#matter_search").serialize(), null, "script");
-    return false;
-  });
+    $(document).on('click', '.pagination a',function(){
+      $.getScript(this.href);
+      return false;
+    });
+
+    $('#matter_search input').keyup(function() {
+      $.get($("#matter_search").attr("action"), $("#matter_search").serialize(), null, "script");
+      return false;
+    });
+
+    $('#user_search input').keyup(function() {
+      $.get($("#user_search").attr("action"), $("#user_search").serialize(), null, "script");
+      return false;
+    });
+
+    $('#teacher_search input').keyup(function() {
+      $.get($("#teacher_search").attr("action"), $("#teacher_search").serialize(), null, "script");
+      return false;
+    });
 
 });

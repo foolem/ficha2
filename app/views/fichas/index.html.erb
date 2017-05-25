@@ -16,16 +16,6 @@
 
 </div>
 
-<%= javascript_include_tag "pagination.js" %>
-
-<div id="fichas">
+<div id="fichas_partial">
   <%= render 'fichas' %>
 </div>
-
-<center>
-  <nav aria-label="Page navigation">
-    <ul class="pagination pagination-sm">
-      <%= render_pages(@elements, @page, "/fichas", 10).html_safe %>
-    </ul>
-  </nav>
-</center>

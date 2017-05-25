@@ -3,10 +3,9 @@
 <div class="page-header">
 
   <div style="color: black; float: right;">
-
     <%= search_form_for @q, url: teacher_search_users_path,html: { method: :post } do |f| %>
         <%= f.text_field :name_cont, :autofocus => true, placeholder: "procurar nome" %>
-        <%= f.submit%>
+        <%= search_button.html_safe %>
     <% end %>
   </div>
 
@@ -14,14 +13,6 @@
 
 </div>
 
-<div id="teaches">
-  <%= render 'users' %>
+<div id="teachers_partial">
+  <%= render 'teachers' %>
 </div>
-
-<center>
-  <nav aria-label="Page navigation">
-    <ul class="pagination pagination-sm">
-      <%= render_pages(@elements, @page, "/users/teachers", @length).html_safe %>
-    </ul>
-  </nav>
-</center>

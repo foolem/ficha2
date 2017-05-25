@@ -1,12 +1,11 @@
 <%- model_class = Matter -%>
+
 <div class="page-header">
 
   <div style="color: black; float: right;">
     <%= search_form_for @q do |f| %>
         <%= f.text_field :name_cont, :autofocus => true, placeholder: "procurar nome" %>
-
         <%= search_button.html_safe %>
-
     <% end %>
   </div>
 
