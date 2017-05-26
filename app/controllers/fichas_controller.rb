@@ -8,6 +8,9 @@ class FichasController < ApplicationController
   def index
 
     @page = params[:page].to_i
+
+    @q = Ficha.ransack(params[:q])
+
     @fichas = getFichas
     @elements = @fichas.length
     @page = pages_verify(@page, @elements)
@@ -112,14 +115,14 @@ class FichasController < ApplicationController
 
   def getFichas
     if !user_signed_in?
-      Ficha.order(year: :desc).where(status: "Aprovado")
+      @q.result.order(year: :desc).where(status: "Aprovado")
     elsif current_user.teacher?
-      Ficha.order(year: :desc).where(user: current_user)
+      @q.result.order(year: :desc).where(user: current_user)
     else
       if(@kind == "Enviado")
-        Ficha.order(status: :desc).where(status: "Enviado")
+        @q.result.order(status: :desc).where(status: "Enviado")
       else
-        Ficha.order(status: :desc)
+        @q.result.order(status: :desc)
       end
     end
   end

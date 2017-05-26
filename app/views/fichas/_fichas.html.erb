@@ -71,7 +71,7 @@
 
           <% end  %>
 
-          <% if (user_not_appriser && !status_ready(ficha.status)) || user_admin %>
+          <% if user_not_appriser or user_admin %>
 
             <%= link_to remove_button.html_safe,
                         ficha_path(ficha),

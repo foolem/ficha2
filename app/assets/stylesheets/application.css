@@ -202,7 +202,12 @@ a:visited {
   background-color: #000;
 }
 
-;
 .collection_select {
   size: 100px;
 }
+
+.error_mensage{
+  color: red;
+}
+
+;

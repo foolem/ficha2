@@ -38,4 +38,70 @@ document.addEventListener("turbolinks:load", function() {
       return false;
     });
 
+    $('#ficha_search input').keyup(function() {
+      $.get($("#ficha_search").attr("action"), $("#ficha_search").serialize(), null, "script");
+      return false;
+    });
+
+    $(".alert")
+      .fadeTo(1000, 500)
+      .slideUp(500);
+
+
+
+
+    validate($('input#matter_name'), $('#div_name'), $('#name_error'), "O nome");
+
+    validate($('input#matter_code'), $('#div_code'), $('#code_error'), "O código");
+
+    validate($('textarea#matter_menu'), $('#div_menu'), $('#menu_error'), "A ementa");
+
+
+
+    validate($('textarea#ficha_program'), $('#div_program'), $('#program_error'), "O Programa");
+
+    validate($('textarea#ficha_general_objective'), $('#div_objective'), $('#objective_error'), "O objetivo geral");
+
+    validate($('textarea#ficha_specific_objective'), $('#div_specific_objective'), $('#specific_objective_error'), "O objetivo específico");
+
+    validate($('textarea#ficha_didactic_procedures'), $('#div_procedures'), $('#procedures_error'), "O procedimento");
+
+    validate($('textarea#ficha_evaluation'), $('#div_evaluation'), $('#evaluation_error'), "A avaliação");
+
+    validate($('textarea#ficha_basic_bibliography'), $('#div_basic_bibliography'), $('#basic_bibliography_error'), "A bilbiografia básica");
+
+    validate($('textarea#ficha_bibliography'), $('#div_bibliography'), $('#bibliography_error'), "A bilbiografia complementar");
+//  <span id="code_error" class="error_mensage" role="alert"> </span>
+
+    function validate(input, div, error, field){
+
+      error_class = 'has-error has-feedback';
+      sucess_calss = 'has-success has-feedback';
+
+      input.blur(function() {
+
+        if(input.val().length == 0){
+
+          div
+            .removeClass(sucess_calss)
+            .addClass(error_class);
+
+          error
+            .text(field +" não pode ficar em branco.")
+            .show();
+
+        } else {
+
+          div
+            .removeClass(error_class)
+            .addClass(sucess_calss);
+
+          error
+            .hide();
+        }
+      });
+    }
+
+
+
 });
