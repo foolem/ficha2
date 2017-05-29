@@ -13,12 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+
+ /*
+ cores: https://pt.wix.com/blog/2012/12/usando-as-cores-certas-para-o-seu-site/*/
 body {
   margin: 0 auto 0 auto;
-  /*background-color: #555;*/
-  background: #efefef;
-  background: #A9A9A9;
-
+  background: #CCC;
 }
 
 .footer {
@@ -60,15 +61,27 @@ textarea.resize {
   min-width: 100%;
 }
 
-.header {
-  background-color: #222;
+.panel-default > .panel-heading.header_green {
+
+  background-color: #455E8E;
   color: white;
+  opacity:0.85;
 }
 
-.menu_bar{
-  background-color: #222;
-  color: white;
+#menu_list > li > a, #home_link{
+    color: white;
+    background-color: #455E8E;
 }
+
+#menu_list > li > a:hover{
+    color: white;
+    background-color: #000;
+}
+
+.navbar.navbar-inverse {
+    background-color: #455E8E;
+}
+
 
 h1 {
   color: #444;
@@ -81,21 +94,15 @@ tr:nth-child(even) {background-color: #ccc}
 
 /* tr:hover {background-color: #888; color: black}*/
 
-th {
-    background-color: #222;
-    color: white;
+tr.header > th {
+  color: white  ;
+  background-color: #455E8E;
 }
-
-
-ul li:hover { color: #fff; }
 
 label { color: #000; }
 
 select { color: #000; }
 
-a:visited {
-    color:#000;
-}
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 

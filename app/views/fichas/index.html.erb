@@ -4,22 +4,13 @@
 
   <div style="color: black; float: right;">
     <%= search_form_for @q do |f| %>
-        <%= f.text_field :status_cont, :autofocus => true, placeholder: "procurar status" %>
+        <%= f.text_field :program_cont, :autofocus => true, placeholder: "procurar" %>
+        <%= f.select( :status_cont, %w(Enviado Aprovado Reprovado)) %>
         <%= search_button.html_safe %>
     <% end %>
   </div>
 
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-
-  <!--
-  <div style="float: right;">
-    <form class="user_search" id="user_search" action="/fichas/search" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="AAk/ps9VhJfW/JlssDt6Q9A9ehu2NpNWaURrSN5fnvWxaNu+mI5Lwkbk9yLcBzBMH+e0Vp2C1QR5/qCI8XafKA==" type="hidden">
-      <%= select("ficha", @kind, %w(Enviado Aprovados Enviados Recusados)) %>
-      <input name="commit" value="Pesquisar" data-disable-with="Pesquisar" type="submit">
-    </form>
-
-  </div>
--->
 
 </div>
 

@@ -19,7 +19,7 @@
 
   <body class="body">
 
-    <div class="navbar navbar-default navbar navbar-inverse menu_bar" style="color: white;">
+    <div class="navbar navbar-inverse">
       <div class="container">
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -28,12 +28,12 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href= "/" >Ficha2</a>
+        <a id="home_link" class="navbar-brand" href= "/" >Ficha2</a>
 
         <div class="navbar-collapse collapse navbar-responsive-collapse">
 
-          <ul class="nav navbar-nav" style="aria-hidden='true'">
-            <li><%= link_to t('matters'), matters_path, :class => 'menu_bar'  %></li>
+          <ul class="nav navbar-nav" style="aria-hidden='true'" id="menu_list">
+            <li><%= link_to t('matters'), matters_path, :id => "matters_link"  %></li>
             <li><%= link_to t('teachers'), teachers_users_path  %></li>
             <li><%= link_to t('fichas'), fichas_path  %></li>
 
@@ -69,7 +69,7 @@
         <div class="col-lg-9">
 
             <%= bootstrap_flash %>
-      
+
 
           <% if(user_signed_in?) %>
           <!--   <h4><%=current_user.role%></h4> -->

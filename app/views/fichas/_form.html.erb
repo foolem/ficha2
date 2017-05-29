@@ -16,8 +16,8 @@
   <% end %>
 
   <div class="panel panel-default">
-    <header style="background-color: #222;color: white;"
-            class="panel-heading"><%= t('details') %></header>
+
+    <header class="panel-heading header_green"><%= t('details') %></header>
     <br>
 
   <% if !current_user.appraiser? %>
@@ -148,8 +148,7 @@
 
 <% if ((@ficha.status == "Reprovado" && current_user.teacher?) || !current_user.teacher?)  %>
   <div class="panel panel-default">
-    <header style="background-color: #222;color: white;"
-            class="panel-heading"><%= t('confirmation') %></header>
+    <header class="panel-heading header_green"><%= t('confirmation') %></header>
     <br>
 
 

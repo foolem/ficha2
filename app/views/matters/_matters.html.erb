@@ -1,6 +1,6 @@
 <table class="table table-striped">
   <thead>
-    <tr>
+    <tr class="header">
       <th class="form_table"><%= t('name') %></th>
       <th width="25%"><%= t('code') %></th>
 
@@ -27,14 +27,14 @@
   </thead>
   <tbody>
     <% @matters.each do |matter| %>
-      <tr>
+      <tr data-href="<%= matter_path(matter) %>">
         <div class="form_table">
           <td><%= matter.name %></td>
 
           <td><%= matter.code %></td>
 
           <% if user_signed_in? && current_user.admin? %>
-            <td>
+            <td id="actions">
               <center>
 
               <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm',
@@ -57,7 +57,7 @@
               <% end %>
 
             </center>
-           </td>
+           </td id="actions">
           <% else %>
             <td>
               <center>

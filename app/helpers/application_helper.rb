@@ -106,8 +106,6 @@ module ApplicationHelper
     resultado = ' '
     for i in inicial..maximo
       if i == page
-        puts "Page: #{page}"
-        puts "I: #{i}"
         resultado = resultado + ' <li class="active black"><a href="' + path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
       else
         resultado = resultado + ' <li><a href="'+ path +'?page=' + i.to_s + '">' + i.to_s + '</a></li>'
@@ -116,7 +114,6 @@ module ApplicationHelper
 
       if(page <= 1)
         classe = 'class="disabled"'
-        puts "Page: #{page}"
         link = path + "?page=#{page.to_s}"
       else
         classe = ''
@@ -139,7 +136,7 @@ module ApplicationHelper
       '" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>'
 
       result = pre_page +' '+ resultado +' '+ next_page
- 
+
     return result
   end
 

@@ -27,7 +27,7 @@
     <div class="form-group">
       <%= f.label :name, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9" id="div_name">
-        <%= f.text_field :name, :class => 'form-control', :autofocus => true %>
+        <%= f.text_field :name, :class => 'form-control', :autofocus => true, :autocomplete => "off" %>
         <span id="name_error" class="error_mensage" role="alert"> </span>
       </div>
       <%=f.error_span(:name) %>
@@ -38,7 +38,7 @@
     <div class="form-group">
       <%= f.label :code, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9" id="div_code">
-        <%= f.text_field :code, :class => 'form-control' %>
+        <%= f.text_field :code, :class => 'form-control', :autocomplete => "off" %>
         <span id="code_error" class="error_mensage" role="alert"> </span>
       </div>
       <%=f.error_span(:code) %>
@@ -57,7 +57,7 @@
     <div class="form-group">
       <%= f.label :prerequisite , :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-        <%= f.text_field :prerequisite, :class => 'form-control' %>
+        <%= f.text_field :prerequisite, :class => 'form-control', :autocomplete => "off" %>
       </div>
       <%=f.error_span(:prerequisite) %>
     </div>
@@ -65,7 +65,7 @@
     <div class="form-group">
       <%= f.label :corequisite, :class => 'control-label col-lg-2' %>
       <div class="col-lg-9">
-        <%= f.text_field :corequisite, :class => 'form-control' %>
+        <%= f.text_field :corequisite, :class => 'form-control', :autocomplete => "off" %>
       </div>
       <%=f.error_span(:corequisite) %>
     </div>
@@ -113,7 +113,7 @@
       <%= f.label :total_annual_workload, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
 
-        <%= f.number_field :total_annual_workload, :class => 'form-control',  in: 0...200 %>
+        <%= f.number_field :total_annual_workload, :class => 'form-control',  in: 0...201 %>
 
       </div>
       <%=f.error_span(:total_annual_workload) %>
@@ -123,7 +123,7 @@
     <div class="form-group">
       <%= f.label :total_weekly_workload, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
-        <%= f.number_field :total_weekly_workload, :class => 'form-control', in: 0...200 %>
+        <%= f.number_field :total_weekly_workload, :class => 'form-control', in: 0...101 %>
       </div>
       <%=f.error_span(:total_weekly_workload) %>
     </div>
@@ -131,7 +131,7 @@
     <div class="form-group">
       <%= f.label :total_modular_workload, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
-        <%= f.number_field :total_modular_workload, :class => 'form-control', in: 0...200 %>
+        <%= f.number_field :total_modular_workload, :class => 'form-control', in: 0...201 %>
       </div>
       <%=f.error_span(:total_modular_workload) %>
     </div>
@@ -155,7 +155,7 @@
     <div class="form-group">
       <%= f.label :pd, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
-        <%= f.text_field :pd, :class => 'form-control' %>
+        <%= f.number_field :pd, :class => 'form-control', in: 0...201 %>
       </div>
       <%=f.error_span(:pd) %>
     </div>
@@ -163,7 +163,7 @@
     <div class="form-group">
       <%= f.label :lc, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
-        <%= f.text_field :lc, :class => 'form-control' %>
+        <%= f.number_field :lc, :class => 'form-control', in: 0...201 %>
       </div>
       <%=f.error_span(:lc) %>
     </div>
@@ -171,7 +171,7 @@
     <div class="form-group">
       <%= f.label :cp, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
-        <%= f.text_field :cp, :class => 'form-control' %>
+        <%= f.number_field :cp, :class => 'form-control', in: 0...201%>
       </div>
       <%=f.error_span(:cp) %>
     </div>
@@ -179,7 +179,7 @@
     <div class="form-group">
       <%= f.label :es, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
-        <%= f.text_field :es, :class => 'form-control' %>
+        <%= f.number_field :es, :class => 'form-control', in: 0...201 %>
       </div>
       <%=f.error_span(:es) %>
     </div>
@@ -187,7 +187,7 @@
     <div class="form-group">
       <%= f.label :or, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
-        <%= f.text_field :or, :class => 'form-control' %>
+        <%= f.number_field :or, :class => 'form-control', in: 0...201 %>
       </div>
       <%=f.error_span(:or) %>
     </div>

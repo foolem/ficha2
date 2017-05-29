@@ -1,4 +1,4 @@
-class AddFielsToMatter < ActiveRecord::Migration[5.0]
+class AddFieldsToMatter < ActiveRecord::Migration[5.0]
   def change
     add_column :matters, :code, :string
     add_column :matters, :kind, :string
@@ -18,6 +18,7 @@ class AddFielsToMatter < ActiveRecord::Migration[5.0]
     add_column :matters, :cp, :integer, default: 0
     add_column :matters, :es, :integer, default: 0
     add_column :matters, :or, :integer, default: 0
+
   end
 
 end

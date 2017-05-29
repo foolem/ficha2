@@ -7,9 +7,7 @@ class UsersController < ApplicationController
 
     if(@kind.blank?)
       @kind = "role != 0"
-      puts @kind
     end
-    puts @kind
 
     @q = User.search(params[:q])
     length_verify()
@@ -62,6 +60,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    list = user_params
+  
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'Usuário atualizado com sucesso.' }
@@ -77,12 +77,18 @@ class UsersController < ApplicationController
     @user.actived = !@user.actived
     @user.save
 
+    if(!@user.teacher?)
+      path = users_path
+    else
+      path = teachers_users_url
+    end
+
     respond_to do |format|
 
       if(@user.actived?)
-        format.html { redirect_to users_url, notice: 'Usuário ativado com sucesso.' }
+        format.html { redirect_to path, notice: 'Usuário ativado com sucesso.' }
       else
-        format.html { redirect_to users_url, notice: 'Usuário desativado com sucesso.' }
+        format.html { redirect_to path, notice: 'Usuário desativado com sucesso.' }
       end
 
       format.json { head :no_content }
@@ -91,7 +97,6 @@ class UsersController < ApplicationController
 
   def pages_verify(page, lines)
     pages = pages_count(lines)
-    puts "Page teste  : #{page}"
     if(page < 1)
 
       page = 1
