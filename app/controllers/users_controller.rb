@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:show, :new, :account_edit, :user_edit, :create, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   def index
@@ -43,6 +43,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if(@user != current_user)
+      user_edit
+    end
+  end
+
+  def user_edit
+    if(!current_user.admin?)
+      flash[:alert] = "Você não tem permissão para acessar esta página."
+      redirect_to(request.referrer || root_path)
+    end
   end
 
   def create
@@ -61,7 +71,7 @@ class UsersController < ApplicationController
 
   def update
     list = user_params
-  
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'Usuário atualizado com sucesso.' }

@@ -1,9 +1,5 @@
 class UserPolicy < ApplicationPolicy
 
-  def index?
-    user.admin?
-  end
-
   def new?
     user.admin?
   end
@@ -13,11 +9,13 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin?
+    true
   end
 
   def update?
-    user.admin?
+    # aqui autoedit?
+    puts "Record: #{record}"
+    user.admin? or recor == user
   end
 
   def destroy?
@@ -25,7 +23,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin?
+    true
   end
 
   class Scope < Scope

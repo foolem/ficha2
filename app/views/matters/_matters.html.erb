@@ -4,7 +4,7 @@
       <th class="form_table"><%= t('name') %></th>
       <th width="25%"><%= t('code') %></th>
 
-      <% if user_signed_in? && current_user.admin? %>
+      <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
         <th  width="20%">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
@@ -33,7 +33,7 @@
 
           <td><%= matter.code %></td>
 
-          <% if user_signed_in? && current_user.admin? %>
+          <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
             <td id="actions">
               <center>
 

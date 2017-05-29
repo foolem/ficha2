@@ -1,23 +1,23 @@
 class MatterPolicy < ApplicationPolicy
 
   def new?
-    user.admin?
+    user.admin? or user.secretary?
   end
 
   def create?
-    user.admin?
+    user.admin? or user.secretary?
   end
 
   def edit?
-    user.admin?
+    user.admin? or user.secretary?
   end
 
   def update?
-    user.admin?
+    user.admin? or user.secretary?
   end
 
   def destroy?
-    user.admin?
+    user.admin? or user.secretary?
   end
 
   def show?

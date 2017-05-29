@@ -27,6 +27,14 @@ module ApplicationHelper
     user_signed_in? && !current_user.admin?
   end
 
+  def user_secretary
+    user_signed_in? && current_user.secretary?
+  end
+
+  def user_not_secretary
+    user_signed_in? && !current_user.secretary?
+  end
+
   def status_ready(status)
     status == "Aprovado"
   end
@@ -71,6 +79,11 @@ module ApplicationHelper
   def search_button
     '<i class="glyphicon glyphicon-search"></i>'
   end
+
+  def back_button
+    '<i class="glyphicon glyphicon-arrow-left"></i>'
+  end
+
 
   def render_pages(list, page, path, length)
     pages = pages_count(list, length)

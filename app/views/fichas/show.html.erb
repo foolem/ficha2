@@ -7,8 +7,7 @@
 <%= form_for @ficha, :html => { :class => "form-horizontal ficha" } do |f| %>
 
   <div class="panel panel-default">
-    <header style="background-color: #222;color: white;"
-            class="panel-heading"><%= t('details') %></header>
+    <header class="panel-heading header"><%= t('details') %></header>
     <br>
 
     <div class="form-group">
@@ -79,8 +78,7 @@
   <% if (@ficha.status == "Reprovado")  %>
 
     <div class="panel panel-default">
-      <header style="background-color: #222;color: white;"
-              class="panel-heading"><%= t('confirmation') %></header>
+      <header class="panel-heading header"><%= t('confirmation') %></header>
       <br>
 
       <div class="form-group">

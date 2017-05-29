@@ -15,13 +15,15 @@
 <div class="login-page">
   <div class="form-login">
 
-    <%= f.text_field :name, placeholder: "name", autofocus: true %>
+    <% if(current_user.admin?) %>
+    <%= f.select(:role, [['Professor', :teacher], ['Avaliador', :appraiser], ['Administrador', :admin], ['Secretário', :secretary]]) %>
+    <% end %>
 
-    <%= f.email_field :email , placeholder: "email address" %>
+    <%= f.text_field :name, placeholder: "name", autofocus: true, :autocomplete => "off"  %>
 
-    <%= f.text_field :role, placeholder: "role" %>
+    <%= f.email_field :email , placeholder: "email address", :autocomplete => "off"  %>
 
-    <i>(leave blank if you don't want to change it)</i><br />
+
     <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
 
     <br/>
@@ -29,7 +31,7 @@
 
     <button name="commit" data-disable-with="Signup" type="submit ">Update</button>
 
-    <%= link_to "Back", :back %>
+    <%= link_to back_button.html_safe + " Back", :back, :style => "float: left; margin-top: 15px" %>
 
   </div>
 </div>

@@ -1,11 +1,11 @@
 class FichaPolicy < ApplicationPolicy
 
   def new?
-    user.admin? or user.teacher?
+    (user.admin? or user.teacher?) and user.actived?
   end
 
   def create?
-    user.admin? or user.teacher?
+    (user.admin? or user.teacher?) and user.actived?
   end
 
   def edit?
@@ -16,9 +16,13 @@ class FichaPolicy < ApplicationPolicy
     user.admin? or user.appraiser? or user.teacher?
   end
 
+  def copy?
+    user.admin? or user.teacher?
+  end
 
   def destroy?
-    user.admin?
+    # teacher apenas em suas fichas
+    user.admin? or user.teacher?
   end
 
   def show?

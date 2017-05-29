@@ -13,7 +13,7 @@
         <th width="10%"><center><%= t('status') %></center></th>
       <% end %>
 
-      <% if(!user_signed_in? || user_appriser) %>
+      <% if(!user_signed_in? || user_appriser || user_secretary) %>
         <th  width="15%">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
@@ -63,7 +63,7 @@
                         title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end %>
 
-          <% if user_signed_in? && user_not_appriser  %>
+          <% if user_signed_in? && user_not_appriser and user_not_secretary %>
 
             <%= link_to duplicate_button.html_safe,
                         copy_fichas_path(ficha), :class => 'btn btn-default btn-sm',
@@ -71,7 +71,7 @@
 
           <% end  %>
 
-          <% if user_not_appriser or user_admin %>
+          <% if user_not_appriser and user_not_secretary %>
 
             <%= link_to remove_button.html_safe,
                         ficha_path(ficha),

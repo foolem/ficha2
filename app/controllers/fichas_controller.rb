@@ -1,6 +1,6 @@
 class FichasController < ApplicationController
   before_action :set_ficha, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   # GET /fichas
