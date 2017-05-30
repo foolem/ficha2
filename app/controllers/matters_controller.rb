@@ -49,6 +49,14 @@ class MattersController < ApplicationController
   def create
     @matter = Matter.new(matter_params)
 
+    if(@matter.prerequisite.blank?)
+      @matter.prerequisite = 'Nenhum'
+    end
+
+    if(@matter.corequisite.blank?)
+      @matter.corequisite = 'Nenhum'
+    end
+
     respond_to do |format|
       if @matter.save
         format.html { redirect_to @matter, notice: 'Matter was successfully created.' }

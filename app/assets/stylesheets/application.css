@@ -56,6 +56,7 @@ a.disable:visited {
 }
 
 
+
 textarea.resize {
   max-width: 100%;
   min-width: 100%;
@@ -108,7 +109,7 @@ select { color: #000; }
 
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 5% 0 0;
   margin: auto;
 }
 .form-login {
@@ -213,8 +214,10 @@ select { color: #000; }
   size: 100px;
 }
 
-.error_mensage{
-  color: red;
+.error_mensage, div.has-error .help-block {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #B22222;
 }
 
 ;

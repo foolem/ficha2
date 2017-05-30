@@ -7,7 +7,7 @@
       <% if(user_signed_in?)%>
         <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'], ['Enviados', 'Enviado']]) %>
       <% end%>
-      <%= f.text_field :program_cont, :autofocus => true, placeholder: "procurar" %>
+      <%= f.text_field :program_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
       <%= search_button.html_safe %>
     <% end %>
   </div>

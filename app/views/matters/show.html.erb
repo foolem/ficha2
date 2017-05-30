@@ -6,10 +6,9 @@
 <dl class="dl-horizontal">
 
   <div class="panel panel-default">
-    <header style="background-color: #222;color: white;"
-            class="panel-heading"><%= t('details') %></header>
+    <header class="panel-heading header"><%= t('details') %></header>
     <br>
-
+    <div class="details show">
       <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
       <dd><%= @matter.name %></dd>
 
@@ -33,13 +32,12 @@
 
       <dt><strong><%= model_class.human_attribute_name(:menu) %>:</strong></dt>
       <dd><%= @matter.menu %></dd>
-
-      <br>
+    </div>
+    <br>
   </div>
 
   <div class="panel panel-default">
-    <header style="background-color: #222;color: white;"
-            class="panel-heading"><%= t('workload') %></header>
+    <header class="panel-heading header"><%= t('workload') %></header>
     <br>
 
       <dt><strong><%= model_class.human_attribute_name(:total_annual_workload) %>:</strong></dt>
@@ -59,8 +57,7 @@
   </div>
 
   <div class="panel panel-default">
-    <header style="background-color: #222;color: white;"
-            class="panel-heading"><%= t('codes') %></header>
+    <header class="panel-heading header"><%= t('codes') %></header>
     <br>
 
       <dt><strong><%= model_class.human_attribute_name(:pd) %>:</strong></dt>
