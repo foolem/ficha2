@@ -18,6 +18,17 @@ module FichasHelper
     return ficha.semester.to_s + " / " + ficha.year.to_s
   end
 
+  def getYears()
+    years = {'Todos' => ''}
+
+    10.times do |y|
+      i = 8 -y
+      years[Time.zone.now.year-i] = Time.zone.now.year-i
+    end
+
+    return years
+  end
+
   #<td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>
 
 end

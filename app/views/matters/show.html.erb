@@ -8,7 +8,7 @@
   <div class="panel panel-default">
     <header class="panel-heading header"><%= t('details') %></header>
     <br>
-    <div class="details show">
+    <div id="details" class="show">
       <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
       <dd><%= @matter.name %></dd>
 
@@ -39,19 +39,20 @@
   <div class="panel panel-default">
     <header class="panel-heading header"><%= t('workload') %></header>
     <br>
+      <div id="details" class="show">
+        <dt><strong><%= model_class.human_attribute_name(:total_annual_workload) %>:</strong></dt>
+        <dd><%= @matter.total_annual_workload %></dd>
 
-      <dt><strong><%= model_class.human_attribute_name(:total_annual_workload) %>:</strong></dt>
-      <dd><%= @matter.total_annual_workload %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:total_modular_workload) %>:</strong></dt>
+        <dd><%= @matter.total_modular_workload %></dd>
 
-      <dt><strong><%= model_class.human_attribute_name(:total_modular_workload) %>:</strong></dt>
-      <dd><%= @matter.total_modular_workload %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:total_weekly_workload) %>:</strong></dt>
+        <dd><%= @matter.total_weekly_workload %></dd>
 
-      <dt><strong><%= model_class.human_attribute_name(:total_weekly_workload) %>:</strong></dt>
-      <dd><%= @matter.total_weekly_workload %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:weekly_workload) %>:</strong></dt>
+        <dd><%= @matter.weekly_workload %></dd>
 
-      <dt><strong><%= model_class.human_attribute_name(:weekly_workload) %>:</strong></dt>
-      <dd><%= @matter.weekly_workload %></dd>
-
+      </div>
       <br>
 
   </div>
@@ -59,19 +60,19 @@
   <div class="panel panel-default">
     <header class="panel-heading header"><%= t('codes') %></header>
     <br>
+      <div id="details" class="show">
+        <dt><strong><%= model_class.human_attribute_name(:pd) %>:</strong></dt>
+        <dd><%= @matter.pd %></dd>
 
-      <dt><strong><%= model_class.human_attribute_name(:pd) %>:</strong></dt>
-      <dd><%= @matter.pd %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:lc) %>:</strong></dt>
+        <dd><%= @matter.lc %></dd>
 
-      <dt><strong><%= model_class.human_attribute_name(:lc) %>:</strong></dt>
-      <dd><%= @matter.lc %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:cp) %>:</strong></dt>
+        <dd><%= @matter.cp %></dd>
 
-      <dt><strong><%= model_class.human_attribute_name(:cp) %>:</strong></dt>
-      <dd><%= @matter.cp %></dd>
-
-      <dt><strong><%= model_class.human_attribute_name(:or) %>:</strong></dt>
-      <dd><%= @matter.or %></dd>
-
+        <dt><strong><%= model_class.human_attribute_name(:or) %>:</strong></dt>
+        <dd><%= @matter.or %></dd>
+      </div>
       <br>
 
   </div>

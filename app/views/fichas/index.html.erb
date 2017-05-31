@@ -3,13 +3,26 @@
 <div class="page-header">
 
   <div style="color: black; float: right;">
+
+
     <%= search_form_for @q do |f| %>
+
+
       <% if(user_signed_in?)%>
+        <% if user_teacher %>
+          <input id="yours_checkbox" name="checkbox" id="check_checkbox" type="checkbox"> Suas
+        <% end %>
+        
         <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'], ['Enviados', 'Enviado']]) %>
       <% end%>
+
+      <%= f.select :year_eq, options_for_select(getYears, Time.zone.now.year) %>
+
       <%= f.text_field :program_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
       <%= search_button.html_safe %>
     <% end %>
+
+
   </div>
 
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>

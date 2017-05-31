@@ -22,6 +22,7 @@ class FichasController < ApplicationController
   def search
     index
     render :index
+    show_check
   end
 
   # GET /fichas/1
@@ -114,15 +115,15 @@ class FichasController < ApplicationController
   end
 
   def getFichas
-    if !user_signed_in?
-      @q.result.order(year: :desc).where(status: "Aprovado")
-    elsif current_user.teacher?
-      @q.result.order(year: :desc).where(user: current_user)
+    if !user_signed_in? or !current_user.teacher?
+      @q.result.order(year: :desc)
     else
-      if(@kind == "Enviado")
-        @q.result.order(status: :desc).where(status: "Enviado")
+      if(params[:checkbox])
+        puts "TA ATIVADO MEMO PARÇA"
+        @q.result.order(year: :desc).where(user: current_user)
       else
-        @q.result.order(status: :desc)
+        puts "TA DESLIGADAO MEMO"
+        @q.result.order(year: :desc)
       end
     end
   end

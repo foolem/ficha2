@@ -21,7 +21,7 @@ document.addEventListener 'turbolinks:load', ->
     $.get $('#ficha_search').attr('action'), $('#ficha_search').serialize(), null, 'script'
     false
 
-  $('#ficha_search select').change ->
+  $('#ficha_search select, #yours_checkbox').change ->
     $.get $('#ficha_search').attr('action'), $('#ficha_search').serialize(), null, 'script'
     false
 
