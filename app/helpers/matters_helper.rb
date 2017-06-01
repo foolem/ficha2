@@ -4,4 +4,8 @@ module MattersHelper
     @matters = Matter.where(actived: true).order(name: :asc)
   end
 
+  def show_matter
+    @show = true
+  end
+
 end

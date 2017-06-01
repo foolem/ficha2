@@ -4,16 +4,19 @@ document.addEventListener 'turbolinks:load', ->
     error_class = 'has-error has-feedback'
     sucess_calss = 'has-success has-feedback'
     input.blur ->
-      if input.val().length == 0
-        input.removeClass('error')
-        div.find('.has-error').hide()
-        div.removeClass(sucess_calss).addClass error_class
-        error.text('não pode ficar em branco.').show()
-      else
-        input.removeClass('error')
-        div.find('.has-error').hide()
-        div.removeClass(error_class).addClass sucess_calss
-        error.hide()
+
+      if input.attr('readonly') != 'readonly'
+        if input.val().length == 0
+          input.removeClass('error')
+          div.find('.has-error').hide()
+          div.removeClass(sucess_calss).addClass error_class
+          error.text('não pode ficar em branco.').show()
+        else
+          input.removeClass('error')
+          div.find('.has-error').hide()
+          div.removeClass(error_class).addClass sucess_calss
+          error.hide()
+        return
       return
     return
 
@@ -26,19 +29,19 @@ document.addEventListener 'turbolinks:load', ->
     false
 
   $('#matter_prerequisite').blur ->
-    if $(this).val().length == 0
-      $(this).val('Nenhum')
+    if $(this).attr('readonly') != 'readonly' and $(this).val().length == 0
+        $(this).val('Nenhum')
 
   $('#matter_corequisite').blur ->
-    if $(this).val().length == 0
-      $(this).val('Nenhum')
+    if $(this).attr('readonly') != 'readonly' and $(this).val().length == 0
+        $(this).val('Nenhum')
 
   $('#matter_prerequisite').focus ->
-    if $(this).val() == 'Nenhum'
-      $(this).val('')
+    if $(this).attr('readonly') != 'readonly' and $(this).val() == 'Nenhum'
+        $(this).val('')
 
   $('#matter_corequisite').focus ->
-    if $(this).val() == 'Nenhum'
-      $(this).val('')
+    if $(this).attr('readonly') != 'readonly' and $(this).val() == 'Nenhum'
+        $(this).val('')
 
   return
