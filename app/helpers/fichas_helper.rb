@@ -29,6 +29,14 @@ module FichasHelper
     return years
   end
 
+  def show_ficha
+    @show = true
+  end
+
+  def can_not_edit
+    @show or user_appriser
+  end
+
   #<td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>
 
 end

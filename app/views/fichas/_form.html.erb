@@ -20,7 +20,29 @@
     <header class="panel-heading header"><%= t('details') %></header>
     <br>
 
-  <% if !current_user.appraiser? %>
+  <% if @show or user_appriser %>
+    <div class="form-group">
+      <%= f.label :semester, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-2">
+        <%= f.text_field 'year', :value => getSemester(@ficha), :class => 'form-control', :autocomplete => "off", :readonly => can_not_edit %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :matter, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_field 'matter_name', :value => @ficha.matter.name, :class => 'form-control', :autocomplete => "off", :readonly => can_not_edit %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :teacher, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8">
+        <%= f.text_field 'user_name', :value => @ficha.user.name, :class => 'form-control', :autocomplete => "off", :readonly => can_not_edit %>
+      </div>
+    </div>
+
+  <% else %>
 
     <div class="form-group">
       <%= f.label :semester, :class => 'control-label col-lg-3', :for => "select_year" %>
@@ -48,35 +70,16 @@
       <div class="form-group">
         <%= f.label :teacher, :class => 'control-label col-lg-3' %>
         <div class="col-lg-8">
+          <%if (@show)%>
           <%= f.collection_select(:user_id, users_order, :id, :name, include_blank: true) %>
+          <% else %>
+
+          <% end %>
           <%=f.error_span(:user) %>
         </div>
       </div>
 
     <% end %>
-
-  <% else %>
-    <div class="form-group">
-      <%= f.label :semester, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_field_tag 'year', getSemester(@ficha), disabled: true %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :matter, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_field_tag 'matter_name', @ficha.matter.name, disabled: true %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :teacher, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
-        <%= f.text_field_tag 'user_name', @ficha.user.name, disabled: true %>
-      </div>
-    </div>
-
   <% end %>
 
   <div class="form-group">
@@ -147,51 +150,59 @@
 
 
 <% if ((@ficha.status == "Reprovado" && current_user.teacher?) || !current_user.teacher?)  %>
+
   <div class="panel panel-default">
     <header class="panel-heading header"><%= t('confirmation') %></header>
     <br>
 
+  <% if current_user.teacher? or (@ficha.status == "Aprovado") or @show %>
 
-
-  <% if current_user.teacher? %>
-
-  <div class="form-group">
-    <%= f.label :status, :class => 'control-label col-lg-3' %>
-    <div class="col-lg-8">
-        <%= f.text_field_tag 'ficha_status', @ficha.status, disabled: true %>
+    <div class="form-group">
+      <%= f.label :status, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-3">
+        <%= f.text_field 'ficha_status', :value => @ficha.status, :class => 'form-control', :readonly => true %>
+      </div>
     </div>
-  </div>
+
   <%else %>
 
-  <div class="form-group">
-    <%= f.label :status, :class => 'control-label col-lg-3' %>
-    <div class="col-lg-8">
+    <div class="form-group">
+      <%= f.label :status, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-8" id='select_status'>
 
-      <%= f.select("status", %w(Aprovado Reprovado)) %>
+        <%= f.select("status", %w(Enviado Aprovado Reprovado)) %>
 
+      </div>
+      <%=f.error_span(:status) %>
     </div>
-    <%=f.error_span(:status) %>
-  </div>
 
   <% end %>
 
-  <div class="form-group">
+  <% if @ficha.status != 'Aprovado' %>
+
+  <div class="form-group" id='appraisal_show'>
+
     <%= f.label :appraisal, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8">
-      <%= f.text_area :appraisal, :class => 'form-control resize', rows: count_lines(@ficha.appraisal), :readonly => current_user.teacher? %>
+      <%= f.text_area :appraisal, :class => 'form-control resize', rows: count_lines(@ficha.appraisal), :readonly => (current_user.teacher? or @show) %>
     </div>
     <%=f.error_span(:appraisal) %>
+
   </div>
+
+ <% end %>
 
   </div>
 <% end %>
 
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                fichas_path, :class => 'btn btn-default' %>
+  <% if(!@show) %>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  fichas_path, :class => 'btn btn-default' %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
 <% end %>

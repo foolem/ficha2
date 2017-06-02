@@ -47,6 +47,16 @@ document.addEventListener("turbolinks:load", function() {
     $('.error').parent('div').find('.col-lg-9').addClass('has-error has-feedback');
 
 
+    $(document).on('change', '#select_status select', function() {
+      if($(this).val() != 'Reprovado'){
+        $("#appraisal_show").slideUp(1000, function(){
+          $('#ficha_appraisal').val('');
+        });
+      } else {
+        $("#appraisal_show").slideDown(1000);
+      }
+    });
+
 });
 
   $(document).on("click", ".header", function() {
