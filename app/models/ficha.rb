@@ -10,15 +10,15 @@ class Ficha < ApplicationRecord
 
   validates :status, presence: true
 
-  validates :program, presence: true
+  #validates :program, presence: true
 
-  validates :general_objective, presence: true
-  validates :specific_objective, presence: true
+  #validates :general_objective, presence: true
+  #validates :specific_objective, presence: true
 
-  validates :didactic_procedures, presence: true
-  validates :evaluation, presence: true
+  #validates :didactic_procedures, presence: true
+  #validates :evaluation, presence: true
 
-  validates :basic_bibliography, presence: true
-  validates :bibliography, presence: true
+  #validates :basic_bibliography, presence: true
+  #validates :bibliography, presence: true
 
 end

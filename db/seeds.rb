@@ -44,6 +44,7 @@ def create_matters(quantity)
     kind = [:Semestral, :Anual, :Modular].sample
     modality = [:Presencial, :EaD].sample
     nature = [:Obrigatoria, :Optativa].sample
+    menu = "Ementa exemplo"
 
     if name[0] >= 'a'
       name[0] = name[0].upcase
@@ -51,7 +52,7 @@ def create_matters(quantity)
 
     Matter.create(name: name, code: code, kind: kind,
     prerequisite: "Nenhum", corequisite: "Nenhum",
-    modality: modality , nature: nature,
+    modality: modality , nature: nature, menu: menu,
     total_weekly_workload: 0, total_modular_workload: 0, total_annual_workload: 0, weekly_workload: 0,
     pd:0, lc:0, cp:0, es:0, or:0)
 
@@ -274,6 +275,7 @@ create_users()
 create_fichas_example()
 create_fichas_teacher()
 create_teachers(20)
+create_fichas(20, "Editando", "")
 create_fichas(20, "Enviado", "")
 create_fichas(20, "Reprovado", "Bibliografia fora das normas")
 create_fichas(20, "Aprovado", "")

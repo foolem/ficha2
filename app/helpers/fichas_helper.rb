@@ -4,7 +4,9 @@ module FichasHelper
     if(status == "Aprovado")
       return getIcon("glyphicon glyphicon-ok", "Aprovado", "green")
     elsif (status == "Enviado")
-      return getIcon("glyphicon glyphicon-refresh", "Enviado", "black")
+      return getIcon("glyphicon glyphicon-refresh", "Enviado", "blue")
+    elsif (status == "Editando")
+      return getIcon("glyphicon glyphicon-pencil", "Editando", "black")
     else
       return getIcon("glyphicon glyphicon-ban-circle", "Reprovado", "red")
     end

@@ -12,10 +12,11 @@
         <% if user_teacher %>
           <input id="yours_checkbox" name="checkbox" id="check_checkbox" type="checkbox"> Suas
         <% end %>
-        
-        <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'], ['Enviados', 'Enviado']]) %>
-      <% end%>
 
+        <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
+         ['Editando', 'Editando'], ['Enviados', 'Enviado']]) %>
+
+      <% end%>
       <%= f.select :year_eq, options_for_select(getYears, Time.zone.now.year) %>
 
       <%= f.text_field :program_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>

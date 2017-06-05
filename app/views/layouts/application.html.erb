@@ -45,12 +45,29 @@
                 <li><%= link_to t('users'), users_path %></li>
               <% end %>
 
-              <li style="position: absolute; right: 16px;">
+              <li style="position: absolute; right: 45px;">
                 <%= link_to t('Logout'), destroy_user_session_path, :method => :delete %>
               </li>
 
               <li style="position: absolute; right: 150px;">
-                <%= link_to t('user') +": "+ current_user.name , edit_user_path(current_user) %>
+                <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user) %>
+              </li>
+
+              <li style="position: absolute; right: 0">
+                <%= link_to config_button.html_safe , edit_user_path(current_user)  %>
+
+                <div class="btn-group" style="margin-top: 7px">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= config_button.html_safe %>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a  data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
+                  </ul>
+                </div>
+
               </li>
 
             <% end %>

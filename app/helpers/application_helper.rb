@@ -84,6 +84,14 @@ module ApplicationHelper
     '<i class="glyphicon glyphicon-arrow-left"></i>'
   end
 
+  def config_button
+    '<i class="glyphicon glyphicon-cog"></i>'
+  end
+
+  def user_button(user)
+    '<i class="glyphicon glyphicon-user"></i> ' + user
+  end
+
 
   def render_pages(list, page, path, length)
     pages = pages_count(list, length)
