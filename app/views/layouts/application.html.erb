@@ -38,37 +38,28 @@
             <li><%= link_to t('fichas'), fichas_path  %></li>
 
             <% if !user_signed_in? %>
-              <li style="position: absolute; right: 16px;" ><%= link_to t('Login'), user_session_path %> </li>
+              <li style="position: absolute; right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
             <% else %>
 
               <% if current_user.admin? %>
                 <li><%= link_to t('users'), users_path %></li>
               <% end %>
 
-              <li style="position: absolute; right: 45px;">
-                <%= link_to t('Logout'), destroy_user_session_path, :method => :delete %>
+              <li style="position: absolute; right: 60px;">
+                <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user), :class => 'user_name_menu' %>
               </li>
 
-              <li style="position: absolute; right: 150px;">
-                <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user) %>
-              </li>
+              <div style="position: absolute; right: 10px;" class="btn-group" style="">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= config_button.html_safe %>
+                </button>
 
-              <li style="position: absolute; right: 0">
-                <%= link_to config_button.html_safe , edit_user_path(current_user)  %>
-
-                <div class="btn-group" style="margin-top: 7px">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= config_button.html_safe %>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a  data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
-                  </ul>
-                </div>
-
-              </li>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="<%= edit_user_path(current_user) %>">Configurações</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a  data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
+                </ul>
+              </div>
 
             <% end %>
 

@@ -1,0 +1,40 @@
+<%- model_class = Ficha -%>
+
+<div class="page-header">
+  <h1>Importar</h1>
+</div>
+
+<div class="importing">
+
+  <div class="panel panel-default">
+
+    <header class="panel-heading header"><%= t('import') %></header>
+    <br>
+
+    <%= form_tag importing_fichas_path, multipart: true do %>
+
+      <div class="form-group">
+
+        <div class="col-lg-2">
+          <label class="control-label col-lg-3" for="file"> <%=t('upload')%></label>
+        </div>
+
+        <div class="col-lg-9">
+          <%= file_field_tag "file" %>
+        </div>
+
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <center>
+          <%= submit_tag "Importar"%>
+        </center>
+      </div>
+    <% end %>
+
+    <br>
+
+
+  </div>
+</div>

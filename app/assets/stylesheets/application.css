@@ -33,6 +33,12 @@ body {
   color: white;
 }
 
+div.dropdown-menu li a, button.dropdown-toggle {
+  color: white;
+  background-color: #455E8E;
+  margin-top: 8px;
+}
+
 .footer2 {
   text-align: center;
 
@@ -77,6 +83,11 @@ textarea.resize {
 #menu_list > li > a:hover{
     color: white;
     background-color: #000;
+}
+
+#menu_list li a.user_name_menu:hover{
+    color: white;
+    background-color: #455E8E;
 }
 
 .navbar.navbar-inverse {

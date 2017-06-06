@@ -55,6 +55,16 @@ document.addEventListener("turbolinks:load", function() {
       } else {
         $("#appraisal_show").slideDown(1000);
       }
+      var val =  $('#select_status select').val();
+
+
+      $('#ficha_status_icon').html();
+
+    });
+
+    $(document).on('click', '#teste',function(){
+      $(this).parent('center').parent('td').parent('tr').parent('tbody').html(' OOOPAAA ');
+      alert($(this).parent('center').parent('td').parent('tr').parent('tbody').attr('id'));
     });
 
 });

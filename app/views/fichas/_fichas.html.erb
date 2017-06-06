@@ -32,13 +32,14 @@
 
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbody">
     <% @fichas.each do |ficha| %>
       <tr data-href="<%= ficha_path(ficha) %>" >
         <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? %>
           <td><%= ficha.user.name %></td>
         <% end %>
-        <td><%= ficha.matter.name %></td>
+        <td><%= ficha.matter.name %>
+        </td>
 
         <td><center><%= getSemester(ficha) %></center></td>
 
@@ -65,10 +66,8 @@
 
           <% if user_signed_in? && user_not_appriser and user_not_secretary %>
 
-            <%= link_to duplicate_button.html_safe,
-                        copy_fichas_path(ficha), :class => 'btn btn-default btn-sm',
-                        title: 'Copiar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-
+            <%= link_to duplicate_button.html_safe, copy_fichas_path(ficha), :class => 'btn btn-default btn-sm',
+                        :id =>"copy_bt", title: 'Copiar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end  %>
 
           <% if user_not_appriser and user_not_secretary %>
@@ -79,6 +78,8 @@
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-sm btn-danger disable',
                         title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+
+                        <span id="teste">click</span>
           <% end %>
 
         </center> </td>

@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# importing
+gem "roo", "~> 2.7.0"
+gem "iconv", "~> 1.0.3"
+gem 'roo-xls'
 # prawn
 gem 'prawn'
 

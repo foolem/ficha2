@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   resources :fichas do
 
-    #collection { get :copy }
-
     collection do
+      match 'import' => 'fichas#import', via: [:get, :post], as: :import
+
+      match 'importing' => 'fichas#importing', via: [:get, :post], as: :importing
+
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
 
       match "copy/:id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
