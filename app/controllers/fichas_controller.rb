@@ -26,23 +26,29 @@ class FichasController < ApplicationController
   def importing
     file = params[:file]
 
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      #product = find_by_id(row["id"]) || new
-      #product.attributes = row.to_hash.slice(*accessible_attributes)
-      #product.save!
-      puts "ROW: #{row}"
+    #xlsx = Roo::Excelx.new(file.path)
+    begin
+      xlsx = open_spreadsheet(file)
+    rescue Zip::Error
+      #xlsx = Roo::Spreadsheet.open(file.path)
     end
 
+    puts
+    linha = xlsx.sheet(0).row(2)
+
+    puts linha[1]
+    puts linha[2]
+    puts linha[5]
+    puts linha[26]
+    puts
+    #puts xlsx.sheet(0).row(3)
   end
 
   def open_spreadsheet(file)
     case File.extname(file.original_filename)
-    when ".csv" then Csv.new(file.path, nil, :ignore)
-    when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
-    when ".xlsx" then Excelx.new(file.path, nil, :ignore)
+    when ".csv" then Roo::CSV.new("mytsv.tsv", csv_options: {col_sep: ","})
+    when ".xls" then nil
+    when ".xlsx" then Roo::Spreadsheet.open(file.path, extension: :xlsx)
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
@@ -187,7 +193,7 @@ class FichasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ficha_params
       params.require(:ficha).permit(:general_objective, :specific_objective, :program,
-                                    :didactic_procedures, :evaluation, :basic_bibliography,
+                                    :didactic_procedures, :evaluation, :basic_bibliography, :team,
                                     :bibliography, :user_id, :matter_id, :appraisal, :status, :semester, :year)
     end
 

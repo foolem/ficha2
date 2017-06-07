@@ -13,6 +13,8 @@
           <input id="yours_checkbox" name="checkbox" id="check_checkbox" type="checkbox"> Suas
         <% end %>
 
+        <%= f.select :team_eq, %w(A B C D E) %>
+
         <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
          ['Editando', 'Editando'], ['Enviados', 'Enviado']]) %>
 

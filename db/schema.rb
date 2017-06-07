@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.text     "basic_bibliography",  default: ""
     t.text     "bibliography",        default: ""
     t.string   "status",              default: "Enviado"
+    t.string   "team",                default: "A"
     t.text     "appraisal",           default: ""
     t.integer  "year",                default: 2017
     t.integer  "semester",            default: 1

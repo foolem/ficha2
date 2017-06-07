@@ -32,9 +32,14 @@
 
     <div class="form-group">
       <%= f.label :matter, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
+      <div class="col-lg-7">
         <%= f.text_field 'matter_name', :value => @ficha.matter.name, :class => 'form-control', :autocomplete => "off", :readonly => can_not_edit %>
       </div>
+
+      <div class="col-lg-1">
+        <%= f.text_field 'team', :value => @ficha.team, :class => 'form-control', :autocomplete => "off", :readonly => can_not_edit %>
+      </div>
+
     </div>
 
     <div class="form-group">
@@ -63,6 +68,8 @@
       <%= f.label :matter, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
         <%= f.collection_select(:matter_id, matters_order, :id, :name, include_blank: true) %>
+        <span> </span>
+        <%= f.select :team, %w(A B C D E) %>
         <%=f.error_span(:matter) %>
       </div>
     </div>

@@ -11,6 +11,7 @@ class CreateFichas < ActiveRecord::Migration[5.0]
       t.text :bibliography, default: ""
 
       t.string :status, default: "Enviado"
+      t.string :team, default: "A"
       t.text :appraisal,default: ""
 
       t.integer :year, default: 2017

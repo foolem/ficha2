@@ -43,6 +43,7 @@
         teacher: "Professor"
         status: "Status"
         appraisal: "Comentários"
+        team: "Turma"
 
         program: "Programa"
         general_objective: "Objetivo Geral"

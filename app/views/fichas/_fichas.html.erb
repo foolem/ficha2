@@ -7,10 +7,12 @@
 
       <th><%= t('matter') %></th>
 
-      <th width="15%"><center><%= t('semester') %></center></th>
+      <th width="10%"><center><%= t('semester') %></center></th>
+
+      <th width="5%"><center><%= t('team') %></center></th>
 
       <% if user_signed_in?%>
-        <th width="10%"><center><%= t('status') %></center></th>
+        <th width="5%"><center><%= t('status') %></center></th>
       <% end %>
 
       <% if(!user_signed_in? || user_appriser || user_secretary) %>
@@ -42,6 +44,8 @@
         </td>
 
         <td><center><%= getSemester(ficha) %></center></td>
+
+        <td><center><%= ficha.team %></center></td>
 
         <% if user_signed_in?%>
           <td><center><%= status_representation(ficha.status).html_safe %></center></td>
@@ -79,7 +83,6 @@
                         :class => 'btn btn-sm btn-danger disable',
                         title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
 
-                        <span id="teste">click</span>
           <% end %>
 
         </center> </td>
