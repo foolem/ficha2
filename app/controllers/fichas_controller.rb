@@ -1,12 +1,12 @@
 class FichasController < ApplicationController
   before_action :set_ficha, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy]
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :import]
 
   # GET /fichas
   # GET /fichas.json
-  def index
 
+  def index
     @page = params[:page].to_i
 
     @q = Ficha.ransack(params[:q])
@@ -16,39 +16,63 @@ class FichasController < ApplicationController
     @page = pages_verify(@page, @elements)
     @fichas = @fichas.paginate(:per_page => 10, :page => @page)
 
+  end
 
+  def reload
+    respond_to do |format|
+      format.js
+      format.html { redirect_to import_fichas_path, notice: 'que?' }
+    end
   end
 
   def import
-
+    $list = []
   end
 
   def importing
-    file = params[:file]
 
-    #xlsx = Roo::Excelx.new(file.path)
-    begin
-      xlsx = open_spreadsheet(file)
-    rescue Zip::Error
-      #xlsx = Roo::Spreadsheet.open(file.path)
+    $list = []
+    fichas = []
+
+    file = params[:file]
+    xlsx = open_spreadsheet(file)
+    fichas = []
+
+    puts
+    (xlsx.last_row).times do |i|
+      linha = xlsx.sheet(0).row(i+1)
+      puts "|  #{linha[1]}  -  #{linha[2]}  -  #{linha[5]}  -  #{linha[26]} |"
+
+      matter = Matter.where("code = '#{linha[5]}'")
+      if(!matter.blank?)
+        puts "Matéria existe"
+        ficha = Ficha.new
+        ficha.matter_id = 1
+        ficha.user_id = 1
+        fichas << ficha
+
+      else
+        puts "Não existe"
+      end
+
+    end
+    puts
+
+    $list = fichas
+    puts "OPAAA: #{$list.length}"
+
+    respond_to do |format|
+        format.html { flash[:notice] = "Html request..."}
+        format.js { flash[:notice] = "JS request..."}
     end
 
-    puts
-    linha = xlsx.sheet(0).row(2)
-
-    puts linha[1]
-    puts linha[2]
-    puts linha[5]
-    puts linha[26]
-    puts
-    #puts xlsx.sheet(0).row(3)
   end
 
   def open_spreadsheet(file)
     case File.extname(file.original_filename)
-    when ".csv" then Roo::CSV.new("mytsv.tsv", csv_options: {col_sep: ","})
-    when ".xls" then nil
     when ".xlsx" then Roo::Spreadsheet.open(file.path, extension: :xlsx)
+    when ".csv" then Roo::CSV.new(file.path, csv_options: {col_sep: ","})
+    when ".xls" then Roo::Excel.open(file.path, extension: :xlsx)
     else raise "Unknown file type: #{file.original_filename}"
     end
   end

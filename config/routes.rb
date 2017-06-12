@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
       match 'importing' => 'fichas#importing', via: [:get, :post], as: :importing
 
+      match 'reload' => 'fichas#reload', via: [:get, :post], as: :reload
+
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
 
       match "copy/:id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'

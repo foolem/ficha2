@@ -60,13 +60,14 @@ document.addEventListener("turbolinks:load", function() {
 
       $('#ficha_status_icon').html();
 
-    });
 
-    $(document).on('click', '#teste',function(){
-      $(this).parent('center').parent('td').parent('tr').parent('tbody').html(' OOOPAAA ');
-      alert($(this).parent('center').parent('td').parent('tr').parent('tbody').attr('id'));
     });
+    
+  });
 
+
+$( document ).ready(function() {
+  $(".spinner").hide();
 });
 
   $(document).on("click", ".header", function() {

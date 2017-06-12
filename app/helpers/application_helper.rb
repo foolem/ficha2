@@ -88,6 +88,10 @@ module ApplicationHelper
     '<i class="glyphicon glyphicon-cog"></i>'
   end
 
+  def reload_button
+    '<i style="color: greeen" class="glyphicon glyphicon-refresh"></i> Atualizar'
+  end
+
   def user_button(user)
     '<i class="glyphicon glyphicon-user"></i> ' + user
   end

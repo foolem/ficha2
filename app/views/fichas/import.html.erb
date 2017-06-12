@@ -4,14 +4,16 @@
   <h1>Importar</h1>
 </div>
 
-<div class="importing">
+<div class="importing col-lg-12">
 
   <div class="panel panel-default">
 
     <header class="panel-heading header"><%= t('import') %></header>
     <br>
 
-    <%= form_tag importing_fichas_path, multipart: true do %>
+    <%= form_tag importing_fichas_path, multipart: true, method: 'post', :remote => true do %>
+
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 
       <div class="form-group">
 
@@ -19,22 +21,43 @@
           <label class="control-label col-lg-3" for="file"> <%=t('upload')%></label>
         </div>
 
-        <div class="col-lg-9">
+        <div class="col-lg-7">
           <%= file_field_tag "file" %>
         </div>
 
       </div>
+
       <br>
       <br>
+
       <div class="form-group">
+        <div class="col-lg-10">
         <center>
-          <%= submit_tag "Importar"%>
+          <%= submit_tag "Importar", :id => 'import_btn', 'data-disable-with' => "Loading" %>
         </center>
+        </div>
       </div>
+
+      <%= link_to reload_button.html_safe, reload_fichas_path, :class => 'btn btn-default btn-sm',
+      title: 'Reload', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
     <% end %>
 
+
+
+    <br>
+  </div>
+
+  <div class="panel panel-default">
+    <header class="panel-heading header"><%= t('Loading') %></header>
     <br>
 
+    <center>
+      <div id="loading-indicator">
+        <%= image_tag("loading.gif", :id => "loading-indicator", size: "211x146") %>
+      </div>
+    </center>
 
   </div>
-</div>
+
+  <div id="imports_partial">
+  </div>
