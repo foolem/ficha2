@@ -57,13 +57,19 @@ document.addEventListener("turbolinks:load", function() {
       }
       var val =  $('#select_status select').val();
 
-
       $('#ficha_status_icon').html();
 
-
     });
-    
+
+    $(document).on('click', '.nav-tabs li', function() {
+      $("#matters_nav").removeClass('active');
+      $("#teachers_nav").removeClass('active');
+      $("#fichas").removeClass('active');
+      $(this).addClass('active');
+    });
+
   });
+
 
 
 $( document ).ready(function() {

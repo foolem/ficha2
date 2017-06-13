@@ -13,11 +13,12 @@ Rails.application.routes.draw do
   resources :fichas do
 
     collection do
-      match 'import' => 'fichas#import', via: [:get, :post], as: :import
 
-      match 'importing' => 'fichas#importing', via: [:get, :post], as: :importing
+      match 'import/import' => 'fichas#import', via: [:get, :post], as: :import
 
-      match 'reload' => 'fichas#reload', via: [:get, :post], as: :reload
+      match 'importing/import' => 'fichas#importing', via: [:get, :post], as: :importing
+
+      match 'reload/import' => 'fichas#reload', via: [:get, :post], as: :reload
 
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
 

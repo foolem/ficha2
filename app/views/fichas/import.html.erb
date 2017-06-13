@@ -48,16 +48,34 @@
   </div>
 
   <div class="panel panel-default">
-    <header class="panel-heading header"><%= t('Loading') %></header>
-    <br>
 
-    <center>
-      <div id="loading-indicator">
+  <ul class="nav nav-tabs">
+    <li id="matters_nav" class="active" role="presentation"><a onclick="teste();"><%= t('matters') %></a></li>
+    <li id="teachers_nav" role="presentation"><a><%= t('teachers') %></a></li>
+    <li id="fichas"  role="presentation"><a><%= t('fichas') %></a></li>
+  </ul>
+<br>
+
+  <div id="loading">
+    <div id="loading-indicator">
+      <center>
         <%= image_tag("loading.gif", :id => "loading-indicator", size: "211x146") %>
-      </div>
-    </center>
-
+      </center>
+    </div>
   </div>
+
+  <div id="matters_import">
+    <%= render 'matters_import' %>
+  </div>
+
+
+  <div id="teachers_import">
+    <%= render 'teachers_import' %>
+  </div>
+
 
   <div id="imports_partial">
+    <%= render 'imports' %>
   </div>
+
+</div>

@@ -1,1 +1,21 @@
-$("#imports_partial").html("<%= escape_javascript(render("imports")) %> ");
+
+function reload(){
+  $("#matters_import").html("<%= escape_javascript(render("matters_import")) %> ");
+  $("#teachers_import").html("<%= escape_javascript(render("teachers_import")) %> ");
+  $("#imports_partial").html("<%= escape_javascript(render("imports")) %> ");
+}
+
+reload();
+
+
+
+
+/*
+if($('#matters_nav').hasClass('active')){
+  $("#imports_partial").html("<%= escape_javascript(render("matters_import")) %> ");
+} else if ($('#teachers_nav').hasClass('active')) {
+  $("#imports_partial").html("<%= escape_javascript(render("teachers_import")) %> ");
+} else {
+  $("#imports_partial").html("<%= escape_javascript(render("imports")) %> ");
+}
+*/

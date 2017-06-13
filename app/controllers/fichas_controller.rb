@@ -27,23 +27,35 @@ class FichasController < ApplicationController
 
   def import
     $list = []
+    $matters = []
+    $teachers = []
   end
 
   def importing
-
-    $list = []
     fichas = []
+    $teachers = []
+    $matters = []
+    code = ''
+    repeat = false
 
     file = params[:file]
     xlsx = open_spreadsheet(file)
-    fichas = []
 
-    puts
-    (xlsx.last_row).times do |i|
-      linha = xlsx.sheet(0).row(i+1)
+    (xlsx.last_row - 2).times do |i|
+      linha = xlsx.sheet(0).row(i+2)
       puts "|  #{linha[1]}  -  #{linha[2]}  -  #{linha[5]}  -  #{linha[26]} |"
 
-      matter = Matter.where("code = '#{linha[5]}'")
+      if(code == linha[5])
+        repeat = true
+      else
+        repeat = false
+      end
+
+      code = linha[5]
+      name = linha[1]
+      
+      matter = Matter.where("code = '#{code}'")
+
       if(!matter.blank?)
         puts "Matéria existe"
         ficha = Ficha.new
@@ -51,26 +63,23 @@ class FichasController < ApplicationController
         ficha.user_id = 1
         fichas << ficha
 
-      else
-        puts "Não existe"
+      elsif(!repeat)
+          matter = Matter.new(code: code, name: name)
+          $matters << matter
       end
 
     end
-    puts
-
     $list = fichas
-    puts "OPAAA: #{$list.length}"
-
-    respond_to do |format|
-        format.html { flash[:notice] = "Html request..."}
-        format.js { flash[:notice] = "JS request..."}
-    end
 
   end
 
   def open_spreadsheet(file)
+    puts
+    puts File.extname(file.original_filename)
+    puts
     case File.extname(file.original_filename)
-    when ".xlsx" then Roo::Spreadsheet.open(file.path, extension: :xlsx)
+
+    when ".xlsx" then Roo::Excelx.new(file.path, extension: :xlsx)
     when ".csv" then Roo::CSV.new(file.path, csv_options: {col_sep: ","})
     when ".xls" then Roo::Excel.open(file.path, extension: :xlsx)
     else raise "Unknown file type: #{file.original_filename}"
