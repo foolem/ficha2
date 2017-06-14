@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # importing
+gem 'remotipart', '~> 1.2'
 gem "roo", "~> 2.7.0"
 gem 'roo-xls'
 # prawn

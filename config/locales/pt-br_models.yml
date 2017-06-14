@@ -43,6 +43,8 @@
         teacher: "Professor"
         status: "Status"
         appraisal: "Comentários"
+        year: "Ano"
+        semester: "Semestre"
         team: "Turma"
 
         program: "Programa"
@@ -52,6 +54,3 @@
         evaluation: "Avaliação"
         basic_bibliography: "Bibliografia Basica"
         bibliography: "Bibliografia"
-
-        semester: "Semestre"
-        year: "Ano"

@@ -108,8 +108,10 @@ tr:nth-child(even) {background-color: #ccc}
 
 tr.header > th {
   color: white  ;
+  opacity: 0.85;
   background-color: #455E8E;
 }
+
 
 label { color: #000; }
 

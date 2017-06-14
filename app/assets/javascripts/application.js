@@ -66,6 +66,28 @@ document.addEventListener("turbolinks:load", function() {
       $("#teachers_nav").removeClass('active');
       $("#fichas").removeClass('active');
       $(this).addClass('active');
+
+      var id = $(this).attr('id');
+      if(id == 'matters_nav'){
+        $("#matters_import").show();
+        $("#teachers_import").hide();
+        $("#imports_partial").hide();
+      } else if (id == 'teachers_nav') {
+        $("#matters_import").hide();
+        $("#teachers_import").show();
+        $("#imports_partial").hide();
+      } else {
+        $("#matters_import").hide();
+        $("#teachers_import").hide();
+        $("#imports_partial").show();
+      }
+
+    });
+
+    $('#loading-indicator').hide();
+
+    $(document).on('click', '#import_btn', function() {
+      $('#loading-indicator').slideDown(1000);
     });
 
   });

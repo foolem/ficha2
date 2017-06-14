@@ -56,13 +56,13 @@
   </ul>
 <br>
 
-  <div id="loading">
-    <div id="loading-indicator">
-      <center>
-        <%= image_tag("loading.gif", :id => "loading-indicator", size: "211x146") %>
-      </center>
-    </div>
+
+  <div id="loading-indicator">
+    <center>
+      <%= image_tag("loading.gif", :id => "loading-indicator", size: "211x146") %>
+    </center>
   </div>
+
 
   <div id="matters_import">
     <%= render 'matters_import' %>
@@ -77,5 +77,10 @@
   <div id="imports_partial">
     <%= render 'imports' %>
   </div>
+
+  <script>
+    $("#teachers_import").hide();
+    $("#imports_partial").hide();
+  </script>
 
 </div>
