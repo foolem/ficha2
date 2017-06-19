@@ -31,7 +31,7 @@ module ApplicationHelper
 
   def user_not_secretary
     user_signed_in? && !current_user.secretary?
-  end  
+  end
 
   def user_not_teacher_not_logged
     user_not_teacher or !user_signed_in?

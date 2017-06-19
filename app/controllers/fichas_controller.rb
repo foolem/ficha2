@@ -43,29 +43,37 @@ class FichasController < ApplicationController
 
     (xlsx.last_row - 2).times do |i|
       linha = xlsx.sheet(0).row(i+2)
+
       puts "|  #{linha[1]}  -  #{linha[2]}  -  #{linha[5]}  -  #{linha[26]} |"
 
-      if(code == linha[5])
-        repeat = true
-      else
-        repeat = false
-      end
-
       code = linha[5]
-      name = linha[1]
-      
-      matter = Matter.where("code = '#{code}'")
+      matter_name = linha[1]
+      teacher_name = linha[26]
 
-      if(!matter.blank?)
-        puts "Matéria existe"
+      matter = Matter.where("code = '#{code}'")
+      teacher = User.where("name = '#{teacher_name}'")
+
+      if(!teacher.blank? and !matter.blank?)
+        puts "Matéria e Professor ok"
         ficha = Ficha.new
         ficha.matter_id = 1
         ficha.user_id = 1
+        ficha.team = linha[2]
         fichas << ficha
+      else
+        if(matter.blank?)
+          if !contains_matter(code)
+            matter = Matter.new(code: code, name: matter_name)
+            $matters << matter
+          end
+        end
 
-      elsif(!repeat)
-          matter = Matter.new(code: code, name: name)
-          $matters << matter
+        if(teacher.blank?)
+          if !contains_teacher(teacher_name)
+            teacher = User.new(name: teacher_name)
+            $teachers << teacher
+          end
+        end
       end
 
     end
@@ -74,9 +82,6 @@ class FichasController < ApplicationController
   end
 
   def open_spreadsheet(file)
-    puts
-    puts File.extname(file.original_filename)
-    puts
     case File.extname(file.original_filename)
 
     when ".xlsx" then Roo::Excelx.new(file.path, extension: :xlsx)
@@ -247,4 +252,27 @@ class FichasController < ApplicationController
         end
       end
     end
+
+    def contains_matter(code)
+      if !$matters.blank?
+        $matters.each do |matter|
+          if(matter.code == code)
+            return true;
+          end
+        end
+      end
+      return false;
+    end
+
+    def contains_teacher(name)
+      if !$teachers.blank?
+        $teachers.each do |teacher|
+          if(teacher.name == name)
+            return true;
+          end
+        end
+      end
+      return false;
+    end
+
 end

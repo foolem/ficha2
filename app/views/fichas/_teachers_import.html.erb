@@ -11,14 +11,15 @@
     </thead>
 
     <tbody id="tbody">
-      <% $list.each do |ficha| %>
+      <% $teachers.each do |teacher| %>
 
         <tr>
-          <td><%= ficha.user.name %></td>
+
+          <td><%= teacher.name %></td>
 
           <td id="actions">
             <center>
-              <%= link_to show_button.html_safe, ficha, :class => 'btn btn-default btn-sm',
+              <%= link_to new_button.html_safe, '#', :class => 'btn btn-default btn-sm',
                 title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
             </center>
           </td>
