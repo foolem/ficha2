@@ -1,7 +1,7 @@
 class FichaPolicy < ApplicationPolicy
 
   def new?
-    (user.admin? or user.teacher?) and user.actived?
+    (user.admin? or user.secretary?) and user.actived?
   end
 
   def create?
