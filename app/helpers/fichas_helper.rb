@@ -16,8 +16,9 @@ module FichasHelper
   def getIcon(style, tip, color)
     return "<i class='#{style}' style='color: #{color}' title ='#{tip}' data-toggle = 'tooltip' data-placement = 'right'></i>"
   end
+
   def getSemester(ficha)
-    return ficha.semester.to_s + " / " + ficha.year.to_s
+    return ficha.semester.to_s + "º de " + ficha.year.to_s
   end
 
   def getYears()

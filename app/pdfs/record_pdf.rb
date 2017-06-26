@@ -4,6 +4,7 @@ class RecordPdf < Prawn::Document
     super(top_margin: 20)
     @ficha = ficha
     @margem = 50
+    @number=0
     matter_generate
     start_new_page
     record_generate
@@ -27,172 +28,174 @@ class RecordPdf < Prawn::Document
     text  "Ficha n° 2 (variável)", size: 11, align: :center
     move_down 20
 
+    transparent (0.5) { stroke_horizontal_rule }
+    transparent (0.5) {stroke_vertical_line 592,17,:at=> 0}
+    transparent (0.5) {stroke_vertical_line 592,17,:at=> 540}
+    transparent (0.5) { stroke_horizontal_line 0, 540, :at=> 17}
+
+    @number+=1
+    text_box  @number.to_s, size: 11, :at => [530,11]
+
+
   end
 
   def matter_generate
 
     header_generate
-    bounding_box([50,cursor],:width=>450,:height=>cursor - 50) do
-      transparent(0.5){stroke_bounds}
 
-      simple_title_generate("Disciplina:", 10, 5)
-      show_value(@ficha.matter.name(), 70)
 
-      transparent (0.5) {stroke_vertical_line cursor+5,cursor-15,:at=> 325}
-      simple_title_generate("Código:", 330, 0)
-      show_value(@ficha.matter.code(), 375)
+    move_down 5
+    text_box "Professor:", size: 11, style: :bold, :at => [10,cursor]
+    show_value(@ficha.user.name(), 70)
 
-      move_down 15
+    move_down 15
+    transparent (0.5) { stroke_horizontal_rule }
+
+    simple_title_generate("Disciplina:", 10, 5)
+    show_value(@ficha.matter.name(), 70)
+
+    transparent (0.5) {stroke_vertical_line cursor+5,cursor-55,:at=> 348}
+    simple_title_generate("Código:", 358, 0)
+    show_value(@ficha.matter.code(), 403)
+
+    move_down 15
+    transparent (0.5) { stroke_horizontal_rule }
+
+    simple_title_generate("Turma:", 10, 5)
+    show_value(@ficha.team, 50)
+
+    simple_title_generate("Semestre:", 358, 0)
+    show_value(getSemester(@ficha), 413)
+
+    move_down 15
+    transparent (0.5) { stroke_horizontal_rule }
+
+    transparent (0.5) {stroke_vertical_line cursor-20,cursor,:at=> 174}
+    #transparent (0.5) {stroke_vertical_line cursor-20,cursor,:at=> 348}
+
+    simple_title_generate("Natureza:", 10, 5)
+    show_value(@ficha.matter.nature(), 64)
+
+    simple_title_generate("Modalidade:", 187, 0)
+    show_value(@ficha.matter.modality(), 257)
+
+
+    transparent (0.5) {stroke_vertical_line cursor+5,cursor+5,:at=> 325}
+
+    simple_title_generate("Tipo:", 358, 0)
+    show_value(@ficha.matter.kind(), 388)
+
+    move_down 15
+    transparent (0.5) { stroke_horizontal_rule }
+
+    simple_title_generate("Pré-requisito:", 10, 5)
+    show_value(@ficha.matter.prerequisite(), 85)
+
+    transparent (0.5) {stroke_vertical_line cursor+5,cursor-15,:at=> 275}
+
+    simple_title_generate("Co-requisito:", 280, 0)
+    show_value(@ficha.matter.corequisite, 350)
+
+    move_down 15
+    transparent (0.5) { stroke_horizontal_rule }
+
+    transparent (0.5) {stroke_vertical_line cursor,cursor-100,:at=> 275}
+
+    simple_title_generate("Carga Horária", 100, 10)
+    simple_title_generate("Códigos", 390, 0)
+
+    simple_title_generate("Semestral Total:", 10, 20)
+    show_value(@ficha.matter.total_weekly_workload().to_s + "h", 97)
+
+    simple_title_generate("Padrão:", 290, 0)
+    show_value(@ficha.matter.pd().to_s, 333)
+
+    simple_title_generate("Orientada:", 380, 0)
+    show_value(@ficha.matter.or().to_s, 437)
+
+    simple_title_generate("Anual Total:", 10, 15)
+    show_value(@ficha.matter.total_annual_workload().to_s + "h", 74)
+
+
+    simple_title_generate("Laboratório:", 290, 0)
+    show_value(@ficha.matter.lc().to_s, 357)
+
+    simple_title_generate("Modular Total:", 10, 15)
+    show_value(@ficha.matter.total_modular_workload().to_s + "h", 87)
+
+    simple_title_generate("Campo:", 290, 0)
+    show_value(@ficha.matter.cp().to_s, 333)
+
+    simple_title_generate("Semanal:", 10, 15)
+    show_value(@ficha.matter.weekly_workload.to_s + "h", 62)
+
+    simple_title_generate("Estágio:", 290, 0)
+    show_value(@ficha.matter.es().to_s, 336)
+
+
+    move_down 25
+    transparent (0.5) { stroke_horizontal_rule }
+
+    title_generate("EMENTA")
+    show_value(@ficha.matter.menu.to_s, 10)
+
+    move_down(count_lines(@ficha.matter.menu.to_s))
+
+    if(!new_page(@ficha.program))
       transparent (0.5) { stroke_horizontal_rule }
-
-      simple_title_generate("Natureza:", 10, 5)
-      show_value(@ficha.matter.nature(), 64)
-
-      transparent (0.5) {stroke_vertical_line cursor+5,cursor-15,:at=> 325}
-      simple_title_generate("Tipo:", 330, 0)
-      show_value(@ficha.matter.kind(), 360)
-
-      move_down 15
-      transparent (0.5) { stroke_horizontal_rule }
-
-      simple_title_generate("Pré-requisito:", 10, 5)
-      show_value(@ficha.matter.prerequisite(), 85)
-
-      transparent (0.5) {stroke_vertical_line cursor+5,cursor-15,:at=> 225}
-      simple_title_generate("Co-requisito:", 230, 0)
-      show_value(@ficha.matter.corequisite, 300)
-
-      move_down 15
-      transparent (0.5) { stroke_horizontal_rule }
-
-      simple_title_generate("Modalidade:", 10, 5)
-      show_value(@ficha.matter.modality(), 80)
-
-      move_down 15
-      transparent (0.5) { stroke_horizontal_rule }
-
-      transparent (0.5) {stroke_vertical_line cursor,cursor-100,:at=> 225}
-
-      simple_title_generate("Carga Horária", 75, 10)
-      simple_title_generate("Códigos", 315, 0)
-
-      simple_title_generate("Semestral Total:", 10, 20)
-      show_value(@ficha.matter.total_weekly_workload().to_s + "h", 97)
-
-      simple_title_generate("PD:", 240, 0)
-      show_value(@ficha.matter.pd().to_s, 263)
-
-      simple_title_generate("OR:", 300, 0)
-      show_value(@ficha.matter.or().to_s, 323)
-
-      simple_title_generate("Anual Total:", 10, 15)
-      show_value(@ficha.matter.total_annual_workload().to_s + "h", 74)
-
-
-      simple_title_generate("LC:", 240, 0)
-      show_value(@ficha.matter.lc().to_s, 263)
-
-      simple_title_generate("Modular Total:", 10, 15)
-      show_value(@ficha.matter.total_modular_workload().to_s + "h", 87)
-
-      simple_title_generate("CP:", 240, 0)
-      show_value(@ficha.matter.cp().to_s, 263)
-
-      simple_title_generate("Semanal:", 10, 15)
-      show_value(@ficha.matter.weekly_workload.to_s + "h", 62)
-
-      simple_title_generate("ES:", 240, 0)
-      show_value(@ficha.matter.es().to_s, 263)
-
-
-      move_down 25
-      transparent (0.5) { stroke_horizontal_rule }
-
-      title_generate("EMENTA")
-      show_value(@ficha.matter.menu.to_s, 10)
-
-      move_down(count_lines(@ficha.matter.menu.to_s))
-
-    #  if(!new_page(@ficha.program))
-        transparent (0.5) { stroke_horizontal_rule }
-    #  end
-
-      title_generate("PROGRAMA")
-      show_value(@ficha.program, 10)
-
     end
 
-  subtitle_generate
+    title_generate("PROGRAMA")
+    show_value(@ficha.program, 10)
 
   end
 
   def record_generate
     header_generate
 
-    bounding_box([50,cursor],:width=>450,:height=>cursor) do
-      transparent(0.5){stroke_bounds}
+    title_generate("OBJETIVO GERAL")
+    show_value(@ficha.general_objective, 10)
 
-      move_down 5
-      text_box "Professor:", size: 11, style: :bold, :at => [10,cursor]
-      show_value(@ficha.user.name(), 70)
+    move_down(count_lines(@ficha.general_objective))
 
-      move_down 15
-      transparent (0.5) { stroke_horizontal_rule }
+    title_generate("OBJETIVOS ESPECÍFICOS")
+    show_value(@ficha.specific_objective, 10)
 
-      title_generate("OBJETIVO GERAL")
-      show_value(@ficha.general_objective, 10)
+    move_down(count_lines(@ficha.specific_objective))
+    transparent (0.5) { stroke_horizontal_rule }
 
-      move_down(count_lines(@ficha.general_objective))
+    title_generate("PROCEDIMENTOS DIDÁTICOS")
+    show_value(@ficha.didactic_procedures, 10)
 
-      title_generate("OBJETIVOS ESPECÍFICOS")
-      show_value(@ficha.specific_objective, 10)
+    move_down (count_lines(@ficha.didactic_procedures))
+    transparent (0.5) { stroke_horizontal_rule }
 
-      move_down(count_lines(@ficha.specific_objective))
-      transparent (0.5) { stroke_horizontal_rule }
+    title_generate("FORMAS DE AVALIAÇÃO")
+    show_value(@ficha.evaluation, 10)
 
-      title_generate("PROCEDIMENTOS DIDÁTICOS")
-      show_value(@ficha.didactic_procedures, 10)
+    move_down (count_lines(@ficha.evaluation))
 
-      move_down (count_lines(@ficha.didactic_procedures))
-      transparent (0.5) { stroke_horizontal_rule }
+    new_page(@ficha.basic_bibliography)
 
-      title_generate("FORMAS DE AVALIAÇÃO")
-      show_value(@ficha.evaluation, 10)
+    title_generate("BIBLIOGRAFIA BÁSICA")
+    show_value(@ficha.basic_bibliography, 10)
 
-      move_down (count_lines(@ficha.evaluation))
+    move_down (count_lines(@ficha.basic_bibliography))
 
-      if(!new_page(@ficha.basic_bibliography))
-        transparent (0.5) { stroke_horizontal_rule }
-      end
+    new_page(@ficha.bibliography)
+    title_generate("BIBLIOGRAFIA COMPLEMENTAR")
+    show_value(@ficha.bibliography, 10)
 
-      title_generate("BIBLIOGRAFIA BÁSICA")
-      show_value(@ficha.basic_bibliography, 10)
+    move_down (count_lines(@ficha.bibliography))
 
-      move_down (count_lines(@ficha.basic_bibliography))
-
-      new_page(@ficha.bibliography)
-      title_generate("BIBLIOGRAFIA COMPLEMENTAR")
-      show_value(@ficha.bibliography, 10)
-
-      move_down (count_lines(@ficha.bibliography))
-
-
-
-    end
 
   end
 
   def new_page(text)
     if(!page_verify(text))
       start_new_page
-      move_up 145
-      @margem = 0
       header_generate
-      transparent (0.5) { stroke_horizontal_rule }
-
-      transparent (0.5) {stroke_vertical_line 593,10,:at=> 0}
-      transparent (0.5) {stroke_vertical_line 593,10,:at=> 450}
-      transparent (0.5) { stroke_horizontal_line 0, 450, :at=> 10}
+      puts "NEW PAGE"
       true
     end
     false
@@ -219,22 +222,42 @@ class RecordPdf < Prawn::Document
 
   def show_value(value, x)
     font("app/fonts/DejaVuSans.ttf") do
-      text_box value, size: 10, :at => [x,cursor], :width => 435, :align => :justify
+      text_box value, size: 10, :at => [x,cursor], :width => 520, :align => :justify
     end
-  end
-
-  def count_lines(text)
-    ((text.length / 80) + text.lines.count) * 12 + 5
   end
 
   def count_total_lines(text)
     title = 4
-    (((text.length / 80) + text.lines.count) + title) * 14
+    (text.lines.count + title) * 14
+  end
+
+  def  count_lines(text)
+    cont = 0
+    result = 0
+
+    for i in 0..text.length - 1
+      l = text[i]
+      cont += 1
+      if((cont >= 90 and l == ' ') or l == "\n")
+        result += 1
+        cont = 0
+      end
+    end
+    if(cont > 0)
+      result += 1
+    end
+
+    result * 12 + 5
   end
 
   def page_verify(text)
-    cursor - count_total_lines(text) > 10
+    cursor - count_lines(text) > 17
   end
+
+  def getSemester(ficha)
+    return ficha.semester.to_s + "º de " + ficha.year.to_s
+  end
+
 
   #http://prawnpdf.org/docs/0.11.1/index.html
   #http://prawnpdf.org/manual.pdf

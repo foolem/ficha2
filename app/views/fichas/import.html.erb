@@ -4,7 +4,6 @@
   <h1>Importar</h1>
 </div>
 
-<div class="importing col-lg-12">
 
   <div class="panel panel-default">
 
@@ -41,49 +40,46 @@
       <%= link_to reload_button.html_safe, reload_fichas_path, :class => 'btn btn-default btn-sm',
       title: 'Reload', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
     <% end %>
-
-
-
     <br>
   </div>
 
   <div class="panel panel-default">
 
-  <ul class="nav nav-tabs">
-    <li id="matters_nav" class="active" role="presentation"><a onclick="teste();"><%= t('matters') %></a></li>
-    <li id="teachers_nav" role="presentation"><a><%= t('teachers') %></a></li>
-    <li id="fichas"  role="presentation"><a><%= t('fichas') %></a></li>
-  </ul>
-<br>
+    <ul class="nav nav-tabs">
+      <li id="matters_nav" class="active" role="presentation"><a onclick="teste();"><%= t('matters') %></a></li>
+      <li id="teachers_nav" role="presentation"><a><%= t('teachers') %></a></li>
+      <li id="fichas"  role="presentation"><a><%= t('fichas') %></a></li>
+    </ul>
+    <br>
 
 
-  <div id="loading-indicator">
-    <center>
-      <%= image_tag("loading.gif", :id => "loading-indicator", size: "211x146") %>
-    </center>
-  </div>
+    <div id="loading-indicator">
+      <center>
+        <%= image_tag("loading.gif", :id => "loading-indicator", size: "211x146") %>
+      </center>
+    </div>
 
-  <div id="modal">
-    <%= render 'modal' %>
-  </div>
- 
-  <div id="matters_import">
-    <%= render 'matters_import' %>
-  </div>
+    <div id="modal">
+      <%= render 'modal' %>
+    </div>
 
-
-  <div id="teachers_import">
-    <%= render 'teachers_import' %>
-  </div>
+    <div id="matters_import">
+      <%= render 'matters_import' %>
+    </div>
 
 
-  <div id="imports_partial">
-    <%= render 'imports' %>
-  </div>
+    <div id="teachers_import">
+      <%= render 'teachers_import' %>
+    </div>
 
-  <script>
-    $("#teachers_import").hide();
-    $("#imports_partial").hide();
-  </script>
+
+    <div id="imports_partial">
+      <%= render 'imports' %>
+    </div>
+
+    <script>
+      $("#teachers_import").hide();
+      $("#imports_partial").hide();
+    </script>
 
 </div>
