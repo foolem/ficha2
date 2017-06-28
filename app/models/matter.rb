@@ -1,7 +1,6 @@
 class Matter < ApplicationRecord
   has_many :ficha
 
-  validates :name, uniqueness: true, presence: true
   validates :code, uniqueness: true, presence: true
 
   validates :kind, presence: true

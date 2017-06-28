@@ -1,6 +1,15 @@
 
-function teste(){
 
-  //$("#matters_import").html(" this is a test");
+function teste(){
   alert('teste');
 }
+
+document.addEventListener("turbolinks:load", function() {
+
+  $(document).on('change','#ficha_matter_id', function() {
+    var name =  $(this).text() ;
+    alert($(name));
+    $('#matter_show').value(" ola ");
+  });
+
+});

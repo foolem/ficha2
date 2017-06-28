@@ -67,10 +67,18 @@
     <div class="form-group">
       <%= f.label :matter, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
-        <%= f.collection_select(:matter_id, matters_order, :id, :code, include_blank: true) %>
-        <span> </span>
-        <%= f.select :team, %w(A B C D E) %>
+        <%= f.collection_select(:matter_id, matters_order, :id, :code, {:include_blank => true} , { :data_href => "x"}) %>
+          <span id='matter_show'></span>
         <%=f.error_span(:matter) %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :team, :class => 'control-label col-lg-3' %>
+      <div class="col-lg-1">
+        <%= f.text_field 'team', :value => @ficha.team, :class => 'form-control', :autocomplete => "off"%>
+
+        <%=f.error_span(:team) %>
       </div>
     </div>
 

@@ -90,6 +90,8 @@ document.addEventListener("turbolinks:load", function() {
       $('#loading-indicator').slideDown(1000);
     });
 
+
+
   });
 
 

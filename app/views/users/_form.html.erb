@@ -16,7 +16,7 @@
   <div class="form-login">
 
     <% if(current_user.admin?) %>
-    <%= f.select(:role, [['Professor', :teacher], ['Avaliador', :appraiser], ['Administrador', :admin], ['Secretário', :secretary]]) %>
+    <%= f.select(:role, [['Professor', :teacher], ['Avaliador', :appraiser], ['Administrador', :admin], ['Secretário', :secretary]] ) %>
     <% end %>
 
     <%= f.text_field :name, placeholder: "name", autofocus: true, :autocomplete => "off"  %>

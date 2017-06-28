@@ -9,6 +9,10 @@ class FichasController < ApplicationController
   def index
     @page = params[:page].to_i
 
+    puts "Parametros : #{params[:q]}"
+    if(!(params[:q].blank? and !@query.blank?))
+      @query = params[:q]
+    end
     @q = Ficha.ransack(params[:q])
 
     @fichas = getFichas
@@ -187,14 +191,14 @@ class FichasController < ApplicationController
   end
 
   def getFichas
-    if !user_signed_in? or !current_user.teacher?
+    if !user_signed_in?
+      @q.result.order(year: :desc).where(status: 'Aprovado')
+    elsif !current_user.teacher?
       @q.result.order(year: :desc)
     else
       if(params[:checkbox])
-        puts "TA ATIVADO MEMO PARÇA"
         @q.result.order(year: :desc).where(user: current_user)
       else
-        puts "TA DESLIGADAO MEMO"
         @q.result.order(year: :desc)
       end
     end

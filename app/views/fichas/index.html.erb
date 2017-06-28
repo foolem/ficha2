@@ -15,10 +15,10 @@
         <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
          ['Editando', 'Editando'], ['Enviados', 'Enviado']]) %>
 
-      <% end%>
+      <% end %>
       <%= f.select :year_eq, options_for_select(getYears, Time.zone.now.year) %>
 
-      <%= f.text_field :team_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
+      <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
       <%= search_button.html_safe %>
     <% end %>
 

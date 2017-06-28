@@ -15,7 +15,7 @@
         <th width="5%"><center><%= t('status') %></center></th>
       <% end %>
 
-      <% if(!user_signed_in? || user_appriser || user_secretary) %>
+      <% if(!user_signed_in? || user_appriser) %>
         <th  width="15%">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
@@ -40,8 +40,7 @@
         <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? %>
           <td><%= ficha.user.name %></td>
         <% end %>
-        <td><%= ficha.matter.name %>
-        </td>
+        <td> <span title="<%= ficha.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.matter.code %> </span> </td>
 
         <td><center><%= getSemester(ficha) %></center></td>
 
@@ -58,23 +57,21 @@
 
           <% if status_ready(ficha.status) %>
               <%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm',
-              title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+                    title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
 
+          <% elsif user_signed_in? %>
+              <%= link_to edit_button.html_safe,
+                    edit_ficha_path(ficha), :class => 'btn btn-default btn-sm',
+                    title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end %>
 
-          <% if user_signed_in? && !status_ready(ficha.status)  %>
-            <%= link_to edit_button.html_safe,
-                        edit_ficha_path(ficha), :class => 'btn btn-default btn-sm',
-                        title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-          <% end %>
-
-          <% if user_signed_in? && user_not_appriser and user_not_secretary %>
+          <% if user_signed_in? && user_not_appriser %>
 
             <%= link_to duplicate_button.html_safe, copy_fichas_path(ficha), :class => 'btn btn-default btn-sm',
                         :id =>"copy_bt", title: 'Copiar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end  %>
 
-          <% if user_not_appriser and user_not_secretary %>
+          <% if user_not_appriser %>
 
             <%= link_to remove_button.html_safe,
                         ficha_path(ficha),
