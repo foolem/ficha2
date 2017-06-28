@@ -242,13 +242,17 @@ class FichasController < ApplicationController
     def pdf_generate
       respond_to do |format|
         format.html
-        format.pdf do
-          pdf = RecordPdf.new(@ficha)
 
-          send_data pdf.render,
-            filename: "Ficha2 #{@ficha.matter.name} #{@ficha.user.name}",
-            type: "application/pdf",
-            disposition: "inline"
+        if(@ficha.status =="Aprovado")
+          format.pdf do
+            pdf = RecordPdf.new(@ficha)
+            send_data pdf.render,
+              filename: "Ficha2 #{@ficha.matter.code} - #{@ficha.user.name}",
+              type: "application/pdf",
+              disposition: "inline"
+          end
+        else
+          format.pdf { redirect_to @ficha, alert: 'Este documento ainda não esta pronto.' }
         end
       end
     end

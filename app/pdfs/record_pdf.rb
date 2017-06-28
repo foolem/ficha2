@@ -71,7 +71,6 @@ class RecordPdf < Prawn::Document
     transparent (0.5) { stroke_horizontal_rule }
 
     transparent (0.5) {stroke_vertical_line cursor-20,cursor,:at=> 174}
-    #transparent (0.5) {stroke_vertical_line cursor-20,cursor,:at=> 348}
 
     simple_title_generate("Natureza:", 10, 5)
     show_value(@ficha.matter.nature(), 64)
@@ -137,16 +136,18 @@ class RecordPdf < Prawn::Document
     transparent (0.5) { stroke_horizontal_rule }
 
     title_generate("EMENTA")
-    show_value(@ficha.matter.menu.to_s, 10)
+    new_page(@ficha.matter.menu.to_s, 10)
+    #show_value(@ficha.matter.menu.to_s, 10)
 
-    move_down(count_lines(@ficha.matter.menu.to_s))
+    puts @counter/12 - 5
+    move_down(@counter)
 
-    if(!new_page(@ficha.program))
-      transparent (0.5) { stroke_horizontal_rule }
-    end
+    move_down 15
+    transparent (0.5) { stroke_horizontal_rule }
 
     title_generate("PROGRAMA")
-    show_value(@ficha.program, 10)
+    new_page(@ficha.program, 10)
+  #show_value(@ficha.program, 10)
 
   end
 
@@ -175,14 +176,11 @@ class RecordPdf < Prawn::Document
 
     move_down (count_lines(@ficha.evaluation))
 
-    new_page(@ficha.basic_bibliography)
-
     title_generate("BIBLIOGRAFIA BÁSICA")
     show_value(@ficha.basic_bibliography, 10)
 
     move_down (count_lines(@ficha.basic_bibliography))
 
-    new_page(@ficha.bibliography)
     title_generate("BIBLIOGRAFIA COMPLEMENTAR")
     show_value(@ficha.bibliography, 10)
 
@@ -191,14 +189,21 @@ class RecordPdf < Prawn::Document
 
   end
 
-  def new_page(text)
-    if(!page_verify(text))
+  def new_page(text, x)
+    page_verify(text)
+    if(!@content[0].blank?)
+
+      show_value(@content[0], x)
       start_new_page
       header_generate
       puts "NEW PAGE"
+      move_down(5);
+      show_value(@content[1], x)
       true
+    else
+      show_value(@content[1], x)
+      false
     end
-    false
   end
 
 
@@ -234,20 +239,38 @@ class RecordPdf < Prawn::Document
   def  count_lines(text)
     cont = 0
     result = 0
+    text2 = ""
+    text3 = ""
+
+    text2_cont = 0
+    @content = []
 
     for i in 0..text.length - 1
       l = text[i]
       cont += 1
+
       if((cont >= 90 and l == ' ') or l == "\n")
         result += 1
         cont = 0
+
+        if( (cursor - ((result * 12) + 5)) < 18 ) and text2.blank?
+          puts "Achei a letra de corte. Posição string [#{i}]"
+          text2 = text[0, i-1]
+          text3 = text[i, text.length-1]
+          result = 1
+        end
+
       end
     end
     if(cont > 0)
       result += 1
     end
 
-    result * 12 + 5
+    @content << text2
+    @content << text3
+    @counter = result * 12 + 5
+    @counter
+
   end
 
   def page_verify(text)
