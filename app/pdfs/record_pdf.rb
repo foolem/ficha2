@@ -5,9 +5,8 @@ class RecordPdf < Prawn::Document
     @ficha = ficha
     @margem = 50
     @number=0
-    matter_generate
-    start_new_page
     record_generate
+
   end
 
   def header_generate
@@ -39,7 +38,7 @@ class RecordPdf < Prawn::Document
 
   end
 
-  def matter_generate
+  def record_generate
 
     header_generate
 
@@ -132,82 +131,44 @@ class RecordPdf < Prawn::Document
     show_value(@ficha.matter.es().to_s, 336)
 
 
-    move_down 25
-    transparent (0.5) { stroke_horizontal_rule }
-
+    @counter = 25
     title_generate("EMENTA")
     new_page(@ficha.matter.menu.to_s, 10)
-    #show_value(@ficha.matter.menu.to_s, 10)
 
-    puts @counter/12 - 5
-    move_down(@counter)
-
-    move_down 15
-    transparent (0.5) { stroke_horizontal_rule }
-
+    move_down 5
     title_generate("PROGRAMA")
     new_page(@ficha.program, 10)
-  #show_value(@ficha.program, 10)
-
-  end
-
-  def record_generate
-    header_generate
 
     title_generate("OBJETIVO GERAL")
-    show_value(@ficha.general_objective, 10)
-
-    move_down(count_lines(@ficha.general_objective))
+    new_page(@ficha.general_objective, 10)
 
     title_generate("OBJETIVOS ESPECÍFICOS")
-    show_value(@ficha.specific_objective, 10)
-
-    move_down(count_lines(@ficha.specific_objective))
-    transparent (0.5) { stroke_horizontal_rule }
+    new_page(@ficha.specific_objective, 10)
 
     title_generate("PROCEDIMENTOS DIDÁTICOS")
-    show_value(@ficha.didactic_procedures, 10)
-
-    move_down (count_lines(@ficha.didactic_procedures))
-    transparent (0.5) { stroke_horizontal_rule }
+    new_page(@ficha.didactic_procedures, 10)
 
     title_generate("FORMAS DE AVALIAÇÃO")
-    show_value(@ficha.evaluation, 10)
-
-    move_down (count_lines(@ficha.evaluation))
+    new_page(@ficha.evaluation, 10)
 
     title_generate("BIBLIOGRAFIA BÁSICA")
-    show_value(@ficha.basic_bibliography, 10)
-
-    move_down (count_lines(@ficha.basic_bibliography))
+    new_page(@ficha.basic_bibliography, 10)
 
     title_generate("BIBLIOGRAFIA COMPLEMENTAR")
-    show_value(@ficha.bibliography, 10)
-
-    move_down (count_lines(@ficha.bibliography))
-
+    new_page(@ficha.bibliography, 10)
 
   end
-
-  def new_page(text, x)
-    page_verify(text)
-    if(!@content[0].blank?)
-
-      show_value(@content[0], x)
-      start_new_page
-      header_generate
-      puts "NEW PAGE"
-      move_down(5);
-      show_value(@content[1], x)
-      true
-    else
-      show_value(@content[1], x)
-      false
-    end
-  end
-
 
   def title_generate(title)
+    move_down(@counter)
+    if(cursor < 85)
+      start_new_page
+      header_generate
+      move_down(5);
+    else
+      transparent (0.5) { stroke_horizontal_rule }
+    end
+
     move_down 15
     text_box title, size: 12, style: :bold, :at => [0,cursor], align: :center
     move_down 20
@@ -218,6 +179,7 @@ class RecordPdf < Prawn::Document
     text_box title, size: 11, style: :bold, :at => [x,cursor]
   end
 
+  #apagar
   def subtitle_generate()
     text_box "Legenda:", size: 11, style: :bold, :at => [50,40]
     legenda = "Conforme Resolução 15/10-CEPE: PD- Padrão LB- Laboratório CP- Campo
@@ -228,6 +190,21 @@ class RecordPdf < Prawn::Document
   def show_value(value, x)
     font("app/fonts/DejaVuSans.ttf") do
       text_box value, size: 10, :at => [x,cursor], :width => 520, :align => :justify
+    end
+  end
+
+  def new_page(text, x)
+    count_lines(text)
+    if(!@content[1].blank?)
+      show_value(@content[0], x)
+      start_new_page
+      header_generate
+      move_down(5);
+      show_value(@content[1], x)
+      true
+    else
+      show_value(@content[0], x)
+      false
     end
   end
 
@@ -253,8 +230,7 @@ class RecordPdf < Prawn::Document
         result += 1
         cont = 0
 
-        if( (cursor - ((result * 12) + 5)) < 18 ) and text2.blank?
-          puts "Achei a letra de corte. Posição string [#{i}]"
+        if( (cursor - ((result * 12) + 5)) < 30 ) and text2.blank?
           text2 = text[0, i-1]
           text3 = text[i, text.length-1]
           result = 1
@@ -266,15 +242,15 @@ class RecordPdf < Prawn::Document
       result += 1
     end
 
+    if(text2.blank? and text3.blank?)
+      text2 = text
+    end
+
     @content << text2
     @content << text3
     @counter = result * 12 + 5
     @counter
 
-  end
-
-  def page_verify(text)
-    cursor - count_lines(text) > 17
   end
 
   def getSemester(ficha)

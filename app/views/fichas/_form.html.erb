@@ -162,7 +162,7 @@
 </div>
 
 
-<% if ((@ficha.status == "Reprovado" && current_user.teacher?) || !current_user.teacher?)  %>
+<% if user_signed_in? and ((@ficha.status == "Reprovado" && current_user.teacher?) || !current_user.teacher?)  %>
 
   <div class="panel panel-default">
     <header class="panel-heading header"><%= t('confirmation') %></header>

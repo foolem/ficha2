@@ -36,6 +36,9 @@ class FichasController < ApplicationController
   end
 
   def importing
+
+    #teachers_import
+
     fichas = []
     $teachers = []
     $matters = []
@@ -84,6 +87,26 @@ class FichasController < ApplicationController
     $list = fichas
 
   end
+
+  def teachers_import
+
+    teachers = []
+
+    file = params[:file]
+    xlsx = open_spreadsheet(file)
+
+    (xlsx.sheet(2).last_row - 1).times do |i|
+      linha = xlsx.sheet(2).row(i+2)
+
+      puts "|  #{linha[0]}  -  #{linha[2]} |"
+      name = linha[0]
+      email = linha[2]
+
+      User.create(name: name, email: email, password: "123123",  role: 0)
+    end
+
+  end
+
 
   def open_spreadsheet(file)
     case File.extname(file.original_filename)
