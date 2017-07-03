@@ -270,12 +270,8 @@ end
 
 
 create_matters_example()
-create_matters(20)
+#create_matters(20)
 create_users()
 create_fichas_example()
 create_fichas_teacher()
 #create_teachers(20)
-create_fichas(20, "Editando", "")
-create_fichas(20, "Enviado", "")
-create_fichas(20, "Reprovado", "Bibliografia fora das normas")
-create_fichas(20, "Aprovado", "")

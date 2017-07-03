@@ -1,11 +1,11 @@
 class UserPolicy < ApplicationPolicy
 
   def new?
-    user.admin?
+    !user.blank? and (user.admin?)
   end
 
   def create?
-    user.admin?
+    !user.blank? and (user.admin?)
   end
 
   def edit?
@@ -13,13 +13,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    # aqui autoedit?
-    puts "Record: #{record}"
-    user.admin? or recor == user
+    true
   end
 
   def destroy?
-    user.admin?
+    !user.blank? and (user.admin?)
   end
 
   def show?

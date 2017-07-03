@@ -10,7 +10,7 @@ class MattersController < ApplicationController
     @page = params[:page].to_i
     length_verify()
     @q = Matter.ransack(params[:q])
-    @matters = @q.result.order(name: :asc)
+    @matters = @q.result.order(code: :asc)
     puts "Params 'q'#{params[:q]}"
 
     @elements = @matters.length

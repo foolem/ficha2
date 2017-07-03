@@ -188,10 +188,12 @@ class RecordPdf < Prawn::Document
   end
 
   def show_value(value, x)
-    font("app/fonts/DejaVuSans.ttf") do
-      text_box value, size: 10, :at => [x,cursor], :width => 520, :align => :justify
+    if(!value.blank?)
+      font("app/fonts/DejaVuSans.ttf") do
+        text_box value, size: 10, :at => [x,cursor], :width => 520, :align => :justify
+      end
     end
-  end
+    end
 
   def new_page(text, x)
     count_lines(text)

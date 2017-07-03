@@ -3,6 +3,7 @@ class ApplicationPolicy
 
   def initialize(user, record)
     @user = user
+    #@user_signed_in = user_signed_in
     @record = record
   end
 
