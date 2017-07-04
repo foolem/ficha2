@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users
+  
   resources :users, controller: 'users' do
     collection do
       match 'search' => 'users#search', via: [:get, :post], as: :search

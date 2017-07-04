@@ -5,7 +5,7 @@ class MatterPolicy < ApplicationPolicy
   end
 
   def create?
-    u!user.blank? and (user.admin? or user.secretary?)
+    !user.blank? and (user.admin? or user.secretary?)
   end
 
   def edit?

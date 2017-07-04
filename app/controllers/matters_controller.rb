@@ -11,7 +11,6 @@ class MattersController < ApplicationController
     length_verify()
     @q = Matter.ransack(params[:q])
     @matters = @q.result.order(code: :asc)
-    puts "Params 'q'#{params[:q]}"
 
     @elements = @matters.length
     @page = pages_verify(@page, @elements)
@@ -104,14 +103,11 @@ class MattersController < ApplicationController
 
   def pages_verify(page, lines)
     pages = pages_count(lines)
-    puts "Page teste  : #{page}"
     if(page < 1)
-
       page = 1
     elsif page > pages
       page = pages
     end
-
     page
   end
 

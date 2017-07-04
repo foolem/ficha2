@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
@@ -13,6 +12,3 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 end
-
-
-# https://www.youtube.com/watch?v=do6hLrds3Ss

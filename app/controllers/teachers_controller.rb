@@ -90,14 +90,11 @@ class TeachersController < ApplicationController
 
   def pages_verify(page, lines)
     pages = pages_count(lines)
-    puts "Page teste  : #{page}"
     if(page < 1)
-
       page = 1
     elsif page > pages
       page = pages
     end
-
     page
   end
 

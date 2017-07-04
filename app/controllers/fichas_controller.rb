@@ -105,10 +105,9 @@ class FichasController < ApplicationController
   # GET /fichas/1
   # GET /fichas/1.json
   def show
-    pdf_generate
+    pdf_generate    
   end
 
-  # https://www.youtube.com/watch?v=e-A3zBeWDdE
 
   # GET /fichas/new
   def new
@@ -245,9 +244,10 @@ class FichasController < ApplicationController
     end
 
     def pdf_generate
+      #https://www.youtube.com/watch?v=e-A3zBeWDdE
+
       respond_to do |format|
         format.html
-
         if(@ficha.status =="Aprovado")
           format.pdf do
             pdf = RecordPdf.new(@ficha)

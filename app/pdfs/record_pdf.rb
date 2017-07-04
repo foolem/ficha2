@@ -228,7 +228,7 @@ class RecordPdf < Prawn::Document
       l = text[i]
       cont += 1
 
-      if((cont >= 90 and l == ' ') or l == "\n")
+      if((cont >= 94 and l == ' ') or l == "\n")
         result += 1
         cont = 0
 

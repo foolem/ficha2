@@ -110,12 +110,10 @@ class UsersController < ApplicationController
   def pages_verify(page, lines)
     pages = pages_count(lines)
     if(page < 1)
-
       page = 1
     elsif page > pages
       page = pages
     end
-
     page
   end
 
@@ -127,7 +125,6 @@ class UsersController < ApplicationController
     end
     result
   end
-
 
   def length_verify
     @length = 10
