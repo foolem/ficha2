@@ -1,7 +1,9 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? %>
+
+
+      <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? or !params[:checkbox] %>
         <th><%= t('teacher') %></th>
       <% end %>
 
@@ -16,18 +18,22 @@
       <% end %>
 
       <% if(!user_signed_in? || user_appriser) %>
-        <th  width="15%">
+        <th  width="10%">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
           </center>
         </th>
       <% else %>
-        <th  width="25%">
+        <th  width="20%">
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
-            <div style=float:right;>
-              <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn btn-primary btn-xs',
-                title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-            <div>
+
+            <% if !current_user.teacher? %>
+              <div style=float:right;>
+                <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn btn-primary btn-xs',
+                  title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+              <div>
+            <% end %>
+
           </center>
         </th>
       <% end %>
@@ -37,7 +43,7 @@
   <tbody id="tbody">
     <% @fichas.each do |ficha| %>
       <tr data-href="<%= ficha_path(ficha) %>" >
-        <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? %>
+        <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? or !params[:checkbox] %>
           <td><%= ficha.user.name %></td>
         <% end %>
         <td> <span title="<%= ficha.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.matter.code %> </span> </td>
@@ -52,8 +58,8 @@
 
         <td id="actions"> <center>
 
-          <%= link_to show_button.html_safe, ficha, :class => 'btn btn-default btn-sm',
-            title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+          <!-- <%= link_to show_button.html_safe, ficha, :class => 'btn btn-default btn-sm',
+            title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
           <% if status_ready(ficha.status) %>
               <%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm',

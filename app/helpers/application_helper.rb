@@ -94,6 +94,10 @@ module ApplicationHelper
     '<i style="color: greeen" class="glyphicon glyphicon-refresh"></i> Atualizar'
   end
 
+  def help_button
+    '<i  class="glyphicon glyphicon-pushpin"></i>'
+  end
+
   def user_button(user)
     '<i class="glyphicon glyphicon-user"></i> ' + user
   end

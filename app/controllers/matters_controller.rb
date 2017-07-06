@@ -121,7 +121,7 @@ class MattersController < ApplicationController
   end
 
   def length_verify
-    @length = 10
+    @length = 13
   end
 
   private

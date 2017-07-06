@@ -214,6 +214,10 @@
   <% if(!@show) %>
     <div class="form-group">
       <div class="col-lg-offset-2 col-lg-10">
+
+        <button action='' type="button" class="btn btn-default btn-sm"
+        data-toggle="modal" data-target="#modal-1" title='Adicionar' data-placement:='right'><%= help_button.html_safe %></button>
+
         <%= f.submit nil, :class => 'btn btn-primary' %>
 
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
@@ -223,3 +227,28 @@
   <% end %>
 
 <% end %>
+
+
+<div class="container">
+	<div class="modal fade" id="modal-1">
+		<div class="modal-dialog modal-xs">
+			<div class="modal-content">
+				 <div class="modal-header">
+				 	<button type="button" class="close" data-dismiss="modal">&times;</button>
+				 	<h3 class="modal-title">Atualizar Ficha</h3>
+				 </div>
+				 <div class="modal-body">
+           <p align="justify">Ao atualizar esta <b>ficha</b> ela será enviada para avaliação somente quando <b>todos os campos</b> forem devidamente preenchidos.
+          </p>
+          <p>
+           Caso contrário, ela permanecerá disponível apenas a você para que a <b>altere mais tarde</b>.
+           </p>
+         </div>
+
+				 <div class="modal-footer">
+				 	<a href="" class="btn btn-primary" data-dismiss="modal">Close</a>
+				 </div>
+			</div>
+		</div>
+	</div>
+</div>

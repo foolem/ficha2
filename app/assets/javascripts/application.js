@@ -57,7 +57,16 @@ document.addEventListener("turbolinks:load", function() {
       }
       var val =  $('#select_status select').val();
 
-      $('#ficha_status_icon').html();
+      $('#ficha_status_icon i').removeClass($('#ficha_status_icon i').attr('class'));
+      if($(this).val() == 'Reprovado'){
+        $('#ficha_status_icon i').addClass('glyphicon glyphicon-ban-circle').css("color","red");
+      } else if ($(this).val() == 'Enviado') {
+        $('#ficha_status_icon i').addClass('glyphicon glyphicon-refresh').css("color","blue");
+      } else if ($(this).val() == 'Editando') {
+        $('#ficha_status_icon i').addClass('glyphicon glyphicon-pencil').css("color","black");
+      } else {
+        $('#ficha_status_icon i').addClass('glyphicon glyphicon-ok').css("color","green");
+      }
 
     });
 
@@ -84,21 +93,33 @@ document.addEventListener("turbolinks:load", function() {
 
     });
 
+        $('#q_status_cont').hide();
+        
     $('#loading-indicator').hide();
-
-    $(document).on('click', '#import_btn', function() {
-      $('#loading-indicator').slideDown(1000);
-    });
-
-
 
   });
 
 
 
-$( document ).ready(function() {
-  $(".spinner").hide();
-});
+  $( document ).ready(function() {
+    $(".spinner").hide();
+
+    $(document).on('click', '#import_btn', function() {
+      $('#loading-indicator').slideDown(1000);
+    });
+
+    $(document).on('click', '#yours_checkbox', function(){
+
+      if($('#q_status_cont').hasClass('showing')) {
+        $('#q_status_cont').hide().removeClass('showing');
+      } else {
+        $('#q_status_cont').show().addClass('showing');
+      }
+      var yourSelect = document.getElementById( "q_status_cont" );
+      yourSelect.selectedIndex = 0;
+
+    });
+  });
 
   $(document).on("click", ".header", function() {
 

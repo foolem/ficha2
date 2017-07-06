@@ -105,7 +105,7 @@ class FichasController < ApplicationController
   # GET /fichas/1
   # GET /fichas/1.json
   def show
-    pdf_generate    
+    pdf_generate
   end
 
 
@@ -165,7 +165,11 @@ class FichasController < ApplicationController
     list = ficha_params
 
     if(current_user.teacher?)
-      list[:status] = "Enviado"
+      if ficha_blank(Ficha.new(list))
+        list[:status] = "Editando"
+      else
+        list[:status] = "Enviado"
+      end
     end
 
     respond_to do |format|
@@ -197,9 +201,9 @@ class FichasController < ApplicationController
       @q.result.order(year: :desc)
     else
       if(params[:checkbox])
-        @q.result.order(year: :desc).where(user: current_user)
+        @q.result.order(status: :desc).where(user: current_user)
       else
-        @q.result.order(year: :desc)
+        @q.result.order(year: :desc).where(status: "Aprovado")
       end
     end
   end
@@ -234,9 +238,13 @@ class FichasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ficha_params
-      params.require(:ficha).permit(:general_objective, :specific_objective, :program,
-                                    :didactic_procedures, :evaluation, :basic_bibliography, :team,
-                                    :bibliography, :user_id, :matter_id, :appraisal, :status, :semester, :year)
+      if current_user.appraiser?
+        params.require(:ficha).permit(:appraisal, :status)
+      else
+        params.require(:ficha).permit(:general_objective, :specific_objective, :program,
+                                      :didactic_procedures, :evaluation, :basic_bibliography, :team,
+                                      :bibliography, :user_id, :matter_id, :status, :semester, :year)
+      end
     end
 
     def authorize_user
@@ -282,6 +290,15 @@ class FichasController < ApplicationController
         end
       end
       return false;
+    end
+
+    def ficha_blank(f)
+      if(f.evaluation.blank? or f.program.blank? or f.bibliography.blank? or f.basic_bibliography.blank? or
+         f.didactic_procedures.blank? or f.general_objective.blank? or f.specific_objective.blank?)
+        true
+      else
+        false
+      end
     end
 
 end

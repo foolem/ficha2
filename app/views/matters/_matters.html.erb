@@ -5,7 +5,7 @@
       <th width="25%"><%= t('code') %></th>
 
       <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
-        <th  width="20%">
+        <th  width="15%">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
 
@@ -13,12 +13,6 @@
               <%= link_to new_button.html_safe, new_matter_path, :class => 'btn btn-primary btn-xs',
                 title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
             <div>
-          </center>
-        </th>
-      <% else %>
-        <th  width="8%">
-          <center>
-          <%=t '.actions', :default => t("helpers.actions") %>
           </center>
         </th>
       <% end %>
@@ -37,34 +31,33 @@
             <td id="actions">
               <center>
 
-              <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm',
-                    title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+                <!-- <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm',
+                      title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
-              <%= link_to edit_button.html_safe,
-                          edit_matter_path(matter), :class => 'btn btn-default btn-sm',
-                          title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+                <%= link_to edit_button.html_safe,
+                            edit_matter_path(matter), :class => 'btn btn-default btn-sm',
+                            title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
 
-              <% if matter.actived? %>
-                <%= link_to desable_button.html_safe, matter_path(matter), :method => :delete,
-                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                          :class => 'btn btn-sm btn-danger disable',
-                          title: 'Desabilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-              <% else %>
-                <%= link_to enable_button.html_safe, matter_path(matter), :method => :delete,
+                <% if matter.actived? %>
+                  <%= link_to desable_button.html_safe, matter_path(matter), :method => :delete,
                             :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                            :class => 'btn btn-success dropdown-toggle btn-sm disable',
-                            title: 'Habilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-              <% end %>
-
-            </center>
-           </td id="actions">
+                            :class => 'btn btn-sm btn-danger disable',
+                            title: 'Desabilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+                <% else %>
+                  <%= link_to enable_button.html_safe, matter_path(matter), :method => :delete,
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                              :class => 'btn btn-success dropdown-toggle btn-sm disable',
+                              title: 'Habilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+                <% end %>
+              </center>
+            </td id="actions">
           <% else %>
-            <td>
+            <!--<td>
               <center>
               <%= link_to show_button.html_safe, matter, :class => 'btn btn-default btn-sm',
                     title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
             </center>
-            </td>
+          </td> -->
             <% end %>
 
         </div>

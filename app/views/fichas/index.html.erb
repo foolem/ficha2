@@ -9,14 +9,14 @@
 
       <% if(user_signed_in?)%>
         <% if user_teacher %>
-          <input id="yours_checkbox" name="checkbox" id="check_checkbox" type="checkbox"> Suas
+          <input id="yours_checkbox" name="checkbox" type="checkbox"> Suas
         <% end %>
 
         <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
          ['Editando', 'Editando'], ['Enviados', 'Enviado']]) %>
 
       <% end %>
-      <%= f.select :year_eq, options_for_select(getYears, Time.zone.now.year) %>
+      <%= f.select :year_eq, options_for_select(getYears, 'Todos') %>
 
       <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
       <%= search_button.html_safe %>

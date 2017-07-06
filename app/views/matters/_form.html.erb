@@ -119,7 +119,12 @@
     <div class="form-group">
       <%= f.label :total_annual_workload, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :total_annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
+
+        <% if @show %>
+          <%= f.text_field :total_annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :total_annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:total_annual_workload) %>
       </div>
 
@@ -128,7 +133,11 @@
     <div class="form-group">
       <%= f.label :total_weekly_workload, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :total_weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% if @show %>
+          <%= f.text_field :total_weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :total_weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:total_weekly_workload) %>
       </div>
     </div>
@@ -136,7 +145,11 @@
     <div class="form-group">
       <%= f.label :total_modular_workload, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :total_modular_workload, :class => 'form-control', in: 0...201, :readonly => @show %>
+        <% if @show %>
+          <%= f.text_field :total_modular_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :total_modular_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:total_modular_workload) %>
       </div>
     </div>
@@ -144,7 +157,11 @@
     <div class="form-group">
       <%= f.label :weekly_workload, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :weekly_workload, :class => 'form-control', in: 0...21, :readonly => @show %>
+        <% if @show %>
+          <%= f.text_field :weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:weekly_workload) %>
       </div>
     </div>
@@ -159,7 +176,11 @@
     <div class="form-group">
       <%= f.label :pd, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :pd, :class => 'form-control', in: 0...201, :readonly => @show%>
+        <% if @show %>
+          <%= f.text_field :pd, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :pd, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:pd) %>
       </div>
     </div>
@@ -167,7 +188,11 @@
     <div class="form-group">
       <%= f.label :lc, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :lc, :class => 'form-control', in: 0...201, :readonly => @show %>
+        <% if @show %>
+          <%= f.text_field :lc, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :lc, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:lc) %>
       </div>
     </div>
@@ -175,7 +200,11 @@
     <div class="form-group">
       <%= f.label :cp, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :cp, :class => 'form-control', in: 0...201, :readonly => @show %>
+        <% if @show %>
+          <%= f.text_field :cp, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :cp, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:cp) %>
       </div>
     </div>
@@ -183,7 +212,11 @@
     <div class="form-group">
       <%= f.label :es, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :es, :class => 'form-control', in: 0...201, :readonly => @show %>
+        <% if @show %>
+          <%= f.text_field :es, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :es, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:es) %>
       </div>
     </div>
@@ -191,7 +224,11 @@
     <div class="form-group">
       <%= f.label :or, :class => 'control-label col-lg-2' %>
       <div class="col-lg-2">
-        <%= f.number_field :or, :class => 'form-control', in: 0...201, :readonly => @show %>
+        <% if @show %>
+          <%= f.text_field :or, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% else %>
+          <%= f.number_field :or, :class => 'form-control', in: 0...101, :readonly => @show %>
+        <% end %>
         <%=f.error_span(:or) %>
       </div>
     </div>
