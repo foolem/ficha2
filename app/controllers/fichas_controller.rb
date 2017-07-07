@@ -197,13 +197,17 @@ class FichasController < ApplicationController
   def getFichas
     if !user_signed_in?
       @q.result.order(year: :desc).where(status: 'Aprovado')
-    elsif !current_user.teacher?
+    elsif current_user.secretary?
       @q.result.order(year: :desc)
     else
       if(params[:checkbox])
         @q.result.order(status: :desc).where(user: current_user)
       else
-        @q.result.order(year: :desc).where(status: "Aprovado")
+        if current_user.appraiser?
+          @q.result.order(status: :desc)
+        else
+          @q.result.order(year: :desc).where(status: "Aprovado")
+        end
       end
     end
   end
@@ -238,7 +242,7 @@ class FichasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ficha_params
-      if current_user.appraiser?
+      if current_user.appraiser? and @ficha.user.id != current_user.id
         params.require(:ficha).permit(:appraisal, :status)
       else
         params.require(:ficha).permit(:general_objective, :specific_objective, :program,

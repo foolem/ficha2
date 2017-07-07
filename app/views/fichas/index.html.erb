@@ -8,7 +8,8 @@
     <%= search_form_for @q do |f| %>
 
       <% if(user_signed_in?)%>
-        <% if user_teacher %>
+
+        <% if user_not_secretary %>
           <input id="yours_checkbox" name="checkbox" type="checkbox"> Suas
         <% end %>
 
@@ -20,6 +21,14 @@
 
       <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
       <%= search_button.html_safe %>
+    <% end %>
+
+    <% if user_not_secretary %>
+      <!-- Teoricamente temporário -->
+      <script type="text/javascript">
+        $('#q_status_cont').hide();
+        $('#yours_checkbox').prop('checked', false);
+      </script>
     <% end %>
 
 

@@ -36,8 +36,8 @@ module FichasHelper
     @show = true
   end
 
-  def can_not_edit
-    @show or user_appriser
+  def can_not_edit(ficha)
+    @show or (user_appriser and ficha.user.id != current_user.id)
   end
 
   #<td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>

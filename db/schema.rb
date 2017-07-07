@@ -20,15 +20,15 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.text     "evaluation",          default: ""
     t.text     "basic_bibliography",  default: ""
     t.text     "bibliography",        default: ""
-    t.string   "status",              default: "Enviado"
+    t.string   "status",              default: "Editando"
     t.string   "team",                default: "A"
     t.text     "appraisal",           default: ""
     t.integer  "year",                default: 2017
     t.integer  "semester",            default: 1
     t.integer  "user_id"
     t.integer  "matter_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.index ["matter_id"], name: "index_fichas_on_matter_id"
     t.index ["user_id"], name: "index_fichas_on_user_id"
   end

@@ -7,6 +7,11 @@ namespace :utils do
       return  Random.rand(2) + 1
     end
 
+    def randomize_team()
+      team = ["A", "B", "C", "D", "E"]
+      return  team[Random.rand(5)]
+    end
+
     def randomize_year()
       random = Random.rand(3)
       operator = Random.rand(2)
@@ -29,6 +34,7 @@ namespace :utils do
 
       quantity.times do |i|
 
+        team = randomize_team
         semester = randomize_semester
         year = 2017
         if(status == "Aprovado")
@@ -40,7 +46,7 @@ namespace :utils do
 
         Ficha.create(matter_id: matter_id + 1, user_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
         specific_objective: "Aprender x\nEntender y\nInterpretar z", status: status, appraisal: appraisal,
-        year: year, semester: semester)
+        year: year, semester: semester, team: team)
 
         puts ("Criando ficha: #{matter_id + 1}, #{teacher_id + 1}")
 

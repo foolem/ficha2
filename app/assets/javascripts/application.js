@@ -46,7 +46,6 @@ document.addEventListener("turbolinks:load", function() {
     $('.error').parent('div').find('.col-lg-8').addClass('has-error has-feedback');
     $('.error').parent('div').find('.col-lg-9').addClass('has-error has-feedback');
 
-
     $(document).on('change', '#select_status select', function() {
       if($(this).val() != 'Reprovado'){
         $("#appraisal_show").slideUp(1000, function(){
@@ -93,8 +92,6 @@ document.addEventListener("turbolinks:load", function() {
 
     });
 
-        $('#q_status_cont').hide();
-        
     $('#loading-indicator').hide();
 
   });

@@ -10,7 +10,7 @@ class CreateFichas < ActiveRecord::Migration[5.0]
       t.text :basic_bibliography, default: ""
       t.text :bibliography, default: ""
 
-      t.string :status, default: "Enviado"
+      t.string :status, default: "Editando"
       t.string :team, default: "A"
       t.text :appraisal,default: ""
 
