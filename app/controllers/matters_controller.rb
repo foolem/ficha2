@@ -37,6 +37,10 @@ class MattersController < ApplicationController
     @matter.cp = 0
     @matter.es = 0
     @matter.or = 0
+    respond_to do
+
+
+    end
   end
 
   # GET /matters/1/edit

@@ -19,7 +19,7 @@
  cores: https://pt.wix.com/blog/2012/12/usando-as-cores-certas-para-o-seu-site/*/
 body {
   margin: 0 auto 0 auto;
-  background: #CCC;
+  background: rgb(238, 238, 238);
 }
 
 .footer {
@@ -82,7 +82,7 @@ textarea.resize {
 
 #menu_list > li > a:hover{
     color: white;
-    background-color: #000;
+    background-color:rgb(56, 83, 135) ;
 }
 
 #menu_list li a.user_name_menu:hover{
@@ -102,7 +102,7 @@ h1 {
 td { color: #000; }
 
 
-tr:nth-child(even) {background-color: #ccc}
+tr:nth-child(even) {background-color: rgb(232, 232, 232)}
 
 /* tr:hover {background-color: #888; color: black}*/
 
@@ -232,5 +232,6 @@ select { color: #000; }
   margin-bottom: 0;
   color: #B22222;
 }
+
 
 ;
