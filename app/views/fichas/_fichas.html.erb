@@ -62,8 +62,8 @@
             title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
           <% if status_ready(ficha.status) %>
-              <%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm',
-                    title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+              <div style="float:left;"><%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm',
+                    title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> </div>
 
           <% elsif user_signed_in? %>
               <%= link_to edit_button.html_safe,
