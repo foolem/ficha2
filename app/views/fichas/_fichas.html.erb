@@ -28,7 +28,7 @@
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
 
             <% if !current_user.teacher? %>
-              <div style="float:right;margin-right:4px;">
+              <div style="float:right; margin-left:3px; width:37px;">
                 <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
                   title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
               </div>
