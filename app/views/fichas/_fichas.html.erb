@@ -24,7 +24,7 @@
           </center>
         </th>
       <% else %>
-        <th  width="20%">
+        <th  width="15%">
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
 
             <% if !current_user.teacher? %>
@@ -73,8 +73,6 @@
 
           <% if user_signed_in? && user_not_appriser %>
 
-            <%= link_to duplicate_button.html_safe, copy_fichas_path(ficha), :class => 'btn btn-default btn-sm',
-                        :id =>"copy_bt", title: 'Copiar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end  %>
 
           <% if user_not_appriser %>

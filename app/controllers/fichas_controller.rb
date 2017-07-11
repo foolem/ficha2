@@ -115,22 +115,30 @@ class FichasController < ApplicationController
   end
 
   def copy
-    ficha_new = Ficha.find(params[:id])
-    @ficha = Ficha.new
-    @ficha.matter = ficha_new.matter
-    @ficha.program = ficha_new.program
-    @ficha.general_objective = ficha_new.general_objective
-    @ficha.specific_objective = ficha_new.specific_objective
-    @ficha.didactic_procedures = ficha_new.didactic_procedures
-    @ficha.evaluation = ficha_new.evaluation
-    @ficha.basic_bibliography = ficha_new.basic_bibliography
-    @ficha.bibliography = ficha_new.bibliography
 
-    if((user_signed_in? and current_user.admin?) and ficha_new.user.actived?)
-      @ficha.user = ficha_new.user
-    elsif(user_signed_in? and current_user.actived?)
-      @ficha.user = current_user
+    ficha_new = Ficha.find(params[:copy_id])
+    @ficha = Ficha.find(params[:id])
+    if(ficha_new.matter == @ficha.matter)
+
+      @ficha.matter = ficha_new.matter
+      @ficha.program = ficha_new.program
+      @ficha.general_objective = ficha_new.general_objective
+      @ficha.specific_objective = ficha_new.specific_objective
+      @ficha.didactic_procedures = ficha_new.didactic_procedures
+      @ficha.evaluation = ficha_new.evaluation
+      @ficha.basic_bibliography = ficha_new.basic_bibliography
+      @ficha.bibliography = ficha_new.bibliography
+
+      if((user_signed_in? and current_user.admin?) and ficha_new.user.actived?)
+        @ficha.user = ficha_new.user
+      elsif(user_signed_in? and current_user.actived?)
+        @ficha.user = current_user
+      end
+    else
+      flash[:alert] = "Você não pode copiar fichas de outras disciplinas."
+      redirect_to(request.referrer || fichas_path)
     end
+
 
   end
 

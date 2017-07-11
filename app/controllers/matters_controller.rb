@@ -122,7 +122,7 @@ class MattersController < ApplicationController
 
   def length_verify
     @length = 13
-    if current_user.admin? or current_user.secretary?
+    if user_signed_in? and (current_user.admin? or current_user.secretary?)
       @length = 10
     end
   end
