@@ -4,7 +4,7 @@
 
 
       <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? or !params[:checkbox] %>
-        <th><center><%= t('teacher') %></center></th>
+        <th><%= t('teacher') %></th>
       <% end %>
 
       <th width="120px"><center><%= t('matter') %></center></th>

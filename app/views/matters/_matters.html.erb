@@ -1,8 +1,8 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th width="120px"><center><%= t('code') %></center></th>
-      <th class="form_table"><center><%= t('name') %></center></th>
+      <th width="120px"><%= t('code') %></th>
+      <th class="form_table"><%= t('name') %></th>
 
       <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
         <th  width="130px">
@@ -23,7 +23,7 @@
     <% @matters.each do |matter| %>
       <tr data-href="<%= matter_path(matter) %>">
         <div class="form_table">
-          <td><center><%= matter.code %></center></td>
+          <td><%= matter.code %></td>
 
           <td><%= matter.name %></td>
 
