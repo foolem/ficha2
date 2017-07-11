@@ -23,11 +23,14 @@ module FichasHelper
 
 
   def hasEquivalent(ficha)
-    !Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"').blank?
+
+    !ficha.blank? and !Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"').blank?
   end
 
   def getEquivalent(ficha)
-    Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"')
+    if !ficha.blank? and !ficha.matter.blank?
+      Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"')
+    end
   end
 
   def getYears()

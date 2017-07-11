@@ -18,30 +18,17 @@
 
       <% end %>
 
-      <select name="q[year_eq]" id="q_year_eq">
-
-        <option value="">Todos</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018"><label><input type="checkbox" value="" disabled>Option 3</label></option>
-
-      </select>
-
       <%= f.select :year_eq, options_for_select(getYears, 'Todos') %>
 
       <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
       <%= search_button.html_safe %>
     <% end %>
 
-    <% if user_not_secretary %>
-      <!-- Teoricamente temporário -->
+    <% if user_not_secretary and user_not_admin and user_not_appriser %>
+      <!-- Teoricamente temporário
+          Acho que teremos que tirar esse hide do filtro... Oooou achamos uma forma de usar erb sem ser por request js
+     -->
+
       <script type="text/javascript">
         $('#q_status_cont').hide();
         $('#yours_checkbox').prop('checked', false);

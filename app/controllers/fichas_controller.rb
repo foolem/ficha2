@@ -118,7 +118,7 @@ class FichasController < ApplicationController
 
     ficha_new = Ficha.find(params[:copy_id])
     @ficha = Ficha.find(params[:id])
-    if(ficha_new.matter == @ficha.matter)
+    if(ficha_new.matter == @ficha.matter and @ficha.user == current_user)
 
       @ficha.matter = ficha_new.matter
       @ficha.program = ficha_new.program
@@ -135,7 +135,7 @@ class FichasController < ApplicationController
         @ficha.user = current_user
       end
     else
-      flash[:alert] = "Você não pode copiar fichas de outras disciplinas."
+      flash[:alert] = "Você não tem permissão para acessar esta página."
       redirect_to(request.referrer || fichas_path)
     end
 
@@ -144,7 +144,10 @@ class FichasController < ApplicationController
 
   # GET /fichas/1/edit
   def edit
-
+    if(@ficha.user != current_user and !current_user.admin? and !current_user.appraiser? and !current_user.secretary?)
+      flash[:alert] = "Você não tem permissão para acessar esta página."
+      redirect_to(request.referrer || fichas_path)
+    end
   end
 
   # POST /fichas
@@ -211,7 +214,7 @@ class FichasController < ApplicationController
       if(params[:checkbox])
         @q.result.order(status: :desc).where(user: current_user)
       else
-        if current_user.appraiser?
+        if current_user.appraiser? or current_user.admin? 
           @q.result.order(status: :desc)
         else
           @q.result.order(year: :desc).where(status: "Aprovado")

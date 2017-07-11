@@ -1,15 +1,15 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th class="form_table"><%= t('name') %></th>
-      <th width="25%"><%= t('code') %></th>
+      <th width="120px"><center><%= t('code') %></center></th>
+      <th class="form_table"><center><%= t('name') %></center></th>
 
       <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
-        <th  width="15%">
+        <th  width="130px">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
 
-            <div style=float:right;margin-right:4px;>
+            <div style="float:right;margin-right:4px;">
               <%= link_to new_button.html_safe, new_matter_path, :class => 'btn-default btn-sm',
                 title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
             <div>
@@ -23,9 +23,9 @@
     <% @matters.each do |matter| %>
       <tr data-href="<%= matter_path(matter) %>">
         <div class="form_table">
-          <td><%= matter.name %></td>
+          <td><center><%= matter.code %></center></td>
 
-          <td><%= matter.code %></td>
+          <td><%= matter.name %></td>
 
           <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
             <td id="actions">

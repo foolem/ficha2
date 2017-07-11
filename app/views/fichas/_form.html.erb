@@ -26,8 +26,9 @@
   				 </div>
 
   				 <div class="modal-body">
-           <table class="table table-striped">
 
+           <% if !@ficha.id.blank? %>
+           <table class="table table-striped">
              <thead>
                <tr class="header">
                  <th><%= t('teacher') %></th>
@@ -54,6 +55,8 @@
              </tbody>
 
            </table>
+           <% end %>
+
            </div>
 
   				 <div class="modal-footer">
@@ -132,7 +135,7 @@
         <span> / </span>
         <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1) %>
 
-        <% if hasEquivalent(@ficha) %>
+        <% if !@ficha.id.blank? and hasEquivalent(@ficha) %>
           <button action='' type="button" class="btn btn-default btn-sm"
           data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
         <% end %>

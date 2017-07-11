@@ -1,26 +1,25 @@
 <table remote: true, class="table table-striped">
   <thead>
     <tr class="header">
-      <th><%= t('name') %></th>
-      <th><%= t('email') %></th>
+      <th><center><%= t('name') %></center></th>
+      <th><center><%= t('email') %></center></th>
 
       <% if @kind == "role != 0" %>
         <th><center><%=t('role') %></center></th>
       <% end %>
 
       <% if user_signed_in? && current_user.admin? %>
-        <th  width="15%">
-          <center>
+
+        <th  width="130px"><center>
+
           <%=t '.actions', :default => t("helpers.actions") %>
 
-          <div style=float:right;margin-right:4px;>
+          <div style="float:right;margin-right:4px;">
             <%= link_to new_button.html_safe,  new_user_path, :class => 'btn-default btn-sm',
             title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
           <div>
 
-
-          </center>
-         </th>
+        </center></th>
 
        <% end %>
 
@@ -38,7 +37,7 @@
         <% end %>
 
         <% if user_signed_in? && current_user.admin? %>
-          <td>
+          <td> <center>
             <!-- <%= link_to show_button.html_safe, user, :class => 'btn btn-default btn-sm',
             title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
@@ -61,7 +60,7 @@
 
             <% end %>
 
-          </td>
+          </center></td>
         <% end %>
 
       </tr>
