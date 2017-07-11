@@ -21,6 +21,15 @@ module FichasHelper
     return ficha.semester.to_s + "º de " + ficha.year.to_s
   end
 
+
+  def hasEquivalent(ficha)
+    !Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"').blank?
+  end
+
+  def getEquivalent(ficha)
+    Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"')
+  end
+
   def getYears()
     years = {'Todos' => ''}
 

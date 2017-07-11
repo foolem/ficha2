@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  
+
   resources :users, controller: 'users' do
     collection do
       match 'search' => 'users#search', via: [:get, :post], as: :search
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
 
-      match "copy/:id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
+      match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
     end
 
   end
