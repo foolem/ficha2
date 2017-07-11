@@ -40,12 +40,12 @@
 
                 <% if matter.actived? %>
                   <%= link_to desable_button.html_safe, matter_path(matter), :method => :delete,
-                            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
                             :class => 'btn btn-sm btn-danger disable',
                             title: 'Desabilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
                 <% else %>
                   <%= link_to enable_button.html_safe, matter_path(matter), :method => :delete,
-                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
                               :class => 'btn btn-success dropdown-toggle btn-sm disable',
                               title: 'Habilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
                 <% end %>
