@@ -2,8 +2,8 @@
   activerecord:
     models:
       matter:
-        one: Matéria
-        other: Matérias
+        one: Disciplina
+        other: Disciplinas
 
       teacher:
         one: Professor
@@ -39,7 +39,7 @@
         name: "Nome"
 
       ficha:
-        matter: "Matéria"
+        matter: "Disciplina"
         teacher: "Professor"
         status: "Status"
         appraisal: "Comentários"

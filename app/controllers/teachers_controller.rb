@@ -42,12 +42,12 @@ class TeachersController < ApplicationController
     respond_to do |format|
 
       if @teacher.name.blank?
-        format.html { redirect_to new_teacher_path, notice: 'Name is required.' }
+        format.html { redirect_to new_teacher_path, notice: 'O nome é necessário.' }
 
       else
         if @teacher.save
 
-          format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
+          format.html { redirect_to @teacher, notice: 'Professor foi criado com sucesso.' }
           format.json { render :show, status: :created, location: @teacher }
         else
           format.html { render :new }
@@ -62,7 +62,7 @@ class TeachersController < ApplicationController
   def update
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
+        format.html { redirect_to @teacher, notice: 'Professor foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @teacher }
       else
         format.html { render :edit }
