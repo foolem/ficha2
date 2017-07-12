@@ -37,10 +37,7 @@ class MattersController < ApplicationController
     @matter.cp = 0
     @matter.es = 0
     @matter.or = 0
-    respond_to do
 
-
-    end
   end
 
   # GET /matters/1/edit
@@ -62,7 +59,7 @@ class MattersController < ApplicationController
 
     respond_to do |format|
       if @matter.save
-        format.html { redirect_to @matter, notice: 'Matter was successfully created.' }
+        format.html { redirect_to @matter, notice: 'Disciplina foi criada com sucesso.' }
         format.json { render :show, status: :created, location: @matter }
       else
         format.html { render :new }
@@ -76,7 +73,7 @@ class MattersController < ApplicationController
   def update
     respond_to do |format|
       if @matter.update(matter_params)
-        format.html { redirect_to @matter, notice: 'Matter was successfully updated.' }
+        format.html { redirect_to @matter, notice: 'Disciplina foi atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @matter }
       else
         format.html { render :edit }
