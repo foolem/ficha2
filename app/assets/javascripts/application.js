@@ -107,15 +107,26 @@ document.addEventListener("turbolinks:load", function() {
 
     $(document).on('click', '#yours_checkbox', function(){
 
-      if($('#q_status_cont').hasClass('showing')) {
-        $('#q_status_cont').hide().removeClass('showing');
-      } else {
-        $('#q_status_cont').show().addClass('showing');
+      var role = $(this).data('role');
+      if (role == "teacher") {
+        if($('#q_status_cont').hasClass('showing')) {
+          $('#q_status_cont').hide().removeClass('showing');
+        } else {
+          $('#q_status_cont').show().addClass('showing');
+        }
+        var yourSelect = document.getElementById( "q_status_cont" );
+        yourSelect.selectedIndex = 0;
       }
-      var yourSelect = document.getElementById( "q_status_cont" );
-      yourSelect.selectedIndex = 0;
 
     });
+
+    var role = $('#yours_checkbox').data('role');
+    if (role == "teacher") {
+      $('#q_status_cont').hide();
+      $('#yours_checkbox').prop('checked', false);
+    }
+
+
   });
 
   $(document).on("click", ".header", function() {

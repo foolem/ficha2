@@ -4,13 +4,12 @@
 
   <div style="color: black; float: right;">
 
-
     <%= search_form_for @q do |f| %>
 
       <% if(user_signed_in?)%>
 
         <% if user_not_secretary %>
-          <input id="yours_checkbox" name="checkbox" type="checkbox"> Suas
+          <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox"> Suas
         <% end %>
 
         <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
@@ -23,18 +22,6 @@
       <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
       <%= search_button.html_safe %>
     <% end %>
-
-    <% if user_not_secretary and user_not_admin and user_not_appriser %>
-      <!-- Teoricamente temporário
-          Acho que teremos que tirar esse hide do filtro... Oooou achamos uma forma de usar erb sem ser por request js
-     -->
-
-      <script type="text/javascript">
-        $('#q_status_cont').hide();
-        $('#yours_checkbox').prop('checked', false);
-      </script>
-    <% end %>
-
 
   </div>
 
