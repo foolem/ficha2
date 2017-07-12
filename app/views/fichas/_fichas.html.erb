@@ -4,17 +4,17 @@
 
 
       <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? or !params[:checkbox] %>
-        <th><center><%= t('teacher') %></center></th>
+        <th></center><%= t('teacher') %></center></th>
       <% end %>
 
-      <th width="120px"><center><%= t('matter') %></center></th>
+      <th></center><%= t('matter') %></center></th>
 
-      <th width="110px"><center><%= t('semester') %></center></th>
+      <th width="10%"><center><%= t('semester') %></center></th>
 
-      <th width="60px"><center><%= t('class') %></center></th>
+      <th width="5%"><center><%= t('class') %></center></th>
 
       <% if user_signed_in?%>
-        <th width="60px"><center><%= t('status') %></center></th>
+        <th width="5%"><center><%= t('status') %></center></th>
       <% end %>
 
       <% if(!user_signed_in? || user_appriser) %>
