@@ -12,9 +12,9 @@ http://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-pass
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "login-form") do |f| %>
 
-      <%= f.email_field :email, autofocus: true, placeholder: "email address", size: 25%>
+      <%= f.email_field :email, autofocus: true, placeholder: "E-mail", size: 25%>
 
-      <%= f.password_field :password, autocomplete: "off", placeholder: "Password", size: 25%>
+      <%= f.password_field :password, autocomplete: "off", placeholder: "Senha", size: 25%>
 
       <!--
       <% if devise_mapping.rememberable? -%>
@@ -26,10 +26,10 @@ http://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-pass
         -->
 
       <button name="commit" data-disable-with="Login" type="submit ">
-      login</button>
+      Login</button>
 
-
-      <p class="message"> <%= link_to "Esqueceu sua senha?", new_password_path(resource_name) %> </p>
+      <br><br><br>
+      <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), :class => 'btn btn-default btn-sm' %>
 
     <% end %>
 
