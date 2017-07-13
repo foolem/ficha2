@@ -13,25 +13,25 @@
 
 
 <div class="login-page">
-  <div class="form-login">
+  <div class="form-login" style="height:445px;">
 
     <% if(current_user.admin?) %>
-    <%= f.select(:role, [['Professor', :teacher], ['Avaliador', :appraiser], ['Administrador', :admin], ['Secretário', :secretary]] ) %>
+    <%= f.select(:role, [['Professor', :teacher], ['Avaliador', :appraiser], ['Administrador', :admin], ['Secretário', :secretary]],{}, {class: "form form-group form-control selectpicker" }) %>
     <% end %>
 
-    <%= f.text_field :name, placeholder: "name", autofocus: true, :autocomplete => "off"  %>
+    <%= f.text_field :name, placeholder: "Nome", autofocus: true, :autocomplete => "off"  %>
 
-    <%= f.email_field :email , placeholder: "email address", :autocomplete => "off"  %>
+    <%= f.email_field :email , placeholder: "Email", :autocomplete => "off"  %>
 
 
-    <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Senha" %>
 
     <br/>
-    <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "confirm password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "Confirme a senha" %>
 
-    <button name="commit" data-disable-with="Signup" type="submit ">Update</button>
+    <button name="commit" data-disable-with="Signup" type="submit ">Atualizar</button>
 
-    <%= link_to back_button.html_safe + " Back", :back, :style => "float: left; margin-top: 15px" %>
+    <%= link_to back_button.html_safe + " Back", :back, :style => "float: left; margin-top: 10px; margin-bottom: 20px;", :class => 'btn btn-default btn-sm' %>
 
   </div>
 </div>
