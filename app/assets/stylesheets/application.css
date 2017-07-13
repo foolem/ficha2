@@ -45,22 +45,44 @@ div.dropdown-menu li a, button.dropdown-toggle {
 }
 
 a.disable {
-  opacity:0.85;
+
   color: white;
 }
 
 a.disable:link {
   color: white;
+
 }
 
 a.disable:hover {
   color: white;
+
 }
 
 a.disable:visited {
   color: white;
+
 }
 
+a.simple_button {
+
+  color: black;
+}
+
+a.simple_button:link {
+  color: black;
+
+}
+
+a.simple_button:hover {
+  color: black;
+
+}
+
+a.simple_button:visited {
+  color: black;
+
+}
 
 
 textarea.resize {
@@ -231,6 +253,10 @@ select { color: #000; }
   margin-top: 0;
   margin-bottom: 0;
   color: #B22222;
+}
+
+li > a:hover{
+    color: black;
 }
 
 

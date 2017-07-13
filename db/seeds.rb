@@ -17,6 +17,11 @@ def create_users()
 
 end
 
+def randomize_team()
+  team = ["A", "B", "C", "D", "E"]
+  return  team[Random.rand(5)]
+end
+
 def randomize_semester()
   return  Random.rand(2) + 1
 end
@@ -35,64 +40,10 @@ def randomize_year()
   return year
 end
 
-def create_matters(quantity)
-
-  quantity.times do |i|
-
-    name = Faker::Food.ingredient
-    code = Faker::Code.asin
-    kind = [:Semestral, :Anual, :Modular].sample
-    modality = [:Presencial, :EaD].sample
-    nature = [:Obrigatoria, :Optativa].sample
-    menu = "Ementa exemplo"
-
-    if name[0] >= 'a'
-      name[0] = name[0].upcase
-    end
-
-    Matter.create(name: name, code: code, kind: kind,
-    prerequisite: "Nenhum", corequisite: "Nenhum",
-    modality: modality , nature: nature, menu: menu,
-    total_weekly_workload: 0, total_modular_workload: 0, total_annual_workload: 0, weekly_workload: 0,
-    pd:0, lc:0, cp:0, es:0, or:0)
-
-    puts ("Criando matéria #{name}")
-
-  end
-
-end
-
-def create_fichas_teacher()
-
-  Ficha.create(matter_id: 1, user_id: 2, general_objective: "Desenvolver habilidades em...",
-  specific_objective: "Aprender x\nEntender y\nInterpretar z", status: "Aprovado")
-
-  Ficha.create(matter_id: 2, user_id: 2, general_objective: "Desenvolver habilidades em...",
-  specific_objective: "Aprender x\nEntender y\nInterpretar z", status: "Reprovado", appraisal: "Melhore x e y")
-
-  Ficha.create(matter_id: 3, user_id: 2, general_objective: "Desenvolver habilidades em...",
-  specific_objective: "Aprender x\nEntender y\nInterpretar z")
-end
-
-def create_teachers(quantity)
-
-  matter = Matter.last
-  quantity.times do |i|
-
-    name = Faker::Name.name
-    email = Faker::Internet.safe_email
-    User.create(name: name, email:email, password: "123123")
-
-    puts ("Criando professor #{name}, #{email}")
-
-  end
-end
-
 def create_fichas(quantity, status, appraisal)
 
   matter = Matter.last
   teacher = User.where(role: 0).last
-
 
   quantity.times do |i|
 
@@ -107,9 +58,9 @@ def create_fichas(quantity, status, appraisal)
 
     Ficha.create(matter_id: matter_id + 1, user_id: teacher_id + 1, general_objective: "Desenvolver habilidades em...",
     specific_objective: "Aprender x\nEntender y\nInterpretar z", status: status, appraisal: appraisal,
-    year: year, semester: semester)
+    year: year, semester: semester, team: randomize_team)
 
-    puts ("Criando ficha: #{matter_id + 1}, #{teacher_id + 1}")
+    puts ("| M: #{matter_id + 1} - T: #{teacher_id + 1} ")
 
   end
 end
@@ -125,7 +76,7 @@ def new_matter_requisite(name, code, kind, modality, nature, menu, total_w, tota
   modality: modality , nature: nature, menu: menu,
   total_weekly_workload: total_w, total_modular_workload:  total_m, total_annual_workload: total_a, weekly_workload: weekly)
 
-  puts ("Criando matéria #{name}")
+  puts ("| #{name} - #{code} ")
 end
 
 
@@ -134,10 +85,13 @@ def new_ficha(matter, user, objective, specific_objective, status, program, bibl
   specific_objective: specific_objective, status: status, program: program, basic_bibliography: basic_bibliography, bibliography: bibliography,
   evaluation: evaluation, didactic_procedures: procedures)
 
-  puts ("Criando ficha: #{matter}")
+  puts ("| M: #{matter} - T: #{user} ")
+
 end
 
 def create_matters_example
+  puts "\n------------ Matters Exemplo ------------"
+
   name = "Cálculo 1A"
   code = "CMA111"
   kind = :Semestral
@@ -268,10 +222,12 @@ GUIDORIZZI, H. L. - Um Curso de Cálculo, vols. 1 e 2, LTC, Rio de Janeiro."
 
 end
 
-
-create_matters_example()
-#create_matters(20)
 create_users()
+create_matters_example()
+
+puts "\n------------ Fichas Exemplo ------------"
 create_fichas_example()
-create_fichas_teacher()
-#create_teachers(20)
+create_fichas(10, "Editando", "")
+create_fichas(10, "Enviado", "")
+create_fichas(10, "Reprovado", "Bibliografia fora das normas")
+create_fichas(10, "Aprovado", "")

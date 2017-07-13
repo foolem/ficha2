@@ -1,8 +1,8 @@
 <table remote: true, class="table table-striped">
   <thead>
     <tr class="header">
-      <th><center><%= t('name') %></center></th>
-      <th><center><%= t('email') %></center></th>
+      <th><%= t('email') %></th>
+      <th><%= t('name') %></th>
 
       <% if @kind == "role != 0" %>
         <th><center><%=t('role') %></center></th>
@@ -14,7 +14,7 @@
 
           <%=t '.actions', :default => t("helpers.actions") %>
 
-          <div style="float:right;margin-right:4px;">
+          <div style="float:right; margin-left:3px; width:37px;">
             <%= link_to new_button.html_safe,  new_user_path, :class => 'btn-default btn-sm',
             title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
           <div>
@@ -42,7 +42,7 @@
             title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
             <%= link_to edit_button.html_safe,
-                        edit_user_path(user), :class => 'btn btn-default btn-sm',
+                        edit_user_path(user), :class => 'btn btn-default btn-sm simple_button',
                         title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
 
             <% if user.actived? %>

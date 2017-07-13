@@ -10,7 +10,7 @@ document.addEventListener 'turbolinks:load', ->
           input.removeClass('error')
           div.find('.has-error').hide()
           div.removeClass(sucess_calss).addClass error_class
-          error.text('não pode ficar em branco.').show()
+          error.text('Não pode ficar em branco.').show()
         else
           input.removeClass('error')
           div.find('.has-error').hide()

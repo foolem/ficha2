@@ -4,7 +4,7 @@
 
 
       <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? or !params[:checkbox] %>
-        <th></center><%= t('teacher') %></center></th>
+        <th><%= t('teacher') %></th>
       <% end %>
 
       <th></center><%= t('matter') %></center></th>
@@ -28,7 +28,7 @@
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
 
             <% if !current_user.teacher? %>
-              <div style="float:right;margin-right:4px;">
+              <div style="float:right; margin-left:3px; width:37px;">
                 <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
                   title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
               </div>
@@ -62,12 +62,12 @@
             title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
           <% if status_ready(ficha.status) %>
-              <%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm',
-                    title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+              <div style="float:left;"><%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm simple_button',
+                    title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> </div>
 
           <% elsif user_signed_in? %>
               <%= link_to edit_button.html_safe,
-                    edit_ficha_path(ficha), :class => 'btn btn-default btn-sm',
+                    edit_ficha_path(ficha), :class => 'btn btn-default btn-sm simple_button',
                     title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end %>
 
@@ -80,7 +80,7 @@
             <%= link_to remove_button.html_safe,
                         ficha_path(ficha),
                         :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
                         :class => 'btn btn-sm btn-danger disable',
                         title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
 

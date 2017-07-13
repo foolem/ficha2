@@ -24,7 +24,7 @@ document.addEventListener("turbolinks:load", function() {
     });
 
     $(".alert")
-      .fadeTo(1000, 500)
+      .fadeTo(2000, 500)
       .slideUp(500);
 
       $(document).on('mouseenter', 'tr:not(:first)', function () {
