@@ -10,63 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403124756) do
+ActiveRecord::Schema.define(version: 20170324130735) do
 
-  create_table "fichas", force: :cascade do |t|
+  create_table "fichas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "general_objective"
-    t.text     "specific_objective",  default: ""
-    t.text     "program",             default: ""
-    t.text     "didactic_procedures", default: ""
-    t.text     "evaluation",          default: ""
-    t.text     "basic_bibliography",  default: ""
-    t.text     "bibliography",        default: ""
-    t.string   "status",              default: "Editando"
-    t.string   "team",                default: "A"
-    t.text     "appraisal",           default: ""
-    t.integer  "year",                default: 2017
-    t.integer  "semester",            default: 1
+    t.text     "specific_objective",  limit: 65535
+    t.text     "program",             limit: 65535
+    t.text     "didactic_procedures", limit: 65535
+    t.text     "evaluation",          limit: 65535
+    t.text     "basic_bibliography",  limit: 65535
+    t.text     "bibliography",        limit: 65535
+    t.string   "status",                            default: "Editando"
+    t.string   "team",                              default: "A"
+    t.text     "appraisal",           limit: 65535
+    t.integer  "year",                              default: 2017
+    t.integer  "semester",                          default: 1
     t.integer  "user_id"
     t.integer  "matter_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.index ["matter_id"], name: "index_fichas_on_matter_id"
-    t.index ["user_id"], name: "index_fichas_on_user_id"
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.index ["matter_id"], name: "index_fichas_on_matter_id", using: :btree
+    t.index ["user_id"], name: "index_fichas_on_user_id", using: :btree
   end
 
-  create_table "matters", force: :cascade do |t|
+  create_table "matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.boolean  "actived",                default: true, null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.boolean  "actived",                              default: true, null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.string   "code"
     t.string   "kind"
     t.string   "prerequisite"
     t.string   "corequisite"
     t.string   "modality"
     t.string   "nature"
-    t.string   "menu",                   default: ""
-    t.integer  "total_annual_workload",  default: 0
-    t.integer  "total_weekly_workload",  default: 0
-    t.integer  "total_modular_workload", default: 0
-    t.integer  "weekly_workload",        default: 0
-    t.integer  "pd",                     default: 0
-    t.integer  "lc",                     default: 0
-    t.integer  "cp",                     default: 0
-    t.integer  "es",                     default: 0
-    t.integer  "or",                     default: 0
+    t.text     "menu",                   limit: 65535
+    t.integer  "total_annual_workload",                default: 0
+    t.integer  "total_weekly_workload",                default: 0
+    t.integer  "total_modular_workload",               default: 0
+    t.integer  "weekly_workload",                      default: 0
+    t.integer  "pd",                                   default: 0
+    t.integer  "lc",                                   default: 0
+    t.integer  "cp",                                   default: 0
+    t.integer  "es",                                   default: 0
+    t.integer  "or",                                   default: 0
   end
 
-  create_table "teachers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
-    t.string   "name",                   default: "",   null: false
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email",                                 null: false
+    t.string   "encrypted_password",                    null: false
+    t.string   "name",                                  null: false
     t.integer  "role",                   default: 0,    null: false
     t.boolean  "actived",                default: true, null: false
     t.string   "reset_password_token"
@@ -79,8 +72,10 @@ ActiveRecord::Schema.define(version: 20170403124756) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "fichas", "matters"
+  add_foreign_key "fichas", "users"
 end

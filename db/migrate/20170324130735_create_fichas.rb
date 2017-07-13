@@ -2,17 +2,17 @@ class CreateFichas < ActiveRecord::Migration[5.0]
   def change
     create_table :fichas do |t|
       t.string :general_objective
-      t.text :specific_objective, default: ""
+      t.text :specific_objective
 
-      t.text :program, default: ""
-      t.text :didactic_procedures, default: ""
-      t.text :evaluation, default: ""
-      t.text :basic_bibliography, default: ""
-      t.text :bibliography, default: ""
+      t.text :program
+      t.text :didactic_procedures
+      t.text :evaluation
+      t.text :basic_bibliography
+      t.text :bibliography
 
       t.string :status, default: "Editando"
       t.string :team, default: "A"
-      t.text :appraisal,default: ""
+      t.text :appraisal
 
       t.integer :year, default: 2017
       t.integer :semester, default: 1
