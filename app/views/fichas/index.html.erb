@@ -1,6 +1,6 @@
 <%- model_class = Ficha -%>
 
-<div class="page-header">
+<div class="page-header" style="height:auto;">
 
   <div style="color: black; float: right;">
 
@@ -9,18 +9,18 @@
       <% if(user_signed_in?)%>
 
         <% if user_not_secretary %>
-          <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox"> Suas
+          <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px;"> Suas
         <% end %>
 
         <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
-         ['Editando', 'Editando'], ['Enviados', 'Enviado']]) %>
+         ['Editando', 'Editando'], ['Enviados', 'Enviado']],{},{:class => 'form form-group form-control', :style => 'float:left;width:150px;'}) %>
 
       <% end %>
 
-      <%= f.select :year_eq, options_for_select(getYears, 'Todos') %>
+      <%= f.select( :year_eq, options_for_select(getYears, 'Todos'),{},{:class => 'form form-group form-control', :style => 'float:left;width:150px;margin-left:5px;margin-right:5px;'}) %>
 
-      <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
-      <%= search_button.html_safe %>
+      <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;' %>
+
     <% end %>
 
   </div>

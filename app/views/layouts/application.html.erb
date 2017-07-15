@@ -37,18 +37,18 @@
             <li><%= link_to t('fichas'), fichas_path  %></li>
 
             <% if !user_signed_in? %>
-              <li style="position: absolute; right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
+              <li style="position:absolute; float:right;right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
             <% else %>
 
               <% if current_user.admin? %>
                 <li><%= link_to t('users'), users_path %></li>
               <% end %>
 
-              <li style="position: absolute; right: 60px;">
+              <li style="position:absolute; float:right; right: 60px;">
                 <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user), :class => 'user_name_menu' %>
               </li>
 
-              <div style="position: absolute; right: 10px;" class="btn-group" style="">
+              <div style="position:absolute;right: 10px;" class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <%= config_button.html_safe %>
                 </button>

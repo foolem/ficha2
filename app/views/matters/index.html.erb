@@ -4,8 +4,8 @@
 
   <div style="color: black; float: right;">
     <%= search_form_for @q do |f| %>
-        <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "procurar", :autocomplete => "off" %>
-        <%= search_button.html_safe %>
+        <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control' %>
+        
     <% end %>
   </div>
 
