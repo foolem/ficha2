@@ -120,12 +120,15 @@ document.addEventListener("turbolinks:load", function() {
 
     });
 
+  });
+
+
+  document.addEventListener("turbolinks:load", function() {
     var role = $('#yours_checkbox').data('role');
     if (role == "teacher") {
       $('#q_status_cont').hide();
       $('#yours_checkbox').prop('checked', false);
     }
-
 
   });
 
