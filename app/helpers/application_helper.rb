@@ -102,7 +102,6 @@ module ApplicationHelper
     '<i class="glyphicon glyphicon-user"></i> ' + user
   end
 
-
   def render_pages(list, page, path, length)
     pages = pages_count(list, length)
 

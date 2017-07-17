@@ -27,3 +27,4 @@
   class: "Turma"
   semester: "Semestre"
   code: 'Código'
+  error: 'erro'
