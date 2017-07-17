@@ -60,28 +60,29 @@ div {
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  width: 365px;
+  height: auto;
+  border: 1px solid red;
   padding: 7px;
   padding-bottom: 0;
-  margin-bottom: 20px;
   background-color: #f0f0f0;
-
+  box-shadow: 2px 5px 5px 2px rgb(194, 194, 194);
+  margin: 0;
   h2 {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
     font-size: 12px;
     margin: -7px;
-    margin-bottom: 0;
     background-color: #c00;
     color: #fff;
   }
 
   ul li {
     font-size: 12px;
-    list-style: square;
-
+    list-style: circle;
+    text-align: justify;
+    margin: 0;
   }
 
 }
