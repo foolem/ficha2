@@ -1,9 +1,9 @@
 <%= form_for @ficha, :html => { :class => "form-horizontal ficha" } do |f| %>
 
   <% if @ficha.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
+    <center><div id="error_explanation">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@ficha.errors.count, "error") %> prohibited this ficha from being saved:</h3>
+        <h3 class="panel-title"><%= pluralize(@ficha.errors.count, "erro(s)") %> ocorrido(s):</h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -12,7 +12,7 @@
         <% end %>
         </ul>
       </div>
-    </div>
+    </div><br><br></center>
   <% end %>
 
 

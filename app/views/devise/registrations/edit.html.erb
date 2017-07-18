@@ -5,30 +5,30 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= devise_error_messages! %>
 
-        <%= f.email_field :email, autofocus: true , placeholder: "email address" %>
+        <%= f.email_field :email, autofocus: true , placeholder: "Email" %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <div>Atualmente aguardando confirmação de: <%= resource.unconfirmed_email %></div>
       <% end %>
 
-      <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
+      <i>(Deixe em branco se não deseja alterar)</i><br />
+      <%= f.password_field :password, autocomplete: "off", placeholder: "Senha" %>
       <% if @minimum_password_length %>
         <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
+        <em><%= @minimum_password_length %> caracteres mínimos</em>
       <% end %>
 
-      <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "confirm password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "Confirme a senha" %>
 
-      <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off", placeholder: "current password" %>
+      <i>(Precisamos de sua senha atual para confirmar as mudanças)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off", placeholder: "Senha atual" %>
 
-      <button name="commit" data-disable-with="Signup" type="submit ">Update</button>
+      <button name="commit" data-disable-with="Signup" type="submit ">Atualizar</button>
 
-      <p class="message">Are you unhappy?   <%= link_to "Cancel my account", registration_path(resource_name), method: :delete %> </p>
+      <p class="message">Não está feliz?   <%= link_to "Cancelar minha conta", registration_path(resource_name), method: :delete %> </p>
 
 
-      <%= link_to "Back", :back %>
+      <%= link_to "Voltar", :back %>
     <% end %>
   </div>
 
