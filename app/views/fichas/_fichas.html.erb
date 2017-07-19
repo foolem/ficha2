@@ -78,7 +78,7 @@
 
           <% end  %>
 
-          <% if user_not_appriser %>
+          <% if user_not_appriser%>
 
             <%= link_to remove_button.html_safe,
                         ficha_path(ficha),
@@ -87,8 +87,8 @@
                         :class => 'btn btn-sm btn-danger disable',
                         title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
 
-          <% end %>
 
+          <% end %>
         </center> </td>
       </tr>
 
