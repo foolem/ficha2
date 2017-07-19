@@ -3,17 +3,19 @@
   <div class="form-login">
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= devise_error_messages! %>
+  
+    <%= devise_error_messages!%>
 
 
-      <%= f.email_field :email, autofocus: true, placeholder: "email address" %>
 
-      <button name="commit" data-disable-with="Sending" type="submit ">
-              Send me instructions</button>
+      <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
+
+      <button name="commit" data-disable-with="Enviando" type="submit ">
+              Me envie instruções</button>
 
     <% end %>
 
-    <p class="message">Are you registered?   <%= link_to "Acess your account", new_session_path(resource_name) %> </p> 
+    <p class="message">Você está registrado?   <%= link_to "Acesse sua conta", new_session_path(resource_name), :class => 'btn btn-default btn-sm' %> </p>
 
   </div>
 </div>

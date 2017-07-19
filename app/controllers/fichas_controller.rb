@@ -198,10 +198,19 @@ class FichasController < ApplicationController
   # DELETE /fichas/1
   # DELETE /fichas/1.json
   def destroy
-    @ficha.destroy
-    respond_to do |format|
-      format.html { redirect_to fichas_url, notice: 'Ficha foi removida com sucesso.' }
-      format.json { head :no_content }
+
+    if(!current_user.admin? && !current_user.secretary? && (@ficha.user.id != current_user.id))
+
+      flash[:alert] = "Você não tem permissão para excluir esta ficha."
+      redirect_to(request.referrer || root_path)
+
+    else
+      @ficha.destroy
+      respond_to do |format|
+        format.html { redirect_to fichas_url, notice: 'Ficha foi removida com sucesso.' }
+        format.json { head :no_content }
+      end
+
     end
   end
 
@@ -214,7 +223,7 @@ class FichasController < ApplicationController
       if(params[:checkbox])
         @q.result.order(status: :desc).where(user: current_user)
       else
-        if current_user.appraiser? or current_user.admin? 
+        if current_user.appraiser? or current_user.admin?
           @q.result.order(status: :desc)
         else
           @q.result.order(year: :desc).where(status: "Aprovado")
