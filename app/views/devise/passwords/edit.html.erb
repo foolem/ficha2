@@ -2,22 +2,21 @@
   <h1>Mude sua senha</h1>
 </div>
 
-<script type="text/javascript">
-document.getElementById("batata").style.display = "none";
 
-</script>
-
-<center><div class="form-login">
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<center>
   <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %><br />
+<div class="login-page">
+  <div class="form-login">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: "login-form") do |f| %>
 
-    <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => 'form-control', :style => 'width:300px;', :placeholder => "Nova senha" %><br />
+    <%= f.hidden_field :reset_password_token %><br />
 
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :style => 'width:300px;', :placeholder => "Confirme a nova senha" %><br />
+    <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => 'form-control', :style => 'width:270px;height:50px;', :placeholder => "Nova senha" %><br />
 
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :style => 'width:270px;height:50px;', :placeholder => "Confirme a nova senha" %><br />
 
-
-    <%= f.submit "Mudar minha senha", :class => 'btn btn-default btn-sm', :style => 'margin-bottom:100px;' %>
-</div></center>
+    <button name="commit" data-disable-with="Mudar minha senha" type="submit ">Mudar minha senha</button>
+  </div>
+</div>
+</center>
 <% end %>
