@@ -29,7 +29,8 @@ http://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-pass
       Login</button>
 
       <br><br><br>
-      <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), :class => 'btn btn-default btn-sm' %>
+      <p class="message">Esqueceu sua senha?   <%= link_to "Mudar minha senha", new_password_path(resource_name), :class => 'btn btn-default btn-sm' %> </p>
+
 
     <% end %>
 
