@@ -3,12 +3,12 @@
     <tr class="header">
 
 
-      <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? or !params[:checkbox] %>
+
 
         <th><%= t('teacher') %></th>
 
 
-      <% end %>
+
 
       <th width="10%"><center><%= t('matter') %></center></th>
 
@@ -46,9 +46,9 @@
   <tbody id="tbody">
     <% @fichas.each do |ficha| %>
       <tr data-href="<%= ficha_path(ficha) %>" >
-        <% if (user_signed_in? && !current_user.teacher?) or !user_signed_in? or !params[:checkbox] %>
+      
           <td><%= ficha.user.name %></td>
-        <% end %>
+
         <td><center> <span title="<%= ficha.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.matter.code %> </span></center></td>
 
         <td><center><%= getSemester(ficha) %></center></td>
