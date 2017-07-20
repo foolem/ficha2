@@ -9,7 +9,15 @@ class UsersController < ApplicationController
       @kind = "role != 0"
     end
 
-    @q = User.search(params[:q])
+    if(params[:q].blank? and !session[:user_search].blank?)
+      query = session[:user_search]
+    else
+      query = params[:q]
+      session[:user_search] = params[:q]
+    end
+
+    @q = User.search(query)
+
     length_verify()
     @page = params[:page].to_i
     @users = @q.result.where(@kind).order(name: :asc)

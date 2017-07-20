@@ -5,7 +5,7 @@ class FichaPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.blank? and ((user.admin? or user.teacher?) and user.actived?)
+    !user.blank? and ((user.admin? or user.secretary?) and user.actived?)
   end
 
   def edit?

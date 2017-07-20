@@ -33,6 +33,10 @@ module FichasHelper
     end
   end
 
+  def getMatter(ficha)
+    "#{ficha.matter.code}  - #{ficha.matter.name}"
+  end
+
   def getYears()
     years = {'Todos' => ''}
 

@@ -3,97 +3,23 @@ class FichasController < ApplicationController
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :import]
 
-  # GET /fichas
-  # GET /fichas.json
-
   def index
-    @page = params[:page].to_i
 
-    puts "Parametros : #{params[:q]}"
-    if(!(params[:q].blank? and !@query.blank?))
+    if(params[:q].blank? and !session[:ficha_search].blank?)
+      @query = session[:ficha_search]
+    else
       @query = params[:q]
+      session[:ficha_search] = params[:q]
     end
-    @q = Ficha.ransack(params[:q])
 
+    @q = Ficha.ransack(@query)
+
+    @page = params[:page].to_i
     @fichas = getFichas
     @elements = @fichas.length
     @page = pages_verify(@page, @elements)
     @fichas = @fichas.paginate(:per_page => 10, :page => @page)
 
-  end
-
-  def reload
-    respond_to do |format|
-      format.js
-      format.html { redirect_to import_fichas_path, notice: 'que?' }
-    end
-  end
-
-  def import
-    $list = []
-    $matters = []
-    $teachers = []
-  end
-
-  def importing
-
-    fichas = []
-    $teachers = []
-    $matters = []
-    code = ''
-    repeat = false
-
-    file = params[:file]
-    xlsx = open_spreadsheet(file)
-
-    (xlsx.last_row - 2).times do |i|
-      linha = xlsx.sheet(0).row(i+2)
-
-      puts "|  #{linha[1]}  -  #{linha[2]}  -  #{linha[5]}  -  #{linha[26]} |"
-
-      code = linha[5]
-      matter_name = linha[1]
-      teacher_name = linha[26]
-
-      matter = Matter.where("code = '#{code}'")
-      teacher = User.where("name = '#{teacher_name}'")
-
-      if(!teacher.blank? and !matter.blank?)
-        puts "Matéria e Professor ok"
-        ficha = Ficha.new
-        ficha.matter_id = 1
-        ficha.user_id = 1
-        ficha.team = linha[2]
-        fichas << ficha
-      else
-        if(matter.blank?)
-          if !contains_matter(code)
-            matter = Matter.new(code: code, name: matter_name)
-            $matters << matter
-          end
-        end
-
-        if(teacher.blank?)
-          if !contains_teacher(teacher_name)
-            teacher = User.new(name: teacher_name)
-            $teachers << teacher
-          end
-        end
-      end
-
-    end
-    $list = fichas
-
-  end
-
-  def open_spreadsheet(file)
-    case File.extname(file.original_filename)
-
-    when ".xlsx" then Roo::Excelx.new(file.path, extension: :xlsx)
-    when ".csv" then Roo::CSV.new(file.path, csv_options: {col_sep: ","})
-    when ".xls" then Roo::Excel.open(file.path, extension: :xlsx)
-    else raise "Unknown file type: #{file.original_filename}"
-    end
   end
 
   def search
@@ -102,14 +28,10 @@ class FichasController < ApplicationController
     show_check
   end
 
-  # GET /fichas/1
-  # GET /fichas/1.json
   def show
     pdf_generate
   end
 
-
-  # GET /fichas/new
   def new
     @ficha = Ficha.new
   end
@@ -142,7 +64,6 @@ class FichasController < ApplicationController
 
   end
 
-  # GET /fichas/1/edit
   def edit
     if(@ficha.user != current_user and !current_user.admin? and !current_user.appraiser? and !current_user.secretary?)
       flash[:alert] = "Você não tem permissão para acessar esta página."
@@ -150,8 +71,6 @@ class FichasController < ApplicationController
     end
   end
 
-  # POST /fichas
-  # POST /fichas.json
   def create
     @ficha = Ficha.new(ficha_params)
 
@@ -170,8 +89,6 @@ class FichasController < ApplicationController
     end
   end
 
-  # PATCH/PUT /fichas/1
-  # PATCH/PUT /fichas/1.json
   def update
     list = ficha_params
 
@@ -184,8 +101,7 @@ class FichasController < ApplicationController
     end
 
     respond_to do |format|
-      if @ficha.update(list )
-        puts params[:status]
+      if @ficha.update(list)
         format.html { redirect_to @ficha, notice: 'Ficha foi atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @ficha }
       else
@@ -195,8 +111,6 @@ class FichasController < ApplicationController
     end
   end
 
-  # DELETE /fichas/1
-  # DELETE /fichas/1.json
   def destroy
 
     if(!current_user.admin? && !current_user.secretary? && (@ficha.user.id != current_user.id))
@@ -255,12 +169,10 @@ class FichasController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_ficha
       @ficha = Ficha.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def ficha_params
       if current_user.appraiser? and @ficha.user.id != current_user.id
         params.require(:ficha).permit(:appraisal, :status)

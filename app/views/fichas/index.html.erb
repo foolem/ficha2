@@ -34,7 +34,3 @@
 <div id="fichas_partial">
   <%= render 'fichas' %>
 </div>
-
-<% if user_secretary or user_admin %>
-  <%= link_to "Importar", import_fichas_path, :class => 'btn btn-default' %>
-<% end %>

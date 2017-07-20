@@ -3,13 +3,19 @@ class MattersController < ApplicationController
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
-  # GET /matters
-  # GET /matters.json
   def index
 
     @page = params[:page].to_i
+
+    if(params[:q].blank? and !session[:matter_search].blank?)
+      query = session[:matter_search]
+    else
+      query = params[:q]
+      session[:matter_search] = params[:q]
+    end
+
     length_verify()
-    @q = Matter.ransack(params[:q])
+    @q = Matter.ransack(query)
     @matters = @q.result.order(code: :asc)
 
     @elements = @matters.length
@@ -18,12 +24,9 @@ class MattersController < ApplicationController
     @matters = @matters.paginate(:per_page => @length, :page => @page)
   end
 
-  # GET /matters/1
-  # GET /matters/1.json
   def show
   end
 
-  # GET /matters/new
   def new
     @matter = Matter.new
     @matter.prerequisite = "Nenhum"
@@ -40,12 +43,9 @@ class MattersController < ApplicationController
 
   end
 
-  # GET /matters/1/edit
   def edit
   end
 
-  # POST /matters
-  # POST /matters.json
   def create
     @matter = Matter.new(matter_params)
 
@@ -68,8 +68,6 @@ class MattersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /matters/1
-  # PATCH/PUT /matters/1.json
   def update
     respond_to do |format|
       if @matter.update(matter_params)
@@ -82,8 +80,6 @@ class MattersController < ApplicationController
     end
   end
 
-  # DELETE /matters/1
-  # DELETE /matters/1.json
   def destroy
     @matter.actived = !@matter.actived
 
@@ -129,12 +125,11 @@ class MattersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_matter
       @matter = Matter.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def matter_params
       params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu, :nature,
       :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload,

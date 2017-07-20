@@ -3,10 +3,17 @@ class TeachersController < ApplicationController
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
-  # GET /teachers
-  # GET /teachers.json
   def index
-    @q = User.search(params[:q])
+
+    if(params[:q].blank? and !session[:teacher_search].blank?)
+      query = session[:teacher_search]
+    else
+      query = params[:q]
+      session[:teacher_search] = params[:q]
+    end
+
+    @q = User.search(query)
+
     length_verify()
     @page = params[:page].to_i
     @teachers = @q.result.where("role = 0").order(name: :asc)
@@ -20,22 +27,16 @@ class TeachersController < ApplicationController
     render :index
   end
 
-  # GET /teachers/1
-  # GET /teachers/1.json
   def show
   end
 
-  # GET /teachers/new
   def new
     @teacher = User.new
   end
 
-  # GET /teachers/1/edit
   def edit
   end
 
-  # POST /teachers
-  # POST /teachers.json
   def create
     @teacher = User.new(teacher_params)
 
@@ -57,8 +58,6 @@ class TeachersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /teachers/1
-  # PATCH/PUT /teachers/1.json
   def update
     respond_to do |format|
       if @teacher.update(teacher_params)
@@ -71,8 +70,6 @@ class TeachersController < ApplicationController
     end
   end
 
-  # DELETE /teachers/1
-  # DELETE /teachers/1.json
   def destroy
     @teacher.actived = !@teacher.actived
     @teacher.save
@@ -116,12 +113,10 @@ class TeachersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_teacher
       @teacher = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
       params.require(:teacher).permit(:name)
     end

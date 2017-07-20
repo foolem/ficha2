@@ -15,12 +15,6 @@ Rails.application.routes.draw do
 
     collection do
 
-      match 'import/import' => 'fichas#import', via: [:get, :post], as: :import
-
-      match 'importing/import' => 'fichas#importing', via: [:get, :post], as: :importing
-
-      match 'reload/import' => 'fichas#reload', via: [:get, :post], as: :reload
-
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
 
       match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'

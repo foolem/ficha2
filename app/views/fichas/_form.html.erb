@@ -109,7 +109,7 @@
     <div class="form-group">
       <%= f.label :matter, :class => 'control-label col-lg-3' %>
       <div class="col-lg-7">
-        <%= f.text_field 'matter_name', :value => @ficha.matter.code, :class => 'form-control', :autocomplete => "off", :readonly => can_not_edit(@ficha) %>
+        <%= f.text_field 'matter_name', :value => getMatter(@ficha), :class => 'form-control', :autocomplete => "off", :readonly => can_not_edit(@ficha) %>
       </div>
 
       <div class="col-lg-1">
@@ -152,8 +152,6 @@
 
         <%= f.collection_select(:matter_id, matters_order, :id, :code, {:include_blank => true} , { :data_href => "x"}) %>
 
-          <span id='matter_show'></span>
-
         <%=f.error_span(:matter) %>
       </div>
     </div>
@@ -167,7 +165,7 @@
       </div>
     </div>
 
-    <% if current_user.admin? and !@show%>
+    <% if (current_user.admin? or current_user.secretary?) and !@show%>
 
       <div class="form-group">
         <%= f.label :teacher, :class => 'control-label col-lg-3' %>
