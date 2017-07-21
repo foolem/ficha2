@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20170324130735) do
 
   create_table "fichas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "general_objective"
+    t.text     "general_objective",   limit: 65535
     t.text     "specific_objective",  limit: 65535
     t.text     "program",             limit: 65535
     t.text     "didactic_procedures", limit: 65535
