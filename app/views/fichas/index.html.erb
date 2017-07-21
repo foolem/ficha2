@@ -5,7 +5,8 @@
 
   <div style="color: black; float: right;">
 
-    <%= search_form_for @q do |f| %>
+    <%= search_form_for @q, url: search_fichas_path , html: { method: :post } do |f| %>
+
 
       <% if(user_signed_in?)%>
 

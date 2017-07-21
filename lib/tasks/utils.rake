@@ -10,11 +10,16 @@ namespace :utils do
       (xlsx.sheet(1).last_row - 1).times do |i|
         linha = xlsx.sheet(1).row(i+2)
 
-        puts "|  #{linha[0]}  -  #{linha[1]} "
+        puts "|  #{linha[0]}  -  #{linha[1]} - #{linha[2]} "
         name = linha[0]
         email = linha[1]
+        role = linha[2]
 
-        User.create(name: name, email: email, password: "123123",  role: 0)
+        if(linha[2].blank?)
+            role = 0
+        end
+
+        User.create(name: name, email: email, password: "123123",  role: role)
       end
 
       puts "\n------------ Matters ------------"

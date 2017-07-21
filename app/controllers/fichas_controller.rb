@@ -25,7 +25,6 @@ class FichasController < ApplicationController
   def search
     index
     render :index
-    show_check
   end
 
   def show

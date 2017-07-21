@@ -33,13 +33,12 @@ class UsersController < ApplicationController
   end
 
   def teacher_search
-    @kind = "role = 0"
     teachers
     render :teachers
   end
 
   def teachers
-    @kind = "role = 0"
+    @kind = "role != 3"
     index
   end
 

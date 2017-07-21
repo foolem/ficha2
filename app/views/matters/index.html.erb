@@ -3,7 +3,7 @@
 <div class="page-header">
 
   <div style="color: black; float: right;">
-    <%= search_form_for @q do |f| %>
+    <%= search_form_for @q, url: search_matters_path, html: { method: :post } do |f| %>
         <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control' %>
 
     <% end %>

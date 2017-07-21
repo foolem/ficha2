@@ -24,6 +24,11 @@ class MattersController < ApplicationController
     @matters = @matters.paginate(:per_page => @length, :page => @page)
   end
 
+  def search
+    index
+    render :index
+  end
+
   def show
   end
 

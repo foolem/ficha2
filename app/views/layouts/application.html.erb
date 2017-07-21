@@ -34,15 +34,17 @@
           <ul class="nav navbar-nav" style="aria-hidden='true'" id="menu_list">
             <li><%= link_to t('matters'), matters_path, :id => "matters_link"  %></li>
             <li><%= link_to t('teachers'), teachers_users_path  %></li>
+
+            <% if user_signed_in? and (current_user.admin? or current_user.secretary?) %>
+              <li><%= link_to t('users'), users_path %></li>
+            <% end %>
+
             <li><%= link_to t('fichas'), fichas_path  %></li>
 
             <% if !user_signed_in? %>
               <li style="position:absolute; float:right;right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
             <% else %>
 
-              <% if current_user.admin? %>
-                <li><%= link_to t('users'), users_path %></li>
-              <% end %>
 
               <li style="position:absolute; float:right; right: 60px;">
                 <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user), :class => 'user_name_menu' %>
