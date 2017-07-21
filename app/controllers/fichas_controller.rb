@@ -73,7 +73,7 @@ class FichasController < ApplicationController
   def create
     @ficha = Ficha.new(ficha_params)
 
-    if(!current_user.admin?)
+    if(!current_user.admin? and !current_user.secretary?)
       @ficha.user = current_user
     end
 

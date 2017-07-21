@@ -196,16 +196,20 @@ class RecordPdf < Prawn::Document
     end
 
   def new_page(text, x)
-    count_lines(text)
-    if(!@content[1].blank?)
-      show_value(@content[0], x)
-      start_new_page
-      header_generate
-      move_down(5);
-      show_value(@content[1], x)
-      true
+    if !text.blank?    
+      count_lines(text)
+      if(!@content[1].blank?)
+        show_value(@content[0], x)
+        start_new_page
+        header_generate
+        move_down(5);
+        show_value(@content[1], x)
+        true
+      else
+        show_value(@content[0], x)
+        false
+      end
     else
-      show_value(@content[0], x)
       false
     end
   end
