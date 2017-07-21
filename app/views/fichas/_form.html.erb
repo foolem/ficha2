@@ -21,10 +21,12 @@
 
     <header class="panel-heading header"><%= t('details') %>
       <div style="float: right;">
-        <% if !@ficha.id.blank? and hasEquivalent(@ficha) %>
+
+        <% if !@ficha.id.blank? and hasEquivalent(@ficha) and @ficha.status != 'Aprovado' and !@show %>
           <button action='' type="button" class="btn btn-default btn-xs"
           data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
         <% end %>
+
       </div>
 
     </header>
@@ -64,13 +66,8 @@
       <%= f.label :matter, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
 
-        <%= f.select :semester, (%w(1 2)), {}, { :class => 'form form-group form-control', :style => 'width:70px;float:left;margin-right:5px;'} %>
-
-        <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1),{}, { :class => 'form form-group form-control', :style => 'width:80px;float:left;margin-left:5px;'} %>
-
-
         <% if !current_user.teacher? %>
-          <%= f.collection_select(:matter_id, matters_order, :id, :code, {:include_blank => true} , { :data_href => "x"}) %>
+        <%= f.collection_select(:matter_id, matters_order, :id, :code, {:include_blank => true} , { :class => 'form-control'}) %>
         <% else %>
           <%= f.text_field 'matter_name', :value => getMatter(@ficha), :class => 'form-control', :autocomplete => "off", :readonly => true %>
         <% end %>
@@ -82,12 +79,10 @@
     <div class="form-group">
       <%= f.label :semester, :class => 'control-label col-lg-3', :for => "select_year" %>
 
-        <%= f.collection_select(:matter_id, matters_order, :id, :code, {:include_blank => true} , { :class => 'form form-group form-control'}) %>
       <div class="col-lg-8">
-        <%= select("ficha", "semester", %w(1 2)) %>
-        <span> / </span>
-        <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1) %>
+        <%= f.select :semester, (%w(1 2)), {}, { :class => 'form-control', :style => 'width:70px;float:left;margin-right:5px;'} %>
 
+        <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1),{}, { :class => 'form-control', :style => 'width:80px;float:left;margin-left:5px;'} %>
       </div>
 
       <%=f.error_span(:year) %>
@@ -108,7 +103,7 @@
       <div class="form-group">
         <%= f.label :teacher, :class => 'control-label col-lg-3' %>
         <div class="col-lg-8">
-          <%= f.collection_select(:user_id, users_order, :id, :name, include_blank: true) %>
+          <%= f.collection_select(:user_id, users_order, :id, :name, {:include_blank => true} , { :class => ' form-control'}) %>
           <%=f.error_span(:user) %>
         </div>
       </div>
@@ -205,12 +200,12 @@
       <div class="col-lg-8" id='select_status'>
 
         <% if current_user.appraiser? %>
-          <%= f.select("status", %w(Reprovado Aprovado Enviado)) %>
+          <%= f.select :status, (%w(Reprovado Aprovado Enviado)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
         <% else %>
-          <%= f.select("status", %w(Editando Reprovado Aprovado Enviado)) %>
+          <%= f.select :status, (%w(Editando Reprovado Aprovado Enviado)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
         <% end %>
 
-        <span id="ficha_status_icon"> <%= status_representation(@ficha.status).html_safe %> <span>
+        <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha.status).html_safe %> </div>
 
       <% if @ficha.status != "Reprovado"%>
         <script type="text/javascript">
@@ -232,7 +227,7 @@
     <div class="col-lg-8">
       <%= f.text_area :appraisal, :class => 'form-control resize', rows: count_lines(@ficha.appraisal), :readonly => (current_user.teacher? or @show) %>
     </div>
-    <%>>>>>>> master=f.error_span(:appraisal) %>
+    <% f.error_span(:appraisal) %>
 
   </div>
 
@@ -246,7 +241,7 @@
       <div class="col-lg-offset-2 col-lg-10">
 
         <button action='' type="button" class="btn btn-default btn-sm"
-        data-toggle="modal" data-target="#modal-2" title='Adicionar' data-placement:='right'><%= help_button.html_safe %></button>
+        data-toggle="modal" data-target="#modal-2" title='Instruções' data-placement:='right'><%= help_button.html_safe %></button>
 
         <%= f.submit nil, :class => 'btn btn-primary' %>
 
