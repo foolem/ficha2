@@ -131,9 +131,9 @@
       <%= f.label :semester, :class => 'control-label col-lg-3', :for => "select_year" %>
 
       <div class="col-lg-8">
-        <%= select("ficha", "semester", %w(1 2)) %>
-        <span> / </span>
-        <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1) %>
+        <%= f.select :semester, (%w(1 2)), {}, { :class => 'form form-group form-control', :style => 'width:70px;float:left;margin-right:5px;'} %>
+
+        <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1),{}, { :class => 'form form-group form-control', :style => 'width:80px;float:left;margin-left:5px;'} %>
 
         <% if !@ficha.id.blank? and hasEquivalent(@ficha) %>
           <button action='' type="button" class="btn btn-default btn-sm"
@@ -150,7 +150,7 @@
       <%= f.label :matter, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
 
-        <%= f.collection_select(:matter_id, matters_order, :id, :code, {:include_blank => true} , { :data_href => "x"}) %>
+        <%= f.collection_select(:matter_id, matters_order, :id, :code, {:include_blank => true} , { :class => 'form form-group form-control'}) %>
 
         <%=f.error_span(:matter) %>
       </div>
@@ -181,7 +181,7 @@
   <div class="form-group">
     <%= f.label :program, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8" id="div_program">
-      <%= f.text_area :program, :class => 'form-control resize', rows: count_lines(@ficha.program), :readonly => can_not_edit(@ficha) %>
+      <%= f.text_area :program, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.program), :readonly => can_not_edit(@ficha) %>
       <span id="program_error" class="error_mensage" role="alert"> </span>
       <%=f.error_span(:program) %>
     </div>
@@ -190,7 +190,7 @@
   <div class="form-group">
     <%= f.label :general_objective, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8" id="div_objective">
-      <%= f.text_area :general_objective, :class => 'form-control resize', rows: count_lines(@ficha.general_objective), :readonly => can_not_edit(@ficha) %>
+      <%= f.text_area :general_objective, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.general_objective), :readonly => can_not_edit(@ficha) %>
       <span id="objective_error" class="error_mensage" role="alert"> </span>
       <%=f.error_span(:general_objective) %>
     </div>
@@ -199,7 +199,7 @@
   <div class="form-group">
     <%= f.label :specific_objective, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8" id="div_specific_objective">
-      <%= f.text_area :specific_objective, :class => 'form-control resize', rows: count_lines(@ficha.specific_objective), :readonly => can_not_edit(@ficha) %>
+      <%= f.text_area :specific_objective, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.specific_objective), :readonly => can_not_edit(@ficha) %>
           <span id="specific_objective_error" class="error_mensage" role="alert"> </span>
           <%=f.error_span(:specific_objective) %>
     </div>
@@ -209,7 +209,7 @@
   <div class="form-group">
     <%= f.label :didactic_procedures, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8" id="div_procedures">
-      <%= f.text_area :didactic_procedures, :class => 'form-control resize', rows: count_lines(@ficha.didactic_procedures), :readonly => can_not_edit(@ficha)%>
+      <%= f.text_area :didactic_procedures, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.didactic_procedures), :readonly => can_not_edit(@ficha)%>
       <span id="procedures_error" class="error_mensage" role="alert"> </span>
       <%=f.error_span(:didactic_procedures) %>
     </div>
@@ -218,7 +218,7 @@
   <div class="form-group">
     <%= f.label :evaluation, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8" id="div_evaluation">
-      <%= f.text_area :evaluation, :class => 'form-control resize', rows: count_lines(@ficha.evaluation), :readonly => can_not_edit(@ficha) %>
+      <%= f.text_area :evaluation, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.evaluation), :readonly => can_not_edit(@ficha) %>
       <span id="evaluation_error" class="error_mensage" role="alert"> </span>
       <%=f.error_span(:evaluation) %>
     </div>
@@ -227,7 +227,7 @@
   <div class="form-group">
     <%= f.label :basic_bibliography, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8" id="div_basic_bibliography">
-      <%= f.text_area :basic_bibliography, :class => 'form-control resize', rows: count_lines(@ficha.basic_bibliography), :readonly => can_not_edit(@ficha) %>
+      <%= f.text_area :basic_bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.basic_bibliography), :readonly => can_not_edit(@ficha) %>
       <span id="basic_bibliography_error" class="error_mensage" role="alert"> </span>
       <%=f.error_span(:basic_bibliography) %>
     </div>
@@ -236,7 +236,7 @@
   <div class="form-group">
     <%= f.label :bibliography, :class => 'control-label col-lg-3' %>
     <div class="col-lg-8" id="div_bibliography">
-      <%= f.text_area :bibliography, :class => 'form-control resize', rows: count_lines(@ficha.bibliography), :readonly => can_not_edit(@ficha) %>
+      <%= f.text_area :bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.bibliography), :readonly => can_not_edit(@ficha) %>
       <span id="bibliography_error" class="error_mensage" role="alert"> </span>
       <%=f.error_span(:bibliography) %>
     </div>
@@ -310,8 +310,15 @@
 
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   fichas_path, :class => 'btn btn-default' %>
-      </div>
-    </div>
-  <% end %>
 
+
+                </div>
+              </div>
+
+  <% end %>
+  <% if (@show) %>
+    <% if user_secretary or user_admin %>
+        <%= link_to "Criar outra ficha", new_ficha_path, :class => 'btn btn-default', :style => 'float:right' %>
+    <% end %>
+  <% end %>
 <% end %>
