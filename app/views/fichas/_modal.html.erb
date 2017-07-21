@@ -1,22 +1,76 @@
 <div class="container">
 	<div class="modal fade" id="modal-1">
-		<div class="modal-dialog modal-sm">
+		<div class="modal-dialog modal-xs">
 			<div class="modal-content">
 				 <div class="modal-header">
 				 	<button type="button" class="close" data-dismiss="modal">&times;</button>
-				 	<h3 class="modal-title">Criar professor</h3>
+				 	<h3 class="modal-title">Copiar ficha</h3>
 				 </div>
+
 				 <div class="modal-body">
-				 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at pharetra sapien. Nulla scelerisque ex eget ligula ornare, vel efficitur quam dictum. Proin malesuada posuere risus suscipit mattis. Suspendisse potenti. Donec et odio nibh. Praesent auctor erat at nunc gravida tincidunt. Ut facilisis, ex ultricies scelerisque aliquam, ex lectus fermentum urna, quis auctor eros ante non dui.
-				 </div>
+
+         <% if !@ficha.id.blank? %>
+         <table class="table table-striped">
+           <thead>
+             <tr class="header">
+               <th><%= t('teacher') %></th>
+               <th><center><%= t('class') %></center></th>
+               <th><center><%= t('semester') %></center></th>
+               <th  width="5%"><center> <%=t '.actions', :default => t("helpers.actions") %> </center> </th>
+             </tr>
+           </thead>
+
+           <tbody id="tbody">
+            <% getEquivalent(@ficha).each do |ficha| %>
+              <tr>
+                <td><%= ficha.user.name %></td>
+                <td><center><%= ficha.team %></center></td>
+                <td><center><%= getSemester(ficha) %></center></td>
+                <td id="actions">
+                  <center>
+                    <%= link_to duplicate_button.html_safe, copy_fichas_path(@ficha, ficha), :class => 'btn btn-default btn-sm',
+                    :id =>"copy_bt", title: 'Copiar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+                  </center>
+                </td>
+              </tr>
+            <% end %>
+           </tbody>
+
+         </table>
+         <% end %>
+
+         </div>
 
 				 <div class="modal-footer">
 				 	<a href="" class="btn btn-default" data-dismiss="modal">Close</a>
-				 	<a href="" class="btn btn-primary">Download</a>
 				 </div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- https://www.youtube.com/watch?v=7aMRk9q_QLM -->  
+<div class="container">
+	<div class="modal fade" id="modal-2">
+		<div class="modal-dialog modal-xs">
+			<div class="modal-content">
+				 <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Atualizar Ficha</h3>
+				 </div>
+				 <div class="modal-body">
+					 <p align="justify">Ao atualizar esta <b>ficha</b> ela será enviada para avaliação somente quando <b>todos os campos</b> forem devidamente preenchidos.
+					</p>
+					<p>
+					 Caso contrário, ela permanecerá disponível apenas a você para que a <b>altere mais tarde</b>.
+					 </p>
+				 </div>
+
+				 <div class="modal-footer">
+					<a href="" class="btn btn-primary" data-dismiss="modal">Close</a>
+				 </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- https://www.youtube.com/watch?v=7aMRk9q_QLM -->

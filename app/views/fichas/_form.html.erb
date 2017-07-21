@@ -15,88 +15,20 @@
     </div><br><br></center>
   <% end %>
 
-
-  <div class="container">
-  	<div class="modal fade" id="modal-1">
-  		<div class="modal-dialog modal-xs">
-  			<div class="modal-content">
-  				 <div class="modal-header">
-  				 	<button type="button" class="close" data-dismiss="modal">&times;</button>
-  				 	<h3 class="modal-title">Copiar ficha</h3>
-  				 </div>
-
-  				 <div class="modal-body">
-
-           <% if !@ficha.id.blank? %>
-           <table class="table table-striped">
-             <thead>
-               <tr class="header">
-                 <th><%= t('teacher') %></th>
-                 <th><center><%= t('team') %></center></th>
-                 <th><center><%= t('semester') %></center></th>
-                 <th  width="5%"><center> <%=t '.actions', :default => t("helpers.actions") %> </center> </th>
-               </tr>
-             </thead>
-
-             <tbody id="tbody">
-              <% getEquivalent(@ficha).each do |ficha| %>
-                <tr>
-                  <td><%= ficha.user.name %></td>
-                  <td><center><%= ficha.team %></center></td>
-                  <td><center><%= getSemester(ficha) %></center></td>
-                  <td id="actions">
-                    <center>
-                      <%= link_to duplicate_button.html_safe, copy_fichas_path(@ficha, ficha), :class => 'btn btn-default btn-sm',
-                      :id =>"copy_bt", title: 'Copiar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-                    </center>
-                  </td>
-                </tr>
-              <% end %>
-             </tbody>
-
-           </table>
-           <% end %>
-
-           </div>
-
-  				 <div class="modal-footer">
-  				 	<a href="" class="btn btn-default" data-dismiss="modal">Close</a>
-  				 </div>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-
-  <div class="container">
-  	<div class="modal fade" id="modal-2">
-  		<div class="modal-dialog modal-xs">
-  			<div class="modal-content">
-  				 <div class="modal-header">
-  				 	<button type="button" class="close" data-dismiss="modal">&times;</button>
-  				 	<h3 class="modal-title">Atualizar Ficha</h3>
-  				 </div>
-  				 <div class="modal-body">
-             <p align="justify">Ao atualizar esta <b>ficha</b> ela será enviada para avaliação somente quando <b>todos os campos</b> forem devidamente preenchidos.
-            </p>
-            <p>
-             Caso contrário, ela permanecerá disponível apenas a você para que a <b>altere mais tarde</b>.
-             </p>
-           </div>
-
-  				 <div class="modal-footer">
-  				 	<a href="" class="btn btn-primary" data-dismiss="modal">Close</a>
-  				 </div>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-
+  <%= render 'modal' %>
 
   <div class="panel panel-default">
 
-    <header class="panel-heading header"><%= t('details') %></header>
-    <br>
+    <header class="panel-heading header"><%= t('details') %>
+      <div style="float: right;">
+        <% if !@ficha.id.blank? and hasEquivalent(@ficha) %>
+          <button action='' type="button" class="btn btn-default btn-xs"
+          data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
+        <% end %>
+      </div>
 
+    </header>
+    <br>
 
   <% if @show or user_appriser %>
     <div class="form-group">
@@ -149,11 +81,6 @@
         <%= select("ficha", "semester", %w(1 2)) %>
         <span> / </span>
         <%= f.select :year, (Time.zone.now.year - 10)..(Time.zone.now.year + 1) %>
-
-        <% if !@ficha.id.blank? and hasEquivalent(@ficha) %>
-          <button action='' type="button" class="btn btn-default btn-sm"
-          data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
-        <% end %>
 
       </div>
 
