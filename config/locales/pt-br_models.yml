@@ -38,7 +38,14 @@
       teacher:
         name: "Nome"
 
+      user:
+        name: "Nome"
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
+
       ficha:
+        user: "Professor"
         matter: "Disciplina"
         teacher: "Professor"
         status: "Status"

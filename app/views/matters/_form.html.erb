@@ -47,7 +47,8 @@
       <div class="col-lg-3">
 
           <% if !@show %>
-            <%= select("matter", "kind", %w(Semestral Anual Modular)) %>
+            <%= f.select :kind, (%w(Semestral Anual Modular)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
+
           <% else %>
             <%= f.text_field_tag 'matter_kind', @matter.kind, :readonly => @show, :class => 'form-control' %>
           <% end %>
@@ -77,7 +78,7 @@
       <%= f.label :modality, :class => 'control-label col-lg-2' %>
       <div class="col-lg-3">
         <% if !@show %>
-          <%= select("matter", "modality", %w(Presencial EaD 20%\ Ead)) %>
+          <%= f.select :modality, (%w(Presencial EaD 20%\ Ead)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
         <% else %>
           <%= f.text_field_tag 'matter_modality', @matter.modality, :readonly => @show, :class => 'form-control' %>
         <% end %>
@@ -91,7 +92,7 @@
       <div class="col-lg-3">
 
         <% if !@show %>
-          <%= select("matter", "nature", %w(Obrigatória Optativa)) %>
+          <%= f.select :nature, (%w(Obrigatória Optativa)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
         <% else %>
           <%= f.text_field_tag 'matter_nature', @matter.nature, :readonly => @show, :class => 'form-control' %>
         <% end %>
