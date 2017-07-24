@@ -18,28 +18,20 @@
 
   <body class="body">
 
-    <div class="navbar navbar-inverse">
+    <div class="navbar navbar-inverse" style="margin-bottom:0;">
       <div class="container">
 
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
 
         <a id="home_link" class="navbar-brand" href= "/" >Ficha2</a>
 
         <div class="navbar-collapse collapse navbar-responsive-collapse">
 
           <ul class="nav navbar-nav" style="aria-hidden='true'" id="menu_list">
-            <li><%= link_to t('matters'), matters_path, :id => "matters_link"  %></li>
-            <li><%= link_to t('teachers'), teachers_users_path  %></li>
 
             <% if user_signed_in? and (current_user.admin? or current_user.secretary?) %>
               <li><%= link_to t('users'), users_path %></li>
             <% end %>
 
-            <li><%= link_to t('fichas'), fichas_path  %></li>
 
             <% if !user_signed_in? %>
               <li style="position:absolute; float:right;right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
@@ -71,7 +63,38 @@
 
     </div>
 
+    <nav class="navbar navbar-default sidebar" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Inicial<span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-home"></span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-user"></span></a>
+          <ul class="dropdown-menu forAnimate" role="menu">
+            <li><a href="{{URL::to('createusuario')}}">Criar</a></li>
+            <li><a href="#">Modificar</a></li>
+            <li><a href="#">Reportar</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Informes</a></li>
+          </ul>
+        </li>
+        <li ><a href="<%= fichas_path%>"><%= t('fichas') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-th-list"></span></a></li>
+        <li ><a href="<%= matters_path%>"><%= t('matters') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-tags"></span></a></li>
+        <li ><a href="#">Tags<span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-tags"></span></a></li>
+      </ul>
+    </div>
   </div>
+</nav>
 
     <div class="container">
       <div class="row">
@@ -89,7 +112,8 @@
 
         </div>
 
-        <div class="col-lg-3" id="batata">
+
+        <div class="col-lg-3" style="margin-top: 20px">
           <div class="well sidebar-nav" style="background-color:rgb(235, 233, 233)">
             <h3>Relacionados</h3>
             <ul class="nav nav-list">
@@ -98,9 +122,9 @@
               <li><%= link_to "PRAE", "http://www.prae.ufpr.br/prae/", target: :_blank  %></li>
               <li><%= link_to "D. MAT", "http://www.mat.ufpr.br/", target: :_blank  %></li>
             </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-      </div><!--/row-->
+          </div>
+        </div>
+      </div>
 
 
     </div> <!-- /container -->

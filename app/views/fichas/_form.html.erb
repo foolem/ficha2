@@ -1,9 +1,9 @@
 <%= form_for @ficha, :html => { :class => "form-horizontal ficha" } do |f| %>
 
   <% if @ficha.errors.any? %>
-    <center><div id="error_explanation">
+    <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@ficha.errors.count, "erro(s)") %> ocorrido(s):</h3>
+        <h3 class="panel-title"> <%= pluralize(@ficha.errors.count, "erro(s)") %> ocorrido(s):</h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -12,7 +12,7 @@
         <% end %>
         </ul>
       </div>
-    </div><br><br></center>
+    </div>
   <% end %>
 
   <%= render 'modal' %>
@@ -200,9 +200,9 @@
       <div class="col-lg-8" id='select_status'>
 
         <% if current_user.appraiser? %>
-          <%= f.select :status, (%w(Reprovado Aprovado Enviado)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
+          <%= f.select :status, (%w(Aprovado Reprovado Enviado)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
         <% else %>
-          <%= f.select :status, (%w(Editando Reprovado Aprovado Enviado)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
+          <%= f.select :status, (%w(Aprovado Reprovado Enviado Editando)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
         <% end %>
 
         <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha.status).html_safe %> </div>
