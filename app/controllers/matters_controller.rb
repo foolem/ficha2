@@ -61,7 +61,7 @@ class MattersController < ApplicationController
     if(@matter.corequisite.blank?)
       @matter.corequisite = 'Nenhum'
     end
-
+    @matter.code = @matter.code.upcase
     respond_to do |format|
       if @matter.save
         format.html { redirect_to @matter, notice: 'Disciplina foi criada com sucesso.' }

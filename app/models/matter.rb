@@ -8,4 +8,8 @@ class Matter < ApplicationRecord
   validates :nature, presence: true
   validates :menu, presence: true
 
+  def code_with_name
+    code + " - " + name
+  end
+
 end

@@ -30,7 +30,7 @@ namespace :utils do
         linha = xlsx.sheet(0).row(i+2)
 
         puts "|  #{linha[0]}  -  #{linha[1]} "
-        code = linha[0]
+        code = linha[0].upcase
         name = linha[1]
 
         Matter.create(code: code, name: name, menu: "Exemplo", modality: "Presencial",
