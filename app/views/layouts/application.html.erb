@@ -17,7 +17,7 @@
 
   <body class="body">
 
-    <div class="navbar navbar-inverse" style="margin-bottom:0;">
+    <div class="navbar navbar-inverse" style="margin-bottom:0;border:0;border-radius:0;">
       <div class="container">
 
 
@@ -79,12 +79,11 @@
               <li><a href="<%= new_user_path %>">Novo</a></li>
               <li class="divider"></li>
               <li><a href="<%= users_path %>">Colaboradores</a></li>
-
               <li><a href="<%= teachers_users_path %>">Professores</a></li>
             </ul>
 
           </li>
-        <% else %>
+        <% elsif user_signed_in? %>
             <li class="side_bar"><a href="<%= teachers_users_path %>"><%= t('teachers') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-user"></span></a></li>
         <% end %>
 
