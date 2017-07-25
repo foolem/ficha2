@@ -223,11 +223,11 @@ GUIDORIZZI, H. L. - Um Curso de Cálculo, vols. 1 e 2, LTC, Rio de Janeiro."
 end
 
 create_users()
-create_matters_example()
+#create_matters_example()
 
-puts "\n------------ Fichas Exemplo ------------"
-create_fichas_example()
-create_fichas(10, "Editando", "")
-create_fichas(10, "Enviado", "")
-create_fichas(10, "Reprovado", "Bibliografia fora das normas")
-create_fichas(10, "Aprovado", "")
+#puts "\n------------ Fichas Exemplo ------------"
+#create_fichas_example()
+#create_fichas(10, "Editando", "")
+#create_fichas(10, "Enviado", "")
+#create_fichas(10, "Reprovado", "Bibliografia fora das normas")
+#create_fichas(10, "Aprovado", "")

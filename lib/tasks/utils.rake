@@ -38,6 +38,31 @@ namespace :utils do
 
       end
 
+      puts "\n------------ Fichas ------------"
+      path = "lib/assets/inserts.xlsx"
+      xlsx = Roo::Excelx.new(path, extension: :xlsx)
+
+      (xlsx.sheet(2).last_row).times do |i|
+        linha = xlsx.sheet(2).row(i+1)
+
+        puts "|  #{linha[0]}  -  #{linha[1]} -  #{linha[2]} "
+        code = linha[0].upcase
+        team = linha[1].upcase
+        name = linha[2]
+
+        puts name
+        puts code
+        user = User.where("name = '#{name}'")[0].id
+        matter = Matter.where("code = '#{code}'")[0].id
+
+        puts "Prof: #{user}"
+        puts "Matter: #{matter}"
+        ficha = Ficha.new(matter_id: matter, user_id: user)
+        puts "Ficha: #{ficha.matter.name} - #{ficha.user.name}"
+        Ficha.create(matter_id: matter, user_id: user)
+
+      end
+
   end
 
 

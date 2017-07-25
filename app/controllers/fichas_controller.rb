@@ -2,9 +2,10 @@ class FichasController < ApplicationController
   before_action :set_ficha, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :import]
+  before_action :bar_define
 
   def index
-
+    
     if(params[:q].blank? and !session[:ficha_search].blank?)
       @query = session[:ficha_search]
     else
@@ -227,6 +228,7 @@ class FichasController < ApplicationController
       return false;
     end
 
+
     def ficha_blank(f)
       if(f.evaluation.blank? or f.program.blank? or f.bibliography.blank? or f.basic_bibliography.blank? or
          f.didactic_procedures.blank? or f.general_objective.blank? or f.specific_objective.blank?)
@@ -234,6 +236,10 @@ class FichasController < ApplicationController
       else
         false
       end
+    end
+
+    def bar_define
+      session[:page] = "ficha"
     end
 
 end
