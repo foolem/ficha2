@@ -1,20 +1,27 @@
+body, html{
+    height: auto;
+  }
 
   nav.sidebar, .main{
     -webkit-transition: margin 200ms ease-out;
       -moz-transition: margin 200ms ease-out;
       -o-transition: margin 200ms ease-out;
       transition: margin 200ms ease-out;
-  }
+      position: absolute!important;
+      z-index: 1;
+      width: auto;
+      height: 200px;
+ }
 
   .main{
     padding: 10px 10px 0 10px;
   }
 
- @media (min-width: 767px) {
+ @media (min-width: 765px) {
 
     .main{
-      position: absolute;
-      width: calc(100% - 90px);
+      position: relative!important;
+      width: calc(100% - 40px);
       margin-left: 40px;
       float: right;
     }
@@ -34,7 +41,7 @@
     }
 
     nav.sidebar a{
-      padding-right: 13px;
+      padding-right: 20px;
     }
 
     nav.sidebar .navbar-nav > li:first-child{
@@ -66,8 +73,8 @@
 
     nav.sidebar{
       width: 200px;
-      height: 100%;
-      margin-left: -160px;
+      height: auto;
+      margin-left: -147px;
       float: left;
       margin-bottom: 0px;
     }
@@ -82,6 +89,23 @@
 
     .forAnimate{
       opacity: 0;
+    }
+  }
+
+  @media (min-width: 1900px) {
+
+    .main{
+      width: calc(100% - 200px);
+      margin-left: 200px;
+    }
+
+    nav.sidebar{
+      margin-left: 0px;
+      float: left;
+    }
+
+    nav.sidebar .forAnimate{
+      opacity: 1;
     }
   }
 

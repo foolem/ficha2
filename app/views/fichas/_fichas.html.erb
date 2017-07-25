@@ -46,7 +46,7 @@
   <tbody id="tbody">
     <% @fichas.each do |ficha| %>
       <tr data-href="<%= ficha_path(ficha) %>" >
-      
+
           <td><%= ficha.user.name %></td>
 
         <td><center> <span title="<%= ficha.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.matter.code %> </span></center></td>
@@ -74,9 +74,7 @@
                     title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end %>
 
-          <% if user_signed_in? && user_not_appriser %>
 
-          <% end  %>
 
           <% if user_not_appriser%>
 
