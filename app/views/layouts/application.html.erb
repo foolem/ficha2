@@ -20,7 +20,6 @@
     <div class="navbar navbar-inverse" style="margin-bottom:0;border:0;border-radius:0;">
       <div class="container">
 
-
         <a id="home_link" class="navbar-brand" href= "/" >Ficha2</a>
 
         <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -57,6 +56,8 @@
 
     </div>
 
+    <% classes = getClasses() %>
+
     <nav class="navbar navbar-default sidebar" role="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
@@ -69,11 +70,11 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="side_bar active"><a href="/">Inicial<span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-home"></span></a></li>
+        <li class="side_bar <%= classes["home"]%>"><a href="/">Inicial<span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-home"></span></a></li>
 
         <% if user_signed_in? and (current_user.admin? or current_user.secretary?) %>
 
-          <li class="dropdown side_bar">
+          <li class="dropdown side_bar <%= classes["user"]%>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-user"></span></a>
             <ul class="dropdown-menu forAnimate" role="menu">
               <li><a href="<%= new_user_path %>">Novo</a></li>
@@ -83,14 +84,15 @@
             </ul>
 
           </li>
+
         <% elsif user_signed_in? %>
             <li class="side_bar"><a href="<%= teachers_users_path %>"><%= t('teachers') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-user"></span></a></li>
         <% end %>
 
 
-        <li class="side_bar" ><a href="<%= matters_path %>"><%= t('matters') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-tags"></span></a></li>
-        <li class="side_bar" ><a href="<%= fichas_path %>"><%= t('fichas') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-th-list"></span></a></li>
-        <li class="side_bar" ><a href="<%= help_index_path %>">Contato<span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-envelope"></span></a></li>
+        <li class="side_bar <%= classes["matter"]%>" ><a href="<%= matters_path %>"><%= t('matters') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-tags"></span></a></li>
+        <li class="side_bar <%= classes["ficha"]%>" ><a href="<%= fichas_path %>"><%= t('fichas') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-th-list"></span></a></li>
+        <li class="side_bar <%= classes["help"]%>" ><a href="<%= help_index_path %>">Contato<span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-envelope"></span></a></li>
 
         <% if user_signed_in? %>
           <li class="side_bar" class="dropdown">
@@ -114,7 +116,10 @@
       <div class="row">
 
         <div class="col-lg-9">
-          <%= bootstrap_flash %>
+          <div style="margin-top: 10px">
+            <%= bootstrap_flash %>
+          </div>
+
           <%= yield %>
         </div>
 

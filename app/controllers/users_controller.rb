@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:show, :new, :user_edit, :create, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
-
+  before_action :bar_define
   def index
 
     if(@kind.blank?)
@@ -152,5 +152,9 @@ class UsersController < ApplicationController
 
     def authorize_user
       authorize User
+    end
+
+    def bar_define
+      session[:page] = "user"
     end
 end

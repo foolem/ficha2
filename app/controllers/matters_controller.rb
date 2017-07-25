@@ -2,7 +2,8 @@ class MattersController < ApplicationController
   before_action :set_matter, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
-
+  before_action :bar_define
+  
   def index
 
     @page = params[:page].to_i
@@ -143,5 +144,9 @@ class MattersController < ApplicationController
 
     def authorize_user
       authorize Matter
+    end
+
+    def bar_define
+      session[:page] = "matter"
     end
 end

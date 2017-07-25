@@ -187,4 +187,14 @@ module ApplicationHelper
     return 2
   end
 
+  def getClasses
+    classes = {}
+    if session[:page].blank?
+        classes[session[:page]] = "home"
+    else
+      classes[session[:page]] = "active"
+    end
+    classes
+  end
+
 end
