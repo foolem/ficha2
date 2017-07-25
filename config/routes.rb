@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+
+  get 'help/index'
+
   resources :users, controller: 'users' do
     collection do
       match 'search' => 'users#search', via: [:get, :post], as: :search
@@ -26,6 +29,6 @@ Rails.application.routes.draw do
       match 'search' => 'matters#search', via: [:get, :post], as: :search
     end
   end
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
