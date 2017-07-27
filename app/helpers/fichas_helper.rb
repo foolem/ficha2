@@ -37,7 +37,7 @@ module FichasHelper
     "#{ficha.matter.code}  - #{ficha.matter.name}"
   end
 
-  def getYears()
+  def getYears(option)
 
     years = {}
     year = Time.zone.now.year
@@ -53,19 +53,25 @@ module FichasHelper
       years["2º de #{year}"] = "2#{year}"
     end
 
-    years['Todos Semestres'] = ''
+    if option
+      years['Todos Semestres'] = ''
+    end
+    
     return years.to_a.reverse.to_h
   end
 
-  def getYear
+  def getYear(ficha)
+    if ficha.blank? or (ficha.semester.blank? and ficha.year.blank?)
+      year = Time.zone.now.year
+      month = Time.zone.now.month
 
-    year = Time.zone.now.year
-    month = Time.zone.now.month
-
-    if month > 5
-      "2#{year}"
+      if month > 5
+        "2#{year}"
+      else
+        "1#{year}"
+      end
     else
-      "1#{year}"
+      "#{ficha.semester}#{ficha.year}"
     end
   end
 

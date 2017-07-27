@@ -181,13 +181,28 @@ class FichasController < ApplicationController
     end
 
     def ficha_params
-      if current_user.appraiser? and @ficha.user.id != current_user.id
+      list = normal_params
+      list[:year] = list[:semester][1..4]
+      list[:semester] = list[:semester][0]
+      list
+    end
+
+    def normal_params
+      if params[:user_id] == current_user.id and (!current_user.admin?)
+
+        params.require(:ficha).permit(:general_objective, :specific_objective, :program,
+                                      :didactic_procedures, :evaluation, :basic_bibliography,
+                                      :bibliography, :user_id, :matter_id, :status)
+
+      elsif current_user.appraiser? and @ficha.user.id != current_user.id
         params.require(:ficha).permit(:appraisal, :status)
+
       else
         params.require(:ficha).permit(:general_objective, :specific_objective, :program,
                                       :didactic_procedures, :evaluation, :basic_bibliography, :team,
-                                      :bibliography, :user_id, :matter_id, :status, :semester, :year)
+                                      :bibliography, :user_id, :matter_id, :status, :appraisal, :semester, :year)
       end
+
     end
 
     def authorize_user

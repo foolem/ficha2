@@ -5,4 +5,8 @@ class Ficha < ApplicationRecord
   validates :user, presence: true
   validates :matter, presence: true
 
+  def semester_with_year
+    "#{semester}#{year}"
+  end
+
 end
