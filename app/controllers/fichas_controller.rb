@@ -144,7 +144,9 @@ class FichasController < ApplicationController
       if(params[:checkbox])
         @q.result.order(status: :desc).where(user: current_user)
       else
-        if current_user.appraiser? or current_user.admin?
+        if current_user.appraiser?
+          @q.result.order(status: :desc).where("status != 'Editando'")
+        elsif current_user.admin?
           @q.result.order(status: :desc)
         else
           @q.result.order(year: :desc).where(status: "Aprovado")
