@@ -38,14 +38,35 @@ module FichasHelper
   end
 
   def getYears()
-    years = {'Todos' => ''}
 
-    10.times do |y|
-      i = 8 -y
-      years[Time.zone.now.year-i] = Time.zone.now.year-i
+    years = {}
+    year = Time.zone.now.year
+    month = Time.zone.now.month
+
+    6.times do |y|
+      i = -6 +y
+      years["1º de #{year+i}"] = "1#{year+i}"
+      years["2º de #{year+i}"] = "2#{year+i}"
+    end
+    years["1º de #{year}"] = "1#{year}"
+    if month > 5
+      years["2º de #{year}"] = "2#{year}"
     end
 
-    return years
+    years['Todos Semestres'] = ''
+    return years.to_a.reverse.to_h
+  end
+
+  def getYear
+
+    year = Time.zone.now.year
+    month = Time.zone.now.month
+
+    if month > 5
+      "2#{year}"
+    else
+      "1#{year}"
+    end
   end
 
   def show_ficha

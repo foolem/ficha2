@@ -20,7 +20,7 @@
 
       <% end %>
 
-      <%= f.select( :year_eq, options_for_select(getYears, 'Todos'),{},{:class => 'form form-group form-control', :style => 'float:left;width:150px;margin-left:5px;margin-right:5px;'}) %>
+      <%= f.select( :year_eq, options_for_select(getYears, getYear),{},{:class => 'form form-group form-control', :style => 'float:left;width:150px;margin-left:5px;margin-right:5px;'}) %>
 
       <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;' %>
 

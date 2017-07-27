@@ -5,12 +5,19 @@ class FichasController < ApplicationController
   before_action :bar_define
 
   def index
-    
+
     if(params[:q].blank? and !session[:ficha_search].blank?)
       @query = session[:ficha_search]
     else
       @query = params[:q]
       session[:ficha_search] = params[:q]
+    end
+
+    if !@query.blank? and !@query[:year_eq].blank?
+      @query[:semester_eq] = @query[:year_eq][0].to_i
+      @query[:year_eq] = @query[:year_eq][1,4]
+      puts @query[:year_eq]
+      puts @query[:semester_eq]
     end
 
     @q = Ficha.ransack(@query)

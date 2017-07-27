@@ -59,7 +59,7 @@ namespace :utils do
         puts "Matter: #{matter}"
         ficha = Ficha.new(matter_id: matter, user_id: user)
         puts "Ficha: #{ficha.matter.name} - #{ficha.user.name}"
-        Ficha.create(matter_id: matter, user_id: user)
+        Ficha.create(matter_id: matter, user_id: user, semester: 2)
 
       end
 
