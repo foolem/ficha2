@@ -50,15 +50,9 @@ namespace :utils do
         team = linha[1].upcase
         name = linha[2]
 
-        puts name
-        puts code
-        user = User.where("name = '#{name}'")[0].id
+        user = User.where(name:  name)[0].id
         matter = Matter.where("code = '#{code}'")[0].id
-
-        puts "Prof: #{user}"
-        puts "Matter: #{matter}"
         ficha = Ficha.new(matter_id: matter, user_id: user)
-        puts "Ficha: #{ficha.matter.name} - #{ficha.user.name}"
         Ficha.create(matter_id: matter, user_id: user, semester: 2)
 
       end
