@@ -11,16 +11,16 @@
       <% if(user_signed_in?)%>
 
         <% if user_not_secretary %>
-          <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px;">
-          <span>Suas</span>
+          <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px">
+          <span >Suas</span>
         <% end %>
 
-        <%= f.select(:status_cont, [['Todos', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
-         ['Editando', 'Editando'], ['Enviados', 'Enviado']],{},{:class => 'form form-group form-control', :style => 'float:left;width:150px;'}) %>
+        <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
+         ['Editando', 'Editando'], ['Enviados', 'Enviado']],{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;'}) %>
 
       <% end %>
 
-      <%= f.select( :year_eq, options_for_select(getYears(true), getYear(nil)),{},{:class => 'form form-group form-control', :style => 'float:left;width:150px;margin-left:5px;margin-right:5px;'}) %>
+      <%= f.select( :year_eq, options_for_select(getYears(true), getYear(nil)),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
 
       <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;' %>
 

@@ -43,20 +43,20 @@ module FichasHelper
     year = Time.zone.now.year
     month = Time.zone.now.month
 
-    6.times do |y|
-      i = -6 +y
-      years["1º de #{year+i}"] = "1#{year+i}"
-      years["2º de #{year+i}"] = "2#{year+i}"
+    (year-2017).times do |i|
+      years["1º de #{2017+i}"] = "1#{2017+i}"
+      years["2º de #{2017+i}"] = "2#{2017+i}"
     end
+
     years["1º de #{year}"] = "1#{year}"
     if month > 5
       years["2º de #{year}"] = "2#{year}"
     end
 
     if option
-      years['Todos Semestres'] = ''
+      years['Todos semestres'] = ''
     end
-    
+
     return years.to_a.reverse.to_h
   end
 
