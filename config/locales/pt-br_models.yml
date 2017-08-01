@@ -13,6 +13,10 @@
         one: Ficha
         other: Fichas
 
+      contact:
+        one: Contato
+        other: Contatos
+
     attributes:
       matter:
         name: "Nome"
@@ -39,6 +43,11 @@
 
       teacher:
         name: "Nome"
+
+      contacts:
+        name: "Nome"
+        email: "Email"
+        message: "Mensagem"
 
       user:
         name: "Nome"

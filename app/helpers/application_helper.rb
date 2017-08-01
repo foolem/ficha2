@@ -196,10 +196,4 @@ module ApplicationHelper
     end
     classes
   end
-
-  def getTime
-    Time.now.strftime("%d/%m/%Y %H:%M")
-  end
-
-
 end
