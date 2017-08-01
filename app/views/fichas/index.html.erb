@@ -3,32 +3,32 @@
 
 <div class="page-header" style="height:auto;">
 
-  <div style="color: black; float: right;">
 
-    <%= search_form_for @q, url: search_fichas_path , html: { method: :post } do |f| %>
+  <center><h1><span class="glyphicon glyphicon-th-list blue" style="margin-right:10px"></span><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1></center>
+
+</div>
+<div style="color: black; float: right;">
+
+  <%= search_form_for @q, url: search_fichas_path , html: { method: :post } do |f| %>
 
 
-      <% if(user_signed_in?)%>
+  <% if(user_signed_in?)%>
 
-        <% if user_not_secretary %>
-          <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px">
-          <span >Suas</span>
-        <% end %>
+  <% if user_not_secretary %>
+  <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px">
+  <span >Suas</span>
+  <% end %>
 
-        <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
-         ['Editando', 'Editando'], ['Enviados', 'Enviado']],{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;'}) %>
+  <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
+  ['Editando', 'Editando'], ['Enviados', 'Enviado']],{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;'}) %>
 
-      <% end %>
+  <% end %>
 
-      <%= f.select( :year_eq, options_for_select(getYears(true), getYear(nil)),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
+  <%= f.select( :year_eq, options_for_select(getYears(true), getYear(nil)),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
 
-      <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;' %>
+  <%= f.text_field :team_or_matter_name_or_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;' %>
 
-    <% end %>
-
-  </div>
-
-  <h1><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <% end %>
 
 </div>
 

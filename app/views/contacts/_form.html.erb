@@ -1,32 +1,36 @@
 <%= form_for(@contact) do |f| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-      <ul>
-      <% contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="form-group">
+  <center>
+    <% if contact.errors.any? %>
+      <div id="error_expl" class="panel panel-danger" style="width:400px">
+        <div class="panel-heading">
+          <h3 class="panel-title"> <%= pluralize(contact.errors.count, "erro(s)") %> ocorrido(s):</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+          <% contact.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, :value => user_name %>
+    <%= f.text_field :name, :placeholder => 'Seu nome', :value => user_name, :class => 'form-control', :style => 'width:400px;' %>
   </div>
 
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email, :value => user_email %>
+    <%= f.text_field :email, :placeholder => 'Seu email', :value => user_email, :class => 'form-control', :style => 'width:400px;' %>
   </div>
 
   <div class="field">
-    <%= f.label :message %>
-    <%= f.text_area :message %>
+    <%= f.text_area :message, :placeholder => 'Por favor, deixe sua mensagem', :class => 'form-control', :style => 'width:400px;height:300px' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btnC', :value => 'ENVIAR' %>
   </div>
+  </center>
+</div>
 <% end %>
