@@ -85,6 +85,14 @@ class FichasController < ApplicationController
       @ficha.user = current_user
     end
 
+    if(@ficha.bibliography.blank?)
+      @ficha.bibliography = @ficha.matter.bibliography
+    end
+
+    if(@ficha.basic_bibliography.blank?)
+      @ficha.basic_bibliography = @ficha.matter.basic_bibliography
+    end
+
     respond_to do |format|
       if @ficha.save
         format.html { redirect_to @ficha, notice: 'Ficha foi criada com sucesso.' }

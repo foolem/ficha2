@@ -23,6 +23,8 @@
         modality: "Modalidade"
         nature: "Natureza"
         menu: "Ementa"
+        basic_bibliography: "Bibliografia Básica"
+        bibliography: "Bibliografia"
 
         total_annual_workload: "Anual"
         total_weekly_workload: "Semestral"
@@ -59,5 +61,5 @@
         specific_objective: "Objetivos Específicos"
         didactic_procedures: "Procedimentos"
         evaluation: "Avaliação"
-        basic_bibliography: "Bibliografia Basica"
+        basic_bibliography: "Bibliografia Básica"
         bibliography: "Bibliografia"

@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.string   "modality"
     t.string   "nature"
     t.text     "menu",                   limit: 65535
+    t.text     "basic_bibliography",     limit: 65535
+    t.text     "bibliography",           limit: 65535
     t.integer  "total_annual_workload",                default: 0
     t.integer  "total_weekly_workload",                default: 0
     t.integer  "total_modular_workload",               default: 0

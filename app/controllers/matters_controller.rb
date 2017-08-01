@@ -3,7 +3,7 @@ class MattersController < ApplicationController
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
   before_action :bar_define
-  
+
   def index
 
     @page = params[:page].to_i
@@ -139,7 +139,7 @@ class MattersController < ApplicationController
     def matter_params
       params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu, :nature,
       :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload,
-      :pd, :lc, :cp, :es, :or)
+      :pd, :lc, :cp, :es, :or, :basic_bibliography, :bibliography)
     end
 
     def authorize_user

@@ -8,6 +8,9 @@ class AddFieldsToMatter < ActiveRecord::Migration[5.0]
     add_column :matters, :nature, :string
     add_column :matters, :menu, :text
 
+    add_column :matters, :basic_bibliography, :text
+    add_column :matters, :bibliography, :text
+
     add_column :matters, :total_annual_workload, :integer, default: 0
     add_column :matters, :total_weekly_workload, :integer, default: 0
     add_column :matters, :total_modular_workload, :integer, default: 0

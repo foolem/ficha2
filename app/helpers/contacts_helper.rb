@@ -10,9 +10,5 @@ module ContactsHelper
       current_user.email
     end
   end
-
-  def getTime
-    Time.now.strftime("%d/%m/%Y %H:%M")
-  end
-
+  
 end

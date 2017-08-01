@@ -110,6 +110,24 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <%= f.label :basic_bibliography, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9" id="div_basic_bibliography">
+        <%= f.text_area :basic_bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@matter.basic_bibliography), :readonly => @show %>
+        <span id="basic_bibliography_error" class="error_mensage" role="alert"> </span>
+        <%=f.error_span(:basic_bibliography) %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bibliography, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9" id="div_bibliography">
+        <%= f.text_area :bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@matter.bibliography), :readonly => @show %>
+        <span id="bibliography_error" class="error_mensage" role="alert"> </span>
+        <%=f.error_span(:bibliography) %>
+      </div>
+    </div>
+
   </div>
 
   <div class="panel panel-default" >
