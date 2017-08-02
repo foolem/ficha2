@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.string   "status",                            default: "Editando"
     t.string   "team",                              default: "A"
     t.text     "appraisal",           limit: 65535
-    t.integer  "year",                              default: 2017
-    t.integer  "semester",                          default: 1
+    t.integer  "year"
+    t.integer  "semester"
     t.integer  "user_id"
     t.integer  "matter_id"
     t.datetime "created_at",                                             null: false

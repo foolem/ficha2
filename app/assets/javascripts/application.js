@@ -45,6 +45,7 @@ document.addEventListener("turbolinks:load", function() {
 
     $('.error').parent('div').find('.col-lg-8').addClass('has-error has-feedback');
     $('.error').parent('div').find('.col-lg-9').addClass('has-error has-feedback');
+    $('.error').parent('div').find('.col-lg-2').addClass('has-error has-feedback');
 
     $(document).on('change', '#select_status select', function() {
       if($(this).val() != 'Reprovado'){

@@ -76,6 +76,15 @@ class FichasController < ApplicationController
       flash[:alert] = "Você não tem permissão para acessar esta página."
       redirect_to(request.referrer || fichas_path)
     end
+
+    if(@ficha.bibliography.blank?)
+      @ficha.bibliography = @ficha.matter.bibliography
+    end
+
+    if(@ficha.basic_bibliography.blank?)
+      @ficha.basic_bibliography = @ficha.matter.basic_bibliography
+    end
+
   end
 
   def create
@@ -85,11 +94,11 @@ class FichasController < ApplicationController
       @ficha.user = current_user
     end
 
-    if(@ficha.bibliography.blank?)
+    if(@ficha.bibliography.blank? and !@ficha.matter.blank?)
       @ficha.bibliography = @ficha.matter.bibliography
     end
 
-    if(@ficha.basic_bibliography.blank?)
+    if(@ficha.basic_bibliography.blank? and !@ficha.matter.blank?)
       @ficha.basic_bibliography = @ficha.matter.basic_bibliography
     end
 

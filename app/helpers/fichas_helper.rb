@@ -12,7 +12,6 @@ module FichasHelper
     end
   end
 
-
   def getIcon(style, tip, color)
     return "<i class='#{style}' style='color: #{color}' title ='#{tip}' data-toggle = 'tooltip' data-placement = 'right'></i>"
   end
@@ -77,6 +76,10 @@ module FichasHelper
 
   def show_ficha
     @show = true
+  end
+
+  def new_record
+    @new = true
   end
 
   def can_not_edit(ficha)

@@ -25,6 +25,8 @@ document.addEventListener 'turbolinks:load', ->
     $.get $('#ficha_search').attr('action'), $('#ficha_search').serialize(), null, 'script'
     false
 
+  validate $('textfield#ficha_team'), $('#div_team'), $('#team_error')
+
   #validate $('textarea#ficha_program'), $('#div_program'), $('#program_error')
   #alidate $('textarea#ficha_general_objective'), $('#div_objective'), $('#objective_error')
   #validate $('textarea#ficha_specific_objective'), $('#div_specific_objective'), $('#specific_objective_error')

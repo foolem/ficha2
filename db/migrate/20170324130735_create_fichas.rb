@@ -14,8 +14,8 @@ class CreateFichas < ActiveRecord::Migration[5.0]
       t.string :team, default: "A"
       t.text :appraisal
 
-      t.integer :year, default: 2017
-      t.integer :semester, default: 1
+      t.integer :year
+      t.integer :semester
 
       t.references :user, foreign_key: true
       t.references :matter, foreign_key: true

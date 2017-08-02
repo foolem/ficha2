@@ -34,7 +34,7 @@ namespace :utils do
         name = linha[1]
 
         Matter.create(code: code, name: name, menu: "Exemplo", modality: "Presencial",
-        nature: "Obrigatória", kind: "Presencial", prerequisite: "Nenhum", corequisite: "Nenhum")
+        nature: "Obrigatória", kind: "Presencial", prerequisite: "Nenhum", corequisite: "Nenhum", bibliography: "q")
 
       end
 
