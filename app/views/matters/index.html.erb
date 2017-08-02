@@ -1,11 +1,11 @@
 <%- model_class = Matter -%>
 
-<div class="page-header">
+<div class="page-header noMarginTop">
 
 
-  <center><h1><span class="glyphicon glyphicon-tags blue" style="margin-right:10px;"></span><%=t('matters')%></h1></center>
+  <center><h1><span class="glyphicon glyphicon-tags blue"></span> <%=t('matters')%></h1></center>
 
-<div style="color: black; float: right; margin-bottom:10px;">
+<div class="searchBox">
   <%= search_form_for @q, url: search_matters_path, html: { method: :post } do |f| %>
   <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control' %>
 

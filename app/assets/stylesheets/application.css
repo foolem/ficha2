@@ -125,6 +125,12 @@ h1 {
   color: #444;
 }
 
+.searchBox {
+  color: black;
+  float: right;
+  margin-bottom: 10px;
+}
+
 td { color: #000; }
 
 
@@ -147,9 +153,9 @@ select { color: #000; }
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .login-page {
-  width: 360px;
-  padding: 5% 0 0;
-  margin: auto;
+  width: auto;
+  padding: 3% 0 0;
+  margin: 0;
 }
 .form-login {
   position: relative;
@@ -277,6 +283,19 @@ li > a:hover{
 .btnC:hover {
   background-color: #43A047;
   color:#fff;
+}
+.addAnother {
+  float:right;
+  margin-right:3px;
+  width:37px;
+}
+.noMarginTop {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.loginPageNew {
+  height:auto;
+  margin-top: 0;
 }
 
 ;
