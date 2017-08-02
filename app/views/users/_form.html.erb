@@ -1,7 +1,4 @@
 <%= form_for(user) do |f| %>
-
-
-
 <div class="login-page">
   <% if user.errors.any? %>
   <div id="error_expl" class="panel panel-danger">
@@ -17,7 +14,7 @@
     </div>
   </div>
   <% end %>
-  <div class="form-login" style="height:445px;">
+  <div class="form-login" class="loginPageNew">
 
     <% if(current_user.admin?) %>
     <%= f.select(:role, [['Professor', :teacher], ['Avaliador', :appraiser], ['Administrador', :admin], ['Secretário', :secretary]],{}, {class: "form form-group form-control selectpicker" }) %>
