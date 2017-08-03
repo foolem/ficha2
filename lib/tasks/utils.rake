@@ -3,11 +3,20 @@ namespace :utils do
   desc "Inset of teachers and matters"
   task init: :environment do
 
+      def pass_generate
+        password = ""
+        character = ['1', '2', '7', 'a', 'j', 'b', 'c']
+        6.times do |i|
+          password << character[Random.rand(7)]
+        end
+        password
+      end
+
       path = "lib/assets/inserts.xlsx"
       xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
       puts "------------ Users ------------"
-      (xlsx.sheet(1).last_row - 1).times do |i|
+      (xlsx.sheet(1).last_row - 1).times do |i| #mudar pra sheet 3 para teste
         linha = xlsx.sheet(1).row(i+2)
 
         puts "|  #{linha[0]}  -  #{linha[1]} - #{linha[2]} "
@@ -18,8 +27,14 @@ namespace :utils do
         if(linha[2].blank?)
             role = 0
         end
+        password = pass_generate
 
-        User.create(name: name, email: email, password: "123123",  role: role)
+        user = User.new(name: name, email: email, password: password,  role: role)
+        if user.save
+          #descomente em production
+          #user.send_reset_password_instructions
+        end
+
       end
 
       puts "\n------------ Matters ------------"
@@ -53,7 +68,8 @@ namespace :utils do
         user = User.where(name:  name)[0].id
         matter = Matter.where("code = '#{code}'")[0].id
         ficha = Ficha.new(matter_id: matter, user_id: user)
-        Ficha.create(matter_id: matter, user_id: user, semester: 2, team: team)
+
+        Ficha.create(matter_id: matter, user_id: user, semester: 2, year: 2017, team: team)
 
       end
 

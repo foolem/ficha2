@@ -11,4 +11,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def reset
+    email = "ficha2.mat@gmail.com"
+    super.send_reset_password_instructions
+  end
 end

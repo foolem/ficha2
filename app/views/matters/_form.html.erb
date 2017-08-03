@@ -14,12 +14,18 @@
       </div>
     </div>
   <% end %>
-
-
   <!--Details -->
-
   <div class="panel panel-default">
-    <header class="panel-heading header"><%= t('details') %></header>
+    <header class="panel-heading header"><%= t('details') %>
+      <% if (@show) %>
+        <% if user_secretary or user_admin %>
+        <div class="addAnother">
+          <%= link_to new_button.html_safe, new_matter_path, :class => 'btn-default btn-sm',
+          title: 'Criar outra disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+        </div>
+        <% end %>
+      <% end %>
+    </header>
     <br>
 
 

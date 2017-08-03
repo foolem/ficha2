@@ -1,19 +1,21 @@
 <%= form_for(user) do |f| %>
-<div class="login-page">
+<div class="login-page ">
+  <center>
   <% if user.errors.any? %>
-  <div id="error_expl" class="panel panel-danger">
-    <div class="panel-heading">
-      <h3 class="panel-title"> <%= pluralize(user.errors.count, "erro(s)") %> ocorrido(s):</h3>
+    <div id="error_expl" class="panel panel-danger width">
+      <div class="panel-heading">
+        <h3 class="panel-title"> <%= pluralize(user.errors.count, "erro(s)") %> ocorrido(s):</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-    <div class="panel-body">
-      <ul>
-        <% user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
   <% end %>
+</center>
   <div class="form-login" class="loginPageNew">
 
     <% if(current_user.admin?) %>
@@ -30,7 +32,7 @@
     <br/>
     <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "Confirme a senha" %>
 
-    <button name="commit" data-disable-with="Signup" type="submit ">Enviar</button>
+    <button name="commit" data-disable-with="Enviando" type="submit ">Enviar</button>
 
     <%= link_to back_button.html_safe + " Voltar", :back, :style => "float: left; margin-top: 10px; margin-bottom: 20px;", :class => 'btn btn-default btn-sm' %>
 
