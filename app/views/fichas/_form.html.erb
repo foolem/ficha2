@@ -30,7 +30,7 @@
       <% end %>
       <div style="float: right;">
 
-        <% if !@ficha.id.blank? and hasEquivalent(@ficha) and @ficha.status != 'Aprovado' and !@show %>
+        <% if !@ficha.id.blank? and hasEquivalent(@ficha) and !@ficha.ready? and !@show %>
           <button action='' type="button" class="btn btn-default btn-xs"
           data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
         <% end %>
@@ -186,18 +186,18 @@
 </div>
 
 <% if !@new %>
-  <% if user_signed_in? and ((@ficha.status == "Reprovado" && current_user.teacher?) || !current_user.teacher?)  %>
+  <% if user_signed_in? and ((@ficha.reproved? && current_user.teacher?) || !current_user.teacher?)  %>
 
     <div class="panel panel-default">
       <header class="panel-heading header"><%= t('confirmation') %></header>
       <br>
 
-    <% if current_user.teacher? or (@ficha.status == "Aprovado") or @show %>
+    <% if current_user.teacher? or (@ficha.ready?) or @show %>
 
       <div class="form-group">
         <%= f.label :status, :class => 'control-label col-lg-3' %>
         <div class="col-lg-3">
-          <%= f.text_field 'ficha_status', :value => @ficha.status, :class => 'form-control', :readonly => true %>
+          <%= f.text_field 'ficha_status', :value => t(@ficha.status), :class => 'form-control', :readonly => true %>
         </div>
       </div>
 
@@ -208,14 +208,15 @@
         <div class="col-lg-8" id='select_status'>
 
           <% if current_user.appraiser? %>
-            <%= f.select :status, (%w(Aprovado Reprovado Enviado)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
+            <%= f.select :status, [['Aprovado', 'ready'], ['Reprovado', 'reproved'], ['Encaminhado', 'sent']], {}, { :class => 'form-control', :style => 'width:135px;float:left;margin-right:5px;'} %>
           <% else %>
-            <%= f.select :status, (%w(Aprovado Reprovado Enviado Editando)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
+            <%= f.select :status, [['Aprovado', 'ready'], ['Reprovado', 'reproved'],
+            ['Editando', 'editing'], ['Encaminhado', 'sent']], {}, { :class => 'form-control', :style => 'width:135px;float:left;margin-right:5px;'} %>
           <% end %>
 
-          <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha.status).html_safe %> </div>
+          <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha).html_safe %> </div>
 
-        <% if @ficha.status != "Reprovado"%>
+        <% if !@ficha.reproved?%>
           <script type="text/javascript">
             $("#appraisal_show").hide();
           </script>
@@ -227,7 +228,7 @@
 
     <% end %>
 
-    <% if @ficha.status != 'Aprovado' %>
+    <% if !@ficha.ready? %>
 
     <div class="form-group" id='appraisal_show'>
 

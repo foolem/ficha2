@@ -28,15 +28,15 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.text     "evaluation",          limit: 65535
     t.text     "basic_bibliography",  limit: 65535
     t.text     "bibliography",        limit: 65535
-    t.string   "status",                            default: "Editando"
+    t.integer  "status",                            default: 0
     t.string   "team",                              default: "A"
     t.text     "appraisal",           limit: 65535
     t.integer  "year"
     t.integer  "semester"
     t.integer  "user_id"
     t.integer  "matter_id"
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.index ["matter_id"], name: "index_fichas_on_matter_id", using: :btree
     t.index ["user_id"], name: "index_fichas_on_user_id", using: :btree
   end

@@ -196,7 +196,7 @@ class RecordPdf < Prawn::Document
     end
 
   def new_page(text, x)
-    if !text.blank?    
+    if !text.blank?
       count_lines(text)
       if(!@content[1].blank?)
         show_value(@content[0], x)
@@ -236,7 +236,7 @@ class RecordPdf < Prawn::Document
         result += 1
         cont = 0
 
-        if( (cursor - ((result * 12) + 5)) < 30 ) and text2.blank?
+        if( (cursor - ((result * 13) + 5)) < 30 ) and text2.blank?
           text2 = text[0, i-1]
           text3 = text[i, text.length-1]
           result = 1
@@ -254,7 +254,7 @@ class RecordPdf < Prawn::Document
 
     @content << text2
     @content << text3
-    @counter = result * 12 + 5
+    @counter = result * 13 + 5
     @counter
 
   end

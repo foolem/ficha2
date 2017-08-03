@@ -10,7 +10,7 @@ class CreateFichas < ActiveRecord::Migration[5.0]
       t.text :basic_bibliography
       t.text :bibliography
 
-      t.string :status, default: "Editando"
+      t.integer :status, default: 0
       t.string :team, default: "A"
       t.text :appraisal
 

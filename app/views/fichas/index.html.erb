@@ -19,8 +19,8 @@
   <span >Suas</span>
   <% end %>
 
-  <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 'Aprovado'], ['Reprovados', 'Reprovado'],
-  ['Editando', 'Editando'], ['Enviados', 'Enviado']],{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;'}) %>
+  <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 2], ['Reprovados', 3],
+  ['Editando', 0], ['Encaminhados', 1]],{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;'}) %>
 
   <% end %>
 

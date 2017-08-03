@@ -1,11 +1,11 @@
 module FichasHelper
 
-  def status_representation(status)
-    if(status == "Aprovado")
+  def status_representation(ficha)
+    if(ficha.ready?)
       return getIcon("glyphicon glyphicon-ok", "Aprovado", "green")
-    elsif (status == "Enviado")
+    elsif (ficha.sent?)
       return getIcon("glyphicon glyphicon-refresh", "Enviado", "blue")
-    elsif (status == "Editando")
+    elsif (ficha.editing?)
       return getIcon("glyphicon glyphicon-pencil", "Editando", "black")
     else
       return getIcon("glyphicon glyphicon-ban-circle", "Reprovado", "red")
@@ -23,12 +23,12 @@ module FichasHelper
 
   def hasEquivalent(ficha)
 
-    !ficha.blank? and !Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"').blank?
+    !ficha.blank? and !Ficha.where("matter_id = #{ficha.matter.id}").where('status = 2').blank?
   end
 
   def getEquivalent(ficha)
     if !ficha.blank? and !ficha.matter.blank?
-      Ficha.where("matter_id = #{ficha.matter.id}").where('status = "Aprovado"')
+      Ficha.where("matter_id = #{ficha.matter.id}").where('status = 2')
     end
   end
 
