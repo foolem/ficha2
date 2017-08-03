@@ -56,7 +56,7 @@
         <td><center><%= ficha.team %></center></td>
 
         <% if user_signed_in?%>
-          <td><center><%= status_representation(ficha.status).html_safe %></center></td>
+          <td><center><%= status_representation(ficha).html_safe %></center></td>
         <% end %>
 
         <td id="actions"> <center>

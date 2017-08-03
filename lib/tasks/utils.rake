@@ -67,8 +67,7 @@ namespace :utils do
 
         user = User.where(name:  name)[0].id
         matter = Matter.where("code = '#{code}'")[0].id
-        ficha = Ficha.new(matter_id: matter, user_id: user)
-
+  
         Ficha.create(matter_id: matter, user_id: user, semester: 2, year: 2017, team: team)
 
       end

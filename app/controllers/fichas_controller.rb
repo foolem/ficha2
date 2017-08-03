@@ -118,9 +118,9 @@ class FichasController < ApplicationController
 
     if(current_user.teacher?)
       if ficha_blank(Ficha.new(list))
-        list[:status] = "Editando"
+        list[:status] = 0
       else
-        list[:status] = "Enviado"
+        list[:status] = 1
       end
     end
 
@@ -154,7 +154,7 @@ class FichasController < ApplicationController
 
   def getFichas
     if !user_signed_in?
-      @q.result.order(year: :desc).where(status: 'Aprovado')
+      @q.result.order(year: :desc).where(status: 2)
     elsif current_user.secretary?
       @q.result.order(year: :desc)
     else
@@ -162,11 +162,11 @@ class FichasController < ApplicationController
         @q.result.order(status: :desc).where(user: current_user)
       else
         if current_user.appraiser?
-          @q.result.order(status: :desc).where("status != 'Editando'")
+          @q.result.order(status: :desc).where("status != 0")
         elsif current_user.admin?
           @q.result.order(status: :desc)
         else
-          @q.result.order(year: :desc).where(status: "Aprovado")
+          @q.result.order(year: :desc).where(status: 2)
         end
       end
     end
@@ -233,7 +233,8 @@ class FichasController < ApplicationController
 
       respond_to do |format|
         format.html
-        if(@ficha.status =="Aprovado")
+
+        if(@ficha.ready?)
           format.pdf do
             pdf = RecordPdf.new(@ficha)
             send_data pdf.render,

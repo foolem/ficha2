@@ -28,3 +28,8 @@
   semester: "Semestre"
   code: 'Código'
   error: 'erro'
+
+  editing: "Editando"
+  sent: "Encaminhado"
+  ready: 'Aprovado'
+  reproved: 'Reprovado'

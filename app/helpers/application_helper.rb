@@ -38,11 +38,11 @@ module ApplicationHelper
   end
 
   def status_ready(status)
-    status == "Aprovado"
+    status == "ready"
   end
 
   def record_edditable(status)
-    user_signed_in? && status != "Aprovado"
+    user_signed_in? && status != "ready"
   end
 
   def remove_button

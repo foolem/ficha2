@@ -48,7 +48,7 @@ document.addEventListener("turbolinks:load", function() {
     $('.error').parent('div').find('.col-lg-2').addClass('has-error has-feedback');
 
     $(document).on('change', '#select_status select', function() {
-      if($(this).val() != 'Reprovado'){
+      if($(this).val() != 'reproved'){
         $("#appraisal_show").slideUp(1000, function(){
           $('#ficha_appraisal').val('');
         });
@@ -58,11 +58,11 @@ document.addEventListener("turbolinks:load", function() {
       var val =  $('#select_status select').val();
 
       $('#ficha_status_icon i').removeClass($('#ficha_status_icon i').attr('class'));
-      if($(this).val() == 'Reprovado'){
+      if($(this).val() == 'reproved'){
         $('#ficha_status_icon i').addClass('glyphicon glyphicon-ban-circle').css("color","red");
-      } else if ($(this).val() == 'Enviado') {
+      } else if ($(this).val() == 'sent') {
         $('#ficha_status_icon i').addClass('glyphicon glyphicon-refresh').css("color","blue");
-      } else if ($(this).val() == 'Editando') {
+      } else if ($(this).val() == 'editing') {
         $('#ficha_status_icon i').addClass('glyphicon glyphicon-pencil').css("color","black");
       } else {
         $('#ficha_status_icon i').addClass('glyphicon glyphicon-ok').css("color","green");
