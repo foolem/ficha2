@@ -21,12 +21,12 @@
 
     <header class="panel-heading header headerOutra"><%= t('details') %>
       <% if (@show) %>
-      <% if user_secretary or user_admin %>
-      <div class="addAnother">
-        <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
+        <% if user_secretary or user_admin %>
+        <div class="addAnother">
+          <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
           title: 'Criar outra ficha', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-      </div>
-      <% end %>
+        </div>
+        <% end %>
       <% end %>
       <div style="float: right;">
 

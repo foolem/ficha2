@@ -67,6 +67,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        @user.send_reset_password_instructions
         format.html { redirect_to welcome_index_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @user }
       else

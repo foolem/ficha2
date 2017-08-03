@@ -1,11 +1,11 @@
 class UserPolicy < ApplicationPolicy
 
   def new?
-    !user.blank? and (user.admin?)
+    !user.blank? and (user.admin? or user.secretary?)
   end
 
   def create?
-    !user.blank? and (user.admin?)
+    !user.blank? and (user.admin?  or user.secretary?)
   end
 
   def edit?

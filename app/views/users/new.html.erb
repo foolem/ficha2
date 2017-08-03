@@ -1,5 +1,9 @@
 <div class="page-header noMarginTop">
-  <center><h1><span class="glyphicon glyphicon-user blue"></span> Criar usuário</h1></center>
+  <% if !user_secretary %>
+    <center><h1><span class="glyphicon glyphicon-user blue"></span> Criar usuário</h1></center>
+  <% else %>
+    <center><h1><span class="glyphicon glyphicon-user blue"></span> Criar professor</h1></center>
+  <% end %>
 </div>
 
 <%= render 'form', user: @user %>
