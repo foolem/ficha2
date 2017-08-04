@@ -1,5 +1,5 @@
 <%= form_for(@contact) do |f| %>
-<div class="form-group">
+<div class="form-group marginBottomContact">
   <center>
     <% if contact.errors.any? %>
       <div id="error_expl" class="panel panel-danger" style="width:400px">
@@ -29,7 +29,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit :class => 'btnC', :value => 'ENVIAR' %>
+    <input name="commit" value="ENVIAR" class="btnC" data-disable-with="ENVIANDO" type="submit">
   </div>
   </center>
 </div>
