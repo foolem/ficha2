@@ -5,14 +5,14 @@
 
   <center><h1><span class="glyphicon glyphicon-tags blue"></span> <%=t('matters')%></h1></center>
 
-<div class="searchBox">
+<div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
   <%= search_form_for @q, url: search_matters_path, html: { method: :post } do |f| %>
-  <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control' %>
+  <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'width:180px' %>
 
   <% end %>
 </div>
 </div>
 
-<div id="matters_partial">
+<div id="matters_partial" class="marginBottom">
   <%= render 'matters' %>
 </div>

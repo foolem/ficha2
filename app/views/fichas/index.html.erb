@@ -7,7 +7,7 @@
   <center><h1><span class="glyphicon glyphicon-list-alt blue"></span> <%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1></center>
 
 </div>
-<div style="color: black; float: right;">
+<div class="searchBox noMarginTop noMarginBottom">
 
   <%= search_form_for @q, url: search_fichas_path , html: { method: :post } do |f| %>
 
@@ -32,6 +32,6 @@
 
 </div>
 
-<div id="fichas_partial">
+<div id="fichas_partial" class="marginBottom">
   <%= render 'fichas' %>
 </div>

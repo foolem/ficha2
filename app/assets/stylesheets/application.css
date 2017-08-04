@@ -25,16 +25,16 @@ body {
 .blue {
   color:#455E8E;
 }
+.white {
+  color: #fff;
+}
 
 .footer {
-  position: fixed;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 5px;
-  background: #222;
   text-align: center;
-  color: white;
 }
 
 div.dropdown-menu li a, button.dropdown-toggle {
@@ -292,6 +292,12 @@ li > a:hover{
 .noMarginTop {
   margin-top: 0;
   margin-bottom: 0;
+}
+.marginBottom {
+  margin-bottom: 15%;
+}
+.marginBottomContact {
+  margin-bottom: 35%;
 }
 .loginPageNew {
   height:auto;

@@ -4,7 +4,7 @@
 
 
   <center><h1><span class="glyphicon glyphicon-user blue"></span> <%=t('teachers') %></h1>
-    <div class="searchBox">
+    <div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
       <%= search_form_for @q, url: teacher_search_users_path,html: { method: :post } do |f| %>
       <%= f.text_field :name_or_email_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control' %>
 
@@ -12,6 +12,6 @@
     </div>
 </div>
 
-<div id="teachers_partial">
+<div id="teachers_partial" class="marginBottom">
   <%= render 'teachers' %>
 </div>
