@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728164405) do
+ActiveRecord::Schema.define(version: 20170808180225) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.index ["user_id"], name: "index_fichas_on_user_id", using: :btree
   end
 
+  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "matter_id"
+    t.integer  "semester_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["matter_id"], name: "index_groups_on_matter_id", using: :btree
+    t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
+  end
+
   create_table "matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.boolean  "actived",                              default: true, null: false
@@ -66,6 +76,13 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.integer  "or",                                   default: 0
   end
 
+  create_table "semesters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "year"
+    t.integer  "semester"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                                 null: false
     t.string   "encrypted_password",                    null: false
@@ -88,4 +105,6 @@ ActiveRecord::Schema.define(version: 20170728164405) do
 
   add_foreign_key "fichas", "matters"
   add_foreign_key "fichas", "users"
+  add_foreign_key "groups", "matters"
+  add_foreign_key "groups", "semesters"
 end
