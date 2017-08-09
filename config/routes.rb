@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :semesters
+  resources :groups
   resources :contacts, only: [:new, :create] do
       collection do
         match 'help' => 'contacts#help', via: :get, as: :help

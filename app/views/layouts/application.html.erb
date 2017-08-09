@@ -85,6 +85,8 @@
 
           </li>
 
+          <li class="side_bar <%= classes["group"]%>" ><a href="<%= groups_path %>"><%= t('groups') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-th"></span></a></li>
+
         <% elsif user_signed_in? %>
             <li class="side_bar"><a href="<%= teachers_users_path %>"><%= t('teachers') %><span style="font-size:16px;" class="pull-right hidden-sm showopacity glyphicon glyphicon-user"></span></a></li>
         <% end %>
