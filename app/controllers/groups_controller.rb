@@ -5,13 +5,44 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @page = params[:page].to_i
+
+    if(params[:q].blank? and !session[:group_search].blank?)
+      query = session[:group_search]
+    else
+      query = params[:q]
+      session[:group_search] = params[:q]
+    end
+
+    length_verify()
+    @q = Group.ransack(query)
+    @groups = @q.result.order(name: :asc)
+    @elements = @groups.length
+
+    @page = pages_verify(@page, @elements)
+
+    @groups = @groups.paginate(:per_page => @length, :page => @page)
+
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
   end
+
+  def search
+    puts "oi"
+    index
+    render :index
+  end
+
+def length_verify
+  @length = 13
+  if user_signed_in? and (current_user.admin? or current_user.secretary?)
+    @length = 10
+  end
+end
+
 
   # GET /groups/new
   def new
@@ -61,6 +92,26 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def pages_verify(page, lines)
+    pages = pages_count(lines)
+    if(page < 1)
+      page = 1
+    elsif page > pages
+      page = pages
+    end
+    page
+  end
+
+  def pages_count(num)
+    result = num/@length
+    resto = num.remainder @length
+    if( resto > 0)
+      result=result+1
+    end
+    result
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

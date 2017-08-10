@@ -1,6 +1,7 @@
 class Ficha < ApplicationRecord
   belongs_to :user
   belongs_to :matter
+  belongs_to :group
 
   enum status: [:editing, :sent, :ready, :reproved]
 

@@ -53,6 +53,8 @@ namespace :utils do
 
       end
 
+      Semester.create(semester: 2, year: 2017)
+
       puts "\n------------ Fichas ------------"
       path = "lib/assets/inserts.xlsx"
       xlsx = Roo::Excelx.new(path, extension: :xlsx)
@@ -67,8 +69,11 @@ namespace :utils do
 
         user = User.where(name:  name)[0].id
         matter = Matter.where("code = '#{code}'")[0].id
-  
-        Ficha.create(matter_id: matter, user_id: user, semester: 2, year: 2017, team: team)
+
+        group = Group.create(matter_id: matter, name: team, semester_id: 1)
+        puts group.id
+
+        Ficha.create(matter_id: matter, user_id: user, group_id: group.id, semester: 2, year: 2017, team: team)
 
       end
 

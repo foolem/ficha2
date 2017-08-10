@@ -3,6 +3,7 @@ class User < ApplicationRecord
   enum role: [:teacher, :appraiser, :admin, :secretary]
 
   has_many :ficha
+  has_many :group
 
   validates :name, presence: true
   validates :role, presence: true

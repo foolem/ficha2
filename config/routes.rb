@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :semesters
-  resources :groups
+  resources :groups do
+    collection do
+      match 'search' => 'groups#search', via: [:get, :post], as: :search
+    end
+  end
+
   resources :contacts, only: [:new, :create] do
       collection do
         match 'help' => 'contacts#help', via: :get, as: :help

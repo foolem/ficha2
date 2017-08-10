@@ -17,6 +17,10 @@
         one: Contato
         other: Contatos
 
+      group:
+        one: Turma
+        other: Turmas
+
     attributes:
       matter:
         name: "Nome"
@@ -48,6 +52,7 @@
         name: "Nome"
         email: "Email"
         message: "Mensagem"
+
 
       user:
         name: "Nome"

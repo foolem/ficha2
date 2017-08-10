@@ -1,0 +1,48 @@
+
+<table class="table table-striped">
+
+  <thead>
+    <tr class="header">
+      <th width="100px"><%= t('matter')  %></th>
+      <th width="80px"><center><%= t('class')  %></center></th>
+      <th><%= t('semester')  %></th>
+      <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %> </center> </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr data-href="<%= group_path(group) %>">
+        <td><%= group.matter.code %></td>
+        <td><center><%= group.name %></center></td>
+        <td><%= group.semester.semester_with_year %></td>
+        <td id="actions"> <center>
+          <%= link_to edit_button.html_safe,
+                edit_group_path(group), :class => 'btn btn-default btn-sm simple_button',
+                title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+
+          <%= link_to remove_button.html_safe,
+                group_path(group),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
+                :class => 'btn btn-sm btn-danger disable',
+                title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+          </center>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<center>
+  <nav aria-label="Page navigation">
+    <ul class="pagination pagination-sm noMarginTop" id ="group_pages">
+      <%= render_pages(@elements, @page, "/groups", @length).html_safe %>
+    </ul>
+  </nav>
+</center>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_group_path,
+            :class => 'btn btn-primary' %>
