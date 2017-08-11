@@ -222,8 +222,6 @@ GUIDORIZZI, H. L. - Um Curso de Cálculo, vols. 1 e 2, LTC, Rio de Janeiro."
 
 end
 
-Semester.create(semester: 2, year: 2017)
-
 create_users()
 #create_matters_example()
 

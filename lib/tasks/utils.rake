@@ -71,9 +71,7 @@ namespace :utils do
         matter = Matter.where("code = '#{code}'")[0].id
 
         group = Group.create(matter_id: matter, name: team, semester_id: 1)
-        puts group.id
-
-        Ficha.create(matter_id: matter, user_id: user, group_id: group.id, semester: 2, year: 2017, team: team)
+        Ficha.create(group_id: group.id, user_id: user)
 
       end
 

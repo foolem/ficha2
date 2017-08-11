@@ -5,4 +5,7 @@ class Semester < ApplicationRecord
     "#{semester}º de #{year}"
   end
 
+  def x
+    "#{semester}#{year}"
+  end
 end
