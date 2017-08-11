@@ -5,7 +5,7 @@ namespace :utils do
 
       def pass_generate
         password = ""
-        character = ['1', '2', '7', 'a', 'j', 'b', 'c']
+        character = ['1', '2', '3', 'a', 'b', 'c', 'd']
         6.times do |i|
           password << character[Random.rand(7)]
         end
@@ -19,7 +19,6 @@ namespace :utils do
       (xlsx.sheet(1).last_row - 1).times do |i| #mudar pra sheet 3 para teste
         linha = xlsx.sheet(1).row(i+2)
 
-        puts "|  #{linha[0]}  -  #{linha[1]} - #{linha[2]} "
         name = linha[0]
         email = linha[1]
         role = linha[2]
@@ -29,11 +28,8 @@ namespace :utils do
         end
         password = pass_generate
 
+        puts "|  #{name}  -  #{email} - #{role} - #{password} "
         user = User.new(name: name, email: email, password: password,  role: role)
-        if user.save
-          #descomente em production
-          #user.send_reset_password_instructions
-        end
 
       end
 
@@ -76,6 +72,5 @@ namespace :utils do
       end
 
   end
-
 
 end

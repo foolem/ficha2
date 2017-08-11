@@ -236,7 +236,7 @@ class FichasController < ApplicationController
           format.pdf do
             pdf = RecordPdf.new(@ficha)
             send_data pdf.render,
-              filename: "Ficha2 #{@ficha.matter.code} - #{@ficha.user.name}",
+              filename: "Ficha2 #{@ficha.group.matter.code} - #{@ficha.user.name}",
               type: "application/pdf",
               disposition: "inline"
           end

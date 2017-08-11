@@ -51,20 +51,20 @@ class RecordPdf < Prawn::Document
     transparent (0.5) { stroke_horizontal_rule }
 
     simple_title_generate("Disciplina:", 10, 5)
-    show_value(@ficha.matter.name(), 70)
+    show_value(@ficha.group.matter.name(), 70)
 
     transparent (0.5) {stroke_vertical_line cursor+5,cursor-55,:at=> 348}
     simple_title_generate("Código:", 358, 0)
-    show_value(@ficha.matter.code(), 403)
+    show_value(@ficha.group.matter.code(), 403)
 
     move_down 15
     transparent (0.5) { stroke_horizontal_rule }
 
     simple_title_generate("Turma:", 10, 5)
-    show_value(@ficha.team, 50)
+    show_value(@ficha.group.name, 50)
 
     simple_title_generate("Semestre:", 358, 0)
-    show_value(getSemester(@ficha), 413)
+    show_value(@ficha.group.semester.semester_with_year, 413)
 
     move_down 15
     transparent (0.5) { stroke_horizontal_rule }
@@ -72,27 +72,27 @@ class RecordPdf < Prawn::Document
     transparent (0.5) {stroke_vertical_line cursor-20,cursor,:at=> 174}
 
     simple_title_generate("Natureza:", 10, 5)
-    show_value(@ficha.matter.nature(), 64)
+    show_value(@ficha.group.matter.nature(), 64)
 
     simple_title_generate("Modalidade:", 187, 0)
-    show_value(@ficha.matter.modality(), 257)
+    show_value(@ficha.group.matter.modality(), 257)
 
 
     transparent (0.5) {stroke_vertical_line cursor+5,cursor+5,:at=> 325}
 
     simple_title_generate("Tipo:", 358, 0)
-    show_value(@ficha.matter.kind(), 388)
+    show_value(@ficha.group.matter.kind(), 388)
 
     move_down 15
     transparent (0.5) { stroke_horizontal_rule }
 
     simple_title_generate("Pré-requisito:", 10, 5)
-    show_value(@ficha.matter.prerequisite(), 85)
+    show_value(@ficha.group.matter.prerequisite(), 85)
 
     transparent (0.5) {stroke_vertical_line cursor+5,cursor-15,:at=> 275}
 
     simple_title_generate("Co-requisito:", 280, 0)
-    show_value(@ficha.matter.corequisite, 350)
+    show_value(@ficha.group.matter.corequisite, 350)
 
     move_down 15
     transparent (0.5) { stroke_horizontal_rule }
@@ -103,37 +103,37 @@ class RecordPdf < Prawn::Document
     simple_title_generate("Códigos", 390, 0)
 
     simple_title_generate("Semestral Total:", 10, 20)
-    show_value(@ficha.matter.total_weekly_workload().to_s + "h", 97)
+    show_value(@ficha.group.matter.total_weekly_workload().to_s + "h", 97)
 
     simple_title_generate("Padrão:", 290, 0)
-    show_value(@ficha.matter.pd().to_s, 333)
+    show_value(@ficha.group.matter.pd().to_s, 333)
 
     simple_title_generate("Orientada:", 380, 0)
-    show_value(@ficha.matter.or().to_s, 437)
+    show_value(@ficha.group.matter.or().to_s, 437)
 
     simple_title_generate("Anual Total:", 10, 15)
-    show_value(@ficha.matter.total_annual_workload().to_s + "h", 74)
+    show_value(@ficha.group.matter.total_annual_workload().to_s + "h", 74)
 
 
     simple_title_generate("Laboratório:", 290, 0)
-    show_value(@ficha.matter.lc().to_s, 357)
+    show_value(@ficha.group.matter.lc().to_s, 357)
 
     simple_title_generate("Modular Total:", 10, 15)
-    show_value(@ficha.matter.total_modular_workload().to_s + "h", 87)
+    show_value(@ficha.group.matter.total_modular_workload().to_s + "h", 87)
 
     simple_title_generate("Campo:", 290, 0)
-    show_value(@ficha.matter.cp().to_s, 333)
+    show_value(@ficha.group.matter.cp().to_s, 333)
 
     simple_title_generate("Semanal:", 10, 15)
-    show_value(@ficha.matter.weekly_workload.to_s + "h", 62)
+    show_value(@ficha.group.matter.weekly_workload.to_s + "h", 62)
 
     simple_title_generate("Estágio:", 290, 0)
-    show_value(@ficha.matter.es().to_s, 336)
+    show_value(@ficha.group.matter.es().to_s, 336)
 
 
     @counter = 25
     title_generate("EMENTA")
-    new_page(@ficha.matter.menu.to_s, 10)
+    new_page(@ficha.group.matter.menu.to_s, 10)
 
     move_down 5
     title_generate("PROGRAMA")

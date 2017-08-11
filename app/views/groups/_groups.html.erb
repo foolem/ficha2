@@ -3,7 +3,7 @@
 
   <thead>
     <tr class="header">
-      <th width="100px"><%= t('matter')  %></th>
+      <th ><%= t('matter')  %></th>
       <th width="80px"><center><%= t('class')  %></center></th>
       <th><%= t('semester')  %></th>
       <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %> </center> </th>
@@ -13,7 +13,7 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr data-href="<%= group_path(group) %>">
-        <td><%= group.matter.code %></td>
+        <td><%= group.matter.code_with_name %></td>
         <td><center><%= group.name %></center></td>
         <td><%= group.semester.semester_with_year %></td>
         <td id="actions"> <center>
