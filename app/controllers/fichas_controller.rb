@@ -12,12 +12,7 @@ class FichasController < ApplicationController
       @query = params[:q]
       session[:ficha_search] = params[:q]
     end
-
-    if !@query.blank? and !@query[:group_semester_year_eq].blank?
-      @query[:group_semester_semester_eq] = @query[:group_semester_year_eq][0].to_i
-      @query[:group_semester_year_eq] = @query[:group_semester_year_eq][1,4]
-    end
-
+    
     @q = Ficha.ransack(@query)
 
     @page = params[:page].to_i

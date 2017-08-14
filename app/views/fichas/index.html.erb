@@ -3,7 +3,6 @@
 
 <div class="page-header noMarginTop">
 
-
   <center><h1><span class="glyphicon glyphicon-list-alt blue"></span> <%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1></center>
 
 </div>
@@ -11,22 +10,21 @@
 
   <%= search_form_for @q, url: search_fichas_path , html: { method: :post } do |f| %>
 
+    <% if(user_signed_in?)%>
 
-  <% if(user_signed_in?)%>
+      <% if user_not_secretary %>
+        <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px">
+        <span >Suas</span>
+      <% end %>
 
-  <% if user_not_secretary %>
-  <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px">
-  <span >Suas</span>
-  <% end %>
+      <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 2], ['Reprovados', 3],
+        ['Editando', 0], ['Encaminhados', 1]],{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;'}) %>
 
-  <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 2], ['Reprovados', 3],
-  ['Editando', 0], ['Encaminhados', 1]],{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;'}) %>
+    <% end %>
 
-  <% end %>
+    <%= f.select( :group_semester_id_eq, options_for_select(getSemesters(), getSemester()),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
 
-  <%= f.select( :group_semester_year_eq, options_for_select(getYears(true), getYear(nil)),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
-
-  <%= f.text_field :group_name_or_group_matter_name_or_group_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;', :id => "fichas_input_search" %>
+    <%= f.text_field :group_name_or_group_matter_name_or_group_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;', :id => "fichas_input_search" %>
 
   <% end %>
 

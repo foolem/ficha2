@@ -5,7 +5,8 @@ class Semester < ApplicationRecord
     "#{semester}º de #{year}"
   end
 
-  def x
-    "#{semester}#{year}"
+  def semester_with_year_code
+    "#{year}#{semester}"
   end
+
 end

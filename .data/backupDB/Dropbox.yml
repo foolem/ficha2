@@ -1,0 +1,8 @@
+---
+- !ruby/object:Backup::Package
+  trigger: backupDB
+  extension: tar
+  chunk_suffixes: []
+  no_cycle: false
+  version: 5.0.0.beta.1
+  time: 2017.08.14.13.21.24

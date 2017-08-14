@@ -7,7 +7,7 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 1.day, :at => '09:11 am' do
+every 1.day, :at => '10:06 am' do
   command "backup perform -t backupData"
 end
 #
