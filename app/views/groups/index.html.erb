@@ -3,8 +3,9 @@
 <div class="page-header noMarginTop">
 
   <center><h1><span class="glyphicon glyphicon-th blue"></span> <%=t('groups')%></h1></center>
+</div>
 
-  <div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
+  <div class="searchBox noMarginTop">
     <%= search_form_for @q, url: search_groups_path, html: { method: :post } do |f| %>
 
       <!-- é só pra lembrar que tem que fazer... -->
@@ -15,7 +16,6 @@
 
   </div>
 
-</div>
 
 <div id="groups_partial" class="marginBottom" >
   <%= render 'groups' %>

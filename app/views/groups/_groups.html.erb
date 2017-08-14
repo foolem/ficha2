@@ -1,21 +1,30 @@
-
 <table class="table table-striped">
 
   <thead>
     <tr class="header">
-      <th ><%= t('matter')  %></th>
-      <th width="80px"><center><%= t('class')  %></center></th>
-      <th><%= t('semester')  %></th>
-      <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %> </center> </th>
+      <th width="20px"><center><%= t('code')  %></center></th>
+      <th width="5%"><center><%= t('class')  %></center></th>
+      <th ><%= t('matter') %></th>
+      <th width="10%"><center><%= t('semester')  %></center></th>
+      <% if !current_user.teacher? %>
+
+          <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %>
+          <%= link_to new_button.html_safe, new_group_path, :class => 'btn-default btn-sm', :style => 'margin-left:30px',
+            title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+
+      <% end %>
+      </center></th>
+
     </tr>
   </thead>
 
   <tbody>
     <% @groups.each do |group| %>
       <tr data-href="<%= group_path(group) %>">
-        <td><%= group.matter.code_with_name %></td>
+        <td><center><%= group.matter.code %></center></td>
         <td><center><%= group.name %></center></td>
-        <td><%= group.semester.semester_with_year %></td>
+        <td><%= group.matter.name %></td>
+        <td><center><%= group.semester.semester_with_year %></center></td>
         <td id="actions"> <center>
           <%= link_to edit_button.html_safe,
                 edit_group_path(group), :class => 'btn btn-default btn-sm simple_button',
@@ -27,6 +36,7 @@
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
                 :class => 'btn btn-sm btn-danger disable',
                 title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+
           </center>
         </td>
       </tr>
