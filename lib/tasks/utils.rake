@@ -29,7 +29,7 @@ namespace :utils do
         password = pass_generate
 
         puts "|  #{name}  -  #{email} - #{role} - #{password} "
-        user = User.new(name: name, email: email, password: password,  role: role)
+        user = User.create(name: name, email: email, password: password,  role: role)
 
       end
 
@@ -68,7 +68,6 @@ namespace :utils do
 
         group = Group.create(matter_id: matter, name: team, semester_id: 1)
         Ficha.create(group_id: group.id, user_id: user)
-
       end
 
   end

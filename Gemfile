@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'whenever'
+gem 'backup', '~> 5.0.0.beta.1'
+gem 'json', "~> 1.8"
+
 # importing
 gem 'remotipart', '~> 1.2'
 gem "roo", "~> 2.7.0"
