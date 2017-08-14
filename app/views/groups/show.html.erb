@@ -1,16 +1,12 @@
 <%- model_class = Group -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<div class="page-header noMarginTop">
+  <center><h1><span class="glyphicon glyphicon-th blue"></span> <%=t('groups')%></h1></center>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @group.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:matter_id) %>:</strong></dt>
-  <dd><%= @group.matter_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:semester) %>:</strong></dt>
-  <dd><%= @group.semester_id %></dd>
-</dl>
+
+<%= render :partial => 'form' %>
+
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               groups_path, :class => 'btn btn-default'  %>

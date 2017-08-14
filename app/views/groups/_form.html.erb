@@ -3,7 +3,7 @@
   <% if @group.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h3>
+        <h3 class="panel-title"><%= pluralize(@group.errors.count, "erro(s)") %> ocorrido(s):</h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -28,6 +28,7 @@
         <%=f.error_span(:matter) %>
       </div>
     </div>
+
 
     <div class="form-group">
       <%= f.label :semester, :class => 'control-label col-lg-2' %>
