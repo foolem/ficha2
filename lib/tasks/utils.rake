@@ -30,10 +30,14 @@ namespace :utils do
         password = pass_generate
 
         user = User.new(name: name, email: email, password: password,  role: role)
-        if user.save
-          #descomente em production
-          #user.send_reset_password_instructions
-        end
+
+       # if user.save
+       #   if user.send_reset_password_instructions
+       #     puts "ok: #{name}"
+       #   else
+       #     puts "Erro: #{name}"
+       #   end
+       # end
 
       end
 
@@ -67,7 +71,7 @@ namespace :utils do
 
         user = User.where(name:  name)[0].id
         matter = Matter.where("code = '#{code}'")[0].id
-  
+
         Ficha.create(matter_id: matter, user_id: user, semester: 2, year: 2017, team: team)
 
       end

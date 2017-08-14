@@ -4,13 +4,13 @@ body, html{
 
   nav.sidebar, .main{
     -webkit-transition: margin 200ms ease-out;
-      -moz-transition: margin 200ms ease-out;
-      -o-transition: margin 200ms ease-out;
-      transition: margin 200ms ease-out;
-      position: absolute!important;
-      z-index: 1;
-      width: auto;
-      height: 200px;
+    -moz-transition: margin 200ms ease-out;
+    -o-transition: margin 200ms ease-out;
+    transition: margin 200ms ease-out;
+    position: absolute!important;
+    z-index: 1;
+    width: auto;
+    height: 200px;
  }
 
   .main{
