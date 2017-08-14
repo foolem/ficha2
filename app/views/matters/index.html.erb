@@ -2,15 +2,14 @@
 
 <div class="page-header noMarginTop">
 
-
   <center><h1><span class="glyphicon glyphicon-tags blue"></span> <%=t('matters')%></h1></center>
 
-<div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
-  <%= search_form_for @q, url: search_matters_path, html: { method: :post } do |f| %>
-  <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'width:180px' %>
+  <div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
+    <%= search_form_for @q, url: search_matters_path, html: { method: :post } do |f| %>
+    <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'width:180px' %>
+    <% end %>
+  </div>
 
-  <% end %>
-</div>
 </div>
 
 <div id="matters_partial" class="marginBottom">

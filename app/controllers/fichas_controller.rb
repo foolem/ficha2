@@ -13,11 +13,9 @@ class FichasController < ApplicationController
       session[:ficha_search] = params[:q]
     end
 
-    if !@query.blank? and !@query[:year_eq].blank?
-      @query[:semester_eq] = @query[:year_eq][0].to_i
-      @query[:year_eq] = @query[:year_eq][1,4]
-      puts @query[:year_eq]
-      puts @query[:semester_eq]
+    if !@query.blank? and !@query[:group_semester_year_eq].blank?
+      @query[:group_semester_semester_eq] = @query[:group_semester_year_eq][0].to_i
+      @query[:group_semester_year_eq] = @query[:group_semester_year_eq][1,4]
     end
 
     @q = Ficha.ransack(@query)
@@ -47,9 +45,8 @@ class FichasController < ApplicationController
 
     ficha_new = Ficha.find(params[:copy_id])
     @ficha = Ficha.find(params[:id])
-    if(ficha_new.matter == @ficha.matter and @ficha.user == current_user)
+    if(ficha_new.group.matter == @ficha.group.matter and (@ficha.user == current_user or current_user.admin?))
 
-      @ficha.matter = ficha_new.matter
       @ficha.program = ficha_new.program
       @ficha.general_objective = ficha_new.general_objective
       @ficha.specific_objective = ficha_new.specific_objective
@@ -72,6 +69,9 @@ class FichasController < ApplicationController
   end
 
   def edit
+  end
+
+  def editx
     if(@ficha.user != current_user and !current_user.admin? and !current_user.appraiser? and !current_user.secretary?)
       flash[:alert] = "Você não tem permissão para acessar esta página."
       redirect_to(request.referrer || fichas_path)
@@ -88,19 +88,7 @@ class FichasController < ApplicationController
   end
 
   def create
-    @ficha = Ficha.new(ficha_params)
-
-    if(!current_user.admin? and !current_user.secretary?)
-      @ficha.user = current_user
-    end
-
-    if(@ficha.bibliography.blank? and !@ficha.matter.blank?)
-      @ficha.bibliography = @ficha.matter.bibliography
-    end
-
-    if(@ficha.basic_bibliography.blank? and !@ficha.matter.blank?)
-      @ficha.basic_bibliography = @ficha.matter.basic_bibliography
-    end
+    @ficha = Ficha.new(new_params)
 
     respond_to do |format|
       if @ficha.save
@@ -110,11 +98,12 @@ class FichasController < ApplicationController
         format.html { render :new }
         format.json { render json: @ficha.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
   def update
-    list = ficha_params
+    list = edit_params
 
     if(current_user.teacher?)
       if ficha_blank(Ficha.new(list))
@@ -154,9 +143,9 @@ class FichasController < ApplicationController
 
   def getFichas
     if !user_signed_in?
-      @q.result.order(year: :desc).where(status: 2)
+      @q.result.order(group_id: :desc).where(status: 2)
     elsif current_user.secretary?
-      @q.result.order(year: :desc)
+      @q.result.order(group_id: :desc)
     else
       if(params[:checkbox])
         @q.result.order(status: :desc).where(user: current_user)
@@ -166,7 +155,7 @@ class FichasController < ApplicationController
         elsif current_user.admin?
           @q.result.order(status: :desc)
         else
-          @q.result.order(year: :desc).where(status: 2)
+          @q.result.order(group_id: :desc).where(status: 2)
         end
       end
     end
@@ -199,14 +188,23 @@ class FichasController < ApplicationController
       @ficha = Ficha.find(params[:id])
     end
 
-    def ficha_params
-      list = normal_params
-      list[:year] = list[:semester][1..4]
-      list[:semester] = list[:semester][0]
-      list
+    def new_params
+        params.require(:ficha).permit(:user_id, :group_id)
     end
 
-    def normal_params
+    def edit_params
+        params.require(:ficha).permit(
+          :program,
+          :evaluation,
+          :general_objective,
+          :specific_objective,
+          :didactic_procedures,
+          :basic_bibliography,
+          :bibliography,
+          :status)
+    end
+
+    def ficha_params
       if params[:user_id] == current_user.id and (!current_user.admin?)
 
         params.require(:ficha).permit(:general_objective, :specific_objective, :program,
@@ -238,7 +236,7 @@ class FichasController < ApplicationController
           format.pdf do
             pdf = RecordPdf.new(@ficha)
             send_data pdf.render,
-              filename: "Ficha2 #{@ficha.matter.code} - #{@ficha.user.name}",
+              filename: "Ficha2 #{@ficha.group.matter.code} - #{@ficha.user.name}",
               type: "application/pdf",
               disposition: "inline"
           end

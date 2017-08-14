@@ -5,7 +5,7 @@ namespace :utils do
 
       def pass_generate
         password = ""
-        character = ['1', '2', '7', 'a', 'j', 'b', 'c']
+        character = ['1', '2', '3', 'a', 'b', 'c', 'd']
         6.times do |i|
           password << character[Random.rand(7)]
         end
@@ -19,7 +19,6 @@ namespace :utils do
       (xlsx.sheet(1).last_row - 1).times do |i| #mudar pra sheet 3 para teste
         linha = xlsx.sheet(1).row(i+2)
 
-        puts "|  #{linha[0]}  -  #{linha[1]} - #{linha[2]} "
         name = linha[0]
         email = linha[1]
         role = linha[2]
@@ -29,15 +28,8 @@ namespace :utils do
         end
         password = pass_generate
 
-        user = User.new(name: name, email: email, password: password,  role: role)
-
-       # if user.save
-       #   if user.send_reset_password_instructions
-       #     puts "ok: #{name}"
-       #   else
-       #     puts "Erro: #{name}"
-       #   end
-       # end
+        puts "|  #{name}  -  #{email} - #{role} - #{password} "
+        user = User.create(name: name, email: email, password: password,  role: role)
 
       end
 
@@ -57,6 +49,8 @@ namespace :utils do
 
       end
 
+      Semester.create(semester: 2, year: 2017)
+
       puts "\n------------ Fichas ------------"
       path = "lib/assets/inserts.xlsx"
       xlsx = Roo::Excelx.new(path, extension: :xlsx)
@@ -72,11 +66,10 @@ namespace :utils do
         user = User.where(name:  name)[0].id
         matter = Matter.where("code = '#{code}'")[0].id
 
-        Ficha.create(matter_id: matter, user_id: user, semester: 2, year: 2017, team: team)
-
+        group = Group.create(matter_id: matter, name: team, semester_id: 1)
+        Ficha.create(group_id: group.id, user_id: user)
       end
 
   end
-
 
 end

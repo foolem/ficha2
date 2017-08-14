@@ -17,6 +17,10 @@
         one: Contato
         other: Contatos
 
+      group:
+        one: Turma
+        other: Turmas
+
     attributes:
       matter:
         name: "Nome"
@@ -49,6 +53,7 @@
         email: "Email"
         message: "Mensagem"
 
+
       user:
         name: "Nome"
         email: "E-mail"
@@ -64,6 +69,7 @@
         year: "Ano"
         semester: "Semestre"
         team: "Turma"
+        group: "Turma"
 
         program: "Programa"
         general_objective: "Objetivo Geral"

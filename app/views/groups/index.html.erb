@@ -1,43 +1,22 @@
 <%- model_class = Group -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
+<div class="page-header noMarginTop">
+
+  <center><h1><span class="glyphicon glyphicon-th blue"></span> <%=t('groups')%></h1></center>
+
+  <div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
+    <%= search_form_for @q, url: search_groups_path, html: { method: :post } do |f| %>
+
+      <!-- é só pra lembrar que tem que fazer... -->
+      <%= f.select( :semester_year_eq, options_for_select(getYears(true), getYear(nil)),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
+
+      <%= f.text_field :name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'width:180px', :id => "group_search_field" %>
+    <% end %>
+
+  </div>
+
 </div>
 
-<table class="table table-striped">
-
-  <thead>
-    <tr class="header">
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:matter_id) %></th>
-      <th><%= model_class.human_attribute_name(:semester) %></th>
-      <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %> </center> </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr data-href="<%= group_path(group) %>">
-        <td><%= group.name %></td>
-        <td><%= group.matter_id %></td>
-        <td><%= group.semester.semester_with_year %></td>
-        <td id="actions"> <center>
-          <%= link_to edit_button.html_safe,
-                edit_group_path(group), :class => 'btn btn-default btn-sm simple_button',
-                title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-
-          <%= link_to remove_button.html_safe,
-                group_path(group),
-                :method => :delete,
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
-                :class => 'btn btn-sm btn-danger disable',
-                title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
-          </center>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_group_path,
-            :class => 'btn btn-primary' %>
+<div id="groups_partial" class="marginBottom" >
+  <%= render 'groups' %>
+</div>

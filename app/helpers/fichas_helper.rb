@@ -16,24 +16,25 @@ module FichasHelper
     return "<i class='#{style}' style='color: #{color}' title ='#{tip}' data-toggle = 'tooltip' data-placement = 'right'></i>"
   end
 
-  def getSemester(ficha)
-    return ficha.semester.to_s + "º de " + ficha.year.to_s
-  end
-
-
   def hasEquivalent(ficha)
-
-    !ficha.blank? and !Ficha.where("matter_id = #{ficha.matter.id}").where('status = 2').blank?
+    !ficha.blank? and !getEquivalent(ficha).blank?
   end
 
   def getEquivalent(ficha)
-    if !ficha.blank? and !ficha.matter.blank?
-      Ficha.where("matter_id = #{ficha.matter.id}").where('status = 2')
+    if !ficha.blank? and !ficha.group.matter.blank?
+      result = []
+      groups = Group.where("matter_id = #{ficha.group.matter.id}")
+      groups.each do |group|
+        if group.ficha.ready?
+          result << group.ficha
+        end
+      end
     end
+    result
   end
 
   def getMatter(ficha)
-    "#{ficha.matter.code}  - #{ficha.matter.name}"
+    "#{ficha.group.matter.code}  - #{ficha.group.matter.name}"
   end
 
   def getYears(option)
