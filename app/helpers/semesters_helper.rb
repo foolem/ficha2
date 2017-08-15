@@ -4,19 +4,8 @@ module SemestersHelper
     Semester.all.order(id: :desc)
   end
 
-  def getSemesters()
-
-    current_year = Time.zone.now.year
-    current_semester = 1
-
-    if Time.zone.now.month > 5
-      current_semester = 2
-    end
-    
-    semesters = semester_order
-    if semesters.blank? or (semesters[0].semester_with_year != "#{current_semester}º de #{current_year}")
-      Semester.create(semester: current_semester, year: current_year);
-    end
+  def semester_options()
+    current_semester
 
     options = {}
     options['Todos semestres'] = ''
@@ -27,8 +16,7 @@ module SemestersHelper
     return options
   end
 
-  def getSemester()
-
+  def current_semester()
 
     current_year = Time.zone.now.year
     current_semester = 1
@@ -37,17 +25,12 @@ module SemestersHelper
       current_semester = 2
     end
 
-    semester = Semester.last
-    if !semester.blank? and (semester.year = current_year and semester.semester = current_semester)
-      semester.id
-    else
-      semester = Semester.where(semester: current_semester, year: current_year)[0];
-      if semester.blank?
-        semester = Semester.new(semester: current_semester, year: current_year);
-        semester.save
-      end
-      semester.id
+    semester = Semester.where(semester: current_semester, year: current_year)[0];
+    if semester.blank?
+      puts "Não achei esse semestre: #{current_semester}º de #{current_year}"
+      semester = Semester.create(semester: current_semester, year: current_year);
     end
+    semester
   end
 
 end

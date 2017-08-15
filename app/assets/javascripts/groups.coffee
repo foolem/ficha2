@@ -28,4 +28,8 @@ document.addEventListener 'turbolinks:load', ->
     $.get $('#group_search').attr('action'), $('#group_search').serialize(), null, 'script'
     false
 
+  $('#group_search select').change ->
+    $.get $('#group_search').attr('action'), $('#group_search').serialize(), null, 'script'
+    false
+
   return

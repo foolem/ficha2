@@ -176,18 +176,20 @@
 
   <% end %>
 
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
+  <% if !@show %>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
 
-      <button action='' type="button" class="btn btn-default btn-sm"
-        data-toggle="modal" data-target="#modal-2" title='Instruções'
-        data-placement:='right'><%= help_button.html_safe %></button>
+        <button action='' type="button" class="btn btn-default btn-sm"
+          data-toggle="modal" data-target="#modal-2" title='Instruções'
+          data-placement:='right'><%= help_button.html_safe %></button>
 
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= f.submit nil, :class => 'btn btn-primary' %>
 
-      <%= link_to t("cancel"), fichas_path, :class => 'btn btn-default' %>
+        <%= link_to t("cancel"), fichas_path, :class => 'btn btn-default' %>
 
+      </div>
     </div>
-  </div>
-
+  <% end %>
+  
 <% end %>
