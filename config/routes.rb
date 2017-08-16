@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :semesters
   resources :groups do
     collection do
       match 'search' => 'groups#search', via: [:get, :post], as: :search

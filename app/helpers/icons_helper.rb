@@ -52,6 +52,10 @@ module IconsHelper
     '<i  class="glyphicon glyphicon-pushpin"></i>'
   end
 
+  def messages_button
+    '<i  class="glyphicon glyphicon-envelope"></i>'
+  end
+
   def user_button(user)
     '<i class="glyphicon glyphicon-user"></i> ' + user
   end

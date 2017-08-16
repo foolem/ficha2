@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.integer  "or",                                   default: 0
   end
 
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "message",    limit: 65535
+    t.integer  "user_id"
+    t.integer  "ficha_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["ficha_id"], name: "index_messages_on_ficha_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
   create_table "semesters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "year"
     t.integer  "semester"
@@ -104,4 +114,6 @@ ActiveRecord::Schema.define(version: 20170728164405) do
   add_foreign_key "fichas", "users"
   add_foreign_key "groups", "matters"
   add_foreign_key "groups", "semesters"
+  add_foreign_key "messages", "fichas"
+  add_foreign_key "messages", "users"
 end

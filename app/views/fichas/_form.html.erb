@@ -129,6 +129,12 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <button action='' type="button" class="btn btn-default btn-sm col-lg-offset-5 col-lg-2"
+        data-toggle="modal" data-target="#modal-3" title='Instruções'
+        data-placement:='right'><%= messages_button.html_safe %></button>
+    </div>
+
   </div>
 
   <% if !@show and (user_signed_in? and ((@ficha.reproved? && current_user.teacher?) || !current_user.teacher?))  %>
