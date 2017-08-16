@@ -14,7 +14,7 @@
         <th width="5%"><center><%= t('status') %></center></th>
       <% end %>
 
-      <% if(!user_signed_in? || user_appriser) %>
+      <% if(!user_signed_in? || user_appriser? ) %>
         <th  width="90px">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
@@ -24,7 +24,7 @@
         <th  width="130px">
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
 
-            <% if !current_user.teacher? %>
+            <% if user_not_teacher? %>
               <div style="float:right; margin-right:3px; width:37px;">
                 <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
                   title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
@@ -38,6 +38,7 @@
     </tr>
   </thead>
   <tbody id="tbody">
+    
     <% @fichas.each do |ficha| %>
       <tr data-href="<%= ficha_path(ficha) %>" >
 
@@ -49,14 +50,11 @@
 
         <td><center><%= ficha.group.name %></center></td>
 
-        <% if user_signed_in?%>
+        <% if user_signed_in? %>
           <td><center><%= status_representation(ficha).html_safe %></center></td>
         <% end %>
 
         <td id="actions"> <center>
-
-          <!-- <%= link_to show_button.html_safe, ficha, :class => 'btn btn-default btn-sm',
-            title: 'Visualizar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> -->
 
           <% if status_ready(ficha.status) %>
               <div style="float:left;"><%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm simple_button',
@@ -68,9 +66,7 @@
                     title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
           <% end %>
 
-
-
-          <% if user_not_appriser%>
+          <% if user_not_appriser? %>
 
             <%= link_to remove_button.html_safe,
                         ficha_path(ficha),
@@ -79,12 +75,13 @@
                         :class => 'btn btn-sm btn-danger disable',
                         title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
 
-
           <% end %>
+
         </center> </td>
       </tr>
 
     <% end %>
+
   </tbody>
 </table>
 

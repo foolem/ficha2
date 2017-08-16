@@ -2,7 +2,7 @@
 
 <div class="page-header noMarginTop">
 
-  <center><h1><span class="glyphicon glyphicon-user blue"></span> Colaboradores</h1>
+  <center><h1><span class="<%=index_icon(user_icon)%>"></span> Colaboradores</h1>
 
   <div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
     <%= search_form_for @q, url: search_users_path,html: { method: :post } do |f| %>

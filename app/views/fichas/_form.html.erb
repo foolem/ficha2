@@ -21,7 +21,7 @@
 
     <header class="panel-heading header headerOutra"><%= t('details') %>
 
-      <% if (@show) and (user_secretary or user_admin) %>
+      <% if @show and (user_secretary? or user_admin?) %>
 
         <div class="addAnother">
           <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
@@ -191,5 +191,5 @@
       </div>
     </div>
   <% end %>
-  
+
 <% end %>
