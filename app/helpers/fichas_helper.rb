@@ -25,7 +25,7 @@ module FichasHelper
       result = []
       groups = Group.where("matter_id = #{ficha.group.matter.id}")
       groups.each do |group|
-        if group.ficha.ready?
+        if !group.ficha.blank? and group.ficha.ready?
           result << group.ficha
         end
       end

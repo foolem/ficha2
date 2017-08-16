@@ -53,6 +53,10 @@
         email: "Email"
         message: "Mensagem"
 
+      group:
+        name: "Nome"
+        matter: "Disciplina"
+        semester: "Semestre"
 
       user:
         name: "Nome"

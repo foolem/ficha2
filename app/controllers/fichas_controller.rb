@@ -12,7 +12,7 @@ class FichasController < ApplicationController
       @query = params[:q]
       session[:ficha_search] = params[:q]
     end
-    
+
     @q = Ficha.ransack(@query)
 
     @page = params[:page].to_i
@@ -66,6 +66,7 @@ class FichasController < ApplicationController
   def edit
   end
 
+  #rever
   def editx
     if(@ficha.user != current_user and !current_user.admin? and !current_user.appraiser? and !current_user.secretary?)
       flash[:alert] = "Você não tem permissão para acessar esta página."
@@ -139,8 +140,10 @@ class FichasController < ApplicationController
   def getFichas
     if !user_signed_in?
       @q.result.order(group_id: :desc).where(status: 2)
+
     elsif current_user.secretary?
       @q.result.order(group_id: :desc)
+
     else
       if(params[:checkbox])
         @q.result.order(status: :desc).where(user: current_user)
@@ -179,6 +182,7 @@ class FichasController < ApplicationController
 
 
   private
+
     def set_ficha
       @ficha = Ficha.find(params[:id])
     end
@@ -188,6 +192,11 @@ class FichasController < ApplicationController
     end
 
     def edit_params
+      if current_user.appraiser? and @ficha.user.id != current_user.id
+        params.require(:ficha).permit(
+          :appraisal,
+          :status)
+      else
         params.require(:ficha).permit(
           :program,
           :evaluation,
@@ -197,24 +206,7 @@ class FichasController < ApplicationController
           :basic_bibliography,
           :bibliography,
           :status)
-    end
-
-    def ficha_params
-      if params[:user_id] == current_user.id and (!current_user.admin?)
-
-        params.require(:ficha).permit(:general_objective, :specific_objective, :program,
-                                      :didactic_procedures, :evaluation, :basic_bibliography,
-                                      :bibliography, :user_id, :matter_id, :status)
-
-      elsif current_user.appraiser? and @ficha.user.id != current_user.id
-        params.require(:ficha).permit(:appraisal, :status)
-
-      else
-        params.require(:ficha).permit(:general_objective, :specific_objective, :program,
-                                      :didactic_procedures, :evaluation, :basic_bibliography, :team,
-                                      :bibliography, :user_id, :matter_id, :status, :appraisal, :semester, :year)
       end
-
     end
 
     def authorize_user
@@ -240,29 +232,6 @@ class FichasController < ApplicationController
         end
       end
     end
-
-    def contains_matter(code)
-      if !$matters.blank?
-        $matters.each do |matter|
-          if(matter.code == code)
-            return true;
-          end
-        end
-      end
-      return false;
-    end
-
-    def contains_teacher(name)
-      if !$teachers.blank?
-        $teachers.each do |teacher|
-          if(teacher.name == name)
-            return true;
-          end
-        end
-      end
-      return false;
-    end
-
 
     def ficha_blank(f)
       if(f.evaluation.blank? or f.program.blank? or f.bibliography.blank? or f.basic_bibliography.blank? or
