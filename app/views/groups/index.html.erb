@@ -8,8 +8,10 @@
   <div class="searchBox noMarginTop">
     <%= search_form_for @q, url: search_groups_path, html: { method: :post } do |f| %>
 
-      <!-- é só pra lembrar que tem que fazer... -->
-      <%= f.select( :semester_year_eq, options_for_select(getYears(true), getYear(nil)),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
+      <!-- é só pra lembrar que tem que fazer...
+      
+    -->
+
 
       <%= f.text_field :name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'width:180px', :id => "group_search_field" %>
     <% end %>
