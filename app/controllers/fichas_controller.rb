@@ -64,6 +64,12 @@ class FichasController < ApplicationController
   end
 
   def edit
+    create_message
+  end
+
+  def create_message
+    
+    @message = Message.new()
   end
 
   #rever

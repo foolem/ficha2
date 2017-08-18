@@ -84,8 +84,11 @@
 				</div>
 
 				<div class="modal-body">
-					<%= render '/messages/messages' %>
+					<%= render '/messages/messages', collection: @message %>
+
+					<%= render '/messages/form' %>	
 				</div>
+
 
 				<div class="modal-footer">
 					<a href="" class="btn btn-primary" data-dismiss="modal">Close</a>

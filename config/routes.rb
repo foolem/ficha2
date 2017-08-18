@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :message
+
   resources :groups do
     collection do
       match 'search' => 'groups#search', via: [:get, :post], as: :search
@@ -30,6 +32,8 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
       match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
+
+      match 'create_message' => 'fichas#create_message', via: [:get, :post], as: :create_message
     end
   end
 

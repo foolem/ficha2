@@ -1,0 +1,4 @@
+<%= form_for @message, url: {action: "create_message"} do |f| %>
+  <%= f.text_field :message %>
+  <%= f.submit%>
+<% end %>
