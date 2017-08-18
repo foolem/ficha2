@@ -1,8 +1,8 @@
 class Ficha < ApplicationRecord
   belongs_to :user
   belongs_to :group
-  has_many :message
-  
+  has_many :messages
+
   enum status: [:editing, :sent, :ready, :reproved]
 
   validates :group, presence: true

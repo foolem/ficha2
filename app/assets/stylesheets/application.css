@@ -258,6 +258,9 @@ select { color: #000; }
 .black{
   background-color: #000;
 }
+.white:visited {
+  color:#FFF;
+}
 
 .collection_select {
   size: 100px;
@@ -293,6 +296,18 @@ li > a:hover{
   margin-right:3px;
   width:37px;
 }
+.addAnotherFicha {
+  float:right;
+  margin-top:-6px;
+  width:25px;
+}
+.addAnotherMsg {
+  float:right;
+  margin-right:0px;
+  width:25px;
+  margin-top: -6px;
+  margin-left: 15px;
+}
 .noMarginTop {
   margin-top: 0;
   margin-bottom: 0;
@@ -310,5 +325,92 @@ li > a:hover{
 .width {
   width: 43%;
 }
+.badges {
+  margin-top: -13px;
+  margin-left: 0px;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  background-color: rgb(235, 11, 11);
+  color: #fff;
+  position: absolute;
+  text-align: center;
+}
+.badgesTwo {
+  margin-top: -13px;
+  margin-left: 0px;
+  border-radius: 50%;
+  width: 20px;
+  height: 17px;
+  background-color: rgb(235, 11, 11);
+  color: #fff;
+  position: absolute;
+  text-align: center;
+}
+.msgSent {
+
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: justify;
+}
+.msgReceived {
+
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: justify;
+}
+
+.speech-bubbleSent {
+	position: relative;
+	background: #4b6fb2;
+	border-radius: .4em;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  color:#fff;
+}
+.speech-bubbleSent:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 30%;
+	width: 0;
+	height: 0;
+	border: 21px solid transparent;
+	border-left-color: #4b6fb2;
+	border-right: 0;
+	margin-top: -10px;
+	margin-right: -10px;
+}
+.speech-bubbleReceived {
+	position: relative;
+	background: #d1d1d1;
+	border-radius: .4em;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  color:#000;
+}
+.speech-bubbleReceived:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 30%;
+	width: 0;
+	height: 0;
+	border: 21px solid transparent;
+	border-right-color: #d1d1d1;
+	border-left: 0;
+	margin-top: -10px;
+	margin-left: -10px;
+}
+
+.form-margin {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 93%;
+  max-width: 93%;
+}
+
 
 ;
