@@ -27,8 +27,26 @@
 
       <% if @show and (user_secretary? or user_admin?) %>
 
-        <div class="addAnother" style="margin-top: 0;">
-          <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
+      <div class="addAnotherMsg">
+
+        <button action='' type="button" class="btn btn-default btn-sm"
+          data-toggle="modal" data-target="#modal-3" title='Pareceres'
+          data-placement:='right'>
+          <%= messages_button.html_safe %>
+          <% if @ficha.messages.length < 10  %>
+           <span class="badges">
+             <%= @ficha.messages.length %>
+           </span>
+           <% else %>
+           <span class="badgesTwo">
+             <%= @ficha.messages.length %>
+           </span>
+           <% end %>
+         </button>
+      </div>
+
+        <div class="addAnotherFicha">
+          <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn btn-default btn-sm',
           title: 'Criar outra ficha', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
         </div>
 
@@ -76,7 +94,7 @@
     <% end %>
 
     <!-- no lugar do selector -->
-  
+
     <div class="form-group">
       <%= f.label :teacher, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">

@@ -5,9 +5,11 @@
   <div id="fields">
     <% @ficha.messages.each do |msg| %>
       <% if msg.user == current_user %>
-        <p style="color: blue;"> You:  <%= msg.message %> </p>
+        <div class="speech-bubbleSent"><p class="msgSent"><b><%= msg.created_at.strftime("%d/%m/%Y")%><br> Você: </b><%= msg.message %></p> </div>
+
       <% elsif !msg.user.blank? %>
-        <p style="color: green;"> <%= msg.user.name %> <%= msg.message %> </p>
+        <div class="speech-bubbleReceived"><p class="msgReceived"><b><%= msg.created_at.strftime("%d/%m/%Y")%><br> <%= msg.user.name %>: </b><%= msg.message %></p> </div>
+
       <% end %>
     <% end %>
 

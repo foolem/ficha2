@@ -1,0 +1,8 @@
+<h4>Mensagens</h4>
+<% @ficha.messages.each do |msg| %>
+
+  <div class="speech-bubbleSent"><p class="msgSent"><b><br> Usuário 1: </b><%= msg.message %></p> </div>
+
+  <div class="speech-bubbleReceived"><p class="msgReceived"><b><br> Usuário 1: </b><%= msg.message %></p> </div>
+
+<% end %>
