@@ -1,4 +1,4 @@
 class Message < ApplicationRecord
-  has_one :user
-  belongs_to :ficha
+  belongs_to :user
+  belongs_to :ficha, optional: true
 end

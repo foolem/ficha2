@@ -1,46 +1,55 @@
-class MattersController < ApplicationController
+class MessagesController < ApplicationController
 
-
+  before_action :set_ficha
 
   def new
     @message = Message.new
   end
 
   def create
+
     @message = Message.new(message_params)
+    @message.ficha = @ficha
+    @message.user = current_user
 
     respond_to do |format|
-      if @matter.save
-        format.html { redirect_to @matter, notice: 'Disciplina foi criada com sucesso.' }
-        format.json { render :show, status: :created, location: @matter }
+      if !@message.message.blank? and @message.save
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @matter.errors, status: :unprocessable_entity }
+        format.js
       end
     end
+
+    new
+    set_ficha
   end
 
   def destroy
-    @matter.actived = !@matter.actived
+    @message.actived = !@message.actived
 
     respond_to do |format|
-      if(@matter.save)
-        if(@matter.actived?)
-          format.html { redirect_to matters_url, notice: 'Matéria ativada com sucesso.' }
+      if(@message.save)
+        if(@message.actived?)
+          format.html { redirect_to messages_url, notice: 'Matéria ativada com sucesso.' }
         else
-          format.html { redirect_to matters_url, notice: 'Matéria desativada com sucesso.' }
+          format.html { redirect_to messages_url, notice: 'Matéria desativada com sucesso.' }
         end
         format.json { head :no_content }
       else
-        format.html { redirect_to matters_url, alert: 'Erro ao atualizar matéria.' }
+        format.html { redirect_to messages_url, alert: 'Erro ao atualizar matéria.' }
       end
 
     end
   end
+
   private
 
-    def set_matter
-      @matter = Matter.find(params[:id])
+    def set_message
+      @message = Message.find(params[:id])
+    end
+
+    def set_ficha
+      @ficha = Ficha.find(params[:id])
     end
 
     def message_params

@@ -37,6 +37,10 @@ module FichasHelper
     "#{ficha.group.matter.code}  - #{ficha.group.matter.name}"
   end
 
+  def options_status
+      [['Encaminhado', 'sent'], ['Reprovado', 'reproved'],['Aprovado', 'ready']]
+  end
+
   def show_ficha
     @show = true
   end

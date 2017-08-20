@@ -1,5 +1,5 @@
 class FichasController < ApplicationController
-  before_action :set_ficha, only: [:show, :edit, :update, :destroy]
+  before_action :set_ficha, only: [:show, :edit, :update, :destroy, :create_message]
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :import]
   before_action :bar_define
@@ -34,10 +34,11 @@ class FichasController < ApplicationController
 
   def new
     @ficha = Ficha.new
+    @ficha.messages.build
   end
 
   def copy
-
+    @message = Message.new
     ficha_new = Ficha.find(params[:copy_id])
     @ficha = Ficha.find(params[:id])
     if(ficha_new.group.matter == @ficha.group.matter and (@ficha.user == current_user or current_user.admin?))
@@ -64,12 +65,15 @@ class FichasController < ApplicationController
   end
 
   def edit
-    create_message
+    @message = Message.new
+    @ficha.messages.build
   end
 
   def create_message
-    
-    @message = Message.new()
+    puts "opa: #{params[:program]}"
+    respond_to do |format|
+      format.js
+    end
   end
 
   #rever
@@ -211,7 +215,8 @@ class FichasController < ApplicationController
           :didactic_procedures,
           :basic_bibliography,
           :bibliography,
-          :status)
+          :status,
+          messages_attributes: [:id, :_destroy, :message])
       end
     end
 

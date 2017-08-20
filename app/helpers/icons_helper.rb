@@ -56,6 +56,14 @@ module IconsHelper
     '<i  class="glyphicon glyphicon-envelope"></i>'
   end
 
+  def question_button
+    '<i"> ?? </i>'
+  end
+
+  def send_button
+    messages_button + " Enviar"
+  end
+
   def user_button(user)
     '<i class="glyphicon glyphicon-user"></i> ' + user
   end

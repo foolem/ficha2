@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :message
+  resources :messages, only: [:destroy, :new] do
+    collection do
+        match 'create/:id' => 'messages#create', via: [:get, :post], as: :create
+    end
+  end
 
   resources :groups do
     collection do
@@ -33,7 +37,7 @@ Rails.application.routes.draw do
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
       match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
 
-      match 'create_message' => 'fichas#create_message', via: [:get, :post], as: :create_message
+      match 'create_message/:id' => 'fichas#create_message', via: [:get, :post], as: :create_message
     end
   end
 

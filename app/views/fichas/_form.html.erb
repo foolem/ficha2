@@ -1,4 +1,8 @@
-<%= form_for @ficha, :html => { :class => "form-horizontal ficha" } do |f| %>
+<% if !@show %>
+  <%= render '/messages/modal_out' %>
+<% end %>
+
+<%= form_for @ficha,:html => { :class => "form-horizontal ficha", :id => "ficha_form" } do |f| %>
 
   <% if @ficha.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -23,22 +27,56 @@
 
       <% if @show and (user_secretary? or user_admin?) %>
 
-        <div class="addAnother">
+        <div class="addAnother" style="margin-top: 0;">
           <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
           title: 'Criar outra ficha', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
         </div>
 
       <% elsif !@ficha.id.blank? and hasEquivalent(@ficha) and !@ficha.ready? and !@show %>
 
-        <div style="float: right;">
-            <button action='' type="button" class="btn btn-default btn-xs"
+        <div class="addAnother">
+            <button action='' type="button" class="btn btn-default btn-sm"
+              data-toggle="modal" data-target="#modal_out" title='Mensagens'
+              data-placement:='right'><%= messages_button.html_safe %></button>
+        </div>
+
+        <div class="addAnother">
+          <button action='' type="button" class="btn btn-default btn-sm"
+            data-toggle="modal" data-target="#modal-2" title='Instruções'
+            data-placement:='right'>  <%= question_button.html_safe %> </button>
+        </div>
+
+        <div class="addAnother" style="float: right;">
+            <button action='' type="button" class="btn btn-default btn-sm"
             data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
+        </div>
+
+        <div class="addAnother" style="float: right;" id="select_status">
+            <span class="btn btn-default btn-sm active" title='Copiar' data-placement:='right'><%= status_representation(@ficha).html_safe %></button>
         </div>
 
       <% end %>
     </header>
     <br>
 
+    <% if !@show and (user_signed_in? and ((@ficha.reproved? && current_user.teacher?) || !current_user.teacher?))  %>
+
+      <div class="form-group">
+        <%= f.label :status, :class => 'control-label col-lg-3' %>
+        <div class="col-lg-8" id='select_status'>
+
+          <%= f.select :status, options_status, {}, { :class => 'form-control', :style => 'width:135px;float:left;margin-right:5px;'} %>
+
+          <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha).html_safe %> </div>
+
+        </div>
+        <%=f.error_span(:status) %>
+      </div>
+
+    <% end %>
+
+    <!-- no lugar do selector -->
+  
     <div class="form-group">
       <%= f.label :teacher, :class => 'control-label col-lg-3' %>
       <div class="col-lg-8">
@@ -129,74 +167,18 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <button action='' type="button" class="btn btn-default btn-sm col-lg-offset-5 col-lg-2"
-        data-toggle="modal" data-target="#modal-3" title='Instruções'
-        data-placement:='right'><%= messages_button.html_safe %></button>
-    </div>
+    <% if !@show %>
+      <div class="form-group">
+        <div class="col-lg-offset-7 col-lg-10">
+
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+
+          <%= link_to t("cancel"), fichas_path, :class => 'btn btn-default' %>
+
+        </div>
+      </div>
+    <% end %>
 
   </div>
-
-  <% if !@show and (user_signed_in? and ((@ficha.reproved? && current_user.teacher?) || !current_user.teacher?))  %>
-
-    <div class="panel panel-default">
-      <header class="panel-heading header"><%= t('confirmation') %></header>
-      <br>
-
-      <div class="form-group">
-        <%= f.label :status, :class => 'control-label col-lg-3' %>
-        <div class="col-lg-8" id='select_status'>
-
-          <% if current_user.appraiser? %>
-            <%= f.select :status, [['Aprovado', 'ready'], ['Reprovado', 'reproved'], ['Encaminhado', 'sent']], {}, { :class => 'form-control', :style => 'width:135px;float:left;margin-right:5px;'} %>
-          <% else %>
-            <%= f.select :status, [['Aprovado', 'ready'], ['Reprovado', 'reproved'],
-            ['Editando', 'editing'], ['Encaminhado', 'sent']], {}, { :class => 'form-control', :style => 'width:135px;float:left;margin-right:5px;'} %>
-          <% end %>
-
-          <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha).html_safe %> </div>
-
-        <% if !@ficha.reproved?%>
-          <script type="text/javascript">
-            $("#appraisal_show").hide();
-          </script>
-        <% end %>
-
-        </div>
-        <%=f.error_span(:status) %>
-      </div>
-
-      <% if !@ficha.ready?%>
-
-        <div class="form-group" id='appraisal_show'>
-          <%= f.label :appraisal, :class => 'control-label col-lg-3' %>
-          <div class="col-lg-8">
-            <%= f.text_area :appraisal, :class => 'form-control resize', rows: count_lines(@ficha.appraisal), :readonly => (current_user.teacher? or @show) %>
-          </div>
-          <% f.error_span(:appraisal) %>
-        </div>
-
-
-     <% end %>
-
-    </div>
-
-  <% end %>
-
-  <% if !@show %>
-    <div class="form-group">
-      <div class="col-lg-offset-2 col-lg-10">
-
-        <button action='' type="button" class="btn btn-default btn-sm"
-          data-toggle="modal" data-target="#modal-2" title='Instruções'
-          data-placement:='right'><%= help_button.html_safe %></button>
-
-        <%= f.submit nil, :class => 'btn btn-primary' %>
-
-        <%= link_to t("cancel"), fichas_path, :class => 'btn btn-default' %>
-
-      </div>
-    </div>
-  <% end %>
 
 <% end %>
