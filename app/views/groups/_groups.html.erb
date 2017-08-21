@@ -5,7 +5,7 @@
       <th width="20px"><center><%= t('code')  %></center></th>
       <th width="5%"><center><%= t('class')  %></center></th>
       <th ><%= t('matter') %></th>
-      <th width="10%"><center><%= t('semester')  %></center></th>
+      <th width="110px"><center><%= t('semester')  %></center></th>
       <% if !current_user.teacher? %>
 
           <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %>
@@ -52,7 +52,3 @@
     </ul>
   </nav>
 </center>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_group_path,
-            :class => 'btn btn-primary' %>
