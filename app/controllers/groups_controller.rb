@@ -60,7 +60,7 @@ end
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to @group, notice: 'Turma foi criada com sucesso.' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -74,7 +74,7 @@ end
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to @group, notice: 'Turma foi atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
@@ -88,7 +88,7 @@ end
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to groups_url, notice: 'Turma foi excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

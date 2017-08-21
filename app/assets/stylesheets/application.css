@@ -293,9 +293,9 @@ li > a:hover{
 }
 .addAnother {
   float:right;
-  margin-right:3px;
-  margin-top:-5px;
-  width:37px;
+  margin-right:12px;
+  margin-top:-6px;
+  width:25px;
 }
 .addAnotherFicha {
   float:right;
@@ -307,7 +307,14 @@ li > a:hover{
   margin-right:0px;
   width:25px;
   margin-top: -6px;
-  margin-left: 15px;
+  margin-left: 12px;
+}
+.addAnotherCopy {
+  margin-right: 0px;
+  margin-top: -6px;
+  margin-left: 12px;
+  float: right;
+  width: 25px;
 }
 .noMarginTop {
   margin-top: 0;
