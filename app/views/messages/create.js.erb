@@ -1,1 +1,4 @@
+
+var index = parseInt($('#badges').text(), 10);
+$('#badges').text(index + 1);
 $("#messages_partial").html("<%= escape_javascript(render("/messages/messages_out")) %>");

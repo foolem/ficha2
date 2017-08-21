@@ -27,36 +27,35 @@
 
       <% if @show and (user_secretary? or user_admin?) %>
 
-      <div class="addAnotherMsg">
-
-        <button action='' type="button" class="btn btn-default btn-sm"
-          data-toggle="modal" data-target="#modal-3" title='Pareceres'
-          data-placement:='right'>
-          <%= messages_button.html_safe %>
-          <% if @ficha.messages.length < 10  %>
-           <span class="badges">
-             <%= @ficha.messages.length %>
-           </span>
-           <% else %>
-           <span class="badgesTwo">
-             <%= @ficha.messages.length %>
-           </span>
-           <% end %>
-         </button>
-      </div>
-
         <div class="addAnotherFicha">
           <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn btn-default btn-sm',
           title: 'Criar outra ficha', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
         </div>
 
-      <% elsif !@ficha.id.blank? and hasEquivalent(@ficha) and !@ficha.ready? and !@show %>
+      <% elsif !@show %>
 
-        <div class="addAnother">
+         <div class="addAnotherMsg">
             <button action='' type="button" class="btn btn-default btn-sm"
               data-toggle="modal" data-target="#modal_out" title='Mensagens'
-              data-placement:='right'><%= messages_button.html_safe %></button>
+              data-placement:='right'><%= messages_button.html_safe %>
+
+              <% if messages_length != 0  %>
+                 <span id="badges" class="<%= badges_class %>">
+                   <%= messages_length %>
+                 </span>
+              <% end %>
+
+            </button>
         </div>
+
+        <% if hasEquivalent(@ficha) and !@ficha.ready? %>
+
+          <div class="addAnotherFicha">
+              <button action='' type="button" class="btn btn-default btn-sm"
+              data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
+          </div>
+
+        <% end %>
 
         <div class="addAnother">
           <button action='' type="button" class="btn btn-default btn-sm"
@@ -64,14 +63,11 @@
             data-placement:='right'>  <%= question_button.html_safe %> </button>
         </div>
 
-        <div class="addAnother" style="float: right;">
-            <button action='' type="button" class="btn btn-default btn-sm"
-            data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
-        </div>
-
-        <div class="addAnother" style="float: right;" id="select_status">
-            <span class="btn btn-default btn-sm active" title='Copiar' data-placement:='right'><%= status_representation(@ficha).html_safe %></button>
-        </div>
+        <% if user_not_appriser? and user_not_admin? %>
+          <div class="addAnother" style="float: right;" id="select_status">
+              <span class="btn btn-default btn-sm active" title='Copiar' data-placement:='right'><%= status_representation(@ficha).html_safe %></button>
+          </div>
+        <% end %>
 
       <% end %>
     </header>

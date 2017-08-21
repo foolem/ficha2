@@ -49,15 +49,15 @@ module IconsHelper
   end
 
   def help_button
-    '<i  class="glyphicon glyphicon-pushpin"></i>'
+    '<i class="glyphicon glyphicon-pushpin"></i>'
   end
 
   def messages_button
-    '<i  class="glyphicon glyphicon-envelope"></i>'
+    '<i class="glyphicon glyphicon-envelope"></i>'
   end
 
   def question_button
-    '<i"> ?? </i>'
+    '<i class="glyphicon glyphicon-info-sign"></i>'
   end
 
   def send_button

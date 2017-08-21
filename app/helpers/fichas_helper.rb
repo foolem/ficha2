@@ -33,6 +33,18 @@ module FichasHelper
     result
   end
 
+  def messages_length
+    @ficha.messages.length-1
+  end
+
+  def badges_class
+    result = "badges"
+    if messages_length > 9
+      result << "Two"
+    end
+    result
+  end
+
   def getMatter(ficha)
     "#{ficha.group.matter.code}  - #{ficha.group.matter.name}"
   end
