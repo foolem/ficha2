@@ -50,21 +50,21 @@
 
         <% if hasEquivalent(@ficha) and !@ficha.ready? %>
 
-          <div class="addAnotherFicha">
+          <div class="addAnotherCopy">
               <button action='' type="button" class="btn btn-default btn-sm"
               data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
           </div>
 
         <% end %>
 
-        <div class="addAnother">
+        <div class="addAnotherFicha">
           <button action='' type="button" class="btn btn-default btn-sm"
             data-toggle="modal" data-target="#modal-2" title='Instruções'
             data-placement:='right'>  <%= question_button.html_safe %> </button>
         </div>
 
         <% if user_not_appriser? and user_not_admin? %>
-          <div class="addAnother" style="float: right;" id="select_status">
+          <div class="addAnother"  id="select_status">
               <span class="btn btn-default btn-sm active" title='Copiar' data-placement:='right'><%= status_representation(@ficha).html_safe %></button>
           </div>
         <% end %>
