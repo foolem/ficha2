@@ -36,8 +36,6 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
       match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
-
-      match 'create_message/:id' => 'fichas#create_message', via: [:get, :post], as: :create_message
     end
   end
 

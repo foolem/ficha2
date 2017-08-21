@@ -3,6 +3,4 @@
   <center><h1><span class="glyphicon glyphicon-list-alt blue"></span> <%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1></center>
 </div>
 
-<% new_record %>
-
 <%= render :partial => 'form_new' %>

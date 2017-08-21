@@ -58,7 +58,7 @@ module FichasHelper
   end
 
   def new_record
-    @new = true
+    @new_record = true
   end
 
   def can_not_edit(ficha)

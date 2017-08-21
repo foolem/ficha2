@@ -67,35 +67,26 @@ class FichasController < ApplicationController
   def edit
     @message = Message.new
     @ficha.messages.build
-  end
-
-  def create_message
-    puts "opa: #{params[:program]}"
-    respond_to do |format|
-      format.js
-    end
+    coppy_bibliography
   end
 
   #rever
-  def editx
-    if(@ficha.user != current_user and !current_user.admin? and !current_user.appraiser? and !current_user.secretary?)
-      flash[:alert] = "Você não tem permissão para acessar esta página."
-      redirect_to(request.referrer || fichas_path)
-    end
+  def coppy_bibliography
 
     if(@ficha.bibliography.blank?)
-      @ficha.bibliography = @ficha.matter.bibliography
+      @ficha.bibliography = @ficha.group.matter.bibliography
     end
 
     if(@ficha.basic_bibliography.blank?)
-      @ficha.basic_bibliography = @ficha.matter.basic_bibliography
+      @ficha.basic_bibliography = @ficha.group.matter.basic_bibliography
     end
 
   end
 
   def create
     @ficha = Ficha.new(new_params)
-
+    coppy_bibliography
+    
     respond_to do |format|
       if @ficha.save
         format.html { redirect_to @ficha, notice: 'Ficha foi criada com sucesso.' }
