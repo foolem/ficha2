@@ -96,6 +96,10 @@ module IconsHelper
     'cog'
   end
 
+  def schedule_icon
+    'time'
+  end
+
   def menu_icon(key)
     "pull-right hidden-sm showopacity menu_font_size glyphicon glyphicon-#{key}"
   end

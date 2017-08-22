@@ -21,6 +21,10 @@
         one: Turma
         other: Turmas
 
+      schedule:
+        one: Horário
+        other: Horários
+
     attributes:
       matter:
         name: "Nome"
@@ -57,6 +61,11 @@
         name: "Nome"
         matter: "Disciplina"
         semester: "Semestre"
+
+      schedule:
+        begin: "Início"
+        duration: "Duração"
+        day: "Dia"
 
       user:
         name: "Nome"

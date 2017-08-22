@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :schedules
+  
   resources :messages, only: [:destroy, :new] do
     collection do
         match 'create/:id' => 'messages#create', via: [:get, :post], as: :create

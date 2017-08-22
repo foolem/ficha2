@@ -1,4 +1,8 @@
 
 var index = parseInt($('#badges').text(), 10);
+if (index == 0) {
+  $('#badges').removeClass("badgesNone");
+}
+
 $('#badges').text(index + 1);
 $("#messages_partial").html("<%= escape_javascript(render("/messages/messages_out")) %>");

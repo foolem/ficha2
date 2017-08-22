@@ -39,11 +39,9 @@
               data-toggle="modal" data-target="#modal_out" title='Mensagens'
               data-placement:='right'><%= messages_button.html_safe %>
 
-              <% if messages_length != 0  %>
-                 <span id="badges" class="<%= badges_class %>">
-                   <%= messages_length %>
-                 </span>
-              <% end %>
+               <span id="badges" class="<%= badges_class %>">
+                 <%= messages_length %>
+               </span>
 
             </button>
         </div>
@@ -68,7 +66,7 @@
           <div class="addAnother"  id="select_status">
               <span class="btn btn-default btn-sm active" data-placement:='right'><%= status_representation(@ficha).html_safe %></button>
           </div>
-          
+
         <% end %>
 
       <% end %>

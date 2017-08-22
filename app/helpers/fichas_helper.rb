@@ -41,6 +41,8 @@ module FichasHelper
     result = "badges"
     if messages_length > 9
       result << "Two"
+    elsif messages_length == 0
+      result << " badgesNone"
     end
     result
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728164405) do
+ActiveRecord::Schema.define(version: 20170822135212) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
   end
 
+  create_table "groups_schedules", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "group_id"
+    t.integer "schedule_id"
+    t.index ["group_id"], name: "index_groups_schedules_on_group_id", using: :btree
+    t.index ["schedule_id"], name: "index_groups_schedules_on_schedule_id", using: :btree
+  end
+
   create_table "matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.boolean  "actived",                              default: true, null: false
@@ -83,6 +90,12 @@ ActiveRecord::Schema.define(version: 20170728164405) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
+  create_table "schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "begin"
+    t.datetime "duration"
+    t.integer  "day"
+  end
+
   create_table "semesters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "year"
     t.integer  "semester"
@@ -114,6 +127,8 @@ ActiveRecord::Schema.define(version: 20170728164405) do
   add_foreign_key "fichas", "users"
   add_foreign_key "groups", "matters"
   add_foreign_key "groups", "semesters"
+  add_foreign_key "groups_schedules", "groups"
+  add_foreign_key "groups_schedules", "schedules"
   add_foreign_key "messages", "fichas"
   add_foreign_key "messages", "users"
 end
