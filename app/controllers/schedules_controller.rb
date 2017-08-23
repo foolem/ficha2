@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:create]
 
   # GET /schedules
   # GET /schedules.json
@@ -25,12 +26,15 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
+    @schedule.groups << @group
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @schedule }
+        format.js
+        format.html
+        format.json { render :show, status: :created, location: @group }
       else
+        format.js
         format.html { render :new }
         format.json { render json: @schedule.errors, status: :unprocessable_entity }
       end
@@ -67,8 +71,11 @@ class SchedulesController < ApplicationController
       @schedule = Schedule.find(params[:id])
     end
 
+    def set_group
+      @group = Group.find(params[:id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:begin, :duration, :group_id)
+      params.require(:schedule).permit(:begin, :duration, :day, :group_id)
     end
 end

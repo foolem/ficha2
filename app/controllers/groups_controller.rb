@@ -51,6 +51,11 @@ end
 
   # GET /groups/1/edit
   def edit
+    @schedule = Schedule.new
+  end
+
+  def schedule
+    @schedule = Schedule.new
   end
 
   # POST /groups

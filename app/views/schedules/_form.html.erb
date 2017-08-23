@@ -1,32 +1,50 @@
 <%- model_class = Schedule -%>
-<% @schedule = Schedule.new %>
-<%= form_for @schedule do |f| %>
+<%= form_for @schedule, :url => create_schedules_path(@group), :method => new_schedule_path, :html => { :class => "form-horizontal schedule" }, :remote => true do |f| %>
 
   <% if @schedule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
-
-      <ul>
-      <% @schedule.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"> <%= pluralize(@schedule.errors.count, "erro(s)") %> ocorrido(s):</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @schedule.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :begin %>
-    <%= f.time_select :begin %>
+  <div class="form-group">
+    <%= f.label :day, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-9" id="div_name">
+      <%= f.select :day, options_for_select(day_options, "monday"), {}, {:class => "form-control", :style => "width: 215px"}  %>
+      <%=f.error_span(:day) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :duration %>
-    <%= f.time_select :duration %>
+  <div class="form-group">
+    <%= f.label :begin, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-9" id="div_name">
+      <%= f.time_select :begin, { minute_step: 5 }, { class: 'form-control', style: "width: 100px; display: inline-block;" } %>
+      <%=f.error_span(:begin) %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :duration, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-9" id="div_name">
+      <%= f.time_select :duration, { minute_step: 5 }, { class: 'form-control', style: "width: 100px; display: inline-block;"} %>
+      <%=f.error_span(:duration) %>
+    </div>
   </div>
+
+  <div class="modal-footer">
+    <%= f.submit "Adicionar Horário", :class => 'btn btn-primary' %>
+    <a href="" class="btn btn-default" data-dismiss="modal">Close</a>
+  </div>
+
 <% end %>
 
 <%- model_class = Group -%>

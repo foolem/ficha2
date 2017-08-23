@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :schedules
-  
+  resources :schedules, only: [:new, :show] do
+    collection do
+      match 'create/:id' => 'schedules#create', via: [:get, :post], as: :create
+    end
+  end
+
   resources :messages, only: [:destroy, :new] do
     collection do
         match 'create/:id' => 'messages#create', via: [:get, :post], as: :create
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :groups do
     collection do
+      match 'schedule' => 'groups#schedule', via: [:get, :post], as: :schedule
       match 'search' => 'groups#search', via: [:get, :post], as: :search
     end
   end

@@ -78,7 +78,7 @@
       <div class="form-group">
         <%= f.label :status, :class => 'control-label col-lg-3' %>
         <div class="col-lg-8" id='select_status'>
-
+          
           <%= f.select :status, options_status, {}, { :class => 'form-control', :style => 'width:135px;float:left;margin-right:5px;'} %>
 
           <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha).html_safe %> </div>

@@ -1,18 +1,19 @@
+<% @schedule = Schedule.new %>
 <h3 style="text-align: center"><span class="<%=index_icon(schedule_icon)%>"></span> <%=t('schedules')%></h3>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th width="110px"><%= t('day') %></th>
-      <th width="80px"><%= t('duration') %></th>
-      <th width="80px"><%= t('begin') %></th>
-      <th width="80px"><%= t('end') %></th>
+      <th class="center" width="110px"><%= t('day') %></th>
+      <th class="center" width="80px"><%= t('duration') %></th>
+      <th class="center" width="80px"><%= t('begin') %></th>
+      <th class="center" width="80px"><%= t('end') %></th>
 
 
-      <th  width="30px">
+      <th class="center" width="80px">
 
-          <div class="addAnotherCopy">
-              <button action='' type="button" class="btn btn-default btn-sm"
+          <div>
+              <button href='/groups/schedule' type="button" class="btn btn-default btn-sm"
               data-toggle="modal" data-target="#modal" title='Adicionar' data-placement:='right'>
               <%= new_button.html_safe %></button>
           </div>
@@ -23,13 +24,13 @@
   </thead>
   <tbody>
     <% @group.schedules.each do |schedule| %>
-      <tr>
+      <tr class="center">
         <div class="form_table">
-          <td><%= schedule.day %></td>
-          <td><%= schedule.duration.strftime("%l:%M")%></td>
-          <td><%= schedule.begin.strftime("%H:%M") %></td>
-          <td><%= schedule.begin.strftime("%H:%M") %></td>
-          <td>
+          <td ><%= t(schedule.day) %></td>
+          <td ><%= schedule.duration.strftime("%l:%M")%></td>
+          <td ><%= schedule.begin.strftime("%H:%M") %></td>
+          <td ><%= end_generate(schedule) %></td>
+          <td >
             <%= link_to remove_button.html_safe,
                         "#",
                         :method => :delete,
