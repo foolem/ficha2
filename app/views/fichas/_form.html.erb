@@ -78,14 +78,53 @@
       <div class="form-group">
         <%= f.label :status, :class => 'control-label col-lg-3' %>
         <div class="col-lg-8" id='select_status'>
-          
-          <%= f.select :status, options_status, {}, { :class => 'form-control', :style => 'width:135px;float:left;margin-right:5px;'} %>
-
-          <div id="ficha_status_icon" style="padding-top:8px;"> <%= status_representation(@ficha).html_safe %> </div>
-
+          <button id="buttonSent" type="button" class="<%= active_status("sent") %>"><%= getIcon("glyphicon glyphicon-refresh", "Encaminhado", "blue").html_safe %></button>
+          <button id="buttonReady" type="button" class="<%= active_status("ready") %>"><%= getIcon("glyphicon glyphicon-ok", "Aprovado", "green").html_safe %></button>
+          <button id="buttonReproved" type="button" class="<%= active_status("reproved") %>"><%= getIcon("glyphicon glyphicon-ban-circle", "Reprovado", "red").html_safe %></button>
         </div>
         <%=f.error_span(:status) %>
       </div>
+
+      <script>
+      $( document ).ready(function() {
+        $("#ficha_status").hide();
+      });
+
+      var sent = $("#buttonSent");
+      var ready = $("#buttonReady");
+      var reproved = $("#buttonReproved");
+
+        sent.click(function() {
+          $("#ficha_status option[value=sent]").prop("selected", "selected");
+          sent.addClass("active");
+          if (ready.hasClass("active")) {
+            ready.removeClass("active");
+          }
+          else if (reproved.hasClass("active")) {
+            reproved.removeClass("active");
+          }
+        });
+        ready.click(function() {
+          $("#ficha_status option[value=ready]").prop("selected", "selected");
+          ready.addClass("active");
+          if (sent.hasClass("active")) {
+            sent.removeClass("active");
+          }
+          else if (reproved.hasClass("active")) {
+            reproved.removeClass("active");
+          }
+        });
+        reproved.click(function() {
+          $("#ficha_status option[value=reproved]").prop("selected", "selected");
+          reproved.addClass("active");
+          if (sent.hasClass("active")) {
+            sent.removeClass("active");
+          }
+          else if (ready.hasClass("active")) {
+            ready.removeClass("active");
+          }
+        });
+      </script>
 
     <% end %>
 
@@ -180,15 +219,18 @@
         <%=f.error_span(:bibliography) %>
       </div>
     </div>
-
     <% if !@show %>
       <div class="form-group">
-        <div class="col-lg-offset-7 col-lg-10">
-
-          <%= f.submit nil, :class => 'btn btn-primary' %>
-
-          <%= link_to t("cancel"), fichas_path, :class => 'btn btn-default' %>
-
+        <div class="col-lg-offset-2 col-lg-10">
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+          groups_path, :class => 'btn btn-default right' %>
+          <%= f.submit nil, :class => 'btn btn-primary right' %>
+          <!-- deixa isso aqui em baixo que fica melhor !-->
+          <select class="form-control" style="width:135px;float:left;margin-right:5px;" name="ficha[status]" id="ficha_status">
+            <option selected="selected" value="sent">Encaminhado</option>
+            <option value="reproved">Reprovado</option>
+            <option value="ready">Aprovado</option>
+          </select>
         </div>
       </div>
     <% end %>

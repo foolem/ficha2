@@ -423,6 +423,10 @@ li > a:hover{
   width: 93%;
   max-width: 93%;
 }
+.right {
+  float: right;
+  margin-right: 10px;
+}
 
 
 ;

@@ -19,8 +19,8 @@
     <header class="panel-heading header"><%= t('details') %>
       <% if (@show) %>
         <% if user_secretary? or user_admin? %>
-        <div class="addAnother">
-          <%= link_to new_button.html_safe, new_matter_path, :class => 'btn-default btn-sm',
+        <div class="addAnotherFicha">
+          <%= link_to new_button.html_safe, new_matter_path, :class => 'btn btn-default btn-sm',
           title: 'Criar outra disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
         </div>
         <% end %>
@@ -258,16 +258,16 @@
       </div>
     </div>
 
+    <% if !@show %>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        matters_path, :class => 'btn btn-default right' %>
+        <%= f.submit nil, :class => 'btn btn-primary right' %>
+      </div>
+    </div>
+    <% end %>
   </div>
 
-  <% if !@show %>
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-      matters_path, :class => 'btn btn-default' %>
-    </div>
-  </div>
-  <% end %>
 
 <% end %>
