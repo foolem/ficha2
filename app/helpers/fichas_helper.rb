@@ -33,6 +33,19 @@ module FichasHelper
     result
   end
 
+  def active_status(key)
+
+    status = { "sent" => "btn btn-default btn-sm",
+      "ready" => "btn btn-default btn-sm",
+      "reproved" => "btn btn-default btn-sm" }
+
+      if key == @ficha.status
+        status[key] << " active"
+      end
+
+      status[key]
+  end
+
   def messages_length
     @ficha.messages.length-1
   end

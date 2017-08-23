@@ -17,7 +17,9 @@
 
 
   <div class="panel panel-default">
-    <header class="panel-heading header headerOutra"><%= t('details') %></header>
+    <header class="panel-heading header headerOutra"><%= t('details') %>
+
+    </header>
     </br>
 
     <div class="form-group">
@@ -46,17 +48,17 @@
       </div>
       <%=f.error_span(:name) %>
     </div>
-  </div>
-
-
-  <% if !@show %>
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                groups_path, :class => 'btn btn-default' %>
+    <% if !@show %>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        groups_path, :class => 'btn btn-default right' %>
+        <%= f.submit nil, :class => 'btn btn-primary right' %>
+      </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
+
+
 
 <% end %>
