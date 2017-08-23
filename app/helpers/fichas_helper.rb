@@ -54,6 +54,8 @@ module FichasHelper
     result = "badges"
     if messages_length > 9
       result << "Two"
+    elsif messages_length == 0
+      result << " badgesNone"
     end
     result
   end
@@ -71,7 +73,7 @@ module FichasHelper
   end
 
   def new_record
-    @new = true
+    @new_record = true
   end
 
   def can_not_edit(ficha)
