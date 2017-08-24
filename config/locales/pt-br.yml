@@ -21,6 +21,14 @@
   duration: "Duração"
   day: "Dia"
 
+  end: "Fim"
+  sunday: "Domingo"
+  monday: "Segunda"
+  thursday: "Terça"
+  wednesday: "Quarta"
+  tuesday: "Quinta"
+  friday: "Sexta"
+  saturday: "Sábado"
 
 
   details: "Detalhes"

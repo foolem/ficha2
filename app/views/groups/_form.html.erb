@@ -49,6 +49,11 @@
       </div>
       <%=f.error_span(:name) %>
     </div>
+    <div class="form-group" style="margin-left: 40px; margin-right: 40px">
+      <div id= "schedules_partial" class="col-lg-12">
+        <%= render "/schedules/schedules"  %>
+      </div>
+    </div>
     <% if !@show %>
     <div class="form-group">
       <div class="col-lg-offset-2 col-lg-10">
@@ -60,11 +65,6 @@
     <% end %>
   </div>
 
-    <div class="form-group" style="margin-left: 40px; margin-right: 40px">
-      <div id= "schedules_partial" class="col-lg-12">
-        <%= render "/schedules/schedules"  %>
-      </div>
-    </div>
 
   </div>
 
