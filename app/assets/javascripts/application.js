@@ -18,6 +18,48 @@
 
 document.addEventListener("turbolinks:load", function() {
 
+$( document ).ready(function() {
+  $("#ficha_status").hide();
+});
+
+var sent = $("#buttonSent");
+var ready = $("#buttonReady");
+var reproved = $("#buttonReproved");
+
+  sent.click(function() {
+    $("#ficha_status option[value=sent]").prop("selected", "selected");
+    sent.addClass("active");
+    if (ready.hasClass("active")) {
+      ready.removeClass("active");
+    }
+    else if (reproved.hasClass("active")) {
+      reproved.removeClass("active");
+    }
+  });
+  ready.click(function() {
+    $("#ficha_status option[value=ready]").prop("selected", "selected");
+    ready.addClass("active");
+    if (sent.hasClass("active")) {
+      sent.removeClass("active");
+    }
+    else if (reproved.hasClass("active")) {
+      reproved.removeClass("active");
+    }
+  });
+  reproved.click(function() {
+    $("#ficha_status option[value=reproved]").prop("selected", "selected");
+    reproved.addClass("active");
+    if (sent.hasClass("active")) {
+      sent.removeClass("active");
+    }
+    else if (ready.hasClass("active")) {
+      ready.removeClass("active");
+    }
+  });
+  });
+
+document.addEventListener("turbolinks:load", function() {
+
     $(document).on('click', '.pagination a',function(){
       $.getScript(this.href);
       return false;

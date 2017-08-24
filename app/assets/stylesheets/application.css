@@ -43,6 +43,9 @@ body {
   bottom: 0;
   left: 0;
   text-align: center;
+  background-color: rgb(214, 214, 214);
+  display: contents;
+  height: 100px;
 }
 
 div.dropdown-menu li a, button.dropdown-toggle {

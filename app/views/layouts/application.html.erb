@@ -127,18 +127,7 @@
           <%= yield %>
         </div>
 
-        <div class="col-lg-3" style="margin-top: 20px">
-          <div class="well sidebar-nav" style="background-color:rgb(235, 233, 233)">
-            <h3>Relacionados</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Links</li>
-              <li><%= link_to "NC-UFPR", "http://www.nc.ufpr.br/", target: :_blank  %></li>
-              <li><%= link_to "PRAE", "http://www.prae.ufpr.br/prae/", target: :_blank  %></li>
-              <li><%= link_to "D. MAT", "http://www.mat.ufpr.br/", target: :_blank  %></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+
 
 
     </div> <!-- /container -->
@@ -146,6 +135,13 @@
   </body>
 
   <footer class="footer">
+    <div class="relactive">
+    <h3>Relacionados</h3>
+      Links
+      <li><%= link_to "NC-UFPR", "http://www.nc.ufpr.br/", target: :_blank  %></li>
+      <li><%= link_to "PRAE", "http://www.prae.ufpr.br/prae/", target: :_blank  %></li>
+      <li><%= link_to "D. MAT", "http://www.mat.ufpr.br/", target: :_blank  %></li>
+    </div>
     &copy; UFPR - Universidade Federal do Paraná 2017
   </footer>
 
