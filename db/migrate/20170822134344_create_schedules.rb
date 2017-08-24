@@ -4,7 +4,7 @@ class CreateSchedules < ActiveRecord::Migration[5.0]
       t.datetime :begin
       t.datetime :duration
       t.integer :day
-      
+
     end
   end
 end
