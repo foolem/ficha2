@@ -9,4 +9,9 @@ module GroupsHelper
     end
     groups
   end
+
+  def new_group
+      @new = true
+  end
+
 end

@@ -26,17 +26,36 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
-    @schedule.groups << @group
 
-    respond_to do |format|
-      if @schedule.save
-        format.js
-        format.html
-        format.json { render :show, status: :created, location: @group }
+    result = Schedule.where(day: @schedule.day, begin: @schedule.begin, duration: @schedule.duration).first
+
+    if !result.blank?
+
+      if @group.schedules.include? result
+        respond_to do |format|
+            format.js { flash[:alert] = "Horário já existente."}
+        end
       else
-        format.js
-        format.html { render :new }
-        format.json { render json: @schedule.errors, status: :unprocessable_entity }
+        @schedule = result
+        @schedule.groups << @group
+        @schedule.update
+        flash[:notice] = "Horário adicionado com sucesso."
+        respond_to do |format|
+            format.js
+        end
+      end
+    else
+      @schedule.groups << @group
+      respond_to do |format|
+        if @schedule.save
+          flash[:notice] = "Horário adicionado com sucesso."
+          format.js
+          format.html
+        else
+          flash[:notice] = "Erro ao adicionar horário."
+          format.js
+          format.html { render :new }
+        end
       end
     end
   end

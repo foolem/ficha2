@@ -65,7 +65,7 @@ end
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Turma foi criada com sucesso.' }
+        format.html { redirect_to edit_group_path(@group), notice: 'Turma foi criada com sucesso.' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
