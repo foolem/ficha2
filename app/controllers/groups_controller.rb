@@ -28,6 +28,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @show = true
+    show = true
   end
 
   def search
@@ -62,6 +64,7 @@ end
   # POST /groups.json
   def create
     @group = Group.new(group_params)
+    @group.name = name_sugestion
 
     respond_to do |format|
       if @group.save
@@ -117,6 +120,16 @@ end
     result
   end
 
+  def name_sugestion
+    if @group.name.blank?
+      names = ("A".. "Z").to_a
+      index = Group.where(semester: @group.semester, matter: @group.matter).length
+      names[index]
+    else
+      @group.name
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -128,7 +141,6 @@ end
     def group_params
       params.require(:group).permit(:name, :matter_id, :semester_id)
     end
-
 
     def bar_define
       session[:page] = "group"

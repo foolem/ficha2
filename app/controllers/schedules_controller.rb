@@ -22,7 +22,14 @@ class SchedulesController < ApplicationController
   def edit
   end
 
-
+  def remove
+    set_group_id
+    set_schedule
+    @schedule.groups.delete(@group)
+    respond_to do |format|
+        format.js { flash[:alert] = "Horário removido com sucesso."}
+    end
+  end
   # POST /schedules
   # POST /schedules.json
   def create
@@ -93,6 +100,10 @@ class SchedulesController < ApplicationController
 
     def set_group
       @group = Group.find(params[:id])
+    end
+
+    def set_group_id
+      @group = Group.find(params[:id_group])
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
