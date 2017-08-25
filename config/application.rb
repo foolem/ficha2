@@ -17,6 +17,7 @@ module Ficha2
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = "pt-BR"
 
+    config.active_record.time_zone_aware_types = [:datetime, :time]
 
 
     end

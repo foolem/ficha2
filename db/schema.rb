@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822135212) do
+ActiveRecord::Schema.define(version: 20170825135058) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -42,9 +42,11 @@ ActiveRecord::Schema.define(version: 20170822135212) do
     t.string   "name"
     t.integer  "matter_id"
     t.integer  "semester_id"
+    t.integer  "option_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["matter_id"], name: "index_groups_on_matter_id", using: :btree
+    t.index ["option_id"], name: "index_groups_on_option_id", using: :btree
     t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
   end
 
@@ -90,10 +92,22 @@ ActiveRecord::Schema.define(version: 20170822135212) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
+  create_table "options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "options_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.integer "option_id"
+    t.index ["option_id"], name: "index_options_users_on_option_id", using: :btree
+    t.index ["user_id"], name: "index_options_users_on_user_id", using: :btree
+  end
+
   create_table "schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "begin"
-    t.datetime "duration"
-    t.integer  "day"
+    t.time    "begin"
+    t.time    "duration"
+    t.integer "day"
   end
 
   create_table "semesters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -126,9 +140,12 @@ ActiveRecord::Schema.define(version: 20170822135212) do
   add_foreign_key "fichas", "groups"
   add_foreign_key "fichas", "users"
   add_foreign_key "groups", "matters"
+  add_foreign_key "groups", "options"
   add_foreign_key "groups", "semesters"
   add_foreign_key "groups_schedules", "groups"
   add_foreign_key "groups_schedules", "schedules"
   add_foreign_key "messages", "fichas"
   add_foreign_key "messages", "users"
+  add_foreign_key "options_users", "options"
+  add_foreign_key "options_users", "users"
 end
