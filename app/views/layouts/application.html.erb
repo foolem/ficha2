@@ -109,40 +109,29 @@
           </li>
         <% end %>
 
-
       </ul>
     </div>
   </div>
 </nav>
 
     <div class="container">
-
       <div class="row">
-
-        <div class="col-lg-9">
+        <div class="col-lg-12">
           <div style="margin-top: 10px">
             <%= bootstrap_flash %>
           </div>
 
           <%= yield %>
         </div>
-
-
-
-
     </div> <!-- /container -->
 
+<footer class="footer">
+  <div class="pageLinks"><a href="" class="textNone">Fichas</a> | <a href="" class="textNone">Turmas</a><br> <a href="" class="textNone">Disciplinas</a> | <a href="" class="textNone">Contato</a></div>
+  <i class="hrVertical"></i>
+  <div class="relacted"><a href="" class="textNone">PRAE</a> | <a href="" class="textNone">DPMAT</a><br><a href="" class="textNone">NC-UFPR</a> | <a href="" class="textNone">UFPR</a><br></div>
+  <h6 class="fixed-bottom">Universidade Federal do Paraná 2017</h6>
+</footer>
   </body>
 
-  <footer class="footer">
-    <div class="relactive">
-    <h3>Relacionados</h3>
-      Links
-      <li><%= link_to "NC-UFPR", "http://www.nc.ufpr.br/", target: :_blank  %></li>
-      <li><%= link_to "PRAE", "http://www.prae.ufpr.br/prae/", target: :_blank  %></li>
-      <li><%= link_to "D. MAT", "http://www.mat.ufpr.br/", target: :_blank  %></li>
-    </div>
-    &copy; UFPR - Universidade Federal do Paraná 2017
-  </footer>
 
 </html>
