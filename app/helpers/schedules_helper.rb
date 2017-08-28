@@ -5,6 +5,20 @@ module SchedulesHelper
       min = (schedule.duration.min.to_i + schedule.begin.min.to_i)
     end
 
+    if min > 60
+      min -= 60
+      hour += 1
+    end
+
+    date_show(hour, min)
+  end
+
+  def schedule_date_show(schedule)
+    date = schedule.begin
+    date_show(date.hour, date.min)
+  end
+
+  def date_show(hour, min)
     min_str = min == 0 ? "00" : min.to_s
     hour_str = hour == 0 ? "00" : hour.to_s
 
@@ -24,4 +38,9 @@ module SchedulesHelper
       "Sexta" => "friday",
       "Sabado" => "saturday" }
   end
+
+  def representation(schedule)
+    "#{day_options.key(schedule.day)}, #{schedule_date_show(schedule)} - #{end_generate(schedule)}"
+  end
+
 end

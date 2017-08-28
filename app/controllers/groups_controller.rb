@@ -33,7 +33,6 @@ class GroupsController < ApplicationController
   end
 
   def search
-    puts "oi"
     index
     render :index
   end
@@ -57,7 +56,7 @@ end
   end
 
   def schedule
-    @schedule = Schedule.new
+    @schedule = Schedule.new(begin: Time.new(2012,6,30,23,59,60,0).to_time)
   end
 
   # POST /groups

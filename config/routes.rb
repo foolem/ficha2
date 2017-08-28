@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :options
+  resources :options do
+    collection do
+      match 'search' => 'options#search', via: [:get, :post], as: :search
+    end
+  end
+
   resources :schedules, only: [:new, :show] do
     collection do
       match 'create/:id' => 'schedules#create', via: [:get, :post], as: :create

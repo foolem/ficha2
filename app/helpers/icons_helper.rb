@@ -88,6 +88,10 @@ module IconsHelper
     'user'
   end
 
+  def option_icon
+    'user'
+  end
+
   def help_icon
     'envelope'
   end

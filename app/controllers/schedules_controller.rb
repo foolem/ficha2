@@ -15,7 +15,7 @@ class SchedulesController < ApplicationController
 
   # GET /schedules/new
   def new
-    @schedule = Schedule.new
+    @schedule = Schedule.new()
   end
 
   # GET /schedules/1/edit
@@ -34,6 +34,8 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
+    @schedule.begin = @schedule.begin.to_time
+    @schedule.duration = @schedule.duration.to_time
 
     result = Schedule.where(day: @schedule.day, begin: @schedule.begin, duration: @schedule.duration).first
 

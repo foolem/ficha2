@@ -17,6 +17,12 @@ class OptionsController < ApplicationController
     @option = Option.new
   end
 
+
+  def search
+    index
+    render :index
+  end
+
   # GET /options/1/edit
   def edit
   end

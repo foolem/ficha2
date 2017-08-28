@@ -1,0 +1,39 @@
+<table class="table table-striped">
+
+  <thead>
+    <tr class="header">
+      <th width="110px"><center><%= t('matter')  %></center></th>
+      <th width="150px"><center><%= t('classes')  %></center></th>
+      <th width="200px"><%= t('schedules') %></th>
+      <th width="110px"><center><%= t('teachers')  %></center></th>
+      <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %> </center></th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    <% @options.each do |option| %>
+      <tr data-href="<%= option_path(option) %>">
+        <td> <%= option.matters[0].code_with_name %> </td>
+        <td> <%= option_classes(option).html_safe %> </td>
+        <td> <%= option_schedules(option).html_safe %> </td>
+        <td> - </td>
+        <td id="actions"> <center>
+
+          <%= link_to edit_button.html_safe,
+                edit_group_path(option), :class => 'btn btn-default btn-sm simple_button',
+                title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+
+          <%= link_to remove_button.html_safe,
+                group_path(option),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
+                :class => 'btn btn-sm btn-danger disable',
+                title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+
+          </center>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
