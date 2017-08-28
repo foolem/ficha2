@@ -81,7 +81,7 @@ module IconsHelper
   end
 
   def group_icon
-    'th'
+    'list'
   end
 
   def user_icon

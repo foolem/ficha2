@@ -5,6 +5,10 @@
   <center><h1><span class="<%=index_icon(group_icon)%>"></span> <%=t('groups')%></h1></center>
 </div>
 
+  <div class="newOption2">
+    <%= link_to "Criar Opção", fichas_path, :class => 'btn btn-xl newOption2 white blueBtn' %>
+  </div>
+
   <div class="searchBox noMarginTop">
     <%= search_form_for @q, url: search_options_path, html: { method: :post } do |f| %>
 
