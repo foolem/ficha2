@@ -2,10 +2,10 @@
 
   <thead>
     <tr class="header">
-      <th width="110px"><center><%= t('matter')  %></center></th>
-      <th width="150px"><center><%= t('classes')  %></center></th>
-      <th width="200px"><%= t('schedules') %></th>
-      <th width="110px"><center><%= t('teachers')  %></center></th>
+      <th width="120px"><center><%= t('matter')  %></center></th>
+      <th width="100px"><center><%= t('groups')  %></center></th>
+      <th width="200px" style="text-align: center;"><%= t('schedules') %></th>
+      <th width="110px"><center><%= t('interested')  %></center></th>
       <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %> </center></th>
     </tr>
 
@@ -14,9 +14,9 @@
   <tbody>
     <% @options.each do |option| %>
       <tr data-href="<%= option_path(option) %>">
-        <td> <%= option.matters[0].code_with_name %> </td>
+        <td style="text-align: center;"> <%= option.matters[0].code %> </td>
         <td> <%= option_classes(option).html_safe %> </td>
-        <td> <%= option_schedules(option).html_safe %> </td>
+        <td style="text-align: center;" > <%= option_schedules(option).html_safe %> </td>
         <td> - </td>
         <td id="actions"> <center>
 

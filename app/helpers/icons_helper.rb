@@ -89,7 +89,7 @@ module IconsHelper
   end
 
   def option_icon
-    'user'
+    'check'
   end
 
   def help_icon
