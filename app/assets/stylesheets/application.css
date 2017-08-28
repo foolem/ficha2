@@ -179,7 +179,26 @@ h1 {
   float: right;
   margin-bottom: 10px;
 }
-
+.newOption {
+  margin-top: -2.66em;
+  float: right;
+  display: inline-block;
+}
+.newOption2 {
+  float: left;
+  display: inline-block;
+}
+.less {
+  width: 90%;
+  margin-left: 55px;
+}
+.blueBtn {
+  background-color: #455E8E;
+}
+.blueBtn:hover {
+  background-color: #506ba0;
+  border-color: #506ba0;
+}
 td { color: #000; }
 
 
