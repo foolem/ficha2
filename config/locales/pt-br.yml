@@ -4,6 +4,7 @@
   Login: "Login"
   matters: "Disciplinas"
   matter: "Disciplina"
+  fichas: "Fichas"
 
   teachers: "Professores"
   teacher: "Professor"
@@ -29,7 +30,6 @@
   tuesday: "Quinta"
   friday: "Sexta"
   saturday: "Sábado"
-
 
   details: "Detalhes"
   workload: "Carga Horária"
