@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require_tree
 
+//script para selecionar status da ficha -------------
 document.addEventListener("turbolinks:load", function() {
 
 $( document ).ready(function() {
@@ -57,6 +58,21 @@ var reproved = $("#buttonReproved");
     }
   });
   });
+//----------------------------
+
+//script para mostrar o footer só quando chegar ao fim da página -------------
+$( document ).ready(function() {
+  $('footer').hide();
+});
+$(window).scroll(function() {
+  if($(window).scrollTop() + $(window).height() == $(document).height()) {
+    $('footer').slideDown(500);
+  }
+  else {
+    $('footer').slideUp(500);
+  }
+});
+//-------------------------------------------------
 
 document.addEventListener("turbolinks:load", function() {
 
