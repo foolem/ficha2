@@ -10,6 +10,7 @@ class OptionsController < ApplicationController
   # GET /options/1
   # GET /options/1.json
   def show
+    @schedules = @option.schedules
   end
 
   # GET /options/new

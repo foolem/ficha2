@@ -4,6 +4,9 @@
   <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('options')%></h1></center>
 </div>
 
+<div class="newOption2" style="margin-bottom: 15px">
+  <%= link_to "Gerar Opções", fichas_path, :class => 'btn btn-xl newOption2 white blueBtn' %>
+</div>
 
 <div id="groups_partial" class="marginBottom" >
   <%= render 'options' %>

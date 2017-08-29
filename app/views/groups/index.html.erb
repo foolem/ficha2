@@ -1,25 +1,23 @@
 <%- model_class = Group -%>
 
 <div class="page-header noMarginTop">
-
   <center><h1><span class="<%=index_icon(group_icon)%>"></span> <%=t('groups')%></h1></center>
 </div>
 
-  <div class="newOption2">
-    <%= link_to "Criar Opção", fichas_path, :class => 'btn btn-xl newOption2 white blueBtn' %>
-  </div>
+<div class="searchBox noMarginTop">
+  <%= search_form_for @q, url: search_options_path, html: { method: :post } do |f| %>
 
-  <div class="searchBox noMarginTop">
-    <%= search_form_for @q, url: search_options_path, html: { method: :post } do |f| %>
+    <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},
+          {:class => 'form form-group form-control',
+          :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
 
+    <%= f.text_field :name_or_matter_code_or_matter_name_cont, :autofocus => true,
+          placeholder: "Procurar", :autocomplete => "off", :class => 'form-control',
+          :style => 'width:180px', :id => "group_search_field" %>
 
-      <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
+  <% end %>
 
-
-      <%= f.text_field :name_or_matter_code_or_matter_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'width:180px', :id => "group_search_field" %>
-    <% end %>
-
-  </div>  
+</div>
 
 
 <div id="groups_partial" class="marginBottom" >

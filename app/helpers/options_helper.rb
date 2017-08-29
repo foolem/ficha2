@@ -24,6 +24,17 @@ module OptionsHelper
     result
   end
 
+  def option_users(option)
+    result = ""
+
+    option.users.each do |user|
+      text = "<span> #{user.name} </span> </br>"
+      result << text
+    end
+    result
+  end
+
+
   def options_generate
     Group.all.each do |group|
 
