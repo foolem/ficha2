@@ -117,6 +117,12 @@ ActiveRecord::Schema.define(version: 20170825135058) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "unite_matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                                 null: false
     t.string   "encrypted_password",                    null: false

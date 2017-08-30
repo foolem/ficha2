@@ -1,5 +1,6 @@
 class OptionsController < ApplicationController
   before_action :set_option, only: [:show, :edit, :update, :destroy]
+  before_action :bar_define
 
   # GET /options
   # GET /options.json
@@ -76,5 +77,9 @@ class OptionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def option_params
       params.fetch(:option, {})
+    end
+
+    def bar_define
+      session[:page] = "options"
     end
 end
