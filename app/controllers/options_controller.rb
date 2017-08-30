@@ -18,10 +18,33 @@ class OptionsController < ApplicationController
     @option = Option.new
   end
 
-
   def search
     index
     render :index
+  end
+
+  def generate
+    Group.all.each do |group|
+
+      if !has_option(group)
+        option = Option.new
+
+        same_groups(group).each do |same_group|
+          option.groups << same_group
+        end
+
+        option.save
+
+      end
+    end
+
+    @options = Option.all
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # GET /options/1/edit
@@ -78,4 +101,29 @@ class OptionsController < ApplicationController
     def option_params
       params.fetch(:option, {})
     end
+
+    def has_option(group)
+      Option.all.each do |opt|
+        if opt.groups.include? group
+          return true
+        end
+      end
+      return false
+    end
+
+    def same_groups(group)
+      list = Group.where(matter: group.matter)
+      result = []
+
+      schedules = group.schedules
+
+      list.each do |grp|
+        if schedules == grp.schedules
+          result << grp
+        end
+      end
+
+      result
+    end
+
 end

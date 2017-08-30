@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :options do
     collection do
       match 'search' => 'options#search', via: [:get, :post], as: :search
+      match 'generate' => 'options#generate', via: [:get, :post], as: :generate
     end
   end
 

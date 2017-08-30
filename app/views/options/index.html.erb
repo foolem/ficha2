@@ -5,9 +5,15 @@
 </div>
 
 <div class="newOption2" style="margin-bottom: 15px">
-  <%= link_to "Gerar Opções", fichas_path, :class => 'btn btn-xl newOption2 white blueBtn' %>
+  <%= link_to "Gerar Opções", generate_options_path, :class => 'btn btn-xl newOption2 white blueBtn', :remote => true, :id => "options_generate" %>
 </div>
 
-<div id="groups_partial" class="marginBottom" >
+<div id="spinner" style="display: none" class="center">
+  <%= image_tag("loading.gif", size: "232x160") %>
+  </br>
+  <span style="color: red"> Gerando opções </span>
+</div>
+
+<div id="options_partial" class="marginBottom" >
   <%= render 'options' %>
 </div>
