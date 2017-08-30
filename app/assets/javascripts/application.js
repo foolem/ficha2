@@ -17,6 +17,7 @@
 //= require_tree
 
 //script para selecionar status da ficha -------------
+
 document.addEventListener("turbolinks:load", function() {
 
 $( document ).ready(function() {
@@ -65,16 +66,21 @@ $( document ).ready(function() {
   $('footer').hide();
 });
 $(window).scroll(function() {
-  if($(window).scrollTop() + $(window).height() == $(document).height()) {
-    $('footer').slideDown(500);
+  if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+    $('footer').slideDown(200);
   }
   else {
-    $('footer').slideUp(500);
+    $('footer').slideUp(200);
   }
 });
 //-------------------------------------------------
 
 document.addEventListener("turbolinks:load", function() {
+
+    $(document).on('click', '#options_generate',function(){
+      $("#options_partial").html("");
+      $("#spinner").slideDown(2000);
+    });
 
     $(document).on('click', '.pagination a',function(){
       $.getScript(this.href);

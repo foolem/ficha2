@@ -12,6 +12,54 @@ namespace :utils do
         password
       end
 
+      def make_begin(date)
+        hour = date[0..1].to_i
+        min = date[3..4].to_i
+        Time.new(2000, 1, 1, hour, min, 0, 0)
+      end
+
+      def make_duration(date)
+        start = date[0..4]
+        ends = date[8..12]
+        start_hour = start[0..1].to_i
+        start_min = start[3..4].to_i
+
+        ends_hour = ends[0..1].to_i
+        ends_min = ends[3..4].to_i
+
+        hour =  ends_hour - start_hour
+        min = ends_min - start_min
+
+        if min >= 60
+          min -= 60
+          hour += 1
+        end
+        Time.new(2000, 1, 1, hour, min, 0, 0)
+      end
+
+      def schedule_associate(day, date, group)
+        if !day.blank?
+          day = day.to_i - 1
+
+          start = make_begin(date[0..4])
+          duration = make_duration(date)
+
+          schedule = find_schedule(day, start, duration)
+          schedule.groups << group
+          schedule.save
+          puts "|  #{day}  -  #{date} |"
+
+        end
+      end
+
+      def find_schedule(day, start, duration)
+        schedule = Schedule.where(begin: start, duration: duration, day: day)[0]
+        if schedule.blank?
+          schedule = Schedule.create(begin: start, duration: duration, day: day)
+        end
+        schedule
+      end
+
       path = "lib/assets/inserts.xlsx"
       xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
@@ -59,6 +107,7 @@ namespace :utils do
         linha = xlsx.sheet(2).row(i+1)
 
         puts "|  #{linha[0]}  -  #{linha[1]} -  #{linha[2]} "
+
         code = linha[0].upcase
         team = linha[1].upcase
         name = linha[2]
@@ -68,6 +117,12 @@ namespace :utils do
 
         group = Group.create(matter_id: matter, name: team, semester_id: 1)
         Ficha.create(group_id: group.id, user_id: user)
+
+        schedule_associate(linha[3], linha[4], group)
+        schedule_associate(linha[5], linha[6], group)
+        schedule_associate(linha[7], linha[8], group)
+
+
       end
 
   end

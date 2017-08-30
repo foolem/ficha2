@@ -14,11 +14,13 @@
   <tbody>
     <% @options.each do |option| %>
       <tr data-href="<%= option_path(option) %>">
-        <td style="text-align: center;"> <%= option.matters[0].code %> </td>
-        <td> <%= option_classes(option).html_safe %> </td>
-        <td style="text-align: center;" > <%= option_schedules(option).html_safe %> </td>
-        <td> - </td>
-        <td id="actions"> <center>
+
+        <td class="center"> <%= option.matters[0].code %> </td>
+        <td class="center"> <%= option_classes(option).html_safe %> </td>
+        <td class="center" > <%= option_schedules(option).html_safe %> </td>
+        <td class="center"> <%= option_users(option).html_safe %> </td>
+
+        <td class="center" id="actions">
 
           <%= link_to edit_button.html_safe,
                 edit_group_path(option), :class => 'btn btn-default btn-sm simple_button',
@@ -31,7 +33,6 @@
                 :class => 'btn btn-sm btn-danger disable',
                 title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
 
-          </center>
         </td>
       </tr>
     <% end %>

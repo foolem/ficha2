@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825135058) do
+ActiveRecord::Schema.define(version: 20170829124714) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -143,6 +143,18 @@ ActiveRecord::Schema.define(version: 20170825135058) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "wishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "option_id"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_wishes_on_group_id", using: :btree
+    t.index ["option_id"], name: "index_wishes_on_option_id", using: :btree
+    t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
+  end
+
   add_foreign_key "fichas", "groups"
   add_foreign_key "fichas", "users"
   add_foreign_key "groups", "matters"
@@ -154,4 +166,7 @@ ActiveRecord::Schema.define(version: 20170825135058) do
   add_foreign_key "messages", "users"
   add_foreign_key "options_users", "options"
   add_foreign_key "options_users", "users"
+  add_foreign_key "wishes", "groups"
+  add_foreign_key "wishes", "options"
+  add_foreign_key "wishes", "users"
 end

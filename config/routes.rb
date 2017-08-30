@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
+
   resources :unite_matters
+
+  resources :wishes
+
   resources :options do
     collection do
       match 'search' => 'options#search', via: [:get, :post], as: :search
+      match 'generate' => 'options#generate', via: [:get, :post], as: :generate
     end
   end
 

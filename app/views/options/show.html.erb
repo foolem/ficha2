@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+
+<div class="page-header noMarginTop">
+  <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('option')%></h1></center>
+</div>
+
+<div class="panel panel-default" style="margin-bottom:70px;">
+  </br>
+  <%= render '/schedules/schedules' %>
+</div>
 
 <%= link_to 'Edit', edit_option_path(@option) %> |
 <%= link_to 'Back', options_path %>
