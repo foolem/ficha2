@@ -18,7 +18,8 @@
  /*
  cores: https://pt.wix.com/blog/2012/12/usando-as-cores-certas-para-o-seu-site/*/
 body {
-  margin: 0 auto 0 auto;
+  margin: 0;
+  min-height: 100%;
   background: rgb(238, 238, 238);
 }
 
@@ -38,19 +39,20 @@ body {
 }
 
 .footer {
-  bottom: 0;
-  left: 0;
   text-align: center;
-  background-color: rgb(214, 214, 214);
-  height: 8%;
   width: 100%;
-  position: absolute;
-  z-index: 1;
   background-color: #455E8E;
   color: #fff;
+  clear: both;
+  position: fixed;
+  height: 4.0em;
+  left: 0;
+  margin-top: -0.65em;
+  bottom: 0;
 }
 .fixed-bottom {
   margin-bottom: 0;
+  margin-top: 0.1em;
 }
 .relacted {
   display: inline-block;
@@ -63,7 +65,7 @@ body {
 }
 .hrVertical {
   width: 1px;
-  height: 50%;
+  height: 60%;
   background-color: #fff;
   display: inline-block;
   vertical-align: sub;

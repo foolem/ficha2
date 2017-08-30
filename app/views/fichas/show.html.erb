@@ -7,19 +7,19 @@
 <%= render :partial => 'form' %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              fichas_path, :class => 'btn btn-default'  %>
+              fichas_path, :class => 'btn btn-default', :style => 'margin-bottom:60px'  %>
 
 <% if user_signed_in? %>
 
   <% if @ficha.status != 'Aprovado' %>
 
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                  edit_ficha_path(@ficha), :class => 'btn btn-default' %>
+                  edit_ficha_path(@ficha), :class => 'btn btn-default', :style => 'margin-bottom:60px' %>
   <% end %>
 
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 ficha_path(@ficha),
                 :method => 'delete',
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Tem certeza?')) },
-                :class => 'btn btn-danger' %>
+                :class => 'btn btn-danger', :style => 'margin-bottom:60px' %>
 <% end %>
