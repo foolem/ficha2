@@ -92,6 +92,10 @@ module IconsHelper
     'check'
   end
 
+  def unite_matters_icon
+    'resize-small'
+  end
+
   def help_icon
     'envelope'
   end

@@ -1,0 +1,79 @@
+<table class="table table-striped">
+  <thead>
+    <tr class="header">
+
+      <th width="87%"><%= t('name') %></th>
+
+      <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
+        <th width="130px">
+          <center>
+            <%=t '.actions', :default => t("helpers.actions") %>
+
+            <div style="float:right; margin-right:3px; width:37px;">
+              <%= link_to new_button.html_safe, new_unite_matter_path, :class => 'btn-default btn-sm',
+                title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+            <div>
+          </center>
+        </th>
+      <% end %>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @unite_matters.each do |unite_matter| %>
+      <tr data-href="<%= unite_matter_path(unite_matter) %>">
+        <div class="form_table">
+
+          <td><%= unite_matter.name %></td>
+
+            <td id="actions">
+              <center>
+
+                <%= link_to edit_button.html_safe,
+                            edit_unite_matter_path(unite_matter), :class => 'btn btn-default btn-sm simple_button',
+                            title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+
+                  <%= link_to enable_button.html_safe, unite_matter_path(unite_matter), :method => :delete,
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
+                              :class => 'btn btn-success dropdown-toggle btn-sm disable',
+                              title: 'Habilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+
+              </center>
+            </td id="actions">
+
+
+        </div>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+
+
+<!--<h1>Unite Matters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unite_matters.each do |unite_matter| %>
+      <tr>
+        <td><%= unite_matter.name %></td>
+        <td><%= link_to 'Show', unite_matter %></td>
+        <td><%= link_to 'Edit', edit_unite_matter_path(unite_matter) %></td>
+        <td><%= link_to 'Destroy', unite_matter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unite Matter', new_unite_matter_path %>
+!-->
