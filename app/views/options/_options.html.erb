@@ -15,9 +15,9 @@
     <% @options.each do |option| %>
       <tr data-href="<%= option_path(option) %>">
 
-        <td class="center"> <%= option.matters[0].code %> </td>
+        <td class="center"> <%= option_matters(option).html_safe %> </td>
         <td class="center"> <%= option_classes(option).html_safe %> </td>
-        <td class="center" > <%= option_schedules(option).html_safe %> </td>
+        <td class="center"> <%= option_schedules(option).html_safe %> </td>
         <td class="center"> <%= option_users(option).html_safe %> </td>
 
         <td class="center" id="actions">

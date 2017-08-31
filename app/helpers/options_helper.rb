@@ -1,5 +1,15 @@
 module OptionsHelper
 
+  def option_matters(option)
+    result = ""
+
+    option.matters.distinct.each do |matter|
+      text = "<span> #{matter.code} </span> </br>"
+      result << text
+    end
+    result
+  end
+
   def option_classes(option)
     result = ""
     i = 1

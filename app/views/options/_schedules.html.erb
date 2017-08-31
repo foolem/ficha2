@@ -1,0 +1,25 @@
+<h3 style="text-align: center"><span class="<%=index_icon(schedule_icon)%>"></span> <%=t('schedules')%></h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr class="header">
+      <th class="center" width="110px"><%= t('day') %></th>
+      <th class="center" width="80px"><%= t('begin') %></th>
+      <th class="center" width="80px"><%= t('end') %></th>
+      <th class="center" width="80px"><%= t('duration') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @option.schedules.distinct.each do |schedule| %>
+      <tr class="center">
+        <div class="form_table">
+          <td ><%= t(schedule.day) %></td>
+          <td ><%= schedule.begin.strftime("%H:%M") %></td>
+          <td ><%= end_generate(schedule) %></td>
+          <td ><%= schedule.duration.strftime("%H:%M")%></td>
+        </div>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

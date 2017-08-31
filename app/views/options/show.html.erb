@@ -1,11 +1,29 @@
 
 <div class="page-header noMarginTop">
-  <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('option')%></h1></center>
+  <h1 class="center"><span class="<%=index_icon(option_icon)%>"></span> <%=t('option')%></h1>
 </div>
 
 <div class="panel panel-default" style="margin-bottom:70px;">
   </br>
-  <%= render '/schedules/schedules' %>
+
+  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
+    <div id= "option_groups_partial" class="less">
+      <%= render "groups"  %>
+    </div>
+  </div>
+
+  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
+    <div id= "option_schedules_partial" class="less">
+      <%= render "schedules"  %>
+    </div>
+  </div>
+
+  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
+    <div id= "option_wishes_partial" class="less">
+      <%= render "wishes"  %>
+    </div>
+  </div>
+
 </div>
 
 <%= link_to 'Edit', edit_option_path(@option) %> |

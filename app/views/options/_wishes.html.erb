@@ -1,0 +1,23 @@
+<h3 style="text-align: center"><span class="<%=index_icon(user_icon)%>"></span> <%=t('wishes')%></h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr class="header">
+      <th class="center" width="110px"><%= t('interested') %></th>
+      <th class="center" width="80px"><%= t('priority') %></th>
+      <th class="center" width="80px"><%= t('preference') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @option.wishes.each do |wish| %>
+      <tr class="center">
+        <div class="form_table">
+          <td ><%= wish.user.name %></td>
+          <td ><%= wish.priority %></td>
+          <td ><%= wish.group.name %></td>
+          </div>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
