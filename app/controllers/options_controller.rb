@@ -1,5 +1,6 @@
 class OptionsController < ApplicationController
   before_action :set_option, only: [:show, :edit, :update, :destroy]
+  before_action :bar_define
 
   # GET /options
   # GET /options.json
@@ -102,6 +103,11 @@ class OptionsController < ApplicationController
       params.fetch(:option, {})
     end
 
+
+    def bar_define
+      session[:page] = "options"
+    end
+
     def has_option(group)
       Option.all.each do |opt|
         if opt.groups.include? group
@@ -125,5 +131,6 @@ class OptionsController < ApplicationController
 
       result
     end
+
 
 end
