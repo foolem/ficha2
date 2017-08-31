@@ -1,5 +1,5 @@
 class UniteMattersController < ApplicationController
-  before_action :set_unite_matter, only: [:show, :edit, :update, :destroy]
+  before_action :set_unite_matter, only: [:show, :edit, :update, :destroy, :add]
   before_action :bar_define
 
   # GET /unite_matters
@@ -20,8 +20,18 @@ class UniteMattersController < ApplicationController
 
   # GET /unite_matters/1/edit
   def edit
+    @opt_1 = Matter.new
+    
   end
 
+  def add
+    @unite_matter.matters << Matter.find(10)
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
   # POST /unite_matters
   # POST /unite_matters.json
   def create

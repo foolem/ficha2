@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170829124714) do
   create_table "matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.boolean  "actived",                              default: true, null: false
+    t.integer  "unite_matter_id"
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.string   "code"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170829124714) do
     t.integer  "cp",                                   default: 0
     t.integer  "es",                                   default: 0
     t.integer  "or",                                   default: 0
+    t.index ["unite_matter_id"], name: "index_matters_on_unite_matter_id", using: :btree
   end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -162,6 +164,7 @@ ActiveRecord::Schema.define(version: 20170829124714) do
   add_foreign_key "groups", "semesters"
   add_foreign_key "groups_schedules", "groups"
   add_foreign_key "groups_schedules", "schedules"
+  add_foreign_key "matters", "unite_matters"
   add_foreign_key "messages", "fichas"
   add_foreign_key "messages", "users"
   add_foreign_key "options_users", "options"

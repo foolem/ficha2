@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
 
-  resources :unite_matters
+  resources :unite_matters do
+    collection do
+      match 'add/:id' => 'unite_matters#add', via: [:get, :post], as: :add
+
+    end
+  end
 
   resources :wishes
 
