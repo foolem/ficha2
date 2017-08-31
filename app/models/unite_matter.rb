@@ -1,3 +1,3 @@
 class UniteMatter < ApplicationRecord
-  belongs_to :matter
+  has_many :matters
 end

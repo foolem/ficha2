@@ -113,7 +113,7 @@ namespace :utils do
         name = linha[2]
 
         user = User.where(name:  name)[0].id
-        matter = Matter.where("code = '#{code}'")[0].id
+        matter = Matter.where(code: code)[0].id
 
         group = Group.create(matter_id: matter, name: team, semester_id: 1)
         Ficha.create(group_id: group.id, user_id: user)
