@@ -1,5 +1,6 @@
 class UniteMattersController < ApplicationController
   before_action :set_unite_matter, only: [:show, :edit, :update, :destroy, :add]
+  before_action :set_matter, only: [:add]
   before_action :bar_define
 
   # GET /unite_matters
@@ -21,11 +22,11 @@ class UniteMattersController < ApplicationController
   # GET /unite_matters/1/edit
   def edit
     @opt_1 = Matter.new
-    
+
   end
 
   def add
-    @unite_matter.matters << Matter.find(10)
+    @unite_matter.matters << @matter
 
     respond_to do |format|
       format.js
@@ -78,9 +79,13 @@ class UniteMattersController < ApplicationController
       @unite_matter = UniteMatter.find(params[:id])
     end
 
+    def set_matter
+      @matter = Matter.find(params[:matter_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def unite_matter_params
-      params.require(:unite_matter).permit(:name)
+      params.require(:unite_matter).permit(:name, :matter)
     end
 
     def bar_define

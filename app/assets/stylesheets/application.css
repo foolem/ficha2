@@ -92,10 +92,6 @@ div.dropdown-menu li a, button.dropdown-toggle {
   margin-top: 8px;
 }
 
-.footer2 {
-  text-align: center;
-
-}
 
 a.disable {
 
@@ -173,7 +169,9 @@ textarea.resize {
 h1 {
   color: #444;
 }
-
+.sizer {
+  width: 380px;
+}
 .searchBox {
   color: black;
   float: right;
@@ -486,6 +484,15 @@ li > a:hover{
 .right {
   float: right;
   margin-right: 10px;
+}
+.right2 {
+  float: right;
+  margin-right: 83px;
+  margin-bottom: 30px;
+  font-size: 1em;
+}
+.marginBottom2 {
+  margin-bottom: 100px;
 }
 
 
