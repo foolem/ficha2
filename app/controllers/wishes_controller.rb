@@ -1,5 +1,6 @@
 class WishesController < ApplicationController
   before_action :set_wish, only: [:show, :edit, :update, :destroy]
+  before_action :set_option, only: [:create]
 
   # GET /wishes
   # GET /wishes.json
@@ -13,8 +14,19 @@ class WishesController < ApplicationController
   end
 
   # GET /wishes/new
+  def create
+    set_option
+    @option.wishes << Wish.new(group_id: 1, user_id: 2, priority: 4)
+    @option.save
+  end
+
   def new
     @wish = Wish.new
+    puts
+    puts
+    puts "OLA"
+    puts
+    puts
   end
 
   # GET /wishes/1/edit
@@ -25,14 +37,18 @@ class WishesController < ApplicationController
   # POST /wishes.json
   def create
     @wish = Wish.new(wish_params)
+    @wish.option = @option
+    @wish.user = current_user
+
+    @options = Option.all
 
     respond_to do |format|
       if @wish.save
-        format.html { redirect_to @wish, notice: 'Wish was successfully created.' }
-        format.json { render :show, status: :created, location: @wish }
+        format.js
+        format.html { redirect_to options_path, notice: 'Wish was successfully updated.' }
       else
-        format.html { render :new }
-        format.json { render json: @wish.errors, status: :unprocessable_entity }
+        format.js
+        format.html
       end
     end
   end
@@ -67,8 +83,12 @@ class WishesController < ApplicationController
       @wish = Wish.find(params[:id])
     end
 
+    def set_option
+      @option = Option.find(params[:option_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def wish_params
-      params.require(:wish).permit(:user_id, :group_id, :priority)
+      params.require(:wish).permit(:option_id, :user_id, :group_id, :priority)
     end
 end

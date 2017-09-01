@@ -8,12 +8,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :wishes
+  resources :wishes, only: [:show, :new] do
+    collection do
+      match 'create/:option_id' => 'wishes#create', via: [:get, :post], as: :create
+    end
+  end
 
   resources :options do
     collection do
       match 'search' => 'options#search', via: [:get, :post], as: :search
       match 'generate' => 'options#generate', via: [:get, :post], as: :generate
+      match 'open_wish/:id' => 'options#open_wish', via: [:get, :post], as: :open_wish
     end
   end
 

@@ -108,6 +108,10 @@ module IconsHelper
     'time'
   end
 
+  def wish_icon
+    'time'
+  end
+
   def menu_icon(key)
     "pull-right hidden-sm showopacity menu_font_size glyphicon glyphicon-#{key}"
   end

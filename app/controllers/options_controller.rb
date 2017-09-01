@@ -1,5 +1,5 @@
 class OptionsController < ApplicationController
-  before_action :set_option, only: [:show, :edit, :update, :destroy]
+  before_action :set_option, only: [:show, :edit, :update, :destroy, :open_wish]
   before_action :bar_define
 
   # GET /options
@@ -11,7 +11,6 @@ class OptionsController < ApplicationController
   # GET /options/1
   # GET /options/1.json
   def show
-    
   end
 
   # GET /options/new
@@ -24,9 +23,15 @@ class OptionsController < ApplicationController
     render :index
   end
 
+  def option_wish
+    @wish = Wish.new(group_id: 1)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def generate
     Group.all.each do |group|
-
       if !has_option(group)
         option = Option.new
 
