@@ -12,19 +12,49 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+    <div class="form-group">
+      <%= f.label :matter, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
 
-  <%= f.text_field 'opt_1', :value => @opt_1.id, :class => 'form-control' %>
+        <%= f.collection_select(:matters, matters_order, :id, :code_with_name, {:include_blank => true} , { :class => 'form-control'}) %>
+        <%=f.error_span(:matter) %>
+      </div>
+    </div>
 
-  <%= link_to new_button.html_safe, add_unite_matters_path(@unite_matter),
-    :class => 'btn btn-default btn-sm simple_button',
+
+  <%= link_to "Adicionar disciplina", add_unite_matters_path(@unite_matter, 5),
+    :class => 'btn btn-primary btn-sm right2',
+    :id => 'add_matter',
     title: 'Adicionar Disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
 
-  <div id="unite_matters_partial">
-    <%= render "matters" %>
+
+  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
+    <div id= "unite_matters_partial" class="less">
+      <%= render "matters"  %>
+    </div>
   </div>
+
+  <script type="text/javascript">
+    $(document).on('change','#unite_matter_matters', function() {
+        var value = $('#unite_matter_matters').find(":selected").val();
+        var link = $('#add_matter').attr('href');
+        var times = link.length;
+        var i = times;
+        var old  = ""
+        while (i >= 0) {
+          if (link.charAt(i) != '/') {
+            old = old + link.charAt(i);
+          } else {
+            break;
+          }
+          i--;
+        }
+        link = link.substring(0, (link.length-old.length))
+        link = link + value;
+        $('#add_matter').attr('href', link);
+    });
+
+  </script>
 
 
   <div class="actions">

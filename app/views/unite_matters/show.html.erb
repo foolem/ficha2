@@ -3,6 +3,9 @@
 <p>
   <strong>Name:</strong>
   <%= @unite_matter.name %>
+  <div id="unite_matters_partial">
+    <%= render "matters" %>
+  </div>
 </p>
 
 <%= link_to 'Edit', edit_unite_matter_path(@unite_matter) %> |

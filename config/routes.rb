@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :unite_matters do
     collection do
-      match 'add/:id' => 'unite_matters#add', via: [:get, :post], as: :add
+      match 'add/:id/:matter_id' => 'unite_matters#add', via: [:get, :post], as: :add
 
     end
   end
