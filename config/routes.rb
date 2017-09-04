@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :unite_matters do
     collection do
       match 'add/:id/:matter_id' => 'unite_matters#add', via: [:get, :post], as: :add
-
+      match 'remove/:id/:matter_id' => 'unite_matters#remove', via: [:delete], as: :remove
     end
   end
 
