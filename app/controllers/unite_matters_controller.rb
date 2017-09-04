@@ -1,6 +1,6 @@
 class UniteMattersController < ApplicationController
-  before_action :set_unite_matter, only: [:show, :edit, :update, :destroy, :add]
-  before_action :set_matter, only: [:add]
+  before_action :set_unite_matter, only: [:show, :edit, :update, :destroy, :add, :remove]
+  before_action :set_matter, only: [:add, :remove]
   before_action :bar_define
 
   # GET /unite_matters
@@ -23,16 +23,23 @@ class UniteMattersController < ApplicationController
   def edit
     @opt_1 = Matter.new
 
+
   end
 
   def add
-    @unite_matter.matters << @matter
-
+    @unite_matter.matters.push @matter
     respond_to do |format|
       format.js
     end
-
   end
+
+    def remove
+      @unite_matter.matters.delete(@matter)
+      respond_to do |format|
+          format.js { flash[:alert] = "Disciplina removido com sucesso."}
+      end
+    end
+
   # POST /unite_matters
   # POST /unite_matters.json
   def create
@@ -40,7 +47,7 @@ class UniteMattersController < ApplicationController
 
     respond_to do |format|
       if @unite_matter.save
-        format.html { redirect_to @unite_matter, notice: 'Unite matter was successfully created.' }
+        format.html { redirect_to edit_unite_matter_path(@unite_matter), notice: 'Unite matter was successfully created.' }
         format.json { render :show, status: :created, location: @unite_matter }
       else
         format.html { render :new }

@@ -395,6 +395,14 @@ li > a:hover{
 .width {
   width: 43%;
 }
+.width2 {
+  width: 380px;
+  display: inline-block;
+}
+.juntar {
+  margin-top: 9px;
+  margin-left: -290px;
+}
 .badges {
   margin-top: -13px;
   margin-left: 0px;
@@ -491,8 +499,15 @@ li > a:hover{
   margin-bottom: 30px;
   font-size: 1em;
 }
+.right3 {
+  float: right;
+  margin-right: 5px;
+}
 .marginBottom2 {
   margin-bottom: 100px;
+}
+.txtName {
+  width: 200px;
 }
 
 
