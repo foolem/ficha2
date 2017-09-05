@@ -1,12 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = UniteMatter  -%>
+<% show_unite_matter %>
+  <center><h1><span class="<%=index_icon(unite_matters_icon)%>"></span> União</h1></center>
+  <%= form_for @unite_matter, :html => { :class => "form-horizontal group" } do |f| %>
+  <div class="panel panel-default" style="margin-bottom:30px;">
+    <header class="panel-heading header headerOutra">Detalhes</header>
+    <br>
 
-<p>
-  <strong>Name:</strong>
-  <%= @unite_matter.name %>
-  <div id="unite_matters_partial">
-    <%= render "matters" %>
-  </div>
-</p>
-
-<%= link_to 'Edit', edit_unite_matter_path(@unite_matter) %> |
-<%= link_to 'Back', unite_matters_path %>
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :name, :class => 'control-label col-lg-2' %>
+        <div class="col-md-2">
+          <%= f.text_field :name, :class => 'form-control txtNameShow marginBottom3', :readonly => true %>
+        </div>
+      </div>
+    </div>
+    <div id="unite_matters_partial" class="less">
+      <%= render "matters" %>
+    </div>
+  </p>
+<% end %>
+</div>
+<%= link_to 'Editar', edit_unite_matter_path(@unite_matter), :class => 'btn btn-default marginBottom2' %>
+<%= link_to 'Voltar', unite_matters_path, :class => 'btn btn-default marginBottom2' %>

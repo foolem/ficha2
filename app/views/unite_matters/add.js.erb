@@ -1,2 +1,3 @@
 $("#unite_matter_matters").val("");
+$("#add_matter_partial").html("<%= escape_javascript(render("add_matter", locals: { f: @f } )) %>");
 $("#unite_matters_partial").html("<%= escape_javascript(render("matters")) %>");
