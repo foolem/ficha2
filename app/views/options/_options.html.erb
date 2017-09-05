@@ -2,8 +2,8 @@
 
   <thead>
     <tr class="header">
-      <th class="center" width="120px"> <%= t('matter') %> </th>
       <th class="center" width="100px"> <%= t('groups') %> </th>
+      <th class="center" width="100px"> <%= t('curses') %> </th>
       <th class="center" width="200px"> <%= t('schedules') %> </th>
       <th class="center" width="110px"> <%= t('interested') %></th>
       <th class="center" width="130px"> <%= t('actions') %> </th>
@@ -14,13 +14,18 @@
     <% @options.each do |option| %>
       <tr data-href="<%= option_path(option) %>">
 
-        <td class="center"> <%= option_matters(option).html_safe %> </td>
-        <td class="center"> <%= option_classes(option).html_safe %> </td>
+        <td class="center"> <%= option_classes2(option).html_safe %> </td>
+        <td>Exemplo</td>
         <td class="center"> <%= option_schedules(option).html_safe %> </td>
         <td class="center"> <%= option_users(option).html_safe %> </td>
         <td class="center" id="actions">
-          <%= link_to enable_button.html_safe, open_wish_options_path(option),
+          <% if user_has_wishes? and !option_wished(option) %>
+            <%= link_to enable_button.html_safe, open_wish_options_path(option),
             :title => "Escolher", :class => "btn btn-default", :remote => true %>
+          <% elsif option_wished(option) %>
+            <%= link_to enable_button.html_safe, remove_wishes_path(option),
+            :title => "Escolher", :class => "btn btn-danger disable", :method => "delete" %>
+          <% end %>
         </td>
       </tr>
     <% end %>

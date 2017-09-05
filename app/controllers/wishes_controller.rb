@@ -1,6 +1,6 @@
 class WishesController < ApplicationController
   before_action :set_wish, only: [:show, :edit, :update, :destroy]
-  before_action :set_option, only: [:create]
+  before_action :set_option, only: [:create, :remove]
 
   # GET /wishes
   # GET /wishes.json
@@ -14,19 +14,8 @@ class WishesController < ApplicationController
   end
 
   # GET /wishes/new
-  def create
-    set_option
-    @option.wishes << Wish.new(group_id: 1, user_id: 2, priority: 4)
-    @option.save
-  end
-
   def new
     @wish = Wish.new
-    puts
-    puts
-    puts "OLA"
-    puts
-    puts
   end
 
   # GET /wishes/1/edit
@@ -40,12 +29,10 @@ class WishesController < ApplicationController
     @wish.option = @option
     @wish.user = current_user
 
-    @options = Option.all
-
     respond_to do |format|
       if @wish.save
         format.js
-        format.html { redirect_to options_path, notice: 'Wish was successfully updated.' }
+        format.html { redirect_to option_path(@option), notice: 'Wish was successfully updated.' }
       else
         format.js
         format.html
@@ -67,6 +54,20 @@ class WishesController < ApplicationController
     end
   end
 
+  def remove
+    @wish = @option.wishes.select {|wish| wish.user == current_user}.first
+    puts "\n\n #{@wish.user.name}, #{@wish.option.id} "
+    if @option.wishes.include? @wish
+      puts "Inclui mesmo"
+      @option.wishes.delete(@wish)
+      @wish.destroy
+    end
+
+    respond_to do |format|
+        format.html { redirect_to options_path, notice: 'Wish was successfully destroyed.' }
+        format.js { flash[:alert] = "Desejo removido com sucesso."}
+    end
+  end
   # DELETE /wishes/1
   # DELETE /wishes/1.json
   def destroy

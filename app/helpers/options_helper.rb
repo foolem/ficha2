@@ -24,6 +24,15 @@ module OptionsHelper
     result
   end
 
+  def option_classes2(option)
+    result = ""
+    option.groups.each do |group|
+      text = "<span> #{group.matter.code} - #{group.name} </span> </br>"
+      result << text
+    end
+    result
+  end
+
   def option_schedules(option)
     result = ""
 
