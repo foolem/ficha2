@@ -1,7 +1,7 @@
 <%= form_for @unite_matter, :html => { :class => "form-horizontal group"} do |f| %>
   <% if unite_matter.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(unite_matter.errors.count, "error") %> prohibited this unite_matter from being saved:</h2>
+      <h2><%= pluralize(unite_matter.errors.count, "erro(s)") %> ocorrido(s):</h2>
 
       <ul>
       <% unite_matter.errors.full_messages.each do |message| %>
@@ -10,29 +10,49 @@
       </ul>
     </div>
   <% end %>
+  <div class="panel panel-default" style="margin-bottom:70px;">
+    <header class="panel-heading header headerOutra">Detalhes
 
-  <div class="field">
-    <div class="form-group">
-      <%= f.label :matter, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+    </header>
+    <br>
 
-        <%= f.collection_select(:matters, matters_order, :id, :code_with_name, {:include_blank => true} , { :class => 'form-control'}) %>
-        <%=f.error_span(:matter) %>
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :name, :class => 'control-label col-lg-2' %>
+        <div class="col-md-2">
+          <%= f.text_field :name, :class => 'form-control txtName' %>
+        </div>
       </div>
     </div>
+    <% if !@new %>
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :matter, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-9">
+
+          <%= f.collection_select(:matters, matters_order, :id, :code_with_name, {:include_blank => true} , { :class => 'form-control width2'}) %>
+          <% if !@show %>
+            <div class="addAnother">
+              <%= link_to new_button.html_safe, add_unite_matters_path(@unite_matter, 5),
+              :class => 'btn btn-primary btn-sm juntar',
+              :id => 'add_matter',
+              title: 'Adicionar Disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
+            </div>
+          <% end %>
+          <%=f.error_span(:matter) %>
+        </div>
+      </div>
 
 
-  <%= link_to "Adicionar disciplina", add_unite_matters_path(@unite_matter, 5),
-    :class => 'btn btn-primary btn-sm right2',
-    :id => 'add_matter',
-    title: 'Adicionar Disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
 
+      <div class="form-group" style="margin-left: 40px; margin-right: 40px">
+        <div id= "unite_matters_partial" class="less">
+          <%= render "matters"  %>
+        </div>
+      </div>
 
-  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
-    <div id= "unite_matters_partial" class="less">
-      <%= render "matters"  %>
-    </div>
-  </div>
+      <% end %>
+
 
   <script type="text/javascript">
     $(document).on('change','#unite_matter_matters', function() {
@@ -56,8 +76,14 @@
 
   </script>
 
-
-  <div class="actions">
-    <%= f.submit %>
+  <% if !@show %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      unite_matters_path, :class => 'btn btn-default right' %>
+      <%= f.submit "Atualizar", :class => 'btn btn-primary right' %>
+    </div>
   </div>
+  <% end %>
+</div>
 <% end %>

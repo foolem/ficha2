@@ -25,6 +25,10 @@
         one: Horário
         other: Horários
 
+      unite_matter:
+        one: Unir disciplinas
+
+
     attributes:
       matter:
         name: "Nome"
@@ -66,6 +70,10 @@
         begin: "Início"
         duration: "Duração"
         day: "Dia"
+
+      unite_matter:
+        name: "Nome"
+        matter: "Disciplina"
 
       user:
         name: "Nome"
