@@ -2,8 +2,8 @@
   <thead>
     <tr class="header">
 
-      <th width="85%"><%= t('name') %></th>
-
+      <th width="50%"><%= t('name') %></th>
+      <th width="30%"> <%= t('matters') %> </th>
 
         <th width="15%">
           <center>
@@ -25,6 +25,7 @@
 
           <td><%= unite_matter.name %></td>
 
+          <td> <%= unit_matters(unite_matter).html_safe %> </td>
 
             <td id="actions">
               <center>

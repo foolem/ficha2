@@ -506,8 +506,14 @@ li > a:hover{
 .marginBottom2 {
   margin-bottom: 100px;
 }
+.marginBottom3 {
+  margin-bottom: 20px;
+}
 .txtName {
   width: 200px;
+}
+.txtNameShow {
+  width: 600px;
 }
 
 

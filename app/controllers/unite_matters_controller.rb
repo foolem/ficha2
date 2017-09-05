@@ -47,7 +47,7 @@ class UniteMattersController < ApplicationController
 
     respond_to do |format|
       if @unite_matter.save
-        format.html { redirect_to edit_unite_matter_path(@unite_matter), notice: 'Unite matter was successfully created.' }
+        format.html { redirect_to edit_unite_matter_path(@unite_matter), notice: 'União foi criada com sucesso.' }
         format.json { render :show, status: :created, location: @unite_matter }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class UniteMattersController < ApplicationController
   def update
     respond_to do |format|
       if @unite_matter.update(unite_matter_params)
-        format.html { redirect_to @unite_matter, notice: 'Unite matter was successfully updated.' }
+        format.html { redirect_to @unite_matter, notice: 'União foi atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @unite_matter }
       else
         format.html { render :edit }
@@ -75,7 +75,7 @@ class UniteMattersController < ApplicationController
   def destroy
     @unite_matter.destroy
     respond_to do |format|
-      format.html { redirect_to unite_matters_url, notice: 'Unite matter was successfully destroyed.' }
+      format.html { redirect_to unite_matters_url, notice: 'União foi deletada com sucesso.' }
       format.json { head :no_content }
     end
   end
