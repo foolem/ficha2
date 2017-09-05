@@ -34,13 +34,13 @@ class OptionsController < ApplicationController
     Group.all.each do |group|
       if !has_option(group)
         option = Option.new
+        option.semester = Semester.current_semester
 
         same_groups(group).each do |same_group|
           option.groups << same_group
         end
 
         option.save
-
       end
     end
 

@@ -95,8 +95,10 @@ ActiveRecord::Schema.define(version: 20170829124714) do
   end
 
   create_table "options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "semester_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["semester_id"], name: "index_options_on_semester_id", using: :btree
   end
 
   create_table "options_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -150,8 +152,9 @@ ActiveRecord::Schema.define(version: 20170829124714) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.integer  "priority"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "comments",   limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["group_id"], name: "index_wishes_on_group_id", using: :btree
     t.index ["option_id"], name: "index_wishes_on_option_id", using: :btree
     t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
@@ -167,6 +170,7 @@ ActiveRecord::Schema.define(version: 20170829124714) do
   add_foreign_key "matters", "unite_matters"
   add_foreign_key "messages", "fichas"
   add_foreign_key "messages", "users"
+  add_foreign_key "options", "semesters"
   add_foreign_key "options_users", "options"
   add_foreign_key "options_users", "users"
   add_foreign_key "wishes", "groups"

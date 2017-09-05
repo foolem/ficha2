@@ -10,7 +10,7 @@ module WishesHelper
 
   def priority_list
     all = [1,2,3,4,5]
-    wishes = current_user.wishes.select { |wish| wish.option.groups[0].semester == current_semester }
+    wishes = current_user.wishes.select { |wish| wish.option.semester == current_semester }
     priorities = []
     wishes.each do |wish|
       priorities.push(wish.priority)
