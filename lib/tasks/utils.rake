@@ -125,6 +125,10 @@ namespace :utils do
 
       end
 
+      unite = UniteMatter.create(name: "Álgebra Linear")
+      unite.matters << Matter.where(code: "CM005").first
+      unite.matters << Matter.where(code: "CMA212").first
+
   end
 
 end

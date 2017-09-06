@@ -8,6 +8,10 @@ module UniteMattersHelper
       @show = true
   end
 
+  def edit_unite_matter
+      @edit = true
+  end
+
 
   def unit_matters(unite)
     result = ""

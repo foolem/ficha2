@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :unite_groups
 
   resources :unite_matters do
     collection do

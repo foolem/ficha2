@@ -14,4 +14,8 @@ module GroupsHelper
       @new = true
   end
 
+  def groups_no_united
+    Group.where(unite_group: nil)
+  end
+
 end
