@@ -43,11 +43,13 @@ ActiveRecord::Schema.define(version: 20170829124714) do
     t.integer  "matter_id"
     t.integer  "semester_id"
     t.integer  "option_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "unite_group_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.index ["matter_id"], name: "index_groups_on_matter_id", using: :btree
     t.index ["option_id"], name: "index_groups_on_option_id", using: :btree
     t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
+    t.index ["unite_group_id"], name: "index_groups_on_unite_group_id", using: :btree
   end
 
   create_table "groups_schedules", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -121,6 +123,12 @@ ActiveRecord::Schema.define(version: 20170829124714) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "unite_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "unite_matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -165,6 +173,7 @@ ActiveRecord::Schema.define(version: 20170829124714) do
   add_foreign_key "groups", "matters"
   add_foreign_key "groups", "options"
   add_foreign_key "groups", "semesters"
+  add_foreign_key "groups", "unite_groups"
   add_foreign_key "groups_schedules", "groups"
   add_foreign_key "groups_schedules", "schedules"
   add_foreign_key "matters", "unite_matters"

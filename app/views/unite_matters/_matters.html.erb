@@ -5,7 +5,8 @@
 
     <thead>
       <tr>
-            <th width="80%"><%= t('matters') %></th>
+            <th width="10%"><%= t('code') %></th>
+            <th width="70%"><%= t('matter') %></th>
       </tr>
 
     </thead>
@@ -14,7 +15,8 @@
       <% @unite_matter.matters.each do |matter| %>
         <tr>
 
-          <td><%= matter.code_with_name %></td>
+          <td><%= matter.code %></td>
+          <td><%= matter.name %></td>
 
           <td class="center" id="actions">
             <% if !@show %>

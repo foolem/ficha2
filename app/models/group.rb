@@ -4,6 +4,7 @@ class Group < ApplicationRecord
   has_one :ficha
   has_and_belongs_to_many :schedules
   belongs_to :option, optional: true
+  belongs_to :unite_group
 
   def code_with_group
     "#{name} -  #{matter.code}"
