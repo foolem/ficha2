@@ -31,6 +31,13 @@ class OptionsController < ApplicationController
   end
 
   def generate
+    Wish.delete_all
+    Group.all.each do |grp|
+      grp.option = nil
+      grp.save
+    end
+    Option.destroy_all
+
     Group.all.each do |group|
       if !has_option(group)
         option = Option.new
@@ -124,18 +131,32 @@ class OptionsController < ApplicationController
 
     def same_groups(group)
       list = Group.where(matter: group.matter)
+
+      groups = []
+      list.each { |grp| groups << grp }
+
+      if !group.matter.unite_matter.blank?
+        x = []
+        other_list = group.matter.unite_matter.matters.select {|matter| matter != group.matter}
+        other_list.each do |matter|
+          Group.where(matter: matter).each do |grp|
+            groups << grp
+          end
+        end
+      end
+
       result = []
 
       schedules = group.schedules
 
-      list.each do |grp|
+      groups.each do |grp|
         if schedules == grp.schedules
           result << grp
         end
       end
 
+
       result
     end
-
 
 end

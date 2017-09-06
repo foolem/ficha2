@@ -5,7 +5,7 @@
 </div>
 
 <div class="searchBox noMarginTop">
-  <%= search_form_for @q, url: search_options_path, html: { method: :post } do |f| %>
+  <%= search_form_for @q, url: search_groups_path, html: { method: :post } do |f| %>
 
     <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},
           {:class => 'form form-group form-control',
