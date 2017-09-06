@@ -2,7 +2,7 @@ class Matter < ApplicationRecord
   has_many :ficha
   has_many :groups
 
-  belongs_to :unite_matter
+  belongs_to :unite_matter, optional: true
 
   validates :name, presence: true
   validates :code, uniqueness: true, presence: true
