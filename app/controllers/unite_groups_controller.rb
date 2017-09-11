@@ -1,6 +1,7 @@
 class UniteGroupsController < ApplicationController
   before_action :set_unite_group, only: [:show, :edit, :update, :destroy, :add, :remove]
   before_action :set_group, only: [:add, :remove]
+  before_action :bar_define
 
   # GET /unite_groups
   # GET /unite_groups.json
@@ -20,9 +21,6 @@ class UniteGroupsController < ApplicationController
 
   # GET /unite_groups/1/edit
   def edit
-    @opt_1 = Group.new
-
-
   end
 
   def add
@@ -32,12 +30,12 @@ class UniteGroupsController < ApplicationController
     end
   end
 
-    def remove
-      @unite_group.groups.delete(@group)
-      respond_to do |format|
-          format.js { flash[:alert] = "Turma removida com sucesso."}
-      end
+  def remove
+    @unite_group.groups.delete(@group)
+    respond_to do |format|
+        format.js { flash[:alert] = "Turma removida com sucesso."}
     end
+  end
 
   # POST /unite_groups
   # POST /unite_groups.json
@@ -60,7 +58,7 @@ class UniteGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @unite_group.update(unite_group_params)
-        format.html { redirect_to @unite_group, notice: 'União foi atualizada com sucesso.' }
+        format.html { redirect_to @unite_group, notice: 'União foi editada com sucesso.' }
         format.json { render :show, status: :ok, location: @unite_group }
       else
         format.html { render :edit }
@@ -72,7 +70,9 @@ class UniteGroupsController < ApplicationController
   # DELETE /unite_groups/1
   # DELETE /unite_groups/1.json
   def destroy
+    @unite_group.groups.delete_all
     @unite_group.destroy
+
     respond_to do |format|
       format.html { redirect_to unite_groups_url, notice: 'União foi deletada com sucesso.' }
       format.json { head :no_content }
@@ -85,12 +85,18 @@ class UniteGroupsController < ApplicationController
       @unite_group = UniteGroup.find(params[:id])
     end
 
-    def set_Group
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def unite_group_params
+      params.require(:unite_group).permit(:name)
+    end
+
+    def set_group
       @group = Group.find(params[:group_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def unite_group_params
-      params.require(:unite_group).permit(:name, :group)
+
+    def bar_define
+      session[:page] = "unite_groups"
     end
 end

@@ -12,4 +12,8 @@ class Group < ApplicationRecord
     "#{name} -  #{matter.code}"
   end
 
+  def code_with_group_and_name
+    "#{name} -  #{matter.code} - #{matter.name}"
+  end
+
 end

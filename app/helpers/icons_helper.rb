@@ -100,6 +100,10 @@ module IconsHelper
     'resize-small'
   end
 
+  def unite_groups_icon
+    'resize-small'
+  end
+
   def help_icon
     'envelope'
   end

@@ -73,6 +73,7 @@ class UniteMattersController < ApplicationController
   # DELETE /unite_matters/1
   # DELETE /unite_matters/1.json
   def destroy
+    @unite_matter.matters.delete_all
     @unite_matter.destroy
     respond_to do |format|
       format.html { redirect_to unite_matters_url, notice: 'União foi deletada com sucesso.' }

@@ -5,8 +5,12 @@ Rails.application.routes.draw do
       match 'search' => 'courses#search', via: [:get, :post], as: :search
     end
   end
-  
-  resources :unite_groups
+
+  resources :unite_groups do
+    collection do
+      match 'add/:id/:group_id' => 'unite_groups#add', via: [:get, :post], as: :add
+      match 'remove/:id/:group_id' => 'unite_groups#remove', via: [:delete], as: :remove
+    end
 
   resources :unite_matters do
     collection do
