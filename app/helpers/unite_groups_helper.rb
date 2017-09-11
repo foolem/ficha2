@@ -18,7 +18,7 @@ module UniteGroupsHelper
     unite.groups.length.times do |i|
 
       group = unite.groups[i-1]
-      text = "<span>#{group.name}</span>"
+      text = "<span>#{group.code_with_group_show}</span>"
 
       if i != (unite.groups.length) -(1)
         if i == (unite.groups.length) -(2)
