@@ -6,6 +6,7 @@ class CreateGroups < ActiveRecord::Migration[5.0]
       t.references :semester, foreign_key: true
       t.references :option, foreign_key: true
       t.references :unite_group, foreign_key: true
+      t.references :course, foreign_key: true
 
       t.timestamps
     end

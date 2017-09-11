@@ -1,0 +1,45 @@
+<table class="table table-striped">
+  <thead>
+    <tr class="header">
+      <th><%= t('name') %></th>
+      <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
+        <th  width="130px">
+          <center>
+            <%=t '.actions', :default => t("helpers.actions") %>
+
+            <div style="float:right; margin-right:3px; width:37px;">
+              <%= link_to new_button.html_safe, new_course_path, :class => 'btn-default btn-sm',
+                title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+            <div>
+          </center>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr data-href="<%= course_path(course) %>">
+        <div class="form_table">
+          <td><%= course.name %></td>
+
+          <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
+            <td class="center" id="actions">
+                <%= link_to edit_button.html_safe, edit_course_path(course),
+                      :class => 'btn btn-default btn-sm simple_button',
+                      title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+            </td>
+         <% end %>
+        </div>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<center>
+  <nav aria-label="Page navigation">
+    <ul class="pagination pagination-sm noMarginTop" id ="course_pages">
+      <%= render_pages(@elements, @page, "/courses", @length).html_safe %>
+    </ul>
+  </nav>
+</center>

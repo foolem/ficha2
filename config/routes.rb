@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :courses do
+    collection do
+      match 'search' => 'courses#search', via: [:get, :post], as: :search
+    end
+  end
+  
   resources :unite_groups
 
   resources :unite_matters do

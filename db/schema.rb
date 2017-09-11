@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20170829124714) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "fichas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "status",                            default: 0
     t.text     "program",             limit: 65535
@@ -44,8 +50,10 @@ ActiveRecord::Schema.define(version: 20170829124714) do
     t.integer  "semester_id"
     t.integer  "option_id"
     t.integer  "unite_group_id"
+    t.integer  "course_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["course_id"], name: "index_groups_on_course_id", using: :btree
     t.index ["matter_id"], name: "index_groups_on_matter_id", using: :btree
     t.index ["option_id"], name: "index_groups_on_option_id", using: :btree
     t.index ["semester_id"], name: "index_groups_on_semester_id", using: :btree
@@ -170,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170829124714) do
 
   add_foreign_key "fichas", "groups"
   add_foreign_key "fichas", "users"
+  add_foreign_key "groups", "courses"
   add_foreign_key "groups", "matters"
   add_foreign_key "groups", "options"
   add_foreign_key "groups", "semesters"

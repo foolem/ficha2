@@ -88,6 +88,10 @@ module IconsHelper
     'user'
   end
 
+  def course_icon
+    'education'
+  end
+
   def option_icon
     'check'
   end

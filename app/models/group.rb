@@ -1,6 +1,8 @@
 class Group < ApplicationRecord
   belongs_to :matter
   belongs_to :semester
+  belongs_to :course, optional: true
+
   has_one :ficha
   has_and_belongs_to_many :schedules
   belongs_to :option, optional: true

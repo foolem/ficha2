@@ -1,0 +1,21 @@
+<%- model_class = Course -%>
+
+<div class="page-header noMarginTop">
+  <center><h1><span class="<%=index_icon(course_icon)%>"></span> <%=t('courses')%></h1></center>
+</div>
+
+<div class="searchBox noMarginTop">
+  <%= search_form_for @q, url: search_courses_path, html: { method: :post } do |f| %>
+
+    <%= f.text_field :name_cont, :autofocus => true,
+          placeholder: "Procurar", :autocomplete => "off", :class => 'form-control',
+          :style => 'width:180px', :id => "course_search_field" %>
+
+  <% end %>
+
+</div>
+
+
+<div id="courses_partial" class="marginBottom" >
+  <%= render 'courses' %>
+</div>
