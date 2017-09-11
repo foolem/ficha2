@@ -1,0 +1,24 @@
+<%- model_class = UniteGroup  -%>
+<% show_unite_group %>
+  <center><h1><span class="<%=index_icon(unite_groups_icon)%>"></span> União</h1></center>
+  <%= form_for @unite_group, :html => { :class => "form-horizontal group" } do |f| %>
+  <div class="panel panel-default" style="margin-bottom:30px;">
+    <header class="panel-heading header headerOutra">Detalhes</header>
+    <br>
+
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :name, :class => 'control-label col-lg-2' %>
+        <div class="col-md-2">
+          <%= f.text_field :name, :class => 'form-control txtNameShow marginBottom3', :readonly => true %>
+        </div>
+      </div>
+    </div>
+    <div id="unite_groups_partial" class="less">
+      <%= render "groups" %>
+    </div>
+  </p>
+<% end %>
+</div>
+<%= link_to 'Editar', edit_unite_group_path(@unite_group), :class => 'btn btn-default marginBottom2' %>
+<%= link_to 'Voltar', unite_groups_path, :class => 'btn btn-default marginBottom2' %>
