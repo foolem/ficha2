@@ -11,6 +11,7 @@ namespace :utils do
         end
         password
       end
+    
 
       def make_begin(date)
         hour = date[0..1].to_i
