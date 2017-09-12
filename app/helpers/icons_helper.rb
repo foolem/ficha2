@@ -101,7 +101,7 @@ module IconsHelper
   end
 
   def unite_groups_icon
-    'resize-small'
+    'resize-small invert'
   end
 
   def help_icon
