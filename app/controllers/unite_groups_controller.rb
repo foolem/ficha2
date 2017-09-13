@@ -9,6 +9,7 @@ class UniteGroupsController < ApplicationController
     @unite_groups = UniteGroup.all
   end
 
+
   # GET /unite_groups/1
   # GET /unite_groups/1.json
   def show

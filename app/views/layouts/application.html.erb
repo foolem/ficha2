@@ -79,16 +79,6 @@
 
             <li class="side_bar <%= classes["group"]%>" ><a href="<%= groups_path %>"><%= t('groups') %><span class="<%=menu_icon(group_icon)%>"></span></a></li>
 
-            <li class="dropdown side_bar <%= classes["user"]%>">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <span class="caret"></span><span class="<%=menu_icon(user_icon)%>"</span></a>
-              <ul class="dropdown-menu forAnimate" role="menu">
-                <li><a href="<%= new_user_path %>">Novo</a></li>
-                <li class="divider"></li>
-                <li><a href="<%= users_path %>">Colaboradores</a></li>
-                <li><a href="<%= teachers_users_path %>">Professores</a></li>
-              </ul>
-
-            </li>
 
             <li class="side_bar <%= classes["options"] %>"><a href="<%= options_path %>"><%= t('options') %><span class="<%=menu_icon(option_icon)%>"></span></a></li>
             <li class="side_bar <%= classes["unite_matters"] %>"><a href="<%= unite_matters_path %>"><%= t('unite_matters') %><span class="<%=menu_icon(unite_matters_icon)%>"></span></a></li>
@@ -101,6 +91,15 @@
 
           <li class="side_bar <%= classes["help"]%>" ><a href="<%= new_contact_path %>">Contato<span class="<%=menu_icon(help_icon)%>"></span></a></li>
 
+          <li class="dropdown side_bar <%= classes["user"]%>">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <span class="caret"></span><span class="<%=menu_icon(user_icon)%>"</span></a>
+            <ul class="dropdown-menu forAnimate" role="menu">
+              <li><a href="<%= new_user_path %>">Novo</a></li>
+              <li class="divider"></li>
+              <li><a href="<%= users_path %>">Colaboradores</a></li>
+              <li><a href="<%= teachers_users_path %>">Professores</a></li>
+            </ul>
+          </li>
           <% if user_signed_in? %>
             <li class="side_bar" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Conta <span class="caret"></span><span class="<%=menu_icon(account_icon)%>"></span></a>

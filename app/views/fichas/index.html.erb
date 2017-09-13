@@ -5,7 +5,7 @@
   <center><h1><span class="<%=index_icon(ficha_icon)%>"></span> <%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1></center>
 
 </div>
-<div class="searchBox noMarginTop noMarginBottom">
+<div class="searchBox">
 
   <%= search_form_for @q, url: search_fichas_path , html: { method: :post } do |f| %>
 
