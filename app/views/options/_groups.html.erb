@@ -3,9 +3,9 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th class="center" width="135px"><%= t('matter') %></th>
+      <th class="center" width="70px"><%= t('matter') %></th>
       <th class="center" width="80px"><%= t('name') %></th>
-      <th class="center" ><%= t('semester') %></th>
+      <th class="center" width="100px"> <%= t('course') %></th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +14,7 @@
         <div class="form_table">
           <td ><%= group.matter.code %></td>
           <td ><%= group.name %></td>
-          <td ><%= group.semester.semester_with_year %></td>
+          <td> <%= group.course%></td>
         </div>
       </tr>
     <% end %>

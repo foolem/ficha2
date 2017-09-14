@@ -1,6 +1,4 @@
-<h1>Editing Course</h1>
-
+<div class="page-header">
+  <center><h1><span class="<%=index_icon(course_icon)%>"></span> Editar <%=t('course')%></h1></center>
+</div>
 <%= render 'form', course: @course %>
-
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>

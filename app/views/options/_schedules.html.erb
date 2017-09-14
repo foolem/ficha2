@@ -3,10 +3,9 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th class="center" width="110px"><%= t('day') %></th>
+      <th class="center" width="80px"><%= t('day') %></th>
       <th class="center" width="80px"><%= t('begin') %></th>
       <th class="center" width="80px"><%= t('end') %></th>
-      <th class="center" width="80px"><%= t('duration') %></th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +15,6 @@
           <td ><%= t(schedule.day) %></td>
           <td ><%= schedule.begin.strftime("%H:%M") %></td>
           <td ><%= end_generate(schedule) %></td>
-          <td ><%= schedule.duration.strftime("%H:%M")%></td>
         </div>
       </tr>
     <% end %>

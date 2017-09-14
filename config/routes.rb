@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     collection do
       match 'add/:id/:group_id' => 'unite_groups#add', via: [:get, :post], as: :add
       match 'remove/:id/:group_id' => 'unite_groups#remove', via: [:delete], as: :remove
+      match 'search' => 'unite_groups#search', via: [:get, :post], as: :search
     end
   end
 
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
     collection do
       match 'add/:id/:matter_id' => 'unite_matters#add', via: [:get, :post], as: :add
       match 'remove/:id/:matter_id' => 'unite_matters#remove', via: [:delete], as: :remove
+      match 'search' => 'unite_matters#search', via: [:get, :post], as: :search
     end
   end
 

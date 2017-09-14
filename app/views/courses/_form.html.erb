@@ -10,13 +10,26 @@
       </ul>
     </div>
   <% end %>
+  <div class="panel panel-default" style="margin-bottom:70px;padding-bottom:100px;">
+    <header class="panel-heading header headerOutra"><%= t('details') %></header>
+    </br>
+    <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9 marginBottom3">
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      <%= f.text_field :name, :class => 'form-control width marginLeft' %>
+        <%=f.error_span(:name) %>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        courses_path, :class => 'btn btn-default right padraoHeader' %>
+        <%= f.submit nil, :class => 'btn btn-primary right padraoHeader' %>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

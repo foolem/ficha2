@@ -1,30 +1,31 @@
 
 <div class="page-header noMarginTop">
-  <h1 class="center"><span class="<%=index_icon(option_icon)%>"></span> <%=t('option')%></h1>
+  <center><h1><span class="<%=index_icon(option_icon)%>"></span> Editar <%=t('option')%></h1></center>
 </div>
 
-<div class="panel panel-default" style="margin-bottom:70px;">
+<div class="panel panel-default" style="margin-bottom:70px;text-align:center;">
   </br>
+    <div class="semesterOptions"> <%= @option.semester.semester_with_year %> </div>
 
-  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
-    <div id= "option_groups_partial" class="less">
+  <div class="form-group veryLess">
+    <div id= "option_groups_partial">
       <%= render "groups"  %>
     </div>
   </div>
 
-  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
-    <div id= "option_schedules_partial" class="less">
+  <div class="form-group veryLess">
+    <div id= "option_schedules_partial">
       <%= render "schedules"  %>
     </div>
   </div>
-
-  <div class="form-group" style="margin-left: 40px; margin-right: 40px">
-    <div id= "option_wishes_partial" class="less">
+  <div class="form-group lessWishes">
+    <div id= "option_wishes_partial">
       <%= render "wishes"  %>
     </div>
   </div>
 
+
 </div>
 
-<%= link_to 'Edit', edit_option_path(@option) %> |
-<%= link_to 'Back', options_path %>
+<%= link_to 'Voltar', options_path, :class => 'btn btn-default' %>
+<%= link_to 'Editar', edit_option_path(@option), :class => 'btn btn-default' %>
