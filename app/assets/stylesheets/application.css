@@ -70,6 +70,31 @@ body {
 .width {
   width: 43%;
 }
+.center {
+  text-align: center;
+}
+.semesterOptions {
+  text-align: left;
+  margin-top: -38px;
+  margin-left: -1px;
+  margin-bottom: 20px;
+  border-right-color: #dddddd;
+  border-left-color: #dddddd;
+  border-top-color: #dddddd;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-top-style: solid;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-top-width: 1px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100px;
+  height: 20px;
+  background-color: white;
+  color: #000;
+  text-align: center;
+}
 .padraoHeader {
   margin-top:10px;
   margin-bottom: 15px;
@@ -96,7 +121,15 @@ body {
 .collection_select {
   size: 100px;
 }
-
+.veryLess {
+  width: 32,5%;
+  display: inline-block;
+  margin: 0px 5px 0px 5px;
+}
+.lessWishes {
+  width: 68%;
+  margin: 0 auto;
+}
 .less {
   width: 85%;
   margin-left: 80px;
