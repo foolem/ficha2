@@ -11,7 +11,6 @@ namespace :utils do
         end
         password
       end
-    
 
       def make_begin(date)
         hour = date[0..1].to_i
@@ -98,6 +97,11 @@ namespace :utils do
 
       end
 
+      puts "\nGerando cursos...\n"
+      20.times do |i|
+        Course.create(name: "Curso: #{i+1}")
+      end
+
       Semester.create(semester: 2, year: 2017)
 
       puts "\n------------ Fichas ------------"
@@ -116,7 +120,7 @@ namespace :utils do
         user = User.where(name:  name)[0].id
         matter = Matter.where(code: code)[0].id
 
-        group = Group.create(matter_id: matter, name: team, semester_id: 1)
+        group = Group.create(matter_id: matter, name: team, semester_id: 1, course_id: Random.rand(19) + 1)
         Ficha.create(group_id: group.id, user_id: user)
 
         schedule_associate(linha[3], linha[4], group)

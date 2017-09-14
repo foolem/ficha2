@@ -2,18 +2,13 @@ class OptionsController < ApplicationController
   before_action :set_option, only: [:show, :edit, :update, :destroy, :open_wish]
   before_action :bar_define
 
-  # GET /options
-  # GET /options.json
   def index
     @options = Option.all
   end
 
-  # GET /options/1
-  # GET /options/1.json
   def show
   end
 
-  # GET /options/new
   def new
     @option = Option.new
   end
@@ -60,12 +55,9 @@ class OptionsController < ApplicationController
 
   end
 
-  # GET /options/1/edit
   def edit
   end
 
-  # POST /options
-  # POST /options.json
   def create
     @option = Option.new(option_params)
 
@@ -80,8 +72,6 @@ class OptionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /options/1
-  # PATCH/PUT /options/1.json
   def update
     respond_to do |format|
       if @option.update(option_params)
@@ -94,8 +84,6 @@ class OptionsController < ApplicationController
     end
   end
 
-  # DELETE /options/1
-  # DELETE /options/1.json
   def destroy
     @option.destroy
     respond_to do |format|
@@ -105,19 +93,17 @@ class OptionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+    def bar_define
+      session[:page] = "options"
+    end
+
     def set_option
       @option = Option.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def option_params
       params.fetch(:option, {})
-    end
-
-
-    def bar_define
-      session[:page] = "options"
     end
 
     def has_option(group)
@@ -154,7 +140,6 @@ class OptionsController < ApplicationController
           result << grp
         end
       end
-
 
       result
     end

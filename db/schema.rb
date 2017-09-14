@@ -69,14 +69,14 @@ ActiveRecord::Schema.define(version: 20170829124714) do
 
   create_table "matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.boolean  "actived",                              default: true, null: false
+    t.boolean  "actived",                              default: true,     null: false
     t.integer  "unite_matter_id"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.string   "code"
     t.string   "kind"
-    t.string   "prerequisite"
-    t.string   "corequisite"
+    t.string   "prerequisite",                         default: "Nenhum"
+    t.string   "corequisite",                          default: "Nenhum"
     t.string   "modality"
     t.string   "nature"
     t.text     "menu",                   limit: 65535

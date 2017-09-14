@@ -4,8 +4,10 @@ class HelpController < ApplicationController
   def index
   end
 
-  def bar_define
-    session[:page] = "help"
-  end
-  
+  private
+
+    def bar_define
+      session[:page] = "help"
+    end
+
 end

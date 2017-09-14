@@ -3,23 +3,17 @@ class UniteGroupsController < ApplicationController
   before_action :set_group, only: [:add, :remove]
   before_action :bar_define
 
-  # GET /unite_groups
-  # GET /unite_groups.json
   def index
     @unite_groups = UniteGroup.all
   end
 
-  # GET /unite_groups/1
-  # GET /unite_groups/1.json
   def show
   end
 
-  # GET /unite_groups/new
   def new
     @unite_group = UniteGroup.new
   end
 
-  # GET /unite_groups/1/edit
   def edit
   end
 
@@ -37,8 +31,6 @@ class UniteGroupsController < ApplicationController
     end
   end
 
-  # POST /unite_groups
-  # POST /unite_groups.json
   def create
     @unite_group = UniteGroup.new(unite_group_params)
 
@@ -53,8 +45,6 @@ class UniteGroupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /unite_groups/1
-  # PATCH/PUT /unite_groups/1.json
   def update
     respond_to do |format|
       if @unite_group.update(unite_group_params)
@@ -67,8 +57,6 @@ class UniteGroupsController < ApplicationController
     end
   end
 
-  # DELETE /unite_groups/1
-  # DELETE /unite_groups/1.json
   def destroy
     @unite_group.groups.delete_all
     @unite_group.destroy
@@ -80,23 +68,19 @@ class UniteGroupsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def bar_define
+      session[:page] = "unite_groups"
+    end
+
     def set_unite_group
       @unite_group = UniteGroup.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def unite_group_params
       params.require(:unite_group).permit(:name)
     end
 
     def set_group
       @group = Group.find(params[:group_id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-
-    def bar_define
-      session[:page] = "unite_groups"
     end
 end

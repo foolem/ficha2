@@ -2,8 +2,8 @@ class AddFieldsToMatter < ActiveRecord::Migration[5.0]
   def change
     add_column :matters, :code, :string
     add_column :matters, :kind, :string
-    add_column :matters, :prerequisite, :string
-    add_column :matters, :corequisite, :string
+    add_column :matters, :prerequisite, :string, default: "Nenhum"
+    add_column :matters, :corequisite, :string, default: "Nenhum"
     add_column :matters, :modality, :string
     add_column :matters, :nature, :string
     add_column :matters, :menu, :text

@@ -1,5 +1,5 @@
 class FichasController < ApplicationController
-  before_action :set_ficha, only: [:show, :edit, :update, :destroy, :create_message]
+  before_action :set_ficha, only: [:show, :edit, :update, :destroy, :create_message, :copy]
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :import]
   before_action :bar_define
@@ -18,7 +18,7 @@ class FichasController < ApplicationController
     @page = params[:page].to_i
     @fichas = getFichas
     @elements = @fichas.length
-    @page = pages_verify(@page, @elements)
+    @page = pages_verify(@page, @elements, 10)
     @fichas = @fichas.paginate(:per_page => 10, :page => @page)
 
   end
@@ -40,7 +40,7 @@ class FichasController < ApplicationController
   def copy
     @message = Message.new
     ficha_new = Ficha.find(params[:copy_id])
-    @ficha = Ficha.find(params[:id])
+
     if(ficha_new.group.matter == @ficha.group.matter and (@ficha.user == current_user or current_user.admin?))
 
       @ficha.program = ficha_new.program
@@ -57,10 +57,8 @@ class FichasController < ApplicationController
         @ficha.user = current_user
       end
     else
-      flash[:alert] = "Você não tem permissão para acessar esta página."
-      redirect_to(request.referrer || fichas_path)
+      user_not_authorized
     end
-
 
   end
 
@@ -86,7 +84,7 @@ class FichasController < ApplicationController
   def create
     @ficha = Ficha.new(new_params)
     coppy_bibliography
-    
+
     respond_to do |format|
       if @ficha.save
         format.html { redirect_to @ficha, notice: 'Ficha foi criada com sucesso.' }
@@ -159,28 +157,6 @@ class FichasController < ApplicationController
       end
     end
   end
-
-  def pages_verify(page, lines)
-    pages = pages_count(lines)
-    if(page < 1)
-
-      page = 1
-    elsif page > pages
-      page = pages
-    end
-
-    page
-  end
-
-  def pages_count(num)
-    pages = num/10
-    resto = num.remainder 10
-    if( resto > 0)
-      pages=pages+1
-    end
-    pages
-  end
-
 
   private
 

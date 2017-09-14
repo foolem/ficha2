@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  include Paginator
 
   protect_from_forgery with: :exception
 
@@ -9,5 +10,5 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "Você não tem permissão para acessar esta página."
     redirect_to(request.referrer || root_path)
   end
-
+  
 end

@@ -21,5 +21,5 @@ class ContactsController < ApplicationController
   def bar_define
     session[:page] = "help"
   end
-  
+
 end

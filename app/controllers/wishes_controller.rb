@@ -2,28 +2,17 @@ class WishesController < ApplicationController
   before_action :set_wish, only: [:show, :edit, :update, :destroy]
   before_action :set_option, only: [:create, :remove]
 
-  # GET /wishes
-  # GET /wishes.json
   def index
     @wishes = Wish.all
   end
 
-  # GET /wishes/1
-  # GET /wishes/1.json
-  def show
-  end
-
-  # GET /wishes/new
   def new
     @wish = Wish.new
   end
 
-  # GET /wishes/1/edit
   def edit
   end
 
-  # POST /wishes
-  # POST /wishes.json
   def create
     @wish = Wish.new(wish_params)
     @wish.option = @option
@@ -40,8 +29,6 @@ class WishesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /wishes/1
-  # PATCH/PUT /wishes/1.json
   def update
     respond_to do |format|
       if @wish.update(wish_params)
@@ -68,8 +55,7 @@ class WishesController < ApplicationController
         format.js { flash[:alert] = "Desejo removido com sucesso."}
     end
   end
-  # DELETE /wishes/1
-  # DELETE /wishes/1.json
+
   def destroy
     @wish.destroy
     respond_to do |format|
@@ -79,7 +65,7 @@ class WishesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_wish
       @wish = Wish.find(params[:id])
     end
@@ -88,7 +74,6 @@ class WishesController < ApplicationController
       @option = Option.find(params[:option_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def wish_params
       params.require(:wish).permit(:option_id, :user_id, :group_id, :priority)
     end

@@ -2,6 +2,7 @@ class MattersController < ApplicationController
   before_action :set_matter, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_action :length_verify, only: [:index]
   before_action :bar_define
 
   def index
@@ -15,13 +16,11 @@ class MattersController < ApplicationController
       session[:matter_search] = params[:q]
     end
 
-    length_verify()
     @q = Matter.ransack(query)
     @matters = @q.result.order(code: :asc)
-
     @elements = @matters.length
-    @page = pages_verify(@page, @elements)
 
+    @page = pages_verify(@page, @elements, @length)
     @matters = @matters.paginate(:per_page => @length, :page => @page)
   end
 
@@ -35,18 +34,6 @@ class MattersController < ApplicationController
 
   def new
     @matter = Matter.new
-    @matter.prerequisite = "Nenhum"
-    @matter.corequisite = "Nenhum"
-    @matter.total_annual_workload = 0
-    @matter.total_weekly_workload = 0
-    @matter.total_modular_workload = 0
-    @matter.weekly_workload = 0
-    @matter.pd = 0
-    @matter.lc = 0
-    @matter.cp = 0
-    @matter.es = 0
-    @matter.or = 0
-
   end
 
   def edit
@@ -104,33 +91,11 @@ class MattersController < ApplicationController
     end
   end
 
-  def pages_verify(page, lines)
-    pages = pages_count(lines)
-    if(page < 1)
-      page = 1
-    elsif page > pages
-      page = pages
-    end
-    page
-  end
-
-  def pages_count(num)
-    result = num/@length
-    resto = num.remainder @length
-    if( resto > 0)
-      result=result+1
-    end
-    result
-  end
-
-  def length_verify
-    @length = 13
-    if user_signed_in? and (current_user.admin? or current_user.secretary?)
-      @length = 10
-    end
-  end
-
   private
+
+    def bar_define
+      session[:page] = "matter"
+    end
 
     def set_matter
       @matter = Matter.find(params[:id])
@@ -146,7 +111,11 @@ class MattersController < ApplicationController
       authorize Matter
     end
 
-    def bar_define
-      session[:page] = "matter"
+    def length_verify
+      @length = 13
+      if user_signed_in? and (current_user.admin? or current_user.secretary?)
+        @length = 10
+      end
     end
+
 end
