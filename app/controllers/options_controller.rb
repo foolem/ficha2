@@ -1,5 +1,7 @@
 class OptionsController < ApplicationController
   before_action :set_option, only: [:show, :edit, :update, :destroy, :open_wish]
+  before_action :authenticate_user!
+  before_action :authorize_user
   before_action :bar_define
 
   def index
@@ -104,6 +106,10 @@ class OptionsController < ApplicationController
 
     def option_params
       params.fetch(:option, {})
+    end
+
+    def authorize_user
+      authorize Option
     end
 
     def has_option(group)
