@@ -43,6 +43,12 @@ body {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+.borderHeaderL {
+  border-top-left-radius: 3px;
+}
+.borderHeaderR {
+  border-top-right-radius: 3px;
+}
 .right {
   float: right;
   margin-right: 10px;
@@ -137,6 +143,7 @@ body {
 .menu_font_size {
   font-size: 16px;
 }
+
 .blue {
   color:#455E8E;
 }
@@ -144,7 +151,13 @@ body {
   color: #fff;
 }
 .white:visited {
-  color:#FFF;
+  color: #fff;
+}
+.white:active {
+  color: #fff;
+}
+.white:hover {
+  color: #fff;
 }
 .black{
   background-color: #000;
@@ -212,7 +225,6 @@ tr:nth-child(even) {background-color: rgb(232, 232, 232)}
 tr.header > th {
   color: white  ;
   opacity: 0.85;
-  border-radius: 20px;
   background-color: #455E8E;
 }
 label { color: #000; }

@@ -2,13 +2,13 @@
 
   <thead>
     <tr class="header">
-      <th width="20px"><center><%= t('code')  %></center></th>
+      <th class="borderHeaderL" width="20px"><center><%= t('code')  %></center></th>
       <th width="5%"><center><%= t('class')  %></center></th>
       <th ><%= t('matter') %></th>
       <th width="110px"><center><%= t('semester')  %></center></th>
       <% if !current_user.teacher? %>
 
-          <th width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %>
+          <th class="borderHeaderR" width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %>
           <%= link_to new_button.html_safe, new_group_path, :class => 'btn-default btn-sm', :style => 'margin-left:30px',
             title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
 
