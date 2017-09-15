@@ -127,7 +127,7 @@ body {
   margin: 0px 5px 0px 5px;
 }
 .lessWishes {
-  width: 68%;
+  width: 64%;
   margin: 0 auto;
 }
 .less {
@@ -208,9 +208,11 @@ h1 {
 td { color: #000; }
 tr:nth-child(even) {background-color: rgb(232, 232, 232)}
 /* tr:hover {background-color: #888; color: black}*/
+
 tr.header > th {
   color: white  ;
   opacity: 0.85;
+  border-radius: 20px;
   background-color: #455E8E;
 }
 label { color: #000; }

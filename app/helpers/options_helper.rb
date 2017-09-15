@@ -10,24 +10,20 @@ module OptionsHelper
     result
   end
 
+
   def option_classes(option)
     result = ""
-    i = 1
     option.groups.each do |group|
-      text = "<span> #{group.name} </span>"
-      if i != option.groups.length
-        text << "ou"
-      end
-      i = i + 1
+      text = "<span> #{group.matter.code} - #{group.name} </span> </br>"
       result << text
     end
     result
   end
 
-  def option_classes2(option)
+  def option_courses(option)
     result = ""
     option.groups.each do |group|
-      text = "<span> #{group.matter.code} - #{group.name} </span> </br>"
+      text = "<span> #{group.course.name} </span> </br>"
       result << text
     end
     result
@@ -52,5 +48,6 @@ module OptionsHelper
     end
     result
   end
+
 
 end
