@@ -10,6 +10,7 @@ module OptionsHelper
     result
   end
 
+
   def option_classes(option)
     result = ""
     option.groups.each do |group|
@@ -47,5 +48,6 @@ module OptionsHelper
     end
     result
   end
+
 
 end
