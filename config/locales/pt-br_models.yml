@@ -28,6 +28,10 @@
       unite_matter:
         one: Unir disciplinas
 
+        option:
+          one: Opção
+          other: Opções
+
 
     attributes:
       matter:
@@ -74,6 +78,9 @@
       unite_matter:
         name: "Nome"
         matter: "Disciplina"
+
+      option:
+        option: "Opção"
 
       user:
         name: "Nome"

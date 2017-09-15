@@ -17,12 +17,18 @@
 </div>
 
 <div class="newOption2" style="margin-bottom: 15px">
-  <%= link_to "Gerar Opções", generate_options_path, :class => 'btn btn-xl newOption2 white blueBtn', :remote => true, :id => "options_generate" %>
+  <%= link_to "Gerar Opções", generate_options_path, :class => 'btn btn-xl newOption2 blueBtn white', :remote => true, :id => "options_generate" %>
 </div>
 
-<div id="spinner" style="display: none" class="center">
-  <%= image_tag("loading.gif", size: "232x160") %>
-</div>
+  <div id="spinner" style="display: none; margin:0 auto;" class="center">
+    <div class="showbox">
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </div>
+    </div>
+  </div>
 
 <div id="options_partial" class="marginBottom" >
   <%= render 'options' %>

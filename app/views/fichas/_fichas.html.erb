@@ -2,7 +2,7 @@
   <thead>
     <tr class="header">
 
-      <th><%= t('teacher') %></th>
+      <th class="borderHeaderL"><%= t('teacher') %></th>
 
       <th width="10%"><center><%= t('matter') %></center></th>
 
@@ -21,7 +21,7 @@
           </center>
         </th>
       <% else %>
-        <th  width="130px">
+        <th class="borderHeaderR" width="130px">
           <center>   <%=t '.actions', :default => t("helpers.actions") %>
 
             <% if user_not_teacher? %>

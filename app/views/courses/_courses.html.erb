@@ -1,9 +1,9 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th><%= t('name') %></th>
+      <th class="borderHeaderL"><%= t('name') %></th>
       <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
-        <th  width="130px">
+        <th class="borderHeaderR" width="130px">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
 
