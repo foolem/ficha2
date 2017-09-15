@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
-  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
-  before_action :set_group, only: [:create]
+  before_action :set_schedule, only: [:show, :edit, :update, :destroy, :remove]
+  before_action :set_group, only: [:create, :remove]
 
   def index
     @schedules = Schedule.all
@@ -17,8 +17,6 @@ class SchedulesController < ApplicationController
   end
 
   def remove
-    set_group_id
-    set_schedule
     @schedule.groups.delete(@group)
     respond_to do |format|
         format.js { flash[:alert] = "Horário removido com sucesso."}
@@ -89,10 +87,6 @@ class SchedulesController < ApplicationController
     end
 
     def set_group
-      @group = Group.find(params[:id])
-    end
-
-    def set_group_id
       @group = Group.find(params[:id_group])
     end
 

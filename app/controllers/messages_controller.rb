@@ -48,7 +48,7 @@ class MessagesController < ApplicationController
     end
 
     def set_ficha
-      @ficha = Ficha.find(params[:id])
+      @ficha = Ficha.find(params[:id_ficha])
     end
 
     def message_params

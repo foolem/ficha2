@@ -3,11 +3,11 @@ class CoursesController < ApplicationController
   before_action :bar_define
 
   def index
-    if(params[:q].blank? and !session[:course_search].blank?)
-      @query = session[:course_search]
+    if(params[:q].blank? and !session[:courses_search].blank?)
+      @query = session[:courses_search]
     else
       @query = params[:q]
-      session[:course_search] = params[:q]
+      session[:courses_search] = params[:q]
     end
 
     @q = Course.ransack(@query)
@@ -61,11 +61,18 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course.destroy
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-      format.json { head :no_content }
+  # Arrumar
+    if !Group.all.any? {|group| group.course_id = @course.id}
+      @course.destroy
+      respond_to do |format|
+        format.html { redirect_to courses_url, notice: "Curso removido com sucesso." }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to courses_url, alert: "Este curso não pode ser removido." }
+      end
     end
+
   end
 
   private

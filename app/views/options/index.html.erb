@@ -4,6 +4,18 @@
   <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('options')%></h1></center>
 </div>
 
+<div class="searchBox">
+
+  <%= search_form_for @q, url: search_options_path , html: { method: :post } do |f| %>
+
+    <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
+
+    <%= f.text_field :id_eq, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;', :id => "fichas_input_search" %>
+
+  <% end %>
+
+</div>
+
 <div class="newOption2" style="margin-bottom: 15px">
   <%= link_to "Gerar Opções", generate_options_path, :class => 'btn btn-xl newOption2 white blueBtn', :remote => true, :id => "options_generate" %>
 </div>

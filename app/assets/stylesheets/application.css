@@ -208,8 +208,9 @@ h1 {
 td { color: #000; }
 tr:nth-child(even) {background-color: rgb(232, 232, 232)}
 /* tr:hover {background-color: #888; color: black}*/
+
 tr.header > th {
-  color: white  ;
+  color: white;
   opacity: 0.85;
   background-color: #455E8E;
 }

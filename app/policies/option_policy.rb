@@ -12,6 +12,10 @@ class OptionPolicy < ApplicationPolicy
     !user.blank?
   end
 
+  def search?
+    !user.blank?
+  end
+
   def update?
     !user.blank?
   end

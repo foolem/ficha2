@@ -5,7 +5,22 @@ class OptionsController < ApplicationController
   before_action :bar_define
 
   def index
-    @options = Option.all
+    if(params[:q].blank? and !session[:option_search].blank?)
+      @query = session[:option_search]
+    else
+      @query = params[:q]
+      session[:option_search] = params[:q]
+    end
+
+    @q = Option.ransack(@query)
+    puts "QQQQQ\n\n #{@q}"
+
+    @page = params[:page].to_i
+    @options = @q.result
+    @elements = @options.length
+    @page = pages_verify(@page, @elements, 30)
+    @options = @options.paginate(:per_page => 30, :page => @page)
+
   end
 
   def show

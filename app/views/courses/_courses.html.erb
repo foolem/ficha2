@@ -27,7 +27,14 @@
                 <%= link_to edit_button.html_safe, edit_course_path(course),
                       :class => 'btn btn-default btn-sm simple_button',
                       title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+
+                <%= link_to remove_button.html_safe, course_path(course),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
+                      :class => 'btn btn-sm btn-danger disable',
+                      title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
             </td>
+
          <% end %>
         </div>
       </tr>

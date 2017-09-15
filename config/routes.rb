@@ -39,14 +39,14 @@ Rails.application.routes.draw do
 
   resources :schedules, only: [:new, :show] do
     collection do
-      match 'create/:id' => 'schedules#create', via: [:get, :post], as: :create
+      match 'create/:id_group' => 'schedules#create', via: [:get, :post], as: :create
       match 'remove/:id_group/:id' => 'schedules#remove', via: [:delete], as: :remove
     end
   end
 
   resources :messages, only: [:destroy, :new] do
     collection do
-        match 'create/:id' => 'messages#create', via: [:get, :post], as: :create
+        match 'create/:id_ficha' => 'messages#create', via: [:get, :post], as: :create
     end
   end
 

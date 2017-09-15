@@ -76,11 +76,11 @@ class UniteGroupsController < ApplicationController
       @unite_group = UniteGroup.find(params[:id])
     end
 
-    def unite_group_params
-      params.require(:unite_group).permit(:name)
-    end
-
     def set_group
       @group = Group.find(params[:group_id])
+    end
+
+    def unite_group_params
+      params.require(:unite_group).permit(:name)
     end
 end
