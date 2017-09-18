@@ -3,20 +3,13 @@ class CoursesController < ApplicationController
   before_action :bar_define
 
   def index
-    if(params[:q].blank? and !session[:courses_search].blank?)
-      @query = session[:courses_search]
-    else
-      @query = params[:q]
-      session[:courses_search] = params[:q]
-    end
-
-    @q = Course.ransack(@query)
-    @page = params[:page].to_i
+    @q = Course.ransack(model_define("Course"))
     @courses = @q.result.order(name: :desc)
     @elements = @courses.length
 
-    @page = pages_verify(@page, @elements, 10)
-    @courses = @courses.paginate(:per_page => 10, :page => @page)
+    @page = params[:page].to_i
+    @page = pages_verify(@page, @elements, page_length)
+    @courses = @courses.paginate(:per_page => page_length, :page => @page)
   end
 
   def search
@@ -87,5 +80,9 @@ class CoursesController < ApplicationController
 
     def bar_define
       session[:page] = "courses"
+    end
+
+    def page_length
+      10
     end
 end

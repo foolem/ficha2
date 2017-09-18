@@ -2,26 +2,16 @@ class MattersController < ApplicationController
   before_action :set_matter, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
-  before_action :length_verify, only: [:index]
   before_action :bar_define
 
   def index
-
-    @page = params[:page].to_i
-
-    if(params[:q].blank? and !session[:matter_search].blank?)
-      query = session[:matter_search]
-    else
-      query = params[:q]
-      session[:matter_search] = params[:q]
-    end
-
-    @q = Matter.ransack(query)
+    @q = Matter.ransack(model_define("Matter"))
     @matters = @q.result.order(code: :asc)
     @elements = @matters.length
 
-    @page = pages_verify(@page, @elements, @length)
-    @matters = @matters.paginate(:per_page => @length, :page => @page)
+    @page = params[:page].to_i
+    @page = pages_verify(@page, @elements, page_length)
+    @matters = @matters.paginate(:per_page => page_length, :page => @page)
   end
 
   def search
@@ -111,11 +101,11 @@ class MattersController < ApplicationController
       authorize Matter
     end
 
-    def length_verify
-      @length = 13
+    def page_length
       if user_signed_in? and (current_user.admin? or current_user.secretary?)
-        @length = 10
+        return 10
       end
+      13
     end
 
 end

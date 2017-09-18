@@ -1,24 +1,15 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :length_verify, only: [:index]
   before_action :bar_define
 
   def index
-    @page = params[:page].to_i
-
-    if(params[:q].blank? and !session[:group_search].blank?)
-      query = session[:group_search]
-    else
-      query = params[:q]
-      session[:group_search] = params[:q]
-    end
-
-    @q = Group.ransack(query)
+    @q = Group.ransack(model_define("Group"))
     @groups = @q.result.order(name: :asc)
     @elements = @groups.length
 
-    @page = pages_verify(@page, @elements, @length)
-    @groups = @groups.paginate(:per_page => @length, :page => @page)
+    @page = params[:page].to_i
+    @page = pages_verify(@page, @elements, page_length)
+    @groups = @groups.paginate(:per_page => page_length, :page => @page)
 
   end
 
@@ -102,11 +93,11 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name, :matter_id, :semester_id, :course_id)
     end
 
-    def length_verify
-      @length = 13
+    def page_length
       if user_signed_in? and (current_user.admin? or current_user.secretary?)
-        @length = 10
+        return 10
       end
+      13
     end
 
 end

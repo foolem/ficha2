@@ -5,21 +5,13 @@ class OptionsController < ApplicationController
   before_action :bar_define
 
   def index
-    if(params[:q].blank? and !session[:option_search].blank?)
-      @query = session[:option_search]
-    else
-      @query = params[:q]
-      session[:option_search] = params[:q]
-    end
-
-    @q = Option.ransack(@query)
-    puts "QQQQQ\n\n #{@q}"
-
-    @page = params[:page].to_i
+    @q = Option.ransack(model_define("Option"))
     @options = @q.result
     @elements = @options.length
-    @page = pages_verify(@page, @elements, 30)
-    @options = @options.paginate(:per_page => 30, :page => @page)
+
+    @page = params[:page].to_i
+    @page = pages_verify(@page, @elements, page_length)
+    @options = @options.paginate(:per_page => page_length, :page => @page)
 
   end
 
@@ -65,6 +57,7 @@ class OptionsController < ApplicationController
 
     @options = Option.all
 
+    index
     respond_to do |format|
       format.html
       format.js
@@ -121,6 +114,10 @@ class OptionsController < ApplicationController
 
     def option_params
       params.fetch(:option, {})
+    end
+
+    def page_length
+      30
     end
 
     def authorize_user

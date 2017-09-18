@@ -5,21 +5,13 @@ class FichasController < ApplicationController
   before_action :bar_define
 
   def index
-
-    if(params[:q].blank? and !session[:ficha_search].blank?)
-      @query = session[:ficha_search]
-    else
-      @query = params[:q]
-      session[:ficha_search] = params[:q]
-    end
-
-    @q = Ficha.ransack(@query)
-
-    @page = params[:page].to_i
+    @q = Ficha.ransack(model_define("Ficha"))
     @fichas = getFichas
     @elements = @fichas.length
-    @page = pages_verify(@page, @elements, 10)
-    @fichas = @fichas.paginate(:per_page => 10, :page => @page)
+
+    @page = params[:page].to_i
+    @page = pages_verify(@page, @elements, page_length)
+    @fichas = @fichas.paginate(:per_page => page_length, :page => @page)
 
   end
 
@@ -218,6 +210,10 @@ class FichasController < ApplicationController
       else
         false
       end
+    end
+
+    def page_length
+        10
     end
 
     def bar_define

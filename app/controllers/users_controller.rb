@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:show, :new, :user_edit, :create, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
-  before_action :length_verify, only: [:index]
   before_action :bar_define
 
   def index
@@ -11,21 +10,13 @@ class UsersController < ApplicationController
       @kind = "role != 0"
     end
 
-    if(params[:q].blank? and !session[:user_search].blank?)
-      query = session[:user_search]
-    else
-      query = params[:q]
-      session[:user_search] = params[:q]
-    end
-
-    @q = User.search(query)
+    @q = User.search(model_define("User"))
+    @users = @q.result.where(@kind).order(name: :asc)
+    @elements = @users.length
 
     @page = params[:page].to_i
-    @users = @q.result.where(@kind).order(name: :asc)
-
-    @elements = @users.length
-    @page = pages_verify(@page, @elements, @length)
-    @users = @users.paginate(:per_page => @length, :page => @page)
+    @page = pages_verify(@page, @elements, page_length)
+    @users = @users.paginate(:per_page => page_length, :page => @page)
 
   end
 
@@ -135,11 +126,11 @@ class UsersController < ApplicationController
       session[:page] = "user"
     end
 
-    def length_verify
-      @length = 10
+    def page_length
       if(!user_signed_in? or !current_user.admin?)
-        @length = 13
+        return 13
       end
+      10
     end
 
 end

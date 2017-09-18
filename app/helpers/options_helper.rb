@@ -49,5 +49,13 @@ module OptionsHelper
     result
   end
 
+  def matter_options(matter)
+    @options = []
+    conn = ActiveRecord::Base.connection
+    result = conn.execute "SELECT options.id FROM options inner join groups on options.id = groups.option_id inner join matters on groups.matter_id = matters.id where matters.id = #{matter.id}"
+    result.each do |option_id|
+      @options << Option.find(option_id[0])
+    end
+  end
 
 end
