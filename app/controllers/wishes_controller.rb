@@ -9,7 +9,6 @@ class WishesController < ApplicationController
   def new
     @wish = Wish.new
   end
-
   def edit
   end
 
@@ -75,6 +74,6 @@ class WishesController < ApplicationController
     end
 
     def wish_params
-      params.require(:wish).permit(:option_id, :user_id, :group_id, :priority)
+      params.require(:wish).permit(:option_id, :user_id, :group_id, :priority, :comments)
     end
 end

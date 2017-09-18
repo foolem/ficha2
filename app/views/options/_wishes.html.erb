@@ -1,3 +1,5 @@
+<%= render '/options/modalComments' %>
+
 <h3 style="text-align: center"><span class="<%=index_icon(user_icon)%>"></span> <%=t('wishes')%></h3>
 
 <table class="table table-striped">
@@ -5,7 +7,8 @@
     <tr class="header">
       <th class="center borderHeaderL" width="110px"><%= t('interested') %></th>
       <th class="center" width="80px"><%= t('priority') %></th>
-      <th class="center borderHeaderR" width="80px"><%= t('preference') %></th>
+      <th class="center" width="80px"><%= t('preference') %></th>
+      <th class="center borderHeaderR" width="80px"> <%= t('comments') %> </th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +18,18 @@
           <td ><%= wish.user.name %></td>
           <td ><%= wish.priority %></td>
           <td ><%= wish.group.name %></td>
-          </div>
+          <td >
+            <button href='/options/modalComments' action='' type="button" class="btn btn-default btn-sm"
+            data-toggle="modal" data-target="#modalComments" data-remote="options/modalComments" data-target="#modalComments" title='Comentários'
+            data-placement:='right'><%= messages_button.html_safe %>
+
+            <span id="badges" class="<%= badgesComments_class %>">
+              <%= comments_length %>
+            </span>
+
+            </button>
+          </td>
+        </div>
       </tr>
     <% end %>
 

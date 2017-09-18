@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :wishes, only: [:show, :new] do
+  resources :wishes, only: [:show, :new, :comments] do
     collection do
       match 'create/:option_id' => 'wishes#create', via: [:get, :post], as: :create
       match 'remove/:option_id' => 'wishes#remove', via: [:delete], as: :remove

@@ -50,4 +50,18 @@ module OptionsHelper
   end
 
 
+  def comments_length
+    @option.comments.length
+  end
+
+  def badgesComments_class
+    result = "badges"
+    if comments_length > 9
+      result << "Two"
+    elsif comments_length == 0
+      result << " badgesNone"
+    end
+    result
+  end
+
 end
