@@ -32,6 +32,10 @@ class OptionPolicy < ApplicationPolicy
     !user.blank? and !user.secretary?
   end
 
+  def open_comment?
+    true
+  end
+
   def show?
     true
   end

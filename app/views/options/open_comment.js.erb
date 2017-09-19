@@ -1,0 +1,2 @@
+$("#div-comments").html("<%= escape_javascript(render("modal_comments", locals:{wish: @wish})) %>");
+$('#modal_comments').modal('show');

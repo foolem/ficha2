@@ -1,5 +1,6 @@
 class OptionsController < ApplicationController
   before_action :set_option, only: [:show, :edit, :update, :destroy, :open_wish]
+  before_action :set_wish, only: [:open_comment]
   before_action :authenticate_user!
   before_action :authorize_user
   before_action :bar_define
@@ -102,6 +103,15 @@ class OptionsController < ApplicationController
     end
   end
 
+  def open_comment
+    puts @wish.comments
+
+    respond_to do |format|
+      format.js
+
+    end
+  end
+
   private
 
     def bar_define
@@ -110,6 +120,10 @@ class OptionsController < ApplicationController
 
     def set_option
       @option = Option.find(params[:id])
+    end
+
+    def set_wish
+      @wish = Wish.find(params[:id_wish])
     end
 
     def option_params

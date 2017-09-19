@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       match 'search' => 'options#search', via: [:get, :post], as: :search
       match 'generate' => 'options#generate', via: [:get, :post], as: :generate
       match 'open_wish/:id' => 'options#open_wish', via: [:get, :post], as: :open_wish
+      match 'open_comment/:id_wish' => 'options#open_comment', via: [:get, :post], as: :open_comment
     end
   end
 
