@@ -20,6 +20,21 @@
 
 document.addEventListener("turbolinks:load", function() {
 
+  $(document).on('mouseenter', 'div #option', function () {
+    $(this).css("background", "#7a9ec3");
+  });
+
+  $(document).on('mouseleave', 'div #option', function () {
+    $(this).css("background", "#455E8E");
+  });
+
+  $(document).on('click', '#option_schedules', function () {
+    var path_parent = $(this).data("href");
+    if(path_parent.length > 0){
+        window.location = path_parent;
+    }
+  });
+
   $( document ).ready(function() {
     $("#ficha_status").hide();
   });

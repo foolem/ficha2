@@ -1,0 +1,30 @@
+
+<div class="page-header noMarginTop">
+  <center><h1><span class="<%=index_icon(option_icon)%>"></span> Editar <%=t('option')%></h1></center>
+</div>
+
+<div class="panel panel-default" style="margin-bottom:70px;text-align:center;">
+  </br>
+    <div class="semesterOptions"> <%= @option.semester.semester_with_year %> </div>
+
+  <div class="form-group veryLess">
+    <div id= "option_groups_partial">
+      <%= render "groups"  %>
+    </div>
+  </div>
+
+  <div class="form-group veryLess">
+    <div id= "option_schedules_partial">
+      <%= render "schedules"  %>
+    </div>
+  </div>
+  <div class="form-group lessWishes">
+    <div id= "option_wishes_partial">
+      <%= render "wishes"  %>
+    </div>
+  </div>
+
+
+</div>
+
+<%= link_to 'Voltar', options_path, :class => 'btn btn-default' %>

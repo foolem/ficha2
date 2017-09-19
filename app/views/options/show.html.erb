@@ -1,30 +1,44 @@
 
 <div class="page-header noMarginTop">
-  <center><h1><span class="<%=index_icon(option_icon)%>"></span> Editar <%=t('option')%></h1></center>
+  <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('option')%></h1></center>
 </div>
 
 <div class="panel panel-default" style="margin-bottom:70px;text-align:center;">
   </br>
-    <div class="semesterOptions"> <%= @option.semester.semester_with_year %> </div>
+  <div class="semesterOptions"> <%= @option.semester.semester_with_year %> </div>
 
-  <div class="form-group veryLess">
-    <div id= "option_groups_partial">
-      <%= render "groups"  %>
+  <div style="margin: 10px; border-radius: 3px; background-color: rgb(238, 238, 238); padding: 3px;">
+    <div style="margin: 10px; border-radius: 3px; background-color:#455E8E; color: white; padding: 4px; text-align: center;">
+
+      <% if user_has_wishes? and !option_wished(@option) %>
+        <%= link_to enable_button.html_safe, open_wish_options_path(@option),
+            :title => "Escolher", :class => "btn btn-default", :remote => true, :style => "float:right;" %>
+      <% elsif option_wished(@option) %>
+        <%= link_to enable_button.html_safe, remove_wishes_path(@option),
+            :title => "Escolher", :class => "btn btn-danger disable", :method => "delete", :style => "float:right;" %>
+      <% end %>
+
+      <div style="width: calc(100% - 43px)">
+        <%= option_schedules2(@option).html_safe %>
+      </div>
+
     </div>
+
+    <div class="form-group less">
+      <div id= "option_groups_partial">
+        <%= render "groups"  %>
+      </div>
+    </div>
+
+    <div class="form-group less">
+      <div id= "option_wishes_partial">
+        <%= render "wishes"  %>
+      </div>
+    </div>
+
+  </div>
+    <%= link_to 'Voltar', options_path, :class => 'btn btn-default' %>
   </div>
 
-  <div class="form-group veryLess">
-    <div id= "option_schedules_partial">
-      <%= render "schedules"  %>
-    </div>
+  <div id="div-modal">
   </div>
-  <div class="form-group lessWishes">
-    <div id= "option_wishes_partial">
-      <%= render "wishes"  %>
-    </div>
-  </div>
-
-
-</div>
-
-<%= link_to 'Voltar', options_path, :class => 'btn btn-default' %>

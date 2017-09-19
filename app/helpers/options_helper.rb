@@ -39,6 +39,23 @@ module OptionsHelper
     result
   end
 
+  def option_schedules2(option)
+    result = ""
+    length = option.schedules.length
+    if length > 0
+      option.schedules.distinct.each do |schedule|
+        text = "<span> #{representation(schedule)} </span> </br>"
+        result << text
+      end
+      if length == 1
+        result << "</br>"
+      end
+    else
+      result = "<span>Nenhum horário definido <br></br> </span>"
+    end
+    result
+  end
+
   def option_users(option)
     result = ""
 
@@ -52,7 +69,7 @@ module OptionsHelper
   def matter_options(matter)
     @options = []
     conn = ActiveRecord::Base.connection
-    result = conn.execute "SELECT options.id FROM options inner join groups on options.id = groups.option_id inner join matters on groups.matter_id = matters.id where matters.id = #{matter.id}"
+    result = conn.execute "SELECT DISTINCT options.id FROM options inner join groups on options.id = groups.option_id inner join matters on groups.matter_id = matters.id where matters.id = #{matter.id}"
     result.each do |option_id|
       @options << Option.find(option_id[0])
     end
