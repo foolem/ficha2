@@ -1,4 +1,3 @@
-<%= render '/options/modalComments' %>
 
 <h3 style="text-align: center"><span class="<%=index_icon(user_icon)%>"></span> <%=t('wishes')%></h3>
 
@@ -15,19 +14,18 @@
     <% @option.wishes.each do |wish| %>
       <tr class="center">
         <div class="form_table">
-          <td ><%= wish.user.name %></td>
-          <td ><%= wish.priority %></td>
-          <td ><%= wish.group.name %></td>
-          <td >
-            <button href='/options/modalComments' action='' type="button" class="btn btn-default btn-sm"
-            data-toggle="modal" data-target="#modalComments" data-remote="options/modalComments" data-target="#modalComments" title='Comentários'
-            data-placement:='right'><%= messages_button.html_safe %>
+          <td><%= wish.user.name %></td>
+          <td><%= wish.priority %></td>
+          <td><%= wish.group.name %></td>
+          <td>
+            <%= link_to messages_button.html_safe, open_comment_options_path(wish),
+            :title => "Escolher", :class => "btn btn-default", :remote => true %>
 
-            <span id="badges" class="<%= badgesComments_class %>">
-              <%= comments_length %>
-            </span>
-
-            </button>
+            <% if wish.comments.present? %>
+              <span id="badges" class="badges">
+                1
+              </span>
+            <% end %>
           </td>
         </div>
       </tr>
@@ -35,3 +33,5 @@
 
   </tbody>
 </table>
+
+<div id="div-comments"> </div>

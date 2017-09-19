@@ -12,6 +12,7 @@ class WishesController < ApplicationController
   def edit
   end
 
+
   def create
     @wish = Wish.new(wish_params)
     @wish.option = @option

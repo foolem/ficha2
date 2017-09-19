@@ -1,0 +1,28 @@
+<div class="modal fade" id="modal_comments">
+  <div class="modal-dialog modal-sg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 style="text-align: center"><%=t('comments')%></h3>
+      </div>
+      <div class="modal-body">
+
+
+          <div class="speech-bubbleSent">
+            <p class="msgSent">
+              <b><%= @wish.created_at.strftime("%d/%m/%Y")%><br> Você: </b><%= @wish.comments %>
+            </p>
+          </div>
+
+
+          <div class="speech-bubbleReceived">
+            <p class="msgReceived">
+              <b><%= @wish.created_at.strftime("%d/%m/%Y")%><br> <%= @wish.user.name %>: </b><%= @wish.comments %>
+            </p>
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
