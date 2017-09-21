@@ -18,11 +18,10 @@
           <td><%= wish.priority %></td>
           <td><%= wish.group.name %></td>
           <td>
+            <% if wish.comments.present? %>
             <%= link_to messages_button.html_safe, open_comment_options_path(wish),
             :title => "Escolher", :class => "btn btn-default", :remote => true %>
-
-            <% if wish.comments.present? %>
-              <span id="badges" class="badges">
+              <span class="badgeComment">
                 1
               </span>
             <% end %>

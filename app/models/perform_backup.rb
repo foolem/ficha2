@@ -1,0 +1,2 @@
+class PerformBackup < ApplicationRecord
+end

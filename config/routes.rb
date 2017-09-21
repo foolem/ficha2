@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'perform_backups/do_perform', to: 'perform_backups#do_perform'
+
+  resources :perform_backups
   resources :courses do
     collection do
       match 'search' => 'courses#search', via: [:get, :post], as: :search
@@ -63,6 +66,8 @@ Rails.application.routes.draw do
         match 'help' => 'contacts#help', via: :get, as: :help
       end
   end
+
+
 
   devise_for :users
 

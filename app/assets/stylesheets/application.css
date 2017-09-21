@@ -143,7 +143,6 @@ body {
 .menu_font_size {
   font-size: 16px;
 }
-
 .blue {
   color:#455E8E;
 }
@@ -301,7 +300,6 @@ li > a:hover{
 .searchBox {
   color: black;
   float: right;
-
 }
 .newOption {
   margin-top: -2.66em;
@@ -361,4 +359,15 @@ li > a:hover{
   margin-left: 12px;
   float: right;
   width: 25px;
+}
+.badgeComment {
+  margin-top: -5px;
+  margin-left: -10px;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  background-color: rgb(235, 11, 11);
+  color: #fff;
+  position: absolute;
+  text-align: center;
 }

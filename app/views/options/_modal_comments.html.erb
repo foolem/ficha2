@@ -7,20 +7,20 @@
       </div>
       <div class="modal-body">
 
-
+        <% if @wish.user == current_user %>
           <div class="speech-bubbleSent">
             <p class="msgSent">
               <b><%= @wish.created_at.strftime("%d/%m/%Y")%><br> Você: </b><%= @wish.comments %>
             </p>
           </div>
 
-
+        <% elsif !@wish.user.blank? %>
           <div class="speech-bubbleReceived">
             <p class="msgReceived">
               <b><%= @wish.created_at.strftime("%d/%m/%Y")%><br> <%= @wish.user.name %>: </b><%= @wish.comments %>
             </p>
           </div>
-
+        <% end %>
 
       </div>
     </div>

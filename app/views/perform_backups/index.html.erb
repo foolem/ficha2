@@ -1,0 +1,29 @@
+<%- model_class = PerformBackup -%>
+
+<div class="page-header noMarginTop padraoHeader2">
+
+  <center><h1><span class="<%=index_icon(backups_icon)%>"></span> <%=t('backups')%></h1></center>
+
+</div>
+
+<div class="panel">
+  <%= link_to "Realizar backup", perform_backups_do_perform_path,
+      :title => "Realizar backup", :class => "btn btn-default",:id => "perform_backup", remote: true%>
+
+      <div id="spinner" style="display: none; margin:0 auto;text-align:center" class="center">
+        <div class="showbox">
+          <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+          </div>
+        </div>
+        <h4 style="margin-top:150px;">Realizando backup...</h4>
+      </div>
+
+<div id="perform_render">
+
+</div>
+
+
+</div>

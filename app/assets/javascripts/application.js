@@ -96,6 +96,10 @@ document.addEventListener("turbolinks:load", function() {
       $("#options_partial").html("");
       $("#spinner").slideDown(2000);
     });
+    $(document).on('click', '#perform_backup',function(){
+      $("#perform_render").html("");
+      $("#spinner").fadeIn(2000);
+    });
 
     $(document).on('click', '.pagination a',function(){
       $.getScript(this.href);

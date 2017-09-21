@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829124714) do
+ActiveRecord::Schema.define(version: 20170920132121) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -116,6 +116,11 @@ ActiveRecord::Schema.define(version: 20170829124714) do
     t.integer "option_id"
     t.index ["option_id"], name: "index_options_users_on_option_id", using: :btree
     t.index ["user_id"], name: "index_options_users_on_user_id", using: :btree
+  end
+
+  create_table "perform_backups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
