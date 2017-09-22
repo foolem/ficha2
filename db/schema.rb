@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 20170920132121) do
   end
 
   create_table "perform_backups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "days"
+    t.time     "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

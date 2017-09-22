@@ -1,18 +1,5 @@
-# Use this file to easily define all of your cron jobs.
-#
-# It's helpful, but not entirely necessary to understand cron before proceeding.
-# http://en.wikipedia.org/wiki/Cron
+every 1.day, :at => '12:20 pm' do
 
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-every 1.day, :at => '10:06 am' do
-  command "backup perform -t backupData"
-end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
+    command "backup perform -t backupDB"
 
-# Learn more: http://github.com/javan/whenever
+    end
