@@ -1,2 +1,2 @@
 $('#spinner').fadeOut(600);
-$('#perform_render').html("<%= escape_javascript (render("perform_backup")) %>");
+$('#perform_render').hide().html("<%= escape_javascript (render("perform_backup")) %>").fadeIn(3000);

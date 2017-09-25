@@ -18,7 +18,7 @@
 
     <div class="field">
       <div class="form-group">
-        <%= f.label :name, :class => 'control-label col-lg-2' %>
+        <%= f.label :name, :class => 'control-label col-md-2' %>
         <div class="col-md-2">
           <%= f.text_field :name, :class => 'form-control txtName' %>
         </div>
@@ -65,7 +65,7 @@
 
     <% if @edit %>
       <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-10">
+        <div class="col-md-offset-2 col-md-10">
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           unite_matters_path, :class => 'btn btn-default right' %>
           <%= f.submit "Atualizar", :class => 'btn btn-primary right' %>
@@ -74,7 +74,7 @@
     <% end %>
     <% if @new %>
       <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-10">
+        <div class="col-md-offset-2 col-md-10">
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           unite_matters_path, :class => 'btn btn-default right' %>
           <%= f.submit "Unir", :class => 'btn btn-primary right' %>

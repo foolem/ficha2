@@ -30,8 +30,8 @@
 
 
     <div class="form-group">
-      <%= f.label :name, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9" id="div_name">
+      <%= f.label :name, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9" id="div_name">
         <%= f.text_field :name, :class => 'form-control', :autofocus => !@show, :autocomplete => "off", :readonly => @show %>
         <span id="name_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:name) %>
@@ -40,8 +40,8 @@
 
 
     <div class="form-group">
-      <%= f.label :code, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9" id="div_code">
+      <%= f.label :code, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9" id="div_code">
         <%= f.text_field :code, :class => 'form-control', :autocomplete => "off", :readonly => @show %>
         <span id="code_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:code) %>
@@ -49,8 +49,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :kind, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-3">
+      <%= f.label :kind, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-3">
 
           <% if !@show %>
             <%= f.select :kind, (%w(Semestral Anual Modular)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
@@ -65,24 +65,24 @@
 
 
     <div class="form-group">
-      <%= f.label :prerequisite , :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+      <%= f.label :prerequisite , :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9">
         <%= f.text_field :prerequisite, :class => 'form-control', :autocomplete => "off", :readonly => @show %>
         <%=f.error_span(:prerequisite) %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :corequisite, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+      <%= f.label :corequisite, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9">
         <%= f.text_field :corequisite, :class => 'form-control', :autocomplete => "off", :readonly => @show %>
         <%=f.error_span(:corequisite) %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :modality, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-3">
+      <%= f.label :modality, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-3">
         <% if !@show %>
           <%= f.select :modality, (%w(Presencial EaD 20%\ Ead)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
         <% else %>
@@ -94,8 +94,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :nature, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-3">
+      <%= f.label :nature, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-3">
 
         <% if !@show %>
           <%= f.select :nature, (%w(Obrigatória Optativa)), {}, { :class => 'form-control', :style => 'width:120px;float:left;margin-right:5px;'} %>
@@ -108,8 +108,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :menu, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9" id="div_menu">
+      <%= f.label :menu, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9" id="div_menu">
         <%= f.text_area :menu, :class => 'form-control resize', :align => "justify", rows: count_lines(@matter.menu), :readonly => @show%>
         <span id="menu_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:menu) %>
@@ -117,8 +117,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :basic_bibliography, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9" id="div_basic_bibliography">
+      <%= f.label :basic_bibliography, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9" id="div_basic_bibliography">
         <%= f.text_area :basic_bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@matter.basic_bibliography), :readonly => @show %>
         <span id="basic_bibliography_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:basic_bibliography) %>
@@ -126,8 +126,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :bibliography, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9" id="div_bibliography">
+      <%= f.label :bibliography, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9" id="div_bibliography">
         <%= f.text_area :bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@matter.bibliography), :readonly => @show %>
         <span id="bibliography_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:bibliography) %>
@@ -142,8 +142,8 @@
     <br>
 
     <div class="form-group">
-      <%= f.label :total_annual_workload, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :total_annual_workload, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
 
         <% if @show %>
           <%= f.text_field :total_annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
@@ -156,8 +156,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :total_weekly_workload, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :total_weekly_workload, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :total_weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -168,8 +168,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :total_modular_workload, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :total_modular_workload, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :total_modular_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -180,8 +180,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :weekly_workload, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :weekly_workload, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -199,8 +199,8 @@
     <br>
 
     <div class="form-group">
-      <%= f.label :pd, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :pd, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :pd, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -211,8 +211,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :lc, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :lc, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :lc, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -223,8 +223,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :cp, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :cp, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :cp, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -235,8 +235,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :es, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :es, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :es, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -247,8 +247,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :or, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
+      <%= f.label :or, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-2">
         <% if @show %>
           <%= f.text_field :or, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
@@ -260,7 +260,7 @@
 
     <% if !@show %>
     <div class="form-group">
-      <div class="col-lg-offset-2 col-lg-10">
+      <div class="col-xs-offset-2 col-xs-10">
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
         matters_path, :class => 'btn btn-default right' %>
         <%= f.submit nil, :class => 'btn btn-primary right' %>
