@@ -6,9 +6,35 @@
 
 </div>
 
-<div class="panel">
-  <%= link_to "Realizar backup", perform_backups_do_perform_path,
-      :title => "Realizar backup", :class => "btn btn-default",:id => "perform_backup", remote: true%>
+<div class="panel center less">
+  <%= link_to "Realizar backup agora", perform_backups_do_perform_path,
+      :title => "Realizar backup agora", :class => "btn btn-default",:id => "perform_backup", remote: true%>
+
+  <%= form_for @perform_backup, :html => { :class => "form-horizontal group"} do |f| %>
+  <div class="field">
+    <div class="form-group">
+      <%= f.label :days, :class => 'control-label col-lg-2' %>
+      <div class="col-md-2">
+        <%= f.text_field :days, :class => 'form-control txtName' %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="form-group">
+      <%= f.label :time, :class => 'control-label col-lg-2' %>
+      <div class="col-md-2">
+        <%= f.text_field :time, :class => 'form-control txtName' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit "Agendar", :class => 'btn btn-primary right', remote: true %>
+    </div>
+  </div>
+
+  <% end %>
 
       <div id="spinner" style="display: none; margin:0 auto;text-align:center" class="center">
         <div class="showbox">

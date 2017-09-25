@@ -9,7 +9,7 @@
 # For more information about Backup's components, see the documentation at:
 # http://backup.github.io/backup
 #
-Model.new(:backupDB, 'Description for backupDB') do
+Model.new(:backupDB, 'Backup do banco de dados') do
   ##
   # Archive [Archive]
   #
