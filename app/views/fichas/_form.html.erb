@@ -76,8 +76,8 @@
     <% if !@show and (user_signed_in? and ((@ficha.reproved? && current_user.teacher?) || !current_user.teacher?))  %>
 
       <div class="form-group">
-        <%= f.label :status, :class => 'control-label col-lg-3' %>
-        <div class="col-lg-8" id='select_status'>
+        <%= f.label :status, :class => 'control-label col-xs-3' %>
+        <div class="col-xs-8" id='select_status'>
           <button id="buttonSent" type="button" class="<%= active_status("sent") %>"><%= getIcon("glyphicon glyphicon-refresh", "Encaminhado", "blue").html_safe %></button>
           <button id="buttonReady" type="button" class="<%= active_status("ready") %>"><%= getIcon("glyphicon glyphicon-ok", "Aprovado", "green").html_safe %></button>
           <button id="buttonReproved" type="button" class="<%= active_status("reproved") %>"><%= getIcon("glyphicon glyphicon-ban-circle", "Reprovado", "red").html_safe %></button>
@@ -92,35 +92,35 @@
     <!-- no lugar do selector -->
 
     <div class="form-group">
-      <%= f.label :teacher, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8">
+      <%= f.label :teacher, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8">
         <%= f.text_field 'user_name', :value => @ficha.user.name, :class => 'form-control', :readonly => true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :matter, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-7">
+      <%= f.label :matter, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-7">
         <!-- getMatter(@ficha) -->
         <%= f.text_field 'matter_name', :value => @ficha.group.matter.code_with_name, :class => 'form-control', :readonly => true %>
       </div>
 
-      <div class="col-lg-1">
+      <div class="col-xs-1">
         <%= f.text_field 'team', :value => @ficha.group.name, :class => 'form-control', :readonly => true %>
       </div>
 
     </div>
 
     <div class="form-group">
-      <%= f.label :semester, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-2">
+      <%= f.label :semester, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-2">
         <%= f.text_field 'semester', :value => @ficha.group.semester.semester_with_year, :class => 'form-control', :readonly => true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :program, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8" id="div_program">
+      <%= f.label :program, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8" id="div_program">
         <%= f.text_area :program, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.program), :readonly => can_not_edit(@ficha) %>
         <span id="program_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:program) %>
@@ -128,8 +128,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :general_objective, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8" id="div_objective">
+      <%= f.label :general_objective, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8" id="div_objective">
         <%= f.text_area :general_objective, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.general_objective), :readonly => can_not_edit(@ficha) %>
         <span id="objective_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:general_objective) %>
@@ -137,8 +137,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :specific_objective, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8" id="div_specific_objective">
+      <%= f.label :specific_objective, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8" id="div_specific_objective">
         <%= f.text_area :specific_objective, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.specific_objective), :readonly => can_not_edit(@ficha) %>
             <span id="specific_objective_error" class="error_mensage" role="alert"> </span>
             <%=f.error_span(:specific_objective) %>
@@ -146,8 +146,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :didactic_procedures, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8" id="div_procedures">
+      <%= f.label :didactic_procedures, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8" id="div_procedures">
         <%= f.text_area :didactic_procedures, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.didactic_procedures), :readonly => can_not_edit(@ficha)%>
         <span id="procedures_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:didactic_procedures) %>
@@ -155,8 +155,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :evaluation, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8" id="div_evaluation">
+      <%= f.label :evaluation, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8" id="div_evaluation">
         <%= f.text_area :evaluation, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.evaluation), :readonly => can_not_edit(@ficha) %>
         <span id="evaluation_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:evaluation) %>
@@ -164,8 +164,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :basic_bibliography, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8" id="div_basic_bibliography">
+      <%= f.label :basic_bibliography, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8" id="div_basic_bibliography">
         <%= f.text_area :basic_bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.basic_bibliography), :readonly => can_not_edit(@ficha) %>
         <span id="basic_bibliography_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:basic_bibliography) %>
@@ -173,8 +173,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :bibliography, :class => 'control-label col-lg-3' %>
-      <div class="col-lg-8" id="div_bibliography">
+      <%= f.label :bibliography, :class => 'control-label col-xs-3' %>
+      <div class="col-xs-8" id="div_bibliography">
         <%= f.text_area :bibliography, :class => 'form-control resize',:maxlength => 3500, rows: count_lines(@ficha.bibliography), :readonly => can_not_edit(@ficha) %>
         <span id="bibliography_error" class="error_mensage" role="alert"> </span>
         <%=f.error_span(:bibliography) %>
@@ -185,7 +185,7 @@
 
 
       <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-10">
+        <div class="col-xs-offset-2 col-xs-10">
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           groups_path, :class => 'btn btn-default right' %>
           <%= f.submit nil, :class => 'btn btn-primary right' %>

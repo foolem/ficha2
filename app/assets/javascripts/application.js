@@ -97,6 +97,7 @@ document.addEventListener("turbolinks:load", function() {
       $("#spinner").slideDown(2000);
     });
     $(document).on('click', '#perform_backup',function(){
+      $("#form_backup").fadeOut(500);
       $("#perform_render").html("");
       $("#spinner").fadeIn(2000);
     });

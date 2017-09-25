@@ -1,7 +1,7 @@
 <div class="form-group">
-  <%= label "matter", t('matter'), :class => 'control-label col-lg-2' %>
+  <%= label "matter", t('matter'), :class => 'control-label col-md-2' %>
 
-  <div class="col-lg-9">
+  <div class="col-md-9">
 
 
     <%= select_tag('unite_matter_matters', options_from_collection_for_select(matters_no_united, 'id', 'code_with_name'), prompt: "Selecione uma disciplina", :class => 'form-control width2') %>

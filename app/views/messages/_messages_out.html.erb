@@ -20,7 +20,7 @@
 <%= form_for @message, url:  create_messages_path(@ficha.id), :method => new_message_path ,:remote => true, :html => { :class => "form-horizontal message" } do |f| %>
 
   <div class="form-group">
-    <div class="col-lg-12">
+    <div class="col-md-12">
       <%= f.text_area :message, :class => 'form-control resize', :autocomplete => "off", :id => "message_field", :placeholder => 'Digite uma mensagem' %>
     </div>
   </div>

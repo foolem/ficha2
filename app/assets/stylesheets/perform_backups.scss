@@ -1,3 +1,27 @@
 // Place all the styles related to the perform_backups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.performNow {
+  margin:30px 0 50px 0;
+}
+.form-backups {
+  margin:0 auto;
+  width: 70%;
+  height: 50%;
+  text-align: center;
+}
+.timeWidth {
+  width: 400px;
+  margin-left: 0;
+}
+.labels {
+  display: inline-block;
+}
+.days {
+  width:100px;
+  display: inline-block;
+}
+.time {
+  width: 300px;
+  display: inline-block;
+}
