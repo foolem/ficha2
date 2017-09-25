@@ -16,4 +16,8 @@ class Matter < ApplicationRecord
     code + " - " + name
   end
 
+  def name_with_code
+    name + ": " + code
+  end
+
 end

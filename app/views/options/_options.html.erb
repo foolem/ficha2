@@ -4,8 +4,7 @@
     <% matters_order.each do |matter| %>
       <% matter_options(matter) %>
       <% if !@options.blank? %>
-        <h4 class="center"><%= matter.code_with_name %></h4>
-        <hr/>
+        <h4 class="center" style="margin-bottom: 20px;"><%= matter_group(matter) %></h4>
 
         <% @options.each do |option| %>
 
@@ -44,6 +43,7 @@
           </div>
 
         <% end %>
+        <hr/>
       <% end %>
     <% end %>
   </div>

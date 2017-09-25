@@ -6,6 +6,8 @@ class OptionsController < ApplicationController
   before_action :bar_define
 
   def index
+    @unites = []
+
     @q = Option.ransack(model_define("Option"))
     @options = @q.result
     @elements = @options.length
@@ -32,38 +34,44 @@ class OptionsController < ApplicationController
     @wish = Wish.new(group_id: 1)
     respond_to do |format|
       format.js
+
+
     end
   end
 
   def generate
+    @unites = []
+    #cleaner
+    Group.where(semester_id: Semester.current_semester.id).each do |group|
+      option_generate(group)
+    end
+
+    respond_to do |format|
+      format.js
+      format.html { redirect_to options_path, notice: 'Opções geradas com sucesso.' }
+    end
+  end
+
+  def option_generate(group)
+    if !has_option_group(group.id)
+      option = Option.new
+      option.semester = Semester.current_semester
+
+      same_groups(group).each do |same_group|
+        option.groups << same_group
+      end
+
+      option.save
+    end
+  end
+
+  def cleaner
     Wish.delete_all
     Group.all.each do |grp|
       grp.option = nil
       grp.save
     end
     Option.destroy_all
-
-    Group.all.each do |group|
-      if !has_option(group)
-        option = Option.new
-        option.semester = Semester.current_semester
-
-        same_groups(group).each do |same_group|
-          option.groups << same_group
-        end
-
-        option.save
-      end
-    end
-
-    @options = Option.all
-
-    index
-    respond_to do |format|
-      format.html
-      format.js
-    end
-
   end
 
   def edit
@@ -74,6 +82,7 @@ class OptionsController < ApplicationController
 
     respond_to do |format|
       if @option.save
+
         format.html { redirect_to @option, notice: 'Option was successfully created.' }
         format.json { render :show, status: :created, location: @option }
       else
@@ -138,32 +147,25 @@ class OptionsController < ApplicationController
       authorize Option
     end
 
-    def has_option(group)
-      Option.all.each do |opt|
-        if opt.groups.include? group
-          return true
-        end
-      end
-      return false
-    end
-
     def same_groups(group)
-      list = Group.where(matter: group.matter)
+
+      result = []
+      if group.schedules.length == 0
+        result << group
+        return result
+      end
 
       groups = []
-      list.each { |grp| groups << grp }
 
       if !group.matter.unite_matter.blank?
-        x = []
-        other_list = group.matter.unite_matter.matters.select {|matter| matter != group.matter}
-        other_list.each do |matter|
-          Group.where(matter: matter).each do |grp|
+        group.matter.unite_matter.matters.each do |matter|
+          matter.groups.each do |grp|
             groups << grp
           end
         end
+      else
+        groups = group.matter.groups
       end
-
-      result = []
 
       schedules = group.schedules
 
@@ -173,6 +175,43 @@ class OptionsController < ApplicationController
         end
       end
 
+      result
+    end
+
+    def select_options_unite(unite_id)
+      "select distinct o.id from options as o
+      inner join groups as g on g.option_id = o.id
+      inner join matters as m on g.matter_id = m.id
+      where m.unite_matter_id = #{unite_id};"
+    end
+
+    def select_options_matters(matter_id)
+      "select distinct g.id from groups as g
+      inner join matters as m on g.matter_id = m.id
+      where m.unite_matter_id = #{matter_id};"
+    end
+
+    def select_options_group(group_id)
+      "select o.id from options as o
+      inner join groups as g on o.id = g.option_id
+      where g.id = #{group_id};"
+    end
+
+    def select_result(query)
+      list = []
+      conn = ActiveRecord::Base.connection
+      result = conn.execute query
+
+      result.each do |r|
+        list << r[0]
+      end
+      list
+    end
+
+    def has_option_group(group_id)
+      result = false
+      options = select_result(select_options_group(group_id))
+      options.each { |option| result = true }
       result
     end
 

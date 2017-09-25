@@ -66,19 +66,62 @@ module OptionsHelper
     result
   end
 
+  def matter_group(matter)
+
+    if matter.unite_matter.blank?
+      return matter.name_with_code
+    end
+
+    result = "#{matter.unite_matter.name}: "
+    matters = matter.unite_matter.matters
+    matters.length.times do |i|
+      matt = matters[i]
+      if i != 0
+        result << ", "
+      end
+      result << "#{matt.code}"
+    end
+
+    return result
+  end
+
   def matter_options(matter)
     @options = []
     conn = ActiveRecord::Base.connection
-    result = conn.execute "SELECT DISTINCT options.id FROM options inner join groups on options.id = groups.option_id inner join matters on groups.matter_id = matters.id where matters.id = #{matter.id}"
-    result.each do |option_id|
-      @options << Option.find(option_id[0])
+    q = query(matter)
+    if !q.blank?
+      result = conn.execute q
+      result.each do |option_id|
+        opt = Option.find(option_id[0])
+        @options << opt
+      end
     end
+  end
+
+  def query(matter)
+    if matter.unite_matter.blank?
+      simple_query(matter)
+    elsif !@unites.include? matter.unite_matter
+      @unites << matter.unite_matter
+      unite_query(matter)
+    end
+  end
+
+  def unite_query(matter)
+    "SELECT DISTINCT options.id FROM options
+    inner join groups on options.id = groups.option_id
+    inner join matters on groups.matter_id = matters.id
+    where matters.unite_matter_id = #{matter.unite_matter.id}"
+  end
+
+  def simple_query(matter)
+    "SELECT DISTINCT options.id FROM options
+    inner join groups on options.id = groups.option_id
+    where groups.matter_id = #{matter.id}"
   end
 
   def comments_length
     @option.comments
   end
-
-
 
 end

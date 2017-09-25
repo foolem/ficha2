@@ -29,7 +29,6 @@ gem 'ransack'
 gem 'devise', '~> 4.0'
 
 # Bootstrap gems
-gem 'therubyracer'
 gem 'less-rails' # deprecated
 gem 'twitter-bootstrap-rails'
 
