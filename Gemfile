@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'rolify'
+
 gem 'whenever'
 gem 'backup', '~> 5.0.0.beta.1'
 gem 'json', "~> 1.8"

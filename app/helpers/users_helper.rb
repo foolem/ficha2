@@ -39,5 +39,12 @@ module UsersHelper
   def user_not_teacher_not_logged?
     user_not_teacher or !user_signed_in?
   end
-  
+
+  def options_for_roles
+    Role::ROLES.map do |key, value|
+      OptionsForRoles.new(key, value)
+    end
+
+  end
+
 end

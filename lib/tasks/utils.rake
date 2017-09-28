@@ -64,6 +64,9 @@ namespace :utils do
       xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
       puts "------------ Users ------------"
+
+      roles = ["teacher", "appraiser", "admin", "secretary", "counselor"]
+
       (xlsx.sheet(1).last_row - 1).times do |i| #mudar pra sheet 3 para teste
         linha = xlsx.sheet(1).row(i+2)
 
@@ -74,10 +77,23 @@ namespace :utils do
         if(linha[2].blank?)
             role = 0
         end
+
         password = pass_generate
 
         puts "|  #{name}  -  #{email} - #{role} - #{password} "
+
         user = User.create(name: name, email: email, password: password,  role: role)
+
+        if (role != 3 and role != 0)
+          user.add_role "teacher"
+          user.add_role roles[role]
+        elsif (role == 0)
+          user.add_role "teacher"
+        else
+          user.add_role "secretary"
+        end
+
+        user.save
 
       end
 

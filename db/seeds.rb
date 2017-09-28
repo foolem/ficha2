@@ -10,10 +10,10 @@
 
 def create_users()
 
-  User.create(name: "Admin", email: "adm@adm", password: "123123",  role: 2)
-  User.create(name: "Professor", email: "prof@prof", password: "123123",  role: 0)
-  User.create(name: "Avaliador", email: "av@av", password: "123123",  role: 1)
-  User.create(name: "Secretário", email: "se@se", password: "123123",  role: 3)
+  User.create(name: "Admin", email: "adm@adm", password: "123123",  role: 2).add_role "admin"
+  User.create(name: "Professor", email: "prof@prof", password: "123123",  role: 0).add_role "teacher"
+  User.create(name: "Avaliador", email: "av@av", password: "123123",  role: 1).add_role "appraiser"
+  User.create(name: "Secretário", email: "se@se", password: "123123",  role: 3).add_role "secretary"
 
 end
 
