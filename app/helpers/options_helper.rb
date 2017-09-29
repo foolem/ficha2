@@ -124,4 +124,8 @@ module OptionsHelper
     @option.comments
   end
 
+  def has_optition_semester(semester)
+    Option.count("semester_id = #{semester.id}") > 0
+  end
+
 end

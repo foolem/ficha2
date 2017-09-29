@@ -84,8 +84,9 @@
             <li class="side_bar <%= classes["options"] %>"><a href="<%= options_path %>"><%= t('options') %><span class="<%=menu_icon(option_icon)%>"></span></a></li>
             <li class="side_bar <%= classes["unite_matters"] %>"><a href="<%= unite_matters_path %>"><%= t('unite_matters') %><span class="<%=menu_icon(unite_matters_icon)%>"></span></a></li>
             <li class="side_bar <%= classes["unite_groups"] %>"><a href="<%= unite_groups_path %>"><%= t('unite_groups') %><span class="<%=menu_icon(unite_groups_icon)%>"></span></a></li>
+            <li class="side_bar <%= classes["perform_backups"] %>"><a href="<%= perform_backups_path %>"><%= t('perform_backups') %><span class="<%=menu_icon(backups_icon)%>"></span></a></li>
 
-          <% elsif user_signed_in? %>
+          <% elsif !user_signed_in? %>
               <li class="side_bar"><a href="<%= teachers_users_path %>"><%= t('teachers') %><span class="<%=menu_icon(user_icon)%>"></span></a></li>
           <% end %>
 
@@ -111,7 +112,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12 less">
+      <div class="col-xs-12 less">
         <div style="margin-top: 10px">
           <%= bootstrap_flash %>
         </div>

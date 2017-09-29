@@ -78,7 +78,12 @@ document.addEventListener("turbolinks:load", function() {
 
 //script para mostrar o footer só quando chegar ao fim da página -------------
 $( document ).ready(function() {
-  $('footer').hide();
+  function verticalScrollPresent() {
+    return (document.documentElement.scrollHeight !== document.documentElement.clientHeight);
+  }
+  if (verticalScrollPresent) {
+    $('footer').hide();
+  }
 });
 $(window).scroll(function() {
   if($(window).scrollTop() + $(window).height() >= $(document).height()) {
@@ -90,11 +95,30 @@ $(window).scroll(function() {
 });
 //-------------------------------------------------
 
+$(document).on('change','#unite_group_groups', function() {
+    var value = $('#unite_group_groups').find(":selected").val();
+    var link = $('#add_group').attr('href');
+    var times = link.length;
+    var i = times;
+    var old  = ""
+    while (i >= 0) {
+      if (link.charAt(i) != '/') {
+        old = old + link.charAt(i);
+      } else {
+        break;
+      }
+      i--;
+    }
+    link = link.substring(0, (link.length-old.length))
+    link = link + value;
+    $('#add_group').attr('href', link);
+});
+
 document.addEventListener("turbolinks:load", function() {
 
     $(document).on('click', '#options_generate',function(){
       $("#options_partial").html("");
-      $("#spinner").slideDown(2000);
+      $("#spinner").fadeIn(2000);
     });
     $(document).on('click', '#perform_backup',function(){
       $("#form_backup").fadeOut(500);

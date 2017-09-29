@@ -8,12 +8,11 @@
   <%= search_form_for @q, url: search_groups_path, html: { method: :post } do |f| %>
 
     <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},
-          {:class => 'form form-group form-control',
-          :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
+          {:class => 'form form-group form-control filterBox'}) %>
 
     <%= f.text_field :name_or_matter_code_or_matter_name_cont, :autofocus => true,
-          placeholder: "Procurar", :autocomplete => "off", :class => 'form-control',
-          :style => 'width:180px', :id => "group_search_field" %>
+          placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher',
+          :id => "group_search_field" %>
 
   <% end %>
 

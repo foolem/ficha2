@@ -17,33 +17,33 @@
     <br>
 
     <div class="form-group">
-      <%= f.label :matter, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-7">
+      <%= f.label :matter, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-7">
         <%= f.text_field 'matter_name', :value => @group.matter.code_with_name, :class => 'form-control', :readonly => true %>
       </div>
 
-      <div class="col-lg-2">
+      <div class="col-xs-2">
         <%= f.text_field 'team', :value => @group.name, :class => 'form-control', :readonly => true %>
       </div>
 
     </div>
 
     <div class="form-group">
-      <%= f.label :course, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+      <%= f.label :course, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9">
         <%= f.text_field 'course', :value => @group.course.name, :class => 'form-control', :readonly => true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :semester, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-9">
+      <%= f.label :semester, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9">
         <%= f.text_field 'semester', :value => @group.semester.semester_with_year, :class => 'form-control', :readonly => true %>
       </div>
     </div>
 
     <div class="form-group" style="margin-left: 40px; margin-right: 40px">
-      <div id= "schedules_partial" class="col-lg-12">
+      <div id= "schedules_partial" class="col-xs-12">
         <%= render "/schedules/schedules"  %>
       </div>
     </div>

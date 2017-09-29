@@ -8,27 +8,25 @@
 
   <%= search_form_for @q, url: search_options_path , html: { method: :post } do |f| %>
 
-    <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control', :style => 'float:left;width:155px;margin-left:5px;margin-right:5px;'}) %>
+    <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control filterBox'}) %>
 
-    <%= f.text_field :id_eq, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px;', :id => "fichas_input_search" %>
+    <%= f.text_field :id_eq, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher', :id => "fichas_input_search" %>
 
   <% end %>
 
 </div>
 
-<div class="newOption2" style="margin-bottom: 15px">
-  <%= link_to "Gerar Opções", generate_options_path, :class => 'btn btn-xl newOption2 blueBtn white', :remote => true, :id => "options_generate" %>
-</div>
-
-  <div id="spinner" style="display: none; margin:0 auto;" class="center">
-    <div class="showbox">
-      <div class="loader">
-        <svg class="circular" viewBox="25 25 50 50">
-          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-        </svg>
-      </div>
+<div id="spinner" class="center spinner">
+  <div class="showbox">
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      </svg>
     </div>
   </div>
+  <h4 style="margin-top:260px;">Gerando opções...</h4>
+</div>
+
 
 <div id="options_partial" class="marginBottom" >
   <%= render 'options' %>

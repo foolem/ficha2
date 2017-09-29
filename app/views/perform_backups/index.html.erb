@@ -2,33 +2,32 @@
 
 <div class="page-header noMarginTop padraoHeader2">
 
-  <center><h1><span class="<%=index_icon(backups_icon)%>"></span> <%=t('backups')%></h1></center>
+  <center><h1><span class="<%=index_icon(backups_icon)%>"></span> <%=t('perform_backups')%></h1></center>
 
 </div>
 
-<div class="panel center less">
+<div class="panel center less pd-btm-20">
   <%= link_to "Realizar backup agora", perform_backups_do_perform_path,
       :title => "Realizar backup agora", :class => "btn btn-primary performNow",:id => "perform_backup", remote: true%>
   <%= form_for @perform_backup, :html => { :class => "form-horizontal group"} do |f| %>
 
 
     <div class="form-group" id="form_backup">
-      <label class="control-label" style="display:inline-block;margin-right:10px;margin-left:20px;">A cada</label>
+      <label class="control-label labelCada">A cada</label>
       <div class="days">
-        <%= f.text_field :days, :class => 'form-control', style: "width:50px;" %>
+        <%= f.text_field :days, :class => 'form-control daysWidth' %>
       </div>
-      <label class="control-label" style="display:inline-block;margin-left:-40px;">dia(s)</label>
-
-      <label class="control-label" style="display:inline-block;margin-left:30px;margin-right:-65px;">às</label>
+      <label class="control-label labelDias">dia(s)</label>
+      <label class="control-label labelAs">às</label>
       <div class="time">
-        <%= f.time_select :time, { minute_step: 30, :start_hour => 0}, :class => 'form-control', style: "width: 70px;display: inline-block;" %>
+        <%= f.time_select :time, { minute_step: 30, :start_hour => 0}, :class => 'form-control selectTime' %>
       </div>
-      <%= f.submit "Agendar", :class => 'btn btn-primary', style: "margin-left:-60px;margin-top:-3px", remote: true %>
+      <%= f.submit "Agendar", :class => 'btn btn-primary btnAgendar', remote: true %>
     </div>
 
   <% end %>
 
-      <div id="spinner" style="display: none; margin:0 auto;text-align:center" class="center">
+      <div id="spinner" class="center spin">
         <div class="showbox">
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -36,12 +35,10 @@
             </svg>
           </div>
         </div>
-        <h4 style="margin-top:80px;">Realizando backup...</h4>
+        <h4 class="mg-top-80">Realizando backup...</h4>
       </div>
 
-<div id="perform_render">
-
-</div>
-
+  <div id="perform_render">
+  </div>
 
 </div>

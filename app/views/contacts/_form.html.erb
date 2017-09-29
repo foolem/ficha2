@@ -1,5 +1,4 @@
 <%= form_for(@contact) do |f| %>
-<div class="form-group">
   <center>
     <% if contact.errors.any? %>
       <div id="error_expl" class="panel panel-danger" style="width:400px">
@@ -15,22 +14,24 @@
         </div>
       </div>
     <% end %>
+  <div class="panelContacts">
+    <div class="form-group">
+      <div class="field">
+        <%= f.text_field :name, :placeholder => 'Seu nome', :value => user_name, :class => 'form-control', :style => 'width:400px;' %>
+      </div>
 
-  <div class="field">
-    <%= f.text_field :name, :placeholder => 'Seu nome', :value => user_name, :class => 'form-control', :style => 'width:400px;' %>
-  </div>
+      <div class="field">
+        <%= f.text_field :email, :placeholder => 'Seu email', :value => user_email, :class => 'form-control', :style => 'width:400px;' %>
+      </div>
 
-  <div class="field">
-    <%= f.text_field :email, :placeholder => 'Seu email', :value => user_email, :class => 'form-control', :style => 'width:400px;' %>
-  </div>
+      <div class="field">
+        <%= f.text_area :message, :placeholder => 'Por favor, deixe sua mensagem', :class => 'form-control', :style => 'max-width:400px;height:300px' %>
+      </div>
 
-  <div class="field">
-    <%= f.text_area :message, :placeholder => 'Por favor, deixe sua mensagem', :class => 'form-control', :style => 'width:400px;height:300px' %>
-  </div>
-
-  <div class="actions">
-    <input name="commit" value="ENVIAR" class="btnC" data-disable-with="ENVIANDO" type="submit">
-  </div>
-  </center>
+      <div class="actions">
+        <input name="commit" value="ENVIAR" class="btnC" data-disable-with="ENVIANDO" type="submit">
+      </div>
+      </center>
+    </div>
 </div>
 <% end %>

@@ -68,8 +68,12 @@ module IconsHelper
     '<i class="glyphicon glyphicon-user"></i> ' + user
   end
 
+  def ok_icon
+    'ok'
+  end
+
   def backups_icon
-    '<i class="glyphicon glyphicon-export"></i>'
+    'export'
   end
 
   def home_icon

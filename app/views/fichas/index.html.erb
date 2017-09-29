@@ -12,18 +12,18 @@
     <% if(user_signed_in?)%>
 
       <% if user_not_secretary? %>
-        <input id="yours_checkbox" data-role="<%= current_user.role %>" name="checkbox" type="checkbox" style="margin-top:10px; display: inline-block">
+        <input id="yours_checkbox" class="mg-top" data-role="<%= current_user.role %>" name="checkbox" type="checkbox">
         <span >Suas</span>
       <% end %>
 
       <%= f.select(:status_cont, [['Todos status', ''], ['Aprovados', 2], ['Reprovados', 3],
-        ['Editando', 0], ['Encaminhados', 1]],{},{:class => 'form form-group form-control', :style => ';width:155px; display: inline-block'}) %>
+        ['Editando', 0], ['Encaminhados', 1]],{},{:class => 'form form-group form-control statusBox'}) %>
 
     <% end %>
 
-    <%= f.select( :group_semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control', :style => 'width:155px;margin-left:5px;margin-right:5px; display: inline-block'}) %>
+    <%= f.select( :group_semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control filterBox'}) %>
 
-    <%= f.text_field :group_name_or_group_matter_name_or_group_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'float:right;width:180px;margin-left:10px; display: inline-block', :id => "fichas_input_search" %>
+    <%= f.text_field :group_name_or_group_matter_name_or_group_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher', :id => "fichas_input_search" %>
 
   <% end %>
 

@@ -1,2 +1,2 @@
-$('#spinner').hide();
-$("#options_partial").html("<%= escape_javascript(render("options")) %>");
+$('#spinner').fadeOut(600);
+$("#options_partial").hide().html("<%= escape_javascript(render("options")) %>").fadeIn(3000);
