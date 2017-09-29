@@ -27,4 +27,10 @@ class User < ApplicationRecord
     end
   end
 
+  def checked_roles
+    self.roles.collect do |role|
+      role.id
+    end
+  end
+
 end
