@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
 
-<<<<<<< HEAD
   devise_for :users
 
   get 'welcome/index'
 
   root 'welcome#index'
 
-=======
   get 'perform_backups/update_cron', to: 'perform_backups#update_cron'
->>>>>>> 8cc30f23c6af3b1c3537e8743c328fbb8f41ea6a
   get 'perform_backups/do_perform', to: 'perform_backups#do_perform'
 
   resources :perform_backups

@@ -304,7 +304,7 @@ li > a:hover{
 .searchBox {
   color: black;
   margin-top:10px;
-  margin-bottom:15px;
+  margin-bottom:5px;
   text-align: right;
 }
 .filterBox {
@@ -326,9 +326,8 @@ li > a:hover{
   display: none;
   margin:0 auto;
 }
-.panelOptions {
+.panel-options {
   margin-bottom:70px;
-  margin-top:40px;
   padding-bottom:20px;
 }
 .pd-btm-20 {
@@ -336,7 +335,6 @@ li > a:hover{
 }
 .mg-top-80 {
   margin-top:80px;
->>>>>>> 8cc30f23c6af3b1c3537e8743c328fbb8f41ea6a
 }
 
 .newOption {
