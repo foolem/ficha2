@@ -299,8 +299,11 @@ li > a:hover{
 
 .searchBox {
   color: black;
-  float: right;
+  margin-top:10px;
+  margin-bottom:15px;
+  text-align: right;
 }
+
 .newOption {
   margin-top: -2.66em;
   float: right;

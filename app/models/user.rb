@@ -33,4 +33,9 @@ class User < ApplicationRecord
     end
   end
 
+  def roles_names
+    self.roles.collect do |role|
+      Role::ROLES[role.name.to_sym]
+    end
+  end
 end

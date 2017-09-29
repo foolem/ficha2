@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
+  get 'welcome/index'
+
+  root 'welcome#index'
+
   get 'perform_backups/do_perform', to: 'perform_backups#do_perform'
 
   resources :perform_backups
+
   resources :courses do
     collection do
       match 'search' => 'courses#search', via: [:get, :post], as: :search
@@ -67,19 +74,9 @@ Rails.application.routes.draw do
       end
   end
 
-
-
-  devise_for :users
-
-  get 'welcome/index'
-
-  root 'welcome#index'
-
   resources :users, controller: 'users' do
     collection do
       match 'search' => 'users#search', via: [:get, :post], as: :search
-      match 'teachers', :to => 'users#teachers', via: [:get], as: :teachers
-      match 'teachers/search' => 'users#teacher_search', via: [:get, :post], as: :teacher_search
     end
   end
 

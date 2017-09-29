@@ -5,34 +5,18 @@ class UsersController < ApplicationController
   before_action :bar_define
 
   def index
-
-    if(@kind.blank?)
-      @kind = "role != 0"
-    end
-
     @q = User.search(model_define("User"))
-    @users = @q.result.where(@kind).order(name: :asc)
+    @users = @q.result.order(name: :asc)
     @elements = @users.length
 
     @page = params[:page].to_i
     @page = pages_verify(@page, @elements, page_length)
     @users = @users.paginate(:per_page => page_length, :page => @page)
-
   end
 
   def search
     index
     render :index
-  end
-
-  def teacher_search
-    teachers
-    render :teachers
-  end
-
-  def teachers
-    @kind = "role != 3"
-    index
   end
 
   def show
@@ -61,7 +45,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.send_reset_password_instructions
-        format.html { redirect_to welcome_index_path, notice: 'Usuário criado com sucesso.' }
+        format.html { redirect_to users_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
