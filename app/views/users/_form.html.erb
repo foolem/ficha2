@@ -18,23 +18,6 @@
 </center>
   <div class="form-login" class="loginPageNew">
 
-    <% if(current_user.admin?) %>
-      <%= f.select(:role, [['Professor', :teacher], ['Avaliador', :appraiser], ['Administrador', :admin], ['Secretário', :secretary]],{}, {class: "form form-group form-control selectpicker" }) %>
-    <% end %>
-
-    <div style="margin: 0px">
-
-    <% if(current_user.admin?) %>
-      <%= f.collection_check_boxes(:role_ids, Role.all, :id, :name) do |b| %>
-        <div class="check form-control" style="display:inline-block; text-align: left; margin: 3px" >
-          <%= b.check_box(:style => "margin: 0; width: 15px;") %>
-          <span style="margin: 0;"> <%= t(b.text) %> </span>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-
     <%= f.text_field :name, placeholder: "Nome", autofocus: true, :autocomplete => "off"  %>
 
     <%= f.email_field :email , placeholder: "Email", :autocomplete => "off"  %>
@@ -44,6 +27,17 @@
 
     <br/>
     <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "Confirme a senha" %>
+
+    <% if(current_user.admin?) %>
+      <div style="margin-bottom: 5px">
+        <%= f.collection_check_boxes(:role_ids, Role.all, :id, :name, checked: @user.checked_roles) do |b| %>
+          <div class="check form-control" style="display:inline-block; text-align: left; margin: 3px;" >
+            <%= b.check_box(:style => "margin: 0; width: 15px;") %>
+            <span style="margin: 0;"> <%= t(b.text) %> </span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
     <button name="commit" data-disable-with="Enviando" type="submit ">Enviar</button>
 

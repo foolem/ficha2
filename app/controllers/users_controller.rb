@@ -71,6 +71,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    update_roles
     list = user_params
 
     respond_to do |format|
@@ -131,6 +132,25 @@ class UsersController < ApplicationController
         return 13
       end
       10
+    end
+
+    def remove_all_roles
+      Role.permited_roles.each do |role|
+        @user.remove_role(role)
+      end
+    end
+
+
+     def update_roles
+      remove_all_roles
+      roles = params[:user][:role_ids]
+      roles.each do |role|
+        if role != ""
+          puts role.to_i - 1
+          puts Role.role_by_index (role.to_i - 1)
+          @user.add_role(Role.role_by_index (role.to_i - 1))
+        end
+      end
     end
 
 end
