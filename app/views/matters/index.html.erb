@@ -6,7 +6,7 @@
 
   <div class="searchBox padraoHeader">
     <%= search_form_for @q, url: search_matters_path, html: { method: :post } do |f| %>
-    <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control', :style => 'width:180px' %>
+    <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher'%>
     <% end %>
   </div>
 

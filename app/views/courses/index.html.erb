@@ -7,8 +7,8 @@
     <%= search_form_for @q, url: search_courses_path, html: { method: :post } do |f| %>
 
       <%= f.text_field :name_cont, :autofocus => true,
-            placeholder: "Procurar", :autocomplete => "off", :class => 'form-control',
-            :style => 'width:180px', :id => "course_search_field" %>
+            placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher',
+            :id => "course_search_field" %>
 
     <% end %>
 

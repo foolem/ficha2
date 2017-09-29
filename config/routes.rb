@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'perform_backups/update_cron', to: 'perform_backups#update_cron'
   get 'perform_backups/do_perform', to: 'perform_backups#do_perform'
 
   resources :perform_backups

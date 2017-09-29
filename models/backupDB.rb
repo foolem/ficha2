@@ -30,16 +30,7 @@ Model.new(:backupDB, 'Backup do banco de dados') do
   #
   #   archive.root '/path/to/archive/root'
   #
-  archive :my_archive do |archive|
-    # Run the `tar` command using `sudo`
-    # archive.use_sudo
-    archive.add "/path/to/a/file.rb"
-    archive.add "/path/to/a/folder/"
-    archive.exclude "/path/to/a/excluded_file.rb"
-    archive.exclude "/path/to/a/excluded_folder"
-  end
-
-  ##
+  #
   # MySQL [Database]
   #
   database MySQL do |db|
@@ -73,7 +64,7 @@ Model.new(:backupDB, 'Backup do banco de dados') do
     # :app_folder (default) or :dropbox
     db.access_type = :app_folder
     db.path        = "/BackupFicha2"
-    db.keep        = 25
+    db.keep        = 50
     # db.keep        = Time.now - 2592000 # Remove all backups older than 1 month.
   end
 

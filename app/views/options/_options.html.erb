@@ -1,5 +1,11 @@
-  <div class="panel panel-default" style="margin-bottom:70px; margin-top:35px;">
-    </br>
+
+  <div id="panel-options" class="panel panel-default panelOptions">
+
+    <%if !has_optition_semester(current_semester) %>
+      <div class="newOption2">
+        <%= link_to "Gerar Opções", generate_options_path, :class => 'btn btn-xl newOption2 blueBtn white', :remote => true, :id => "options_generate" %>
+      </div>
+    <% end %>
 
     <% matters_order.each do |matter| %>
       <% matter_options(matter) %>

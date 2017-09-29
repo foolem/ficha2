@@ -4,9 +4,9 @@
 
   <center><h1><span class="<%=index_icon(user_icon)%>"></span> Colaboradores</h1>
 
-  <div class="searchBox" style="margin-top:10px;margin-bottom:15px;">
+  <div class="searchBox">
     <%= search_form_for @q, url: search_users_path,html: { method: :post } do |f| %>
-        <%= f.text_field :name_or_email_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control' %>
+        <%= f.text_field :name_or_email_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher' %>
 
     <% end %>
   </div>

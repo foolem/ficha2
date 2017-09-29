@@ -110,7 +110,7 @@ body {
 }
 .juntar {
   margin-top: 9px;
-  margin-left: -290px;
+  float: left;
 }
 .txtName {
   width: 200px;
@@ -166,6 +166,10 @@ body {
 }
 .width2 {
   width: 380px;
+  display: inline-block;
+}
+.width3 {
+  width: 460px;
   display: inline-block;
 }
 .footer {
@@ -299,7 +303,37 @@ li > a:hover{
 
 .searchBox {
   color: black;
-  float: right;
+  text-align: right;
+}
+.filterBox {
+  width:155px;
+  display: inline-block;
+  margin-left:5px;
+  margin-right:5px;
+}
+.searcher {
+  display: inline-block;
+  width:180px;
+  margin-left:10px;
+}
+.statusBox {
+  display: inline-block;
+  width:155px;
+}
+.spinner {
+  display: none;
+  margin:0 auto;
+}
+.panelOptions {
+  margin-bottom:70px;
+  margin-top:40px;
+  padding-bottom:20px;
+}
+.pd-btm-20 {
+  padding-bottom:20px;
+}
+.mg-top-80 {
+  margin-top:80px;
 }
 .newOption {
   margin-top: -2.66em;
@@ -307,8 +341,9 @@ li > a:hover{
   display: inline-block;
 }
 .newOption2 {
-  float: left;
-  display: inline-block;
+  margin:0 auto;
+  display: flex;
+  margin-top: 10px;
 }
 .blueBtn {
   background-color: #455E8E;
@@ -370,4 +405,12 @@ li > a:hover{
   color: #fff;
   position: absolute;
   text-align: center;
+}
+.panelContacts {
+  width: 70%;
+  height: 70%;
+  margin-top: 40px;
+  padding:20px 10px 10px 10px;
+  background-color: #fff;
+  border-radius: 5px;
 }

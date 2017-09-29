@@ -22,4 +22,9 @@
                 :method => 'delete',
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Tem certeza?')) },
                 :class => 'btn btn-danger white', :style => 'margin-bottom:60px' %>
+
+  <% if status_ready(@ficha.status) %>
+    <%= link_to download_button.html_safe, ficha_path(@ficha, format:"pdf"), :class => 'btn btn-default',
+    :style => 'margin-bottom:60px; float:right', title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+  <% end %>
 <% end %>

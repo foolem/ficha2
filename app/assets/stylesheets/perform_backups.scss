@@ -10,13 +10,6 @@
   height: 50%;
   text-align: center;
 }
-.timeWidth {
-  width: 400px;
-  margin-left: 0;
-}
-.labels {
-  display: inline-block;
-}
 .days {
   width:100px;
   display: inline-block;
@@ -24,4 +17,44 @@
 .time {
   width: 300px;
   display: inline-block;
+}
+.labelCada {
+  display:inline-block;
+  margin-right:10px;
+  margin-left:20px;
+}
+.daysWidth {
+  width:50px;
+}
+.labelDias {
+  display:inline-block;
+  margin-left:-40px;
+}
+.labelAs {
+  display:inline-block;
+  margin-left:30px;
+  margin-right:-65px;
+}
+.selectTime {
+  width: 70px;
+  display: inline-block;
+}
+.btnAgendar {
+  margin-left:-60px;
+  margin-top:-3px
+}
+.spin {
+  display: none;
+  margin:0 auto;
+  text-align:center
+}
+#linkBackup {
+  target-new: tab ! important;
+  background-color: transparent;
+  text-decoration: none;
+  color:rgb(81, 135, 199);
+}
+#linkBackup:hover {
+  text-decoration: none;
+  color:rgb(106, 156, 215);
 }
