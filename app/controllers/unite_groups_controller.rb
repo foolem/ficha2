@@ -67,6 +67,16 @@ class UniteGroupsController < ApplicationController
     end
   end
 
+  def chose
+    @unite_matter = UniteMatter.find(params[:unite_matter_id])
+    @unite_group = UniteGroup.find(params[:unite_group_id])
+    puts @unite_matter.name
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     def bar_define
       session[:page] = "unite_groups"
@@ -81,6 +91,6 @@ class UniteGroupsController < ApplicationController
     end
 
     def unite_group_params
-      params.require(:unite_group).permit(:name)
+      params.require(:unite_group).permit(:name, :unite_matter_id)
     end
 end

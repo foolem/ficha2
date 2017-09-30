@@ -326,6 +326,10 @@ li > a:hover{
   display: none;
   margin:0 auto;
 }
+
+.hidden {
+  display: none;
+}
 .panel-options {
   margin-bottom:70px;
   padding-bottom:20px;

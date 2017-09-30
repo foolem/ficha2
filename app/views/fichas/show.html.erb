@@ -7,14 +7,14 @@
 <%= render :partial => 'form' %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              fichas_path, :class => 'btn btn-default', :style => 'margin-bottom:60px'  %>
+    fichas_path, :class => 'btn btn-default', :style => 'margin-bottom:60px'  %>
 
 <% if user_signed_in? %>
 
   <% if @ficha.status != 'Aprovado' %>
 
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                  edit_ficha_path(@ficha), :class => 'btn btn-default', :style => 'margin-bottom:60px' %>
+        edit_ficha_path(@ficha), :class => 'btn btn-default', :style => 'margin-bottom:60px' %>
   <% end %>
 
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -25,6 +25,6 @@
 
   <% if status_ready(@ficha.status) %>
     <%= link_to download_button.html_safe, ficha_path(@ficha, format:"pdf"), :class => 'btn btn-default',
-    :style => 'margin-bottom:60px; float:right', title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+        :style => 'margin-bottom:60px; float:right', title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
   <% end %>
 <% end %>
