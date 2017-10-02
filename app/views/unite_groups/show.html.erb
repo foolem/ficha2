@@ -1,24 +1,35 @@
 <%- model_class = UniteGroup  -%>
 <% show_unite_group %>
-  <center><h1><span class="<%=index_icon(unite_groups_icon)%>"></span> União</h1></center>
-  <%= form_for @unite_group, :html => { :class => "form-horizontal group" } do |f| %>
+
+<center><h1><span class="<%=index_icon(unite_groups_icon)%>"></span> União</h1></center>
+
+<%= form_for @unite_group, :html => { :class => "form-horizontal group" } do |f| %>
   <div class="panel panel-default" style="margin-bottom:30px;">
     <header class="panel-heading header headerOutra">Detalhes</header>
     <br>
 
-    <div class="field">
-      <div class="form-group">
-        <%= f.label :name, :class => 'control-label col-xs-2' %>
-        <div class="col-xs-2">
-          <%= f.text_field :name, :class => 'form-control txtNameShow marginBottom3', :readonly => true %>
-        </div>
+
+    <div class="form-group">
+      <%= f.label :name, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-10">
+        <%= f.text_field :name, :class => 'form-control txtNameShow', :readonly => true %>
       </div>
     </div>
-    <div id="unite_groups_partial" class="less">
+
+    <div class="form-group">
+      <%= f.label :unite_matter, :class => 'control-label col-xs-2' %>
+      <div class="col-xs-10">
+        <%= f.text_field 'unite_matter', :value => @unite_group.unite_matter.name,
+        :class => 'form-control width2', :readonly => true %>
+
+      </div>
+    </div>
+
+    <div id="unite_groups_partial" class="less" style="margin-top: 30px">
       <%= render "groups" %>
     </div>
-  </p>
+  </div>
 <% end %>
-</div>
+
 <%= link_to 'Editar', edit_unite_group_path(@unite_group), :class => 'btn btn-default marginBottom2' %>
 <%= link_to 'Voltar', unite_groups_path, :class => 'btn btn-default marginBottom2' %>

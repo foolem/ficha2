@@ -15,7 +15,7 @@ module GroupsHelper
   end
 
   def groups_no_united
-    Group.where(unite_group: nil)
+    Group.joins(:matter).where("matters.unite_matter_id = #{@unite_group.unite_matter.id} and groups.unite_group_id IS NULL")
   end
 
 end

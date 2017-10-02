@@ -85,6 +85,7 @@ $( document ).ready(function() {
     $('footer').hide();
   }
 });
+
 $(window).scroll(function() {
   if($(window).scrollTop() + $(window).height() >= $(document).height()) {
     $('footer').slideDown(200);
@@ -93,7 +94,24 @@ $(window).scroll(function() {
     $('footer').slideUp(200);
   }
 });
+
 //-------------------------------------------------
+
+$(document).on('change','#select_unite_matter', function() {
+
+  var selected = $(this).find(":selected").attr('value');
+  var unite =  $(this).data('group');
+  alert('/unite_groups/chose/'+ unite +"/"+ selected);
+
+  $.ajax({
+        url: '/unite_groups/chose/'+ unite +"/"+ selected,
+        type: 'GET',
+        error: function () {
+            alert("Erro ao carregar grupos pertencentes a esta união.");
+        }
+    });
+
+});
 
 $(document).on('change','#unite_group_groups', function() {
     var value = $('#unite_group_groups').find(":selected").val();

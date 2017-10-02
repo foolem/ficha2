@@ -1,0 +1,10 @@
+
+<li class="dropdown side_bar <%= classes["user"]%>">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários <span class="caret"></span><span class="<%=menu_icon(user_icon)%>"</span></a>
+  <ul class="dropdown-menu forAnimate" role="menu">
+    <li><a href="<%= new_user_path %>">Novo</a></li>
+    <li class="divider"></li>
+    <li><a href="<%= users_path %>">Colaboradores</a></li>
+    <li><a href="<%= teachers_users_path %>">Professores</a></li>
+  </ul>
+</li>

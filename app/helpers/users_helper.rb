@@ -41,10 +41,16 @@ module UsersHelper
   end
 
   def options_for_roles
-    Role::ROLES.map do |key, value|
-      OptionsForRoles.new(key, value)
+    result  = {'Todos os tipos' => ''}
+    roles = Role.all
+    roles.each do |role|
+        result[t(role.name)] = role.id
     end
+    result
+  end
 
+  def role_selected?
+    !params[:q].blank? and params[:q][:roles_id_eq].blank?
   end
 
 end

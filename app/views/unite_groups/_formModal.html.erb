@@ -1,8 +1,0 @@
-<%- model_class = UniteGroup -%>
-<% @unite_group = UniteGroup.new %>
-<%= form_for @unite_group, :html => { :class => "form-horizontal group"} do |f| %>
-  <h2>eae men</h2>
-  <%= select_tag('unite_groups', options_from_collection_for_select(groups_no_united, 'id', 'code_with_group'), prompt: "Selecione uma turma", :class => 'form-control width2') %>
-  <%= f.submit "Unir", :class => 'btn btn-primary right' %>
-
-<% end %>
