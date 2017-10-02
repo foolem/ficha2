@@ -6,7 +6,7 @@
 
   <div class="searchBox">
     <%= search_form_for @q, url: search_users_path,html: { method: :post } do |f| %>
-        <%= f.text_field :name_or_email_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher' %>
+      <%= f.text_field :name_or_email_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher' %>
 
     <% end %>
   </div>
