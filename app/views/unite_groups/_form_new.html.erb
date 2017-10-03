@@ -28,7 +28,7 @@
     <div class="form-group">
       <%= f.label :unite_matter, :class => 'control-label col-xs-2' %>
       <div class="col-xs-10">
-        <%= f.collection_select(:unite_matter_id, UniteMatter.all, :id, :name,
+        <%= f.collection_select(:unite_matter, UniteMatter.all, :id, :name,
             { prompt: "Selecione uma união de matérias" },
             { :class => ' form-control width2'} ) %>
 

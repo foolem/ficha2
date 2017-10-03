@@ -4,7 +4,7 @@
   <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('options')%></h1></center>
 </div>
 
-<div class="searchBox">
+<div class="searchBox less">
 
   <%= search_form_for @q, url: search_options_path , html: { method: :post } do |f| %>
 
