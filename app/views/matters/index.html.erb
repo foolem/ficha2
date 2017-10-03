@@ -4,13 +4,13 @@
 
   <center><h1><span class="<%=index_icon(matter_icon)%>"></span> <%=t('matters')%></h1></center>
 
-  <div class="searchBox padraoHeader">
+</div>
+  <div class="mb-5 searchBox">
     <%= search_form_for @q, url: search_matters_path, html: { method: :post } do |f| %>
     <%= f.text_field :name_or_code_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher'%>
     <% end %>
   </div>
 
-</div>
 
 <div id="matters_partial" class="marginBottom">
   <%= render 'matters' %>

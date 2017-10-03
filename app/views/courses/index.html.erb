@@ -2,8 +2,9 @@
 
 <div class="page-header noMarginTop">
   <center><h1><span class="<%=index_icon(course_icon)%>"></span> <%=t('courses')%></h1></center>
+</div>
 
-  <div class="searchBox padraoHeader">
+  <div class="searchBox mb-5">
     <%= search_form_for @q, url: search_courses_path, html: { method: :post } do |f| %>
 
       <%= f.text_field :name_cont, :autofocus => true,
@@ -13,7 +14,6 @@
     <% end %>
 
   </div>
-</div>
 
 <div id="courses_partial" class="marginBottom noMarginTop" >
   <%= render 'courses' %>
