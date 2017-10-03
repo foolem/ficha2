@@ -91,6 +91,6 @@ class UniteGroupsController < ApplicationController
     end
 
     def unite_group_params
-      params.require(:unite_group).permit(:name, :unite_matter_id)
+      params.require(:unite_group).permit(:matter_id, :semester_id)
     end
 end

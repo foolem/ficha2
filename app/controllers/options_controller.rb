@@ -57,21 +57,12 @@ class OptionsController < ApplicationController
       option = Option.new
       option.semester = Semester.current_semester
 
-      same_groups(group).each do |same_group|
+      group.same_groups.each do |same_group|
         option.groups << same_group
       end
 
       option.save
     end
-  end
-
-  def cleaner
-    Wish.delete_all
-    Group.all.each do |grp|
-      grp.option = nil
-      grp.save
-    end
-    Option.destroy_all
   end
 
   def edit
@@ -147,37 +138,6 @@ class OptionsController < ApplicationController
       authorize Option
     end
 
-    def same_groups(group)
-
-      result = []
-      if group.schedules.length == 0
-        result << group
-        return result
-      end
-
-      groups = []
-
-      if !group.matter.unite_matter.blank?
-        group.matter.unite_matter.matters.each do |matter|
-          matter.groups.each do |grp|
-            groups << grp
-          end
-        end
-      else
-        groups = group.matter.groups
-      end
-
-      schedules = group.schedules
-
-      groups.each do |grp|
-        if schedules == grp.schedules
-          result << grp
-        end
-      end
-
-      result
-    end
-
     def select_options_unite(unite_id)
       "select distinct o.id from options as o
       inner join groups as g on g.option_id = o.id
@@ -208,11 +168,17 @@ class OptionsController < ApplicationController
       list
     end
 
-    def has_option_group(group_id)
+    def has_option_group2(group_id)
       result = false
       options = select_result(select_options_group(group_id))
       options.each { |option| result = true }
       result
     end
+
+    def has_option_group(group_id)
+      options = select_result(select_options_group(group_id))
+      options.length > 0
+    end
+
 
 end

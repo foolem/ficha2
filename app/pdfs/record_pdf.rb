@@ -4,7 +4,7 @@ class RecordPdf < Prawn::Document
     super(top_margin: 20)
     @ficha = ficha
     @margem = 50
-    @number=0
+    @number = 0
     record_generate
 
   end
@@ -232,7 +232,7 @@ class RecordPdf < Prawn::Document
       l = text[i]
       cont += 1
 
-      if((cont >= 94 and l == ' ') or l == "\n")
+      if((cont >= 90 and l == ' ') or l == "\n" or cont >= 95)
         result += 1
         cont = 0
 

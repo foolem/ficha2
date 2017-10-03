@@ -19,18 +19,18 @@
     <br>
 
     <div class="form-group">
-      <%= f.label :name, :class => 'control-label col-xs-2' %>
-      <div class="col-xs-7">
-        <%= f.text_field :name, :class => 'form-control txtName width3' %>
+      <%= f.label t("semester"), :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9">
+        <%= f.text_field 'semester', :value => @unite_group.semester.semester_with_year,
+        :class => 'form-control semester-with-year', :readonly => true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :unite_matter, :class => 'control-label col-xs-2' %>
+      <%= f.label t("matter"), :class => 'control-label col-xs-2' %>
       <div class="col-xs-9">
-        <%= f.text_field 'unite_matter', :value => @unite_group.unite_matter.name,
+        <%= f.text_field 'matter', :value => @unite_group.matter.name,
         :class => 'form-control width2', :readonly => true %>
-
       </div>
     </div>
 

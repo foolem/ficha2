@@ -13,26 +13,25 @@
   <% end %>
 
   <div class="panel panel-default" style="margin-bottom:70px;">
-    <header class="panel-heading header headerOutra">Detalhes
-
-    </header>
+    <header class="panel-heading header headerOutra">Detalhes</header>
     <br>
 
     <div class="form-group">
-      <%= f.label :name, :class => 'control-label col-xs-2' %>
-      <div class="col-xs-7">
-        <%= f.text_field :name, :class => 'form-control txtName width2' %>
+      <%= f.label t("matter"), :class => 'control-label col-xs-2' %>
+      <div class="col-xs-10">
+        <%= f.collection_select(:matter_id, Matter.all, :id, :code_with_name,
+            { prompt: "Selecione uma matéria" },
+            { :class => ' form-control width2'} ) %>
+
+        <%=f.error_span(:matter) %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :unite_matter, :class => 'control-label col-xs-2' %>
-      <div class="col-xs-10">
-        <%= f.collection_select(:unite_matter_id, UniteMatter.all, :id, :name,
-            { prompt: "Selecione uma união de matérias" },
-            { :class => ' form-control width2'} ) %>
-
-        <%=f.error_span(:unite_matter) %>
+      <%= f.label :semester, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-9">
+        <%= f.collection_select(:semester_id, Semester.all, :id, :semester_with_year, {:prompt => "Selecione um semestre"} , { :class => ' form-control'}) %>
+        <%=f.error_span(:semester) %>
       </div>
     </div>
 

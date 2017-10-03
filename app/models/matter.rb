@@ -20,4 +20,8 @@ class Matter < ApplicationRecord
     name + ": " + code
   end
 
+  def has_unite?
+    !unite_matter.blank?
+  end
+
 end

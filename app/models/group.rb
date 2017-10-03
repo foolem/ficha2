@@ -20,4 +20,34 @@ class Group < ApplicationRecord
     "#{name} -  #{matter.code} - #{matter.name}"
   end
 
+  def same_groups
+    if schedules.length == 0
+      return [self]
+    end
+
+
+    result = []
+    groups = []
+
+    if !matter.unite_matter.blank?
+      matter.unite_matter.matters.each do |matter|
+        matter.groups.each do |grp|
+          if grp.semester = semester
+            groups << grp
+          end
+        end
+      end
+    else
+      groups = matter.groups
+    end
+
+    groups.each do |grp|
+      if schedules == grp.schedules
+        result << grp
+      end
+    end
+
+    result
+  end
+
 end

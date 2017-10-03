@@ -25,7 +25,7 @@
 
           <td><%= unite_matter.name %></td>
 
-          <td> <%= unit_matters(unite_matter).html_safe %> </td>
+          <td><%= unite_matter.matter_codes.join(", ") %></td>
 
             <td id="actions">
               <center>
