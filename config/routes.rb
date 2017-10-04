@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'manage_options/index'
+
   get 'welcome/index'
 
   root 'welcome#index'
