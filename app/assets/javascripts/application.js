@@ -134,10 +134,8 @@ $(document).on('change','#unite_group_groups', function() {
 
 document.addEventListener("turbolinks:load", function() {
 
-    $(document).on('click', '#options_generate',function(){
-      $("#options_partial").html("");
-      $("#spinner").fadeIn(2000);
-    });
+  
+
     $(document).on('click', '#perform_backup',function(){
       $("#form_backup").fadeOut(500);
       $("#perform_render").html("");

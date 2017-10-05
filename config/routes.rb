@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'manage_options/index'
+  get 'manage_options/generate'
+  delete 'manage_options/remove'
+  get 'manage_options/start'
+  get 'manage_options/end'
 
   get 'welcome/index'
 
@@ -46,7 +50,6 @@ Rails.application.routes.draw do
   resources :options do
     collection do
       match 'search' => 'options#search', via: [:get, :post], as: :search
-      match 'generate' => 'options#generate', via: [:get, :post], as: :generate
       match 'open_wish/:id' => 'options#open_wish', via: [:get, :post], as: :open_wish
       match 'open_comment/:id_wish' => 'options#open_comment', via: [:get, :post], as: :open_comment
     end

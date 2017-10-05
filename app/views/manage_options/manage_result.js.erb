@@ -1,0 +1,4 @@
+$("#spinner").fadeOut(2000, function () {
+  $("#manage_actions").html("<%= escape_javascript(render("manage_result")) %>");
+  $("#manage_actions").fadeIn(2000);
+});

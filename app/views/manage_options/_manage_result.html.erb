@@ -1,0 +1,17 @@
+
+<div class="center" style="margin-top: 200px; color: green;">
+  <% if @action == :generate %>
+    <h3>GERADO COM SUCESSO</h3>
+    
+  <% elsif @action == :start %>
+    <h3>INICIADO COM SUCESSO</h3>
+
+  <% elsif @action == :remove %>
+    <h3>REMOVIDO COM SUCESSO</h3>
+
+  <% elsif @action == :end %>
+    <h3>FINALIZADO COM SUCESSO</h3>
+
+  <% end %>
+
+</div>

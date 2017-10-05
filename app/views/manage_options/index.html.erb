@@ -1,12 +1,55 @@
-<h1> Administrar opções </h1>
+<center><h1><span class="<%=index_icon(account_icon)%>"></span> Administrar opções</h1></center>
 
-<% if options_not_generated? %>
-  <h4> Gerar opções </h4>
-<% elsif options_selection? %>
-  <h4> Iniciar período </h4>
-  <h4> Remover opções </h4>
-<% elsif options_finished? %>
-  <h4> Encerrar período </h4>
-<% else %>
-  <h4>Semestre finalizado</h4>
-<% end %>
+
+<div id="manage_actions">
+
+  <% if options_not_generated? %>
+
+    <div class="newOption2">
+      <%= link_to "Gerar opções", manage_options_generate_path,
+          id: "options_generate", remote: true,
+          :"data-load" => "Gerando opções...",
+          class: 'btn btn-xl newOption2 blueBtn white' %>
+    </div>
+
+  <% elsif options_selection? %>
+
+    <div class="newOption2">
+      <%= link_to "Iniciar período", manage_options_start_path,
+          id: "options_start", remote: true,
+          :"data-load" => "Iniciando período de seleções...",
+          class: 'btn btn-xl newOption2 blueBtn white'%>
+    </div>
+
+    <div class="newOption2">
+      <%= link_to "Remover opções", manage_options_remove_path,
+          id: "options_remove", remote: true, method: :delete,
+          :"data-load" => "Removendo opções...",
+          class: 'btn btn-xl newOption2 blueBtn white'%>
+    </div>
+
+  <% elsif options_finished? %>
+
+    <div class="newOption2">
+      <%= link_to "Encerrar período", manage_options_end_path,
+          id: "options_remove", remote: true,
+          :"data-load" => "Encerrando período de seleção  ...",
+          class: 'btn btn-xl newOption2 blueBtn white'%>
+    </div>
+
+  <% else %>
+    <h4> Opções finalizadas neste semestre. </h4>
+  <% end %>
+
+</div>
+
+<div id="spinner" class="center spinner">
+  <div class="showbox">
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      </svg>
+    </div>
+  </div>
+  <h4 id="loading-action" style="margin-top:260px;"></h4>
+</div>
