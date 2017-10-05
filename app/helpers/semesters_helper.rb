@@ -20,4 +20,16 @@ module SemestersHelper
     Semester.current_semester
   end
 
+  def options_not_generated?
+    !Semester.current_semester.options_generated?
+  end
+
+  def options_selection?
+    !current_semester.options_selection and !current_semester.options_finished
+  end
+
+  def options_finished?
+    !current_semester.options_finished?
+  end
+
 end

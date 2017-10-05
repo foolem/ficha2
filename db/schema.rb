@@ -144,8 +144,11 @@ ActiveRecord::Schema.define(version: 20170928121859) do
   create_table "semesters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "year"
     t.integer  "semester"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "options_selection", default: false, null: false
+    t.boolean  "options_generated", default: false, null: false
+    t.boolean  "options_finished",  default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "unite_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

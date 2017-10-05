@@ -1,1 +1,12 @@
-<p>- trab -</p>
+<h1> Administrar opções </h1>
+
+<% if options_not_generated? %>
+  <h4> Gerar opções </h4>
+<% elsif options_selection? %>
+  <h4> Iniciar período </h4>
+  <h4> Remover opções </h4>
+<% elsif options_finished? %>
+  <h4> Encerrar período </h4>
+<% else %>
+  <h4>Semestre finalizado</h4>
+<% end %>
