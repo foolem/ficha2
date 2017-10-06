@@ -1,0 +1,32 @@
+<%= form_for(unavailability) do |f| %>
+  <% if unavailability.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(unavailability.errors.count, "error") %> prohibited this unavailability from being saved:</h2>
+
+      <ul>
+      <% unavailability.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :availability_id %>
+    <%= f.text_field :availability_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :schedule_id %>
+    <%= f.text_field :schedule_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comments %>
+    <%= f.text_field :comments %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

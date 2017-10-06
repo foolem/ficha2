@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  availability: one
+  schedule: one
+  comments: MyString
+
+two:
+  availability: two
+  schedule: two
+  comments: MyString

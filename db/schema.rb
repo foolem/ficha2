@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928121859) do
+ActiveRecord::Schema.define(version: 20171006124656) do
+
+  create_table "availabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "semester_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["semester_id"], name: "index_availabilities_on_semester_id", using: :btree
+    t.index ["user_id"], name: "index_availabilities_on_user_id", using: :btree
+  end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -151,6 +160,16 @@ ActiveRecord::Schema.define(version: 20170928121859) do
     t.datetime "updated_at",                        null: false
   end
 
+  create_table "unavailabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "availability_id"
+    t.integer  "schedule_id"
+    t.string   "comments"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["availability_id"], name: "index_unavailabilities_on_availability_id", using: :btree
+    t.index ["schedule_id"], name: "index_unavailabilities_on_schedule_id", using: :btree
+  end
+
   create_table "unite_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "matter_id"
     t.integer  "semester_id"
@@ -205,6 +224,8 @@ ActiveRecord::Schema.define(version: 20170928121859) do
     t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
   end
 
+  add_foreign_key "availabilities", "semesters"
+  add_foreign_key "availabilities", "users"
   add_foreign_key "fichas", "groups"
   add_foreign_key "fichas", "users"
   add_foreign_key "groups", "courses"
@@ -220,6 +241,8 @@ ActiveRecord::Schema.define(version: 20170928121859) do
   add_foreign_key "options", "semesters"
   add_foreign_key "options_users", "options"
   add_foreign_key "options_users", "users"
+  add_foreign_key "unavailabilities", "availabilities"
+  add_foreign_key "unavailabilities", "schedules"
   add_foreign_key "unite_groups", "matters"
   add_foreign_key "unite_groups", "semesters"
   add_foreign_key "wishes", "groups"

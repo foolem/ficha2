@@ -1,0 +1,12 @@
+<h1 class="center"><span class="<%=index_icon(account_icon)%>"></span> <%= t("availability") %></h1>
+
+<span><b>Semstre</b></span> <span><%= @availability.semester.semester_with_year %></span>
+<span><b>Usuário</b></span> <span><%= @availability.user.name %></span>
+
+
+<% @availability.unavailabilities.each do |un| %>
+<br><br><br>
+<h5 class="header"><%= un.schedule.day %></h5>
+<span><b>Período: </b></span> <span><%= representation(un.schedule) %></span>
+
+<% end %>

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :unavailabilities
+
+  resources :availabilities do
+    collection do
+      match 'user_availability' => 'availabilities#user_availability', via: [:get], as: :user_availability
+    end
+  end
+
   devise_for :users
 
   get 'manage_options/index'
