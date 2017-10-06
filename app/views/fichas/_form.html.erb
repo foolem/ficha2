@@ -21,20 +21,20 @@
 
   <%= render 'modal' %>
 
-  <div class="panel panel-default" style="margin-bottom:70px;">
+  <div class="panel panel-default mb-70">
 
     <header class="panel-heading header headerOutra"><%= t('details') %>
 
       <% if @show and (user_secretary? or user_admin?) %>
 
-        <div class="addAnotherFicha">
+        <div class="add-anotherFicha">
           <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn btn-default btn-sm',
           title: 'Criar outra ficha', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
         </div>
 
       <% elsif !@show %>
 
-         <div class="addAnotherMsg">
+         <div class="add-another-msg">
             <button action='' type="button" class="btn btn-default btn-sm"
               data-toggle="modal" data-target="#modal_out" title='Mensagens'
               data-placement:='right'><%= messages_button.html_safe %>
@@ -48,7 +48,7 @@
 
         <% if hasEquivalent(@ficha) and !@ficha.ready? %>
 
-          <div class="addAnotherCopy">
+          <div class="add-another-copy">
               <button action='' type="button" class="btn btn-default btn-sm"
               data-toggle="modal" data-target="#modal-1" title='Copiar' data-placement:='right'><%= duplicate_button.html_safe %></button>
           </div>
@@ -57,13 +57,13 @@
 
         <% if user_not_appriser? and user_not_admin? %>
 
-          <div class="addAnotherFicha">
+          <div class="add-anotherFicha">
             <button action='' type="button" class="btn btn-default btn-sm"
               data-toggle="modal" data-target="#modal-2" title='Instruções'
               data-placement:='right'>  <%= question_button.html_safe %> </button>
           </div>
 
-          <div class="addAnother"  id="select_status">
+          <div class="add-another"  id="select_status">
               <span class="btn btn-default btn-sm active" data-placement:='right'><%= status_representation(@ficha).html_safe %></button>
           </div>
 
@@ -189,12 +189,13 @@
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           groups_path, :class => 'btn btn-default right' %>
           <%= f.submit nil, :class => 'btn btn-primary right' %>
-          <!-- deixa isso aqui em baixo que fica melhor !-->
-          <select class="form-control" style="width:135px;float:left;margin-right:5px;" name="ficha[status]" id="ficha_status">
+          <!-- esse select some, ele só auxilia os botôes!-->
+          <select class="form-control" name="ficha[status]" id="ficha_status">
             <option selected="selected" value="sent">Encaminhado</option>
             <option value="reproved">Reprovado</option>
             <option value="ready">Aprovado</option>
           </select>
+          <!-- esse select some, ele só auxilia os botôes!-->
         </div>
       </div>
     <% end %>

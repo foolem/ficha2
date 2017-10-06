@@ -254,14 +254,14 @@
 
     // manually read margins because getBoundingClientRect includes difference
     var marginTop = parseInt($tip.css('margin-top'), 10)
-    var marginLeft = parseInt($tip.css('margin-left'), 10)
+    var margin-left-form = parseInt($tip.css('margin-left'), 10)
 
     // we must check for NaN for ie 8/9
     if (isNaN(marginTop))  marginTop  = 0
-    if (isNaN(marginLeft)) marginLeft = 0
+    if (isNaN(margin-left-form)) margin-left-form = 0
 
     offset.top  += marginTop
-    offset.left += marginLeft
+    offset.left += margin-left-form
 
     // $.fn.offset doesn't round pixel values
     // so we use setOffset directly with our own function B-0

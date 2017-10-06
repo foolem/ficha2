@@ -5,36 +5,36 @@
 
   <% if options_not_generated? %>
 
-    <div class="newOption2">
+    <div class="new-option">
       <%= link_to "Gerar opções", manage_options_generate_path,
           id: "options_generate", remote: true,
           :"data-load" => "Gerando opções...",
-          class: 'btn btn-xl newOption2 blueBtn white' %>
+          class: 'btn btn-xl new-option bue-btn white' %>
     </div>
 
   <% elsif options_selection? %>
 
-    <div class="newOption2">
+    <div class="new-option">
       <%= link_to "Iniciar período", manage_options_start_path,
           id: "options_start", remote: true,
           :"data-load" => "Iniciando período de seleções...",
-          class: 'btn btn-xl newOption2 blueBtn white'%>
+          class: 'btn btn-xl new-option bue-btn white'%>
     </div>
 
-    <div class="newOption2">
+    <div class="new-option">
       <%= link_to "Remover opções", manage_options_remove_path,
           id: "options_remove", remote: true, method: :delete,
           :"data-load" => "Removendo opções...",
-          class: 'btn btn-xl newOption2 blueBtn white'%>
+          class: 'btn btn-xl new-option bue-btn white'%>
     </div>
 
   <% elsif options_finished? %>
 
-    <div class="newOption2">
+    <div class="new-option">
       <%= link_to "Encerrar período", manage_options_end_path,
           id: "options_remove", remote: true,
           :"data-load" => "Encerrando período de seleção  ...",
-          class: 'btn btn-xl newOption2 blueBtn white'%>
+          class: 'btn btn-xl new-option bue-btn white'%>
     </div>
 
   <% else %>

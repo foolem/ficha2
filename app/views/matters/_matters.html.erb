@@ -1,11 +1,11 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th class="borderHeaderL" width="80px"><%= t('code') %></th>
+      <th class="header-border-left" width="80px"><%= t('code') %></th>
       <th class="form_table"><%= t('name') %></th>
 
       <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
-        <th class="borderHeaderR" width="130px">
+        <th class="header-border-right" width="130px">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
 
@@ -69,7 +69,7 @@
 
 <center>
   <nav aria-label="Page navigation">
-    <ul class="pagination pagination-sm noMarginTop" id ="matter_pages">
+    <ul class="pagination pagination-sm no-mt-mb" id ="matter_pages">
       <%= render_pages(@elements, @page, "/matters", matter_page_length).html_safe %>
     </ul>
   </nav>

@@ -1,13 +1,13 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th class="borderHeaderL"><%= t('name') %></th>
+      <th class="header-border-left"><%= t('name') %></th>
       <% if user_signed_in? && (current_user.admin? or current_user.secretary?) %>
-        <th class="borderHeaderR" width="130px">
+        <th class="header-border-right w-130">
           <center>
             <%=t '.actions', :default => t("helpers.actions") %>
 
-            <div style="float:right; margin-right:3px; width:37px;">
+            <div class="add-another-course">
               <%= link_to new_button.html_safe, new_course_path, :class => 'btn-default btn-sm',
                 title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
             <div>
@@ -45,7 +45,7 @@
 
 <center>
   <nav aria-label="Page navigation">
-    <ul class="pagination pagination-sm noMarginTop" id ="course_pages">
+    <ul class="pagination pagination-sm no-mt-mb" id ="course_pages">
       <%= render_pages(@elements, @page, "/courses", course_page_length).html_safe %>
     </ul>
   </nav>

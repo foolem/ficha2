@@ -23,49 +23,50 @@ body {
   min-height: 100%;
   background: rgb(238, 238, 238);
 }
-.marginBottom2 {
+.f-right {
+  float: right;
+}
+.f-left {
+  float: left;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.margin-bottom-unite {
   margin-bottom: 100px;
 }
-.marginBottom3 {
-  margin-bottom: 20px;
-}
-.noMarginTop {
+.no-mt-mb {
   margin-top: 0;
   margin-bottom: 0;
 }
-.marginBottom {
+.mt-30 {
+  margin-top:30px;
+}
+.mb-15pc {
   margin-bottom: 15%;
 }
-.marginBottomContact {
-  margin-bottom: 35%;
-}
-.padraoHeader {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-.mb-5 {
+
+.mb-20 {
   margin-bottom: 20px !important;
 }
-.borderHeaderL {
+.mb-70 {
+  margin-bottom:70px;
+}
+.pb-100 {
+  padding-bottom:100px;
+}
+
+.header-border-left {
   border-top-left-radius: 3px;
 }
-.borderHeaderR {
+.header-border-right {
   border-top-right-radius: 3px;
 }
 .right {
   float: right;
   margin-right: 10px;
 }
-.right2 {
-  float: right;
-  margin-right: 83px;
-  margin-bottom: 30px;
-  font-size: 1em;
-}
-.right3 {
-  float: right;
-  margin-right: 5px;
-}
+
 .fixed-bottom {
   margin-bottom: 0;
   margin-top: 0.1em;
@@ -79,10 +80,20 @@ body {
 .width {
   width: 43%;
 }
+.w-130 {
+  width: 130px;
+}
+.w-400 {
+  width:400px;
+}
+.mw-400 {
+  max-width: 400px;
+}
+
 .center {
   text-align: center;
 }
-.semesterOptions {
+.semester-box {
   text-align: left;
   margin-top: -38px;
   margin-left: -1px;
@@ -104,46 +115,36 @@ body {
   color: #000;
   text-align: center;
 }
-.padraoHeader {
+.pattern-header-courses {
   margin-top:10px;
   margin-bottom: 15px;
 }
-.padraoHeader2 {
+.pattern-header {
   margin-bottom: 49px;
 }
-.juntar {
+.join {
   margin-top: 9px;
   float: left;
 }
-.txtName {
-  width: 200px;
-}
-.txtNameShow {
+
+.name-show {
   width: 600px;
 }
 .sizer {
   width: 380px;
 }
-.marginLeft {
+.margin-left-form {
   margin-left: -90px;
 }
 .collection_select {
   size: 100px;
 }
-.veryLess {
-  width: 32,5%;
-  display: inline-block;
-  margin: 0px 5px 0px 5px;
-}
-.lessWishes {
-  width: 64%;
-  margin: 0 auto;
-}
+
 .less {
   width: 85%;
   margin-left: 80px;
 }
-.menu_font_size {
+.menu-font-size {
   font-size: 16px;
 }
 .blue {
@@ -167,11 +168,11 @@ body {
 .invert {
   transform: scaleX(-1);
 }
-.width2 {
+.width-form-unite {
   width: 380px;
   display: inline-block;
 }
-.width3 {
+.width-form-unite-selector {
   width: 460px;
   display: inline-block;
 }
@@ -193,11 +194,11 @@ body {
   margin-bottom: 0;
   font-size: 0.8em;
 }
-.pageLinks {
+.page-link {
   display: inline-block;
   font-size: 0.8em;
 }
-.hrVertical {
+.vertical-hr {
   width: 1px;
   height: 60%;
   background-color: #fff;
@@ -208,14 +209,14 @@ body {
   margin-top: 5px;
   margin-bottom: 0;
 }
-.textNone {
+.text-decoration-none {
   text-decoration: none;
   color: #fff;
 }
-.textNone:visited {
+.text-decoration-none:visited {
   color: #fff;
 }
-.textNone:hover {
+.text-decoration-none:hover {
   text-decoration: none;
   background-color: #455E85;
 }
@@ -304,13 +305,13 @@ li > a:hover{
     background-color: #455E8E;
 }
 
-.searchBox {
+.search-box {
   color: black;
   margin-top:10px;
   margin-bottom:5px;
   text-align: right;
 }
-.filterBox {
+.filter-box {
   width:155px;
   display: inline-block;
   margin-left:5px;
@@ -321,7 +322,7 @@ li > a:hover{
   width:180px;
   margin-left:10px;
 }
-.statusBox {
+.status-box {
   display: inline-block;
   width:155px;
 }
@@ -402,27 +403,22 @@ li > a:hover{
 	background-color: #455E8E;
 }
 
-.pd-btm-20 {
+.pb-80 {
   padding-bottom:20px;
 }
-.mg-top-80 {
+.mt-80 {
   margin-top:80px;
 }
 
-.newOption {
-  margin-top: -2.66em;
-  float: right;
-  display: inline-block;
-}
-.newOption2 {
+.new-option {
   margin:0 auto;
   display: flex;
   margin-top: 10px;
 }
-.blueBtn {
+.bue-btn {
   background-color: #455E8E;
 }
-.blueBtn:hover {
+.bue-btn:hover {
   background-color: #506ba0;
   border-color: #506ba0;
 }
@@ -433,7 +429,7 @@ li > a:hover{
   color: #B22222;
 }
 
-.btnC {
+.btn-contact {
   width: 200px;
   height: 50px;
   background-color: #4CAF50;
@@ -444,32 +440,37 @@ li > a:hover{
   font-size: 14px;
 
 }
-.btnC:hover {
+.btn-contact:hover {
   background-color: #43A047;
   color:#fff;
 }
-.addAnother {
+.add-another {
   float:right;
   margin-right:12px;
   margin-top:-6px;
   width:25px;
 }
 
-.addAnotherMsg {
+.add-another-msg {
   float:right;
   margin-right:0px;
   width:25px;
   margin-top: -6px;
   margin-left: 12px;
 }
-.addAnotherCopy {
+.add-another-copy {
   margin-right: 0px;
   margin-top: -6px;
   margin-left: 12px;
   float: right;
   width: 25px;
 }
-.badgeComment {
+.add-another-course {
+  float:right;
+  margin-right:3px;
+  width:37px;
+}
+.badge-comments {
   margin-top: -5px;
   margin-left: -10px;
   border-radius: 50%;
@@ -480,7 +481,7 @@ li > a:hover{
   position: absolute;
   text-align: center;
 }
-.panelContacts {
+.panel-contacts {
   width: 70%;
   height: 70%;
   margin-top: 40px;
