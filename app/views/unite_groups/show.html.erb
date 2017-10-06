@@ -17,7 +17,7 @@
     <div class="form-group">
       <label class="control-label col-xs-2" ><%= t("name") %></label>
       <div class="col-xs-10">
-            <span class="form-control width2" readonly="true"> <%= @unite_group.group_names.join(", ") %> </span>
+            <span class="form-control width-form-unite" readonly="true"> <%= @unite_group.group_names.join(", ") %> </span>
       </div>
     </div>
 
@@ -34,5 +34,5 @@
 
   </div>
 
-<%= link_to 'Editar', edit_unite_group_path(@unite_group), :class => 'btn btn-default marginBottom2' %>
-<%= link_to 'Voltar', unite_groups_path, :class => 'btn btn-default marginBottom2' %>
+<%= link_to 'Editar', edit_unite_group_path(@unite_group), :class => 'btn btn-default margin-bottom-unite' %>
+<%= link_to 'Voltar', unite_groups_path, :class => 'btn btn-default margin-bottom-unite' %>

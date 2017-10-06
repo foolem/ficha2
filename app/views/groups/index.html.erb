@@ -1,14 +1,14 @@
 <%- model_class = Group -%>
 
-<div class="page-header noMarginTop">
+<div class="page-header no-mt-mb">
   <center><h1><span class="<%=index_icon(group_icon)%>"></span> <%=t('groups')%></h1></center>
 </div>
 
-<div class="searchBox noMarginTop">
+<div class="search-box no-mt-mb">
   <%= search_form_for @q, url: search_groups_path, html: { method: :post } do |f| %>
 
     <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},
-          {:class => 'form form-group form-control filterBox'}) %>
+          {:class => 'form form-group form-control filter-box'}) %>
 
     <%= f.text_field :name_or_matter_code_or_matter_name_cont, :autofocus => true,
           placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher',
@@ -19,6 +19,6 @@
 </div>
 
 
-<div id="groups_partial" class="marginBottom" >
+<div id="groups_partial" class="mb-15pc" >
   <%= render 'groups' %>
 </div>

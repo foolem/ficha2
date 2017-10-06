@@ -27,7 +27,7 @@ body {
   display: none;
 }
 
-.menu_font_size {
+. menu-font-size {
   font-size: 16px;
 }
 
@@ -53,10 +53,10 @@ body {
   margin-bottom: 0;
   margin-left: 50px;
 }
-.pageLinks {
+.page-link {
   display: inline-block;
 }
-.hrVertical {
+.vertical-hr {
   width: 1px;
   height: 90%;
   background-color: rgb(111, 111, 111);
@@ -153,7 +153,7 @@ h1 {
   color: #444;
 }
 
-.searchBox {
+.search-box {
   color: black;
   float: right;
   margin-bottom: 10px;
@@ -300,7 +300,7 @@ li > a:hover{
     color: black;
 }
 
-.btnC {
+.btn-contact {
   width: 200px;
   height: 50px;
   background-color: #4CAF50;
@@ -311,43 +311,43 @@ li > a:hover{
   font-size: 14px;
 
 }
-.btnC:hover {
+.btn-contact:hover {
   background-color: #43A047;
   color:#fff;
 }
-.addAnother {
+.add-another {
   float:right;
   margin-right:12px;
   margin-top:-6px;
   width:25px;
 }
-.addAnotherFicha {
+.add-anotherFicha {
   float:right;
   margin-top:-6px;
   width:25px;
 }
-.addAnotherMsg {
+.add-another-msg {
   float:right;
   margin-right:0px;
   width:25px;
   margin-top: -6px;
   margin-left: 12px;
 }
-.addAnotherCopy {
+.add-another-copy {
   margin-right: 0px;
   margin-top: -6px;
   margin-left: 12px;
   float: right;
   width: 25px;
 }
-.noMarginTop {
+.no-mt-mb {
   margin-top: 0;
   margin-bottom: 0;
 }
-.marginBottom {
+.mb-15pc {
   margin-bottom: 15%;
 }
-.marginBottomContact {
+.mb-15pcContact {
   margin-bottom: 35%;
 }
 .loginPageNew {

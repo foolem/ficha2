@@ -19,7 +19,7 @@
     <header class="panel-heading header"><%= t('details') %>
       <% if (@show) %>
         <% if user_secretary? or user_admin? %>
-        <div class="addAnotherFicha">
+        <div class="add-anotherFicha">
           <%= link_to new_button.html_safe, new_matter_path, :class => 'btn btn-default btn-sm',
           title: 'Criar outra disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
         </div>

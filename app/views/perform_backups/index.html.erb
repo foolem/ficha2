@@ -1,12 +1,12 @@
 <%- model_class = PerformBackup -%>
 
-<div class="page-header noMarginTop padraoHeader2">
+<div class="page-header no-mt-mb pattern-header">
 
   <center><h1><span class="<%=index_icon(backups_icon)%>"></span> <%=t('perform_backups')%></h1></center>
 
 </div>
 
-<div class="panel center less pd-btm-20">
+<div class="panel center less pb-80">
   <%= link_to "Realizar backup agora", perform_backups_do_perform_path,
       :title => "Realizar backup agora", :class => "btn btn-primary performNow",:id => "perform_backup", remote: true%>
   <%= form_for @perform_backup, :html => { :class => "form-horizontal group"} do |f| %>
@@ -35,7 +35,7 @@
             </svg>
           </div>
         </div>
-        <h4 class="mg-top-80">Realizando backup...</h4>
+        <h4 class="mt-80">Realizando backup...</h4>
       </div>
 
   <div id="perform_render">

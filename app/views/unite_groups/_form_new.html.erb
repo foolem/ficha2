@@ -21,7 +21,7 @@
       <div class="col-xs-10">
         <%= f.collection_select(:matter_id, Matter.all, :id, :code_with_name,
             { prompt: "Selecione uma matéria" },
-            { :class => ' form-control width2'} ) %>
+            { :class => ' form-control width-form-unite'} ) %>
 
         <%=f.error_span(:matter) %>
       </div>

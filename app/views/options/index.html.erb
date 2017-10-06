@@ -1,14 +1,14 @@
 <%- model_class = Option -%>
 
-<div class="page-header noMarginTop">
+<div class="page-header no-mt-mb">
   <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('options')%></h1></center>
 </div>
 
-<div class="searchBox less">
+<div class="search-box less">
 
   <%= search_form_for @q, url: search_options_path , html: { method: :post } do |f| %>
 
-    <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control filterBox'}) %>
+    <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control filter-box'}) %>
 
     <%= f.text_field :id_eq, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher', :id => "fichas_input_search" %>
 
@@ -28,6 +28,6 @@
 </div>
 
 
-<div id="options_partial" class="marginBottom" >
+<div id="options_partial" class="mb-15pc" >
   <%= render 'options' %>
 </div>

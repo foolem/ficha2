@@ -14,22 +14,22 @@
         </div>
       </div>
     <% end %>
-  <div class="panelContacts">
+  <div class="panel-contacts">
     <div class="form-group">
       <div class="field">
-        <%= f.text_field :name, :placeholder => 'Seu nome', :value => user_name, :class => 'form-control', :style => 'width:400px;' %>
+        <%= f.text_field :name, :placeholder => 'Seu nome', :value => user_name, :class => 'form-control w-400' %>
       </div>
 
       <div class="field">
-        <%= f.text_field :email, :placeholder => 'Seu email', :value => user_email, :class => 'form-control', :style => 'width:400px;' %>
+        <%= f.text_field :email, :placeholder => 'Seu email', :value => user_email, :class => 'form-control w-400' %>
       </div>
 
       <div class="field">
-        <%= f.text_area :message, :placeholder => 'Por favor, deixe sua mensagem', :class => 'form-control', :style => 'max-width:400px;height:300px' %>
+        <%= f.text_area :message, :placeholder => 'Por favor, deixe sua mensagem', :class => 'form-control mw-400' %>
       </div>
 
       <div class="actions">
-        <input name="commit" value="ENVIAR" class="btnC" data-disable-with="ENVIANDO" type="submit">
+        <input name="commit" value="ENVIAR" class="btn-contact" data-disable-with="ENVIANDO" type="submit">
       </div>
       </center>
     </div>

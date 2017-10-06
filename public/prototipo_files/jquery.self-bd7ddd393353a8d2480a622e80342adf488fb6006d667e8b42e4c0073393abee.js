@@ -6518,7 +6518,7 @@ var documentElement = document.documentElement;
 
 ( function() {
 	var pixelPositionVal, pixelMarginRightVal, boxSizingReliableVal,
-		reliableHiddenOffsetsVal, reliableMarginRightVal, reliableMarginLeftVal,
+		reliableHiddenOffsetsVal, reliableMarginRightVal, reliablemargin-left-formVal,
 		container = document.createElement( "div" ),
 		div = document.createElement( "div" );
 
@@ -6595,13 +6595,13 @@ var documentElement = document.documentElement;
 			return reliableMarginRightVal;
 		},
 
-		reliableMarginLeft: function() {
+		reliablemargin-left-form: function() {
 
 			// Support: IE <=8 only, Android 4.0 - 4.3 only, Firefox <=3 - 37
 			if ( pixelPositionVal == null ) {
 				computeStyleTests();
 			}
-			return reliableMarginLeftVal;
+			return reliablemargin-left-formVal;
 		}
 	} );
 
@@ -6623,14 +6623,14 @@ var documentElement = document.documentElement;
 
 		// Support: IE<9
 		// Assume reasonable values in the absence of getComputedStyle
-		pixelPositionVal = boxSizingReliableVal = reliableMarginLeftVal = false;
+		pixelPositionVal = boxSizingReliableVal = reliablemargin-left-formVal = false;
 		pixelMarginRightVal = reliableMarginRightVal = true;
 
 		// Check for getComputedStyle so that this code is not run in IE<9.
 		if ( window.getComputedStyle ) {
 			divStyle = window.getComputedStyle( div );
 			pixelPositionVal = ( divStyle || {} ).top !== "1%";
-			reliableMarginLeftVal = ( divStyle || {} ).marginLeft === "2px";
+			reliablemargin-left-formVal = ( divStyle || {} ).margin-left-form === "2px";
 			boxSizingReliableVal = ( divStyle || { width: "4px" } ).width === "4px";
 
 			// Support: Android 4.0 - 4.3 only
@@ -7277,11 +7277,11 @@ jQuery.cssHooks.marginRight = addGetHookIf( support.reliableMarginRight,
 	}
 );
 
-jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
+jQuery.cssHooks.margin-left-form = addGetHookIf( support.reliablemargin-left-form,
 	function( elem, computed ) {
 		if ( computed ) {
 			return (
-				parseFloat( curCSS( elem, "marginLeft" ) ) ||
+				parseFloat( curCSS( elem, "margin-left-form" ) ) ||
 
 				// Support: IE<=11+
 				// Running getBoundingClientRect on a disconnected node in IE throws an error
@@ -7289,7 +7289,7 @@ jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 				// getClientRects() errors on disconnected elems
 				( jQuery.contains( elem.ownerDocument, elem ) ?
 					elem.getBoundingClientRect().left -
-						swap( elem, { marginLeft: 0 }, function() {
+						swap( elem, { margin-left-form: 0 }, function() {
 							return elem.getBoundingClientRect().left;
 						} ) :
 					0
@@ -10808,11 +10808,11 @@ jQuery.fn.extend( {
 		}
 
 		// Subtract parent offsets and element margins
-		// note: when an element has margin: auto the offsetLeft and marginLeft
+		// note: when an element has margin: auto the offsetLeft and margin-left-form
 		// are the same in Safari causing offset.left to incorrectly be 0
 		return {
 			top:  offset.top  - parentOffset.top - jQuery.css( elem, "marginTop", true ),
-			left: offset.left - parentOffset.left - jQuery.css( elem, "marginLeft", true )
+			left: offset.left - parentOffset.left - jQuery.css( elem, "margin-left-form", true )
 		};
 	},
 

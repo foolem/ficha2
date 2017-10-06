@@ -129,7 +129,7 @@ module IconsHelper
   end
 
   def menu_icon(key)
-    "pull-right hidden-sm showopacity menu_font_size glyphicon glyphicon-#{key}"
+    "pull-right hidden-sm showopacity  menu-font-size glyphicon glyphicon-#{key}"
   end
 
   def index_icon(key)

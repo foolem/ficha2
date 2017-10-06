@@ -1,6 +1,6 @@
 <%- model_class = Group -%>
 
-<div class="page-header noMarginTop">
+<div class="page-header no-mt-mb">
   <center><h1><span class="glyphicon glyphicon-th blue"></span> <%=t('groups')%></h1></center>
 </div>
 
@@ -8,7 +8,7 @@
   <div class="panel panel-default">
     <header class="panel-heading header headerOutra"><%= t('details') %>
         <% if user_secretary? or user_admin? %>
-        <div class="addAnotherFicha">
+        <div class="add-anotherFicha">
           <%= link_to new_button.html_safe, new_group_path, :class => 'btn btn-default btn-sm',
           title: 'Criar outra turma', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
         </div>

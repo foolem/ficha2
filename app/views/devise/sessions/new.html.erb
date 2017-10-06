@@ -2,7 +2,7 @@
 http://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-password
 -->
 
-<div class="login-page" style="margin-top:70px">
+<div class="login-page mt-80">
   <div class="form-login">
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "login-form") do |f| %>
@@ -22,7 +22,7 @@ http://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-pass
 
       <button name="commit" data-disable-with="Login" type="submit ">
       Login</button>
-      <p class="message" style="margin-top:30px">Esqueceu sua senha?   <%= link_to "Mudar minha senha", new_password_path(resource_name), :class => 'btn btn-default btn-sm' %> </p>
+      <p class="message mt-30">Esqueceu sua senha?   <%= link_to "Mudar minha senha", new_password_path(resource_name), :class => 'btn btn-default btn-sm' %> </p>
 
 
     <% end %>

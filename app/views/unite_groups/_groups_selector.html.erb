@@ -1,14 +1,14 @@
 <div class="form-group" id="add-group-div">
 
   <%= label "group", t('group'), :class => 'control-label col-xs-2' %>
-  <div class="col-xs-10 width3">
+  <div class="col-xs-10 width-form-unite-selector">
 
-    <%= select_tag('unite_group_groups', options_from_collection_for_select(groups_no_united, 'id', 'code_with_group_and_name'), prompt: "Selecione uma turma", :class => 'form-control width2') %>
+    <%= select_tag('unite_group_groups', options_from_collection_for_select(groups_no_united, 'id', 'code_with_group_and_name'), prompt: "Selecione uma turma", :class => 'form-control width-form-unite') %>
 
     <% if !@show %>
-      <div class="addAnother">
+      <div class="add-another">
         <%= link_to new_button.html_safe, add_unite_groups_path(@unite_group, 0),
-              :class => 'btn btn-primary btn-sm juntar',
+              :class => 'btn btn-primary btn-sm join',
               :id => 'add_group',
               title: 'Adicionar Disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
       </div>
