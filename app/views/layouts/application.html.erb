@@ -29,8 +29,6 @@
             <% if !user_signed_in? %>
               <li style="position:absolute; float:right;right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
             <% else %>
-
-
               <li style="position:absolute; float:right; right: 60px;">
                 <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user), :class => 'user_name_menu' %>
               </li>
@@ -73,49 +71,73 @@
 
           <li class="side_bar <%= classes["home"] %>"><a href="/">Inicial<span class="<%=menu_icon(home_icon)%>"></span></a></li>
           <li class="side_bar <%= classes["ficha"] %>"><a href="<%= fichas_path %>"><%= t('fichas') %><span class="<%=menu_icon(ficha_icon)%>"></span></a></li>
-          <li class="side_bar <%= classes["matter"] %>"><a href="<%= matters_path %>"><%= t('matters') %><span class="<%=menu_icon(matter_icon)%>"></span></a></li>
           <li class="side_bar <%= classes["courses"] %>"><a href="<%= courses_path %>"><%= t('courses') %><span class="<%=menu_icon(course_icon)%>"></span></a></li>
+
           <% if user_admin? or user_secretary? %>
 
-            <li class="side_bar <%= classes["group"]%>" ><a href="<%= groups_path %>"><%= t('groups') %><span class="<%=menu_icon(group_icon)%>"></span></a></li>
+            <li class="dropdown dropdown-list side_bar <%= classes["matter"] %>">
 
-            <li class="dropdown side_bar <%= classes["options"]%>">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"</span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown"> <%= t('matters') %> <span class="caret"></span><span class="<%=menu_icon(matter_icon)%>"></span></a>
+
               <ul class="dropdown-menu forAnimate" role="menu">
-                <li><a href="<%= manage_options_index_path %>"><%= t('manage') %></a></li>
+                <li class="side_bar"><a href="<%= unite_matters_path %>"><%= t('unite_matters') %></a></li>
                 <li class="divider"></li>
-                <li><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
-                <li><a href="<%= options_path %>"><%= t('options') %></a></li>
+                <li class="side_bar"><a href="<%= matters_path %>"><%= t('matters') %></a></li>
+              </ul>
+
+            </li>
+
+            <li class="dropdown dropdown-list side_bar <%= classes["group"] %>">
+
+              <a class="dropdown-toggle" data-toggle="dropdown"> <%= t('group') %> <span class="caret"></span><span class="<%=menu_icon(group_icon)%>"></span></a>
+
+              <ul class="dropdown-menu forAnimate" role="menu">
+                <li class="side_bar"><a href="<%= unite_groups_path %>"><%= t('unite_groups') %></a></li>
+                <li class="divider"></li>
+                <li class="side_bar"><a href="<%= groups_path %>"><%= t('groups') %></a></li>
+              </ul>
+
+            </li>
+
+
+            <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
+              <ul class="dropdown-menu forAnimate" role="menu">
+                <li class="side_bar"><a href="<%= manage_options_index_path %>"><%= t('manage') %></a></li>
+                <li class="divider"></li>
+                <li class="side_bar"><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
+                <li class="side_bar"><a href="<%= options_path %>"><%= t('options') %></a></li>
                 </ul>
             </li>
 
-            <li class="side_bar <%= classes["unite_matters"] %>"><a href="<%= unite_matters_path %>"><%= t('unite_matters') %><span class="<%=menu_icon(unite_matters_icon)%>"></span></a></li>
-            <li class="side_bar <%= classes["unite_groups"] %>"><a href="<%= unite_groups_path %>"><%= t('unite_groups') %><span class="<%=menu_icon(unite_groups_icon)%>"></span></a></li>
             <li class="side_bar <%= classes["perform_backups"] %>"><a href="<%= perform_backups_path %>"><%= t('perform_backups') %><span class="<%=menu_icon(backups_icon)%>"></span></a></li>
 
             <li class="side_bar <%= classes["user"]%>" ><a href="<%= users_path %>">Usuários<span class="<%=menu_icon(user_icon)%>"></span></a></li>
             <li class="side_bar <%= classes["help"]%>" ><a href="<%= new_contact_path %>">Contato<span class="<%=menu_icon(help_icon)%>"></span></a></li>
 
           <% else %>
-
-            <li class="dropdown side_bar <%= classes["options"]%>">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"</span></a>
-              <ul class="dropdown-menu forAnimate" role="menu">
-                <li><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
-                <li class="divider"></li>
-                <li><a href="<%= options_path %>"><%= t('options') %></a></li>
-                </ul>
-            </li>
+            <li class="side_bar <%= classes["matter"] %>"><a href="<%= matters_path %>"><%= t('matters') %><span class="<%=menu_icon(matter_icon)%>"></span></a></li>
+            <li class="side_bar <%= classes["group"]%>" ><a href="<%= groups_path %>"><%= t('groups') %><span class="<%=menu_icon(group_icon)%>"></span></a></li>
 
           <% end %>
 
           <% if user_signed_in? %>
-            <li class="side_bar" class="dropdown">
+
+            <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
+              <ul class="dropdown-menu forAnimate" role="menu">
+                <li class="side_bar"><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
+                <li class="divider"></li>
+                <li class="side_bar"><a href="<%= options_path %>"><%= t('options') %></a></li>
+                </ul>
+            </li>
+
+            <li  class="dropdown dropdown-list">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Conta <span class="caret"></span><span class="<%=menu_icon(account_icon)%>"></span></a>
               <ul class="dropdown-menu forAnimate" role="menu">
-                <li><a href="<%= edit_user_path(current_user) %>">Configurações</a></li>
+                <li class="side_bar"><a href="<%= edit_user_path(current_user) %>">Configurações</a></li>
                 <li class="divider"></li>
-                <li><a data-method="delete" href="<%= destroy_user_session_path %>">Sair</a></li>
+                <li class="side_bar"><a data-method="delete" href="<%= destroy_user_session_path %>">Sair</a></li>
               </ul>
             </li>
           <% else %>

@@ -121,3 +121,24 @@ body, html{
   section{
     padding-left: 15px;
   }
+
+  li.dropdown.dropdown-list, li.dropdown.dropdown-list > ul {
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  li.dropdown.dropdown-list > ul {
+
+    background-color: #f2f2f2 !important;
+  }
+
+  li.dropdown.dropdown-list > ul > li.side_bar > a{
+    font-size: 12px;
+    opacity: 0.8;
+    padding-bottom: 11px;
+    padding-top: 11px;
+  }
+
+  ul.dropdown-menu > li.divider {
+    margin: 0px;
+  }

@@ -134,7 +134,7 @@ $(document).on('change','#unite_group_groups', function() {
 
 document.addEventListener("turbolinks:load", function() {
 
-  
+
 
     $(document).on('click', '#perform_backup',function(){
       $("#form_backup").fadeOut(500);

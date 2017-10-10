@@ -54,6 +54,10 @@ class ManageOptionsController < ApplicationController
 
   private
 
+    def bar_define
+      session[:page] = "options"
+    end
+
     def options_status(condition, generated, selection, finished)
       if condition
         @semester.options_generated = generated;
@@ -119,10 +123,6 @@ class ManageOptionsController < ApplicationController
 
     def set_semester
       @semester = Semester.current_semester
-    end
-
-    def bar_define
-      session[:page] = "options"
     end
 
 end

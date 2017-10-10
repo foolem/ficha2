@@ -69,9 +69,9 @@ class UniteMattersController < ApplicationController
   private
 
     def bar_define
-      session[:page] = "unite_matters"
+      session[:page] = "matters"
     end
-    
+
     def set_unite_matter
       @unite_matter = UniteMatter.find(params[:id])
     end
