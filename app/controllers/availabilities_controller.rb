@@ -1,28 +1,22 @@
 class AvailabilitiesController < ApplicationController
+  before_action :bar_define
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
 
-  # GET /availabilities
-  # GET /availabilities.json
+
   def index
     @availabilities = Availability.all
   end
 
-  # GET /availabilities/1
-  # GET /availabilities/1.json
   def show
   end
 
-  # GET /availabilities/new
   def new
     @availability = Availability.new
   end
 
-  # GET /availabilities/1/edit
   def edit
   end
 
-  # POST /availabilities
-  # POST /availabilities.json
   def create
     @availability = Availability.new(availability_params)
 
@@ -37,8 +31,6 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /availabilities/1
-  # PATCH/PUT /availabilities/1.json
   def update
     respond_to do |format|
       if @availability.update(availability_params)
@@ -51,8 +43,6 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
-  # DELETE /availabilities/1
-  # DELETE /availabilities/1.json
   def destroy
     @availability.destroy
     respond_to do |format|
@@ -70,12 +60,15 @@ class AvailabilitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+    def bar_define
+      session[:page] = "options"
+    end
+
     def set_availability
       @availability = Availability.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def availability_params
       params.require(:availability).permit(:semester_id, :user_id)
     end

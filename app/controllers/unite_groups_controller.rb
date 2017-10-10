@@ -79,7 +79,7 @@ class UniteGroupsController < ApplicationController
 
   private
     def bar_define
-      session[:page] = "unite_groups"
+      session[:page] = "groups"
     end
 
     def set_unite_group
