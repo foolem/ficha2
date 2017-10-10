@@ -42,8 +42,8 @@
       </div>
     </div>
 
-    <div class="form-group" style="margin-left: 40px; margin-right: 40px">
-      <div id= "schedules_partial" class="col-xs-12">
+    <div class="form-group ml-mr-40">
+      <div id= "schedules_partial" class="less">
         <%= render "/schedules/schedules"  %>
       </div>
     </div>
@@ -52,11 +52,11 @@
 <% end %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              groups_path, :class => 'btn btn-default', :style => 'margin-bottom:60px'  %>
+              groups_path, :class => 'btn btn-default mb-70'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_group_path(@group), :class => 'btn btn-default', :style => 'margin-bottom:60px' %>
+              edit_group_path(@group), :class => 'btn btn-default mb-70' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               group_path(@group),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger white', :style => 'margin-bottom:60px' %>
+              :class => 'btn btn-danger white mb-70' %>

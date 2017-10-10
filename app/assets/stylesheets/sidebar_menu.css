@@ -10,11 +10,11 @@ body, html{
     position: absolute!important;
     z-index: 1;
     width: auto;
-    height: 200px;
+    height: auto;
  }
 
   .main{
-    padding: 10px 10px 0 10px;
+    padding:10px;
   }
 
  @media (min-width: 765px) {

@@ -49,13 +49,19 @@ body {
 .mb-20 {
   margin-bottom: 20px !important;
 }
+.mb-30 {
+  margin-bottom: 30px !important;
+}
 .mb-70 {
   margin-bottom:70px;
 }
 .pb-100 {
   padding-bottom:100px;
 }
-
+.ml-mr-40 {
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+}
 .header-border-left {
   border-top-left-radius: 3px;
 }
@@ -77,11 +83,34 @@ body {
   width: 93%;
   max-width: 93%;
 }
+.back-button {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 .width {
   width: 43%;
 }
+.m-3-inline-block {
+  display:inline-block;
+  text-align: left;
+  margin: 3px;
+}
 .w-130 {
   width: 130px;
+}
+.w-15-m-0 {
+  margin: 0; width: 15px;
+}
+.m-0 {
+  margin: 0;
+}
+.w-221 {
+  width: 211px;
+}
+.w-100-inline-block {
+  width: 100px;
+  display: inline-block;
 }
 .w-400 {
   width:400px;
@@ -92,6 +121,14 @@ body {
 
 .center {
   text-align: center;
+}
+.select-kind {
+  width:120px;
+  float:left;
+  margin-right:5px;
+}
+.option-schedules {
+  width: calc(100% - 43px);
 }
 .semester-box {
   text-align: left;
@@ -242,37 +279,7 @@ div.dropdown-menu li a, button.dropdown-toggle {
   background-color: #455E8E;
   margin-top: 8px;
 }
-a.disable {
-  color: white;
-}
-
-a.disable:link {
-  color: white;
-}
-
-a.disable:hover {
-  color: white;
-}
-
-a.disable:visited {
-  color: white;
-}
-
-a.simple_button {
-  color: black;
-}
-
-a.simple_button:link {
-  color: black;
-}
-
-a.simple_button:hover {
-  color: black;
-}
-
-a.simple_button:visited {
-  color: black;
-}
+a.disable {color: white;}a.disable:link {color: white;}a.disable:hover {color: white;}a.disable:visited {color: white;}a.simple_button {color: black;}a.simple_button:link {color: black;}a.simple_button:hover {color: black;}a.simple_button:visited {color: black;}
 textarea.resize {
   max-width: 100%;
   min-width: 100%;
@@ -406,10 +413,18 @@ li > a:hover{
 .pb-80 {
   padding-bottom:20px;
 }
+.mt-10 {
+  margin-top:10px;
+}
 .mt-80 {
   margin-top:80px;
 }
-
+.m-0-toggle {
+  margin: 7px;
+}
+.p-10 {
+  padding: 10px;
+}
 .new-option {
   margin:0 auto;
   display: flex;
@@ -465,7 +480,7 @@ li > a:hover{
   float: right;
   width: 25px;
 }
-.add-another-course {
+.add-another-fix {
   float:right;
   margin-right:3px;
   width:37px;

@@ -22,7 +22,7 @@
 					<div class="form-group">
 						<%= f.label :priority, :class => 'control-label col-md-3' %>
 						<div class="col-md-8">
-							<%= f.select(:priority, priority_list, {}, {:class => 'form-control', :style => 'float:left;width:155px;'}) %>
+							<%= f.select(:priority, priority_list, {}, {:class => 'form-control select-kind'}) %>
 							<%= f.error_span(:priority) %>
 						</div>
 					</div>

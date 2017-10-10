@@ -19,7 +19,7 @@
   <div class="form-group">
     <%= f.label :day, :class => 'control-label col-md-4' %>
     <div class="col-md-8" id="div_name">
-      <%= f.select :day, options_for_select(day_options, "monday"), {}, {:class => "form-control", :style => "width: 211px"}  %>
+      <%= f.select :day, options_for_select(day_options, "monday"), {}, {:class => "form-control w-221"}  %>
       <%=f.error_span(:day) %>
     </div>
   </div>
@@ -27,7 +27,7 @@
   <div class="form-group">
     <%= f.label :begin, :class => 'control-label col-md-4' %>
     <div class="col-md-8" id="div_name">
-      <%= f.time_select :begin, { minute_step: 5, :start_hour => 5}, { class: 'form-control', style: "width: 100px; display: inline-block;" } %>
+      <%= f.time_select :begin, { minute_step: 5, :start_hour => 5}, { class: 'form-control w-100-inline-block' } %>
       <%=f.error_span(:begin) %>
     </div>
   </div>
@@ -35,7 +35,7 @@
   <div class="form-group">
     <%= f.label :duration, :class => 'control-label col-md-4' %>
     <div class="col-md-8" id="div_name">
-      <%= f.time_select :duration, { minute_step: 5, :start_hour => 1, :end_hour => 10  }, { class: 'form-control', style: "width: 100px; display: inline-block;"} %>
+      <%= f.time_select :duration, { minute_step: 5, :start_hour => 1, :end_hour => 10  }, { class: 'form-control w-100-inline-block'} %>
       <%=f.error_span(:duration) %>
     </div>
   </div>

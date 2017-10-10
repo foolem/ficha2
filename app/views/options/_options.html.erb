@@ -11,19 +11,19 @@
 
             <% if user_has_wishes? and !option_wished(option) %>
               <%= link_to enable_button.html_safe, open_wish_options_path(option),
-                  :title => "Escolher", :class => "btn btn-default", :remote => true, :style => "float:right;" %>
+                  :title => "Escolher", :class => "btn btn-default f-right", :remote => true %>
             <% elsif option_wished(option) %>
               <%= link_to enable_button.html_safe, remove_wishes_path(option),
-                  :title => "Escolher", :class => "btn btn-danger disable", :method => "delete", :style => "float:right;" %>
+                  :title => "Escolher", :class => "btn btn-danger disable f-right", :method => "delete" %>
             <% end %>
 
-            <div id="option_schedules" data-href="<%= option_path(option) %>" style="width: calc(100% - 43px)">
+            <div id="option_schedules" class="option-schedules" data-href="<%= option_path(option) %>">
               <%= option_schedules2(option).html_safe %>
             </div>
 
           </div>
 
-          <div style="padding: 10px;">
+          <div class="p-10">
 
             <table>
               <tbody>
