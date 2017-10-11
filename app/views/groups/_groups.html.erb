@@ -2,18 +2,20 @@
 
   <thead>
     <tr class="header">
-      <th class="header-border-left" width="20px"><center><%= t('code')  %></center></th>
-      <th width="5%"><center><%= t('class')  %></center></th>
+      <th class="header-border-left center" width="20px"><%= t('code') %></th>
+      <th class="center" width="5%"><%= t('class') %></th>
       <th ><%= t('matter') %></th>
-      <th width="110px"><center><%= t('semester')  %></center></th>
+      <th class="center" width="110px"><%= t('semester') %></th>
       <% if !current_user.teacher? %>
 
-          <th class="header-border-right" width="130px"> <center> <%=t '.actions', :default => t("helpers.actions") %>
+        <th class="header-border-right center" width="130px"> <%=t '.actions', :default => t("helpers.actions") %>
+
           <%= link_to new_button.html_safe, new_group_path, :class => 'btn-default btn-sm', :style => 'margin-left:30px',
             title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
 
+        </th>
+
       <% end %>
-      </center></th>
 
     </tr>
   </thead>
@@ -21,11 +23,11 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr data-href="<%= group_path(group) %>">
-        <td><center><%= group.matter.code %></center></td>
-        <td><center><%= group.name %></center></td>
+        <td class="center"><%= group.matter.code %></td>
+        <td class="center"><%= group.name %></td>
         <td><%= group.matter.name %></td>
-        <td><center><%= group.semester.semester_with_year %></center></td>
-        <td id="actions"> <center>
+        <td class="center" ><%= group.semester.semester_with_year %></td>
+        <td id="actions" class="center">
           <%= link_to edit_button.html_safe,
                 edit_group_path(group), :class => 'btn btn-default btn-sm simple_button',
                 title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
@@ -37,18 +39,19 @@
                 :class => 'btn btn-sm btn-danger disable',
                 title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
 
-          </center>
+
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<div class="center">
 
-<center>
   <nav aria-label="Page navigation">
     <ul class="pagination pagination-sm no-mt-mb" id ="group_pages">
       <%= render_pages(@elements, @page, "/groups", group_page_length).html_safe %>
     </ul>
   </nav>
-</center>
+
+</div>

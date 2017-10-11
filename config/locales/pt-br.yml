@@ -10,6 +10,12 @@
   teacher: "Professor"
   interested: "Interessados"
 
+  availabilities: Disponibilidades
+  availability: Disponibilidade
+
+  unavailabilities: Compromissos
+  unavailability: Compromisso
+
   user: "Usuário"
   users: "Usuários"
 

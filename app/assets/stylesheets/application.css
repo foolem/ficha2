@@ -130,6 +130,11 @@ body {
 .option-schedules {
   width: calc(100% - 43px);
 }
+
+.semester-show {
+  font-size: 16px;
+}
+
 .semester-box {
   text-align: left;
   margin-top: -38px;

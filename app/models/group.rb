@@ -20,6 +20,10 @@ class Group < ApplicationRecord
     "#{name} -  #{matter.code} - #{matter.name}"
   end
 
+  def has_unite?
+    !unite_group.blank?
+  end
+
   def same_groups
     if schedules.length == 0
       return [self]

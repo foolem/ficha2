@@ -6,6 +6,10 @@ class Semester < ApplicationRecord
     "#{semester}º de #{year}"
   end
 
+  def semester_with_year_show
+    "#{semester}º semestre de #{year}"
+  end
+
   def semester_with_year_code
     "#{year}#{semester}"
   end

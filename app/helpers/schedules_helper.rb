@@ -1,4 +1,5 @@
 module SchedulesHelper
+
   def end_generate(schedule)
     if !schedule.begin.blank? and !schedule.duration.blank?
       hour = (schedule.duration.hour.to_i + schedule.begin.hour.to_i)

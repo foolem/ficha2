@@ -1,12 +1,73 @@
 <h1 class="center"><span class="<%=index_icon(account_icon)%>"></span> <%= t("availability") %></h1>
 
-<span><b>Semstre</b></span> <span><%= @availability.semester.semester_with_year %></span>
-<span><b>Usuário</b></span> <span><%= @availability.user.name %></span>
+<div class="panel panel-default col-md-12">
+  </br>
 
+  <div class="row">
+    <div class="col-md-offset-9 col-md-3 col-md-xs-12 semester-show center"> <%= @availability.semester.semester_with_year_show %> </div>
+  </div>
 
-<% @availability.unavailabilities.each do |un| %>
-<br><br><br>
-<h5 class="header"><%= un.schedule.day %></h5>
-<span><b>Período: </b></span> <span><%= representation(un.schedule) %></span>
+  <div class="col-md-10 col-md-offset-1">
 
-<% end %>
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="center col-md-offset-1 col-md-10"> <span class="<%=index_icon(schedule_icon)%>"></span> <%= t("unavailabilities") %></h3>
+
+        <div style="layout: absolute; float:right; margin-top:35px;">
+
+          <%= link_to new_button.html_safe, new_group_path, :class => 'btn-default btn-sm',
+          title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class=" panel panel-default" style="padding: 20px; padding-bottom: 0px;">
+
+      <% [0,1,2,3,4,5,6].each do |day|   %>
+
+        <% unavailabilities_day(day) %>
+
+        <% if !@unavailabilities.blank? %>
+
+          <div class=" panel panel-default">
+
+            <header class="panel-heading header center">
+
+            <div class="row">
+              <div class="col-md-3 col-xs-4">
+                <%= t(@unavailabilities.first.schedule.day) %>
+
+              </div>
+              <div class="col-md-9 col-xs-8">
+                Comentários
+              </div>
+            </div>
+
+            </header>
+
+            <table class="table table-striped">
+              <tbody>
+                <% @unavailabilities.each do |un|  %>
+
+                  <tr>
+                    <td class="center col-md-3 col-xs-4"> <%= "#{un.schedule.begin.strftime("%H:%M")} - #{end_generate(un.schedule)}" %> </td>
+                    <td class="col-md-9 col-xs-8" style="text-align: justify"> <%= un.comments %> </td>
+                  </tr>
+
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
