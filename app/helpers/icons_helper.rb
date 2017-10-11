@@ -60,6 +60,10 @@ module IconsHelper
     '<i class="glyphicon glyphicon-info-sign"></i>'
   end
 
+  def check_button
+    '<i class="glyphicon glyphicon-ok blue"></i>'
+  end
+
   def send_button
     messages_button + " Enviar"
   end

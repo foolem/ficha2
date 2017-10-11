@@ -165,8 +165,7 @@ body {
   margin-bottom: 49px;
 }
 .join {
-  margin-top: 9px;
-  float: left;
+  margin:0 0 3px 10px;
 }
 
 .name-show {
@@ -265,10 +264,13 @@ body {
 
 h1 {
   color: #444;
+  font-size: 4.5rem !important;
 }
 
 td { color: #000; }
 tr:nth-child(even) {background-color: rgb(232, 232, 232)}
+th { margin-bottom: 0}
+
 /* tr:hover {background-color: #888; color: black}*/
 
 tr.header > th {
@@ -360,7 +362,6 @@ li > a:hover{
   background-color:#fff
 }
 .panel-options {
-  padding-bottom:20px;
   height:auto;
   display:block;
   overflow-x:auto;
@@ -371,24 +372,28 @@ li > a:hover{
 
 }
 .option-head {
-  margin: 10px;
+  height: auto;
+  width: auto;
   border-radius: 3px;
-  background-color:#657fb3;
+  background-color:#455e8e;
   color: white;
-  padding: 4px;
   text-align: center;
 
 }
 .option-head:hover {
   cursor:pointer;
 }
+.option-schedules {
+  width: 100%;
+}
 .option-body {
-  margin: 10px;
+  margin: 10px 10px;
   border-radius: 3px;
-  background-color: rgb(238, 238, 238);
-  padding: 3px;
+  background-color: rgb(228, 228, 228);
   display: inline-block;
-  width: 31%;
+  width: 200px;
+  vertical-align: top;
+
 }
 .option-body:visited {
   background-color: rgb(238, 238, 238);
@@ -396,7 +401,12 @@ li > a:hover{
 .option-body:active {
   background-color: rgb(238, 238, 238);
 }
-
+.m-choose {
+  margin: 5px auto 0;
+}
+.m-5 {
+  margin:5px 0 2px 0 !important;
+}
 #scroll::-webkit-scrollbar-track
 {
 	border-radius: 10px;
@@ -406,7 +416,8 @@ li > a:hover{
 #scroll::-webkit-scrollbar
 {
 	width: 12px;
-	background-color: #F5F5F5;
+  height: 10px;
+  background-color: #F5F5F5;
 }
 
 #scroll::-webkit-scrollbar-thumb

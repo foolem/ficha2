@@ -17,146 +17,150 @@
 
   <body class="body">
 
-    <div class="navbar navbar-inverse" style="margin-bottom:0;border:0;border-radius:0;">
-      <div class="container">
+      <div class="navbar navbar-inverse" style="margin-bottom:0;border:0;border-radius:0;">
+        <div class="container">
 
-        <a id="home_link" class="navbar-brand" href= "/" >Ficha2</a>
+          <a id="home_link" class="navbar-brand" href= "/" >Ficha2</a>
 
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <div class="navbar-collapse collapse navbar-responsive-collapse">
 
-          <ul class="nav navbar-nav" style="aria-hidden='true'" id="menu_list">
+            <ul class="nav navbar-nav" style="aria-hidden='true'" id="menu_list">
 
-            <% if !user_signed_in? %>
-              <li style="position:absolute; float:right;right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
-            <% else %>
-              <li style="position:absolute; float:right; right: 60px;">
-                <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user), :class => 'user_name_menu' %>
+              <% if !user_signed_in? %>
+                <li style="position:absolute; float:right;right: 10px;" ><%= link_to t('Login'), user_session_path %> </li>
+              <% else %>
+                <li style="position:absolute; float:right; right: 60px;">
+                  <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user), :class => 'user_name_menu' %>
+                </li>
+
+                <div style="position:absolute;right: 10px;" class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= config_button.html_safe %>
+                  </button>
+
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="<%= edit_user_path(current_user) %>">Configurações</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a  data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
+                  </ul>
+                </div>
+
+              <% end %>
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    <% classes = bar_active() %>
+
+    <nav class="navbar navbar-default sidebar" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" id="eumemo" class="navbar-toggle m-0-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+            <span class="sr-only">Clique</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+
+            <li class="side_bar <%= classes["home"] %>"><a href="/">Inicial<span class="<%=menu_icon(home_icon)%>"></span></a></li>
+            <li class="side_bar <%= classes["ficha"] %>"><a href="<%= fichas_path %>"><%= t('fichas') %><span class="<%=menu_icon(ficha_icon)%>"></span></a></li>
+            <li class="side_bar <%= classes["courses"] %>"><a href="<%= courses_path %>"><%= t('courses') %><span class="<%=menu_icon(course_icon)%>"></span></a></li>
+
+            <% if user_admin? or user_secretary? %>
+
+              <li class="dropdown dropdown-list side_bar <%= classes["matter"] %>">
+
+                <a class="dropdown-toggle" data-toggle="dropdown"> <%= t('matters') %> <span class="caret"></span><span class="<%=menu_icon(matter_icon)%>"></span></a>
+
+                <ul class="dropdown-menu forAnimate" role="menu">
+                  <li class="side_bar"><a href="<%= unite_matters_path %>"><%= t('unite_matters') %></a></li>
+                  <li class="divider"></li>
+                  <li class="side_bar"><a href="<%= matters_path %>"><%= t('matters') %></a></li>
+                </ul>
+
               </li>
 
-              <div style="position:absolute;right: 10px;" class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <%= config_button.html_safe %>
-                </button>
+              <li class="dropdown dropdown-list side_bar <%= classes["group"] %>">
 
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="<%= edit_user_path(current_user) %>">Configurações</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a  data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
+                <a class="dropdown-toggle" data-toggle="dropdown"> <%= t('group') %> <span class="caret"></span><span class="<%=menu_icon(group_icon)%>"></span></a>
+
+                <ul class="dropdown-menu forAnimate" role="menu">
+                  <li class="side_bar"><a href="<%= unite_groups_path %>"><%= t('unite_groups') %></a></li>
+                  <li class="divider"></li>
+                  <li class="side_bar"><a href="<%= groups_path %>"><%= t('groups') %></a></li>
                 </ul>
-              </div>
 
+              </li>
+
+
+              <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
+                <ul class="dropdown-menu forAnimate" role="menu">
+                  <li class="side_bar"><a href="<%= manage_options_index_path %>"><%= t('manage') %></a></li>
+                  <li class="divider"></li>
+                  <li class="side_bar"><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
+                  <li class="side_bar"><a href="<%= options_path %>"><%= t('options') %></a></li>
+                  </ul>
+              </li>
+
+              <li class="side_bar <%= classes["perform_backups"] %>"><a href="<%= perform_backups_path %>"><%= t('perform_backups') %><span class="<%=menu_icon(backups_icon)%>"></span></a></li>
+
+              <li class="side_bar <%= classes["user"]%>" ><a href="<%= users_path %>">Usuários<span class="<%=menu_icon(user_icon)%>"></span></a></li>
+              <li class="side_bar <%= classes["help"]%>" ><a href="<%= new_contact_path %>">Contato<span class="<%=menu_icon(help_icon)%>"></span></a></li>
+
+            <% else %>
+              <li class="side_bar <%= classes["matter"] %>"><a href="<%= matters_path %>"><%= t('matters') %><span class="<%=menu_icon(matter_icon)%>"></span></a></li>
+              <li class="side_bar <%= classes["group"]%>" ><a href="<%= groups_path %>"><%= t('groups') %><span class="<%=menu_icon(group_icon)%>"></span></a></li>
+
+            <% end %>
+
+            <% if user_signed_in? %>
+
+              <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
+                <ul class="dropdown-menu forAnimate" role="menu">
+                  <li class="side_bar"><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
+                  <li class="divider"></li>
+                  <li class="side_bar"><a href="<%= options_path %>"><%= t('options') %></a></li>
+                  </ul>
+              </li>
+
+              <li  class="dropdown dropdown-list">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Conta <span class="caret"></span><span class="<%=menu_icon(account_icon)%>"></span></a>
+                <ul class="dropdown-menu forAnimate" role="menu">
+                  <li class="side_bar"><a href="<%= edit_user_path(current_user) %>">Configurações</a></li>
+                  <li class="divider"></li>
+                  <li class="side_bar"><a data-method="delete" href="<%= destroy_user_session_path %>">Sair</a></li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="side_bar <%= classes["help"]%>" ><a href="<%= new_contact_path %>">Contato<span class="<%=menu_icon(help_icon)%>"></span></a></li>
             <% end %>
 
           </ul>
         </div>
-
       </div>
+    </nav>
 
-    </div>
+  <div class="container-fluid">
 
-  <% classes = bar_active() %>
-
-  <nav class="navbar navbar-default sidebar" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" id="eumemo" class="navbar-toggle m-0-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-          <span class="sr-only">Clique</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-
-          <li class="side_bar <%= classes["home"] %>"><a href="/">Inicial<span class="<%=menu_icon(home_icon)%>"></span></a></li>
-          <li class="side_bar <%= classes["ficha"] %>"><a href="<%= fichas_path %>"><%= t('fichas') %><span class="<%=menu_icon(ficha_icon)%>"></span></a></li>
-          <li class="side_bar <%= classes["courses"] %>"><a href="<%= courses_path %>"><%= t('courses') %><span class="<%=menu_icon(course_icon)%>"></span></a></li>
-
-          <% if user_admin? or user_secretary? %>
-
-            <li class="dropdown dropdown-list side_bar <%= classes["matter"] %>">
-
-              <a class="dropdown-toggle" data-toggle="dropdown"> <%= t('matters') %> <span class="caret"></span><span class="<%=menu_icon(matter_icon)%>"></span></a>
-
-              <ul class="dropdown-menu forAnimate" role="menu">
-                <li class="side_bar"><a href="<%= unite_matters_path %>"><%= t('unite_matters') %></a></li>
-                <li class="divider"></li>
-                <li class="side_bar"><a href="<%= matters_path %>"><%= t('matters') %></a></li>
-              </ul>
-
-            </li>
-
-            <li class="dropdown dropdown-list side_bar <%= classes["group"] %>">
-
-              <a class="dropdown-toggle" data-toggle="dropdown"> <%= t('group') %> <span class="caret"></span><span class="<%=menu_icon(group_icon)%>"></span></a>
-
-              <ul class="dropdown-menu forAnimate" role="menu">
-                <li class="side_bar"><a href="<%= unite_groups_path %>"><%= t('unite_groups') %></a></li>
-                <li class="divider"></li>
-                <li class="side_bar"><a href="<%= groups_path %>"><%= t('groups') %></a></li>
-              </ul>
-
-            </li>
-
-
-            <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
-              <ul class="dropdown-menu forAnimate" role="menu">
-                <li class="side_bar"><a href="<%= manage_options_index_path %>"><%= t('manage') %></a></li>
-                <li class="divider"></li>
-                <li class="side_bar"><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
-                <li class="side_bar"><a href="<%= options_path %>"><%= t('options') %></a></li>
-                </ul>
-            </li>
-
-            <li class="side_bar <%= classes["perform_backups"] %>"><a href="<%= perform_backups_path %>"><%= t('perform_backups') %><span class="<%=menu_icon(backups_icon)%>"></span></a></li>
-
-            <li class="side_bar <%= classes["user"]%>" ><a href="<%= users_path %>">Usuários<span class="<%=menu_icon(user_icon)%>"></span></a></li>
-            <li class="side_bar <%= classes["help"]%>" ><a href="<%= new_contact_path %>">Contato<span class="<%=menu_icon(help_icon)%>"></span></a></li>
-
-          <% else %>
-            <li class="side_bar <%= classes["matter"] %>"><a href="<%= matters_path %>"><%= t('matters') %><span class="<%=menu_icon(matter_icon)%>"></span></a></li>
-            <li class="side_bar <%= classes["group"]%>" ><a href="<%= groups_path %>"><%= t('groups') %><span class="<%=menu_icon(group_icon)%>"></span></a></li>
-
-          <% end %>
-
-          <% if user_signed_in? %>
-
-            <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
-              <ul class="dropdown-menu forAnimate" role="menu">
-                <li class="side_bar"><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>
-                <li class="divider"></li>
-                <li class="side_bar"><a href="<%= options_path %>"><%= t('options') %></a></li>
-                </ul>
-            </li>
-
-            <li  class="dropdown dropdown-list">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Conta <span class="caret"></span><span class="<%=menu_icon(account_icon)%>"></span></a>
-              <ul class="dropdown-menu forAnimate" role="menu">
-                <li class="side_bar"><a href="<%= edit_user_path(current_user) %>">Configurações</a></li>
-                <li class="divider"></li>
-                <li class="side_bar"><a data-method="delete" href="<%= destroy_user_session_path %>">Sair</a></li>
-              </ul>
-            </li>
-          <% else %>
-            <li class="side_bar <%= classes["help"]%>" ><a href="<%= new_contact_path %>">Contato<span class="<%=menu_icon(help_icon)%>"></span></a></li>
-          <% end %>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container">
     <div class="row">
-      <div class="col-xs-12 less">
+      <div class="col-xs-12 col-md-offset-1 col-md-10">
+
         <div class="mt-10">
           <%= bootstrap_flash %>
         </div>
-          <%= yield %>
-        </div>
+
+        <%= yield %>
+
+      </div>
     </div>
   </div>
 
