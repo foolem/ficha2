@@ -1,7 +1,7 @@
 <h1 class="center"><span class="<%=index_icon(account_icon)%>"></span> Administrar opções</h1>
 
 
-<div id="manage_actions">
+<div id="manage_actions" class="panel panel-default panel-manage">
 
   <% if options_not_generated? %>
 
@@ -14,18 +14,16 @@
 
   <% elsif options_selection? %>
 
-    <div class="new-option">
+    <div class="manage-options">
       <%= link_to "Iniciar período", manage_options_start_path,
           id: "options_start", remote: true,
           :"data-load" => "Iniciando período de seleções...",
-          class: 'btn btn-xl new-option bue-btn white'%>
-    </div>
+          class: 'btn btn-xl bue-btn white d-inline-block'%>
 
-    <div class="new-option">
       <%= link_to "Remover opções", manage_options_remove_path,
           id: "options_remove", remote: true, method: :delete,
           :"data-load" => "Removendo opções...",
-          class: 'btn btn-xl new-option bue-btn white'%>
+          class: 'btn btn-xl bue-btn white d-inline-block'%>
     </div>
 
   <% elsif options_finished? %>
