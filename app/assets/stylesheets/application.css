@@ -61,6 +61,9 @@ body {
 .mb-70 {
   margin-bottom:70px;
 }
+.p-20 {
+  padding: 20px;
+}
 .pb-100 {
   padding-bottom:100px;
 }
@@ -110,6 +113,9 @@ body {
 }
 .m-0 {
   margin: 0;
+}
+.m-20 {
+  margin: 20px;
 }
 .w-221 {
   width: 211px;
@@ -368,6 +374,11 @@ li > a:hover{
 .hidden {
   display: none;
 }
+.panel-manage {
+  width: 60%;
+  height: 50%;
+  margin: 50px auto;
+}
 .h4-options {
   margin:0 auto;
   text-align:center;
@@ -420,6 +431,7 @@ li > a:hover{
 .option-body:active {
   background-color: rgb(238, 238, 238);
 }
+
 .m-choose {
   margin: 5px auto 0;
 }
@@ -460,15 +472,87 @@ li > a:hover{
 .p-10 {
   padding: 10px;
 }
+#alert-partial {
+  text-align: center;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  width: 40%;
+  height: 35px;
+  background-color: rgb(154, 255, 152);
+  display: none;
+}
 .new-option {
   margin:0 auto;
   display: flex;
   margin-top: 10px;
 }
-.bue-btn {
+.big-btn {
+  width: 150px;
+  height: 150px;
+}
+.big-btn-align {
+  font-size: 5rem !important;
+  margin-top: 40px;
+  display: block;
+}
+.manage-panel-reset {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+
+}
+.manage-start {
+  display: inline-block;
+  margin: 0 1%;
+}
+.manage-remove {
+  display: inline-block;
+  margin: 0 1%;
+}
+.manage-remove-btn {
+  display: block;
+  margin: 90px auto !important;
+  font-size: 2.5rem;
+  transition: all 1s ease;
+  text-decoration: none;
+  padding-bottom: 15px;
+}
+.manage-remove-btn:hover {
+  text-decoration: none;
+  background-color: rgb(255, 78, 78);
+
+}
+
+.manage-begin {
+  width: 50%;
+  height: 200px;
+  float: left;
+  background-color: rgb(108, 255, 78);
+  text-align: center;
+  border-radius: 5px 0 0 5px;
+}
+.manage-begin-btn {
+  display: block;
+  margin: 90px auto !important;
+  font-size: 2.5rem;
+  text-decoration: none;
+  padding-bottom: 15px;
+}
+.manage-begin-btn:hover {
+  text-decoration: none;
+  background-color: rgb(108,255,78);
+}
+
+.d-block {
+  display: block !important;
+}
+.blue-btn {
   background-color: #455E8E;
 }
-.bue-btn:hover {
+.blue-btn:hover {
   background-color: #506ba0;
   border-color: #506ba0;
 }
@@ -538,4 +622,34 @@ li > a:hover{
   padding:20px 10px 10px 10px;
   background-color: #fff;
   border-radius: 5px;
+}
+
+.hvr-underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  background: white;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+  left: 0;
+  right: 0;
 }

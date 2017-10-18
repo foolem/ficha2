@@ -1,0 +1,56 @@
+
+<div id="manage_actions" class="panel panel-default panel-manage p-20">
+
+  <% if options_not_generated? %>
+
+    <div class="manage-panel-reset">
+      <%= link_to manage_options_generate_path,
+          id: "options_generate", remote: true,
+          :"data-load" => "Gerando opções...",
+          class: 'btn big-btn blue-btn white' do %>
+          <%= big_generate_button.html_safe %>
+          <h4 style="text-align:center;margin-top:20px">Gerar</h4>
+          <% end %>
+    </div>
+
+  <% elsif options_selection? %>
+    <div class="manage-panel-reset">
+      <div class="manage-start">
+        <%= link_to manage_options_start_path,
+            id: "options_start", remote: true,
+            :"data-load" => "Iniciando período de seleções...",
+            class: 'btn big-btn blue-btn white' do %>
+            <%= big_play_button.html_safe %>
+            <h4 style="text-align:center;margin-top:20px">Iniciar</h4>
+            <% end %>
+      </div>
+      <div class="manage-remove">
+        <%= link_to manage_options_remove_path,
+            id: "options_remove", remote: true, method: :delete,
+            :"data-load" => "Removendo opções...",
+            class: 'btn big-btn blue-btn white' do %>
+            <%= big_trash_button.html_safe %>
+            <h4 style="text-align:center;margin-top:20px">Remover</h4>
+            <% end %>
+      </div>
+    </div>
+
+  <div id="manage_actions" class="panel panel-default p-20 m-20">
+    <h4 class="text-center">Gráficos aqui</h4>
+  </div>
+  <% elsif options_finished? %>
+
+    <div class="manage-panel-reset">
+      <%= link_to manage_options_end_path,
+          id: "options_remove", remote: true,
+          :"data-load" => "Encerrando período de seleção  ...",
+          class: 'btn big-btn blue-btn white' do%>
+          <%= big_stop_button.html_safe %>
+          <h4 style="text-align:center;margin-top:20px">Encerrar</h4>
+          <% end %>
+    </div>
+
+  <% else %>
+    <h4> Opções finalizadas neste semestre. </h4>
+  <% end %>
+</div>

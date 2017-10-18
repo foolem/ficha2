@@ -1,5 +1,21 @@
 module IconsHelper
 
+  def big_trash_button
+    '<i class="glyphicon glyphicon-trash big-btn-align"></i>'
+  end
+
+  def big_play_button
+    '<i class="glyphicon glyphicon-play-circle big-btn-align"></i>'
+  end
+
+  def big_stop_button
+    '<i class="glyphicon glyphicon-stop big-btn-align"></i>'
+  end
+
+  def big_generate_button
+    '<i class="glyphicon glyphicon-cog big-btn-align"></i>'
+  end
+
   def remove_button
     '<i class="glyphicon glyphicon-remove"></i>'
   end
