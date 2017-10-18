@@ -1,44 +1,34 @@
 class UnavailabilitiesController < ApplicationController
-  before_action :set_unavailability, only: [:show, :edit, :update, :destroy]
+  before_action :set_unavailability, only: [:destroy]
 
-  # GET /unavailabilities
-  # GET /unavailabilities.json
-  def index
-    @unavailabilities = Unavailability.all
-  end
-
-  # GET /unavailabilities/1
-  # GET /unavailabilities/1.json
-  def show
-  end
-
-  # GET /unavailabilities/new
-  def new
-    @unavailability = Unavailability.new
-  end
-
-  # GET /unavailabilities/1/edit
-  def edit
-  end
-
-  # POST /unavailabilities
-  # POST /unavailabilities.json
   def create
+
     @unavailability = Unavailability.new(unavailability_params)
+    schedule = Schedule.new(schedule_params)
+    schedule.parse_to_time
+
+    result = Schedule.where(day: schedule.day, begin: schedule.begin, duration: schedule.duration).first
+    if result.blank?
+      @unavailability.schedule = schedule
+    else
+      @unavailability.schedule = result
+    end
+
+    @availability = @unavailability.availability
 
     respond_to do |format|
       if @unavailability.save
+        format.js
         format.html { redirect_to @unavailability, notice: 'Unavailability was successfully created.' }
-        format.json { render :show, status: :created, location: @unavailability }
       else
+        format.js
         format.html { render :new }
-        format.json { render json: @unavailability.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
-  # PATCH/PUT /unavailabilities/1
-  # PATCH/PUT /unavailabilities/1.json
+  #?
   def update
     respond_to do |format|
       if @unavailability.update(unavailability_params)
@@ -51,24 +41,24 @@ class UnavailabilitiesController < ApplicationController
     end
   end
 
-  # DELETE /unavailabilities/1
-  # DELETE /unavailabilities/1.json
   def destroy
     @unavailability.destroy
     respond_to do |format|
-      format.html { redirect_to unavailabilities_url, notice: 'Unavailability was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js
+      format.html { redirect_to user_availability_availabilities_path, notice: 'Unavailability was successfully destroyed.' }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_unavailability
       @unavailability = Unavailability.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def unavailability_params
-      params.require(:unavailability).permit(:availability_id, :schedule_id, :comments)
+      params.require(:unavailability).permit(:availability_id, :comments, schedule_attributes: [:begin, :duration, :day])
+    end
+
+    def schedule_params
+      params.require(:schedule).permit(:begin, :duration, :day)
     end
 end

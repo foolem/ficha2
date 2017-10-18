@@ -8,4 +8,10 @@ class Schedule < ApplicationRecord
     [:sunday, :monday, :thursday, :wednesday, :tuesday, :friday, :saturday]
   end
 
+
+  def parse_to_time
+    self.begin = self.begin.to_time
+    self.duration = self.duration.to_time
+  end
+
 end

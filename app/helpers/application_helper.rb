@@ -24,4 +24,32 @@ module ApplicationHelper
     classes
   end
 
+
+
+  #------- button_configs
+
+  def remove_configs_default
+    confirm = { :confirm => "Você tem certeza?" }
+    {:method => :delete, :data => confirm }
+  end
+
+  def button_configs(key, classes = nil, args = nil)
+    tip = {new: "Adicionar", edit: "Editar", remove: "Remover", begin: "Iniciar"}
+
+    configs = {
+      class: "btn-sm #{classes}",
+      'data-toggle' => 'tooltip',
+      'data-placement': 'right'
+    }
+
+    configs[:title] = tip[key.to_sym]
+
+    if !args.blank?
+      configs.merge!(args)
+    end
+
+    configs
+  end
+
+#-------
 end

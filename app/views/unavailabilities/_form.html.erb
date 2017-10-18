@@ -1,25 +1,40 @@
-<%= form_for(unavailability) do |f| %>
-  <% if unavailability.errors.any? %>
+<%= form_for(@unavailability, remote: true) do |f| %>
+  <% if @unavailability.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(unavailability.errors.count, "error") %> prohibited this unavailability from being saved:</h2>
+      <h2><%= pluralize(@unavailability.errors.count, "error") %> prohibited this unavailability from being saved:</h2>
 
       <ul>
-      <% unavailability.errors.full_messages.each do |message| %>
+      <% @unavailability.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :availability_id %>
-    <%= f.text_field :availability_id %>
-  </div>
+  <input type="hidden" id="user_references" name="unavailability[availability_id]" value="<%= @availability.id %>" />
 
-  <div class="field">
-    <%= f.label :schedule_id %>
-    <%= f.text_field :schedule_id %>
-  </div>
+  <%= fields_for :schedule, @unavailability.schedule do |s| %>
+    <div class="form-group">
+      <%= s.label :day, :class => 'control-label col-md-4' %>
+      <div class="col-md-8" id="div_name">
+        <%= s.select :day, options_for_select(day_options, "monday"), {}, {:class => "form-control w-221"}  %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= s.label :begin, :class => 'control-label col-md-4' %>
+      <div class="col-md-8" id="div_name">
+        <%= s.time_select :begin, { minute_step: 5, :start_hour => 5}, { class: 'form-control w-100-inline-block' } %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= s.label :duration, :class => 'control-label col-md-4' %>
+      <div class="col-md-8" id="div_name">
+        <%= s.time_select :duration, { minute_step: 5, :start_hour => 1, :end_hour => 10  }, { class: 'form-control w-100-inline-block'} %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :comments %>

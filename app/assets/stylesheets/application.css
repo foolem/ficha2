@@ -18,11 +18,17 @@
  /*
  cores: https://pt.wix.com/blog/2012/12/usando-as-cores-certas-para-o-seu-site/*/
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 body {
   margin: 0;
   min-height: 100%;
   background: rgb(238, 238, 238);
 }
+
+.partial-content {
+  margin-bottom: 40px;
+}
+
 .f-right {
   float: right;
 }
@@ -36,8 +42,8 @@ body {
   margin-bottom: 100px;
 }
 .no-mt-mb {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 .mt-30 {
   margin-top:30px;
@@ -111,6 +117,10 @@ body {
 .w-100-inline-block {
   width: 100px;
   display: inline-block;
+}
+
+.w-135 {
+  width:135px;
 }
 .w-400 {
   width:400px;
@@ -277,7 +287,11 @@ tr.header > th {
   color: white;
   opacity: 0.85;
   background-color: #455E8E;
+  padding-top:10px !important;
+  padding-bottom:10px !important;
+
 }
+
 label { color: #000; }
 select { color: #000; }
 
@@ -295,6 +309,12 @@ textarea.resize {
   background-color: #455E8E;
   color: white;
   opacity:0.85;
+}
+
+@media screen and (max-width: 760px){
+  .off-xs {
+    display: none;
+  }
 }
 
 #menu_list > li > a, #home_link{
@@ -322,7 +342,7 @@ li > a:hover{
 .search-box {
   color: black;
   margin-top:10px;
-  margin-bottom:5px;
+  margin-bottom:3px;
   text-align: right;
 }
 .filter-box {
@@ -334,7 +354,6 @@ li > a:hover{
 .searcher {
   display: inline-block;
   width:180px;
-  margin-left:10px;
 }
 .status-box {
   display: inline-block;

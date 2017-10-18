@@ -5,26 +5,23 @@
       <th><%= t('email') %></th>
 
       <% if role_selected? %>
-        <th><center><%=t('role') %></center></th>
+        <th class="center"><%=t('role')%></th>
       <% end %>
 
-      <% if user_signed_in? && current_user.admin? %>
+      <% if user_admin_or_secretary? %>
+        <th class="center w-135">
 
-        <th  width="130px"><center>
+          <div class="col-md-8 off-xs">
+            <%= t('actions') %>
+          </div>
 
-          <%=t '.actions', :default => t("helpers.actions") %>
-
-          <div class="add-another-fix">
-            <%= link_to new_button.html_safe,  new_user_path, :class => 'btn-default btn-sm',
-            title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
-          <div>
-
-        </center></th>
-
-       <% end %>
-
+          <%= link_to new_button.html_safe, new_user_path,
+              button_configs(:new, "btn-default") %>
+        </th>
+     <% end %>
     </tr>
   </thead>
+  
   <tbody>
     <% @users.each do |user| %>
       <tr>
@@ -33,32 +30,24 @@
         <td><%= user.email %></td>
 
         <% if role_selected? %>
-          <td><center><%= user.roles_names.join(', ') %></center></td>
+          <td class="center"><%= user.roles_names.join(', ') %></td>
         <% end %>
 
-        <% if user_signed_in? && current_user.admin? %>
-          <td> <center>
+        <% if user_admin_or_secretary? %>
+          <td id="actions" class="center">
 
-            <%= link_to edit_button.html_safe,
-                        edit_user_path(user), :class => 'btn btn-default btn-sm simple_button',
-                        title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+            <%= link_to edit_button.html_safe, edit_user_path(user),
+                button_configs(:edit, "btn btn-default simple_button") %>
 
             <% if user.actived? %>
-
-              <%= link_to desable_button.html_safe, user_path(user), :method => :delete,
-                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Desativar usuário?')) },
-                          :class => 'btn btn-sm btn-danger disable',
-                          title: 'Desabilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+              <%= link_to desable_button.html_safe, user_path(user),
+                  button_configs(:desable, "btn btn-danger disable", remove_configs_default) %>
             <% else %>
-
-              <%= link_to enable_button.html_safe, user_path(user), :method => :delete,
-                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Ativar usuário?')) },
-                          :class => 'btn btn-success dropdown-toggle btn-sm disable',
-                          title: 'Habilitar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-
+              <%= link_to enable_button.html_safe, user_path(user),
+                  button_configs(:enable, "btn btn-success disable", remove_configs_default) %>
             <% end %>
 
-          </center></td>
+          </td>
         <% end %>
 
       </tr>

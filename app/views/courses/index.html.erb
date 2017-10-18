@@ -1,20 +1,20 @@
 <%- model_class = Course -%>
 
 <div class="page-header no-mt-mb">
-  <center><h1><span class="<%=index_icon(course_icon)%>"></span> <%=t('courses')%></h1></center>
-</div>
+  <h1 class="center"><span class="<%=index_icon(course_icon)%>"></span> <%= t('courses')%></h1>
 
-  <div class="search-box mb-20">
+  <div class="search-box">
     <%= search_form_for @q, url: search_courses_path, html: { method: :post } do |f| %>
 
-      <%= f.text_field :name_cont, :autofocus => true,
-            placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher',
-            :id => "course_search_field" %>
+      <%= f.text_field :name_cont, :id => "course_search_field",
+          :autofocus => true, placeholder: "Procurar", :autocomplete => "off",
+          :class => 'form form-control searcher' %>
 
     <% end %>
 
   </div>
+</div>
 
-<div id="courses_partial" class="mb-15pc no-mt-mb" >
+<div id="courses_partial" class="partial-content" >
   <%= render 'courses' %>
 </div>

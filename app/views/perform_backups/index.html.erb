@@ -2,13 +2,13 @@
 
 <div class="page-header no-mt-mb pattern-header">
 
-  <center><h1><span class="<%=index_icon(backups_icon)%>"></span> <%=t('perform_backups')%></h1></center>
+  <h1 class="center"><span class="<%=index_icon(backups_icon)%>"></span> <%=t('perform_backups')%></h1>
 
 </div>
 
 <div class="panel center less pb-80">
   <%= link_to "Realizar backup agora", perform_backups_do_perform_path,
-      :title => "Realizar backup agora", :class => "btn btn-primary performNow",:id => "perform_backup", remote: true%>
+      :title => "Realizar backup agora", :class => "btn btn-primary performNow",:id => "perform_backup", remote: true %>
   <%= form_for @perform_backup, :html => { :class => "form-horizontal group"} do |f| %>
 
 
@@ -17,28 +17,30 @@
       <div class="days">
         <%= f.text_field :days, :class => 'form-control daysWidth' %>
       </div>
+
       <label class="control-label labelDias">dia(s)</label>
       <label class="control-label labelAs">às</label>
+
       <div class="time">
         <%= f.time_select :time, { minute_step: 30, :start_hour => 0}, :class => 'form-control selectTime' %>
       </div>
+
       <%= f.submit "Agendar", :class => 'btn btn-primary btnAgendar', remote: true %>
     </div>
 
   <% end %>
 
-      <div id="spinner" class="center spin">
-        <div class="showbox">
-          <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-            </svg>
-          </div>
-        </div>
-        <h4 class="mt-80">Realizando backup...</h4>
+  <div id="spinner" class="center spin">
+    <div class="showbox">
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
       </div>
-
-  <div id="perform_render">
+    </div>
+    <h4 class="mt-80">Realizando backup...</h4>
   </div>
+
+  <div id="perform_render"></div>
 
 </div>

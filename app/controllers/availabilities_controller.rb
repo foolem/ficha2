@@ -1,6 +1,6 @@
 class AvailabilitiesController < ApplicationController
   before_action :bar_define
-  before_action :set_availability, only: [:show, :edit, :update, :destroy]
+  before_action :set_availability, only: [:show, :edit, :update, :destroy, :add_unavailability, :open_unavailability]
 
 
   def index
@@ -56,6 +56,20 @@ class AvailabilitiesController < ApplicationController
     if @availability.blank?
       @availability = Availability.new(user_id: current_user.id, semester_id: Semester.current_semester.id)
       @availability.save
+    end
+  end
+
+  def open_unavailability
+    @unavailability = Unavailability.new()
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_unavailability
+    respond_to do |format|
+      format.js
+      format.html { redirect_to root, notice: 'Restrição adicionada com sucesso.' }
     end
   end
 

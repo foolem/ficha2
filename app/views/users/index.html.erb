@@ -1,8 +1,7 @@
 <%- model_class = User -%>
 
-<div class="page-header noMarginTop">
-
-  <center><h1><span class="<%=index_icon(user_icon)%>"></span> Usuários </h1>
+<div class="page-header no-mt-mb">
+  <h1 class="center"><span class="<%=index_icon(user_icon)%>"></span> Usuários</h1>
 
   <div class="search-box">
 
@@ -10,17 +9,17 @@
 
       <% if user_signed_in? %>
         <%= f.select(:roles_id_eq, options_for_roles, {},
-        {:class => 'form form-group form-control filter-box'}) %>
+            {:class => 'form form-control filter-box'}) %>
       <% end %>
 
       <%= f.text_field :name_or_email_cont, :autofocus => true, placeholder: "Procurar",
-                       :autocomplete => "off", :class => 'form-control searcher'%>
+         :autocomplete => "off", :class => 'form-control searcher'%>
 
     <% end %>
   </div>
 
 </div>
 
-<div id="users_partial" class="marginBottom">
+<div id="users_partial" class="partial-content">
   <%= render 'users' %>
 </div>

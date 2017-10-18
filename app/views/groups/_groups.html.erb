@@ -5,18 +5,23 @@
       <th class="header-border-left center" width="20px"><%= t('code') %></th>
       <th class="center" width="5%"><%= t('class') %></th>
       <th ><%= t('matter') %></th>
-      <th class="center" width="110px"><%= t('semester') %></th>
-      <% if !current_user.teacher? %>
+      <th class="center w-110"><%= t('semester') %></th>
 
-        <th class="header-border-right center" width="130px"> <%=t '.actions', :default => t("helpers.actions") %>
+      <% if user_admin_or_secretary? %>
 
-          <%= link_to new_button.html_safe, new_group_path, :class => 'btn-default btn-sm', :style => 'margin-left:30px',
-            title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+        <th class="center w-135">
+          <div class=" col-md-8">
+            <%= t('actions') %>
+          </div>
+
+          <% if user_not_teacher? %>
+            <%= link_to new_button.html_safe, new_group_path,
+                button_configs(:new, "btn-default") %>
+          <% end %>
 
         </th>
 
       <% end %>
-
     </tr>
   </thead>
 
@@ -27,20 +32,17 @@
         <td class="center"><%= group.name %></td>
         <td><%= group.matter.name %></td>
         <td class="center" ><%= group.semester.semester_with_year %></td>
-        <td id="actions" class="center">
-          <%= link_to edit_button.html_safe,
-                edit_group_path(group), :class => 'btn btn-default btn-sm simple_button',
-                title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+        <% if user_admin_or_secretary? %>
+          <td id="actions" class="center">
 
-          <%= link_to remove_button.html_safe,
-                group_path(group),
-                :method => :delete,
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
-                :class => 'btn btn-sm btn-danger disable',
-                title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+            <%= link_to edit_button.html_safe, edit_group_path(group),
+                button_configs(:edit, "btn btn-default simple_button") %>
 
+            <%= link_to remove_button.html_safe, group_path(group),
+                button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
 
-        </td>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

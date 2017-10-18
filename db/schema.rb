@@ -15,8 +15,11 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   create_table "availabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "semester_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "preference_first"
+    t.integer  "preference_second"
+    t.integer  "preference_third"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.index ["semester_id"], name: "index_availabilities_on_semester_id", using: :btree
     t.index ["user_id"], name: "index_availabilities_on_user_id", using: :btree
   end

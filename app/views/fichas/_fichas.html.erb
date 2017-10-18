@@ -2,7 +2,7 @@
   <thead>
     <tr class="header">
 
-      <th class="header-border-left"><%= t('teacher') %></th>
+      <th><%= t('teacher') %></th>
 
       <th width="10%"><center><%= t('matter') %></center></th>
 
@@ -15,23 +15,19 @@
       <% end %>
 
       <% if(!user_signed_in? || user_appriser? ) %>
-        <th  width="90px">
-          <center>
-            <%=t '.actions', :default => t("helpers.actions") %>
-          </center>
+        <th class="center w-90">
+          <%= t('actions') %>
         </th>
       <% else %>
-        <th class="header-border-right" width="130px">
-          <center>   <%=t '.actions', :default => t("helpers.actions") %>
+        <th class="center w-135" >
+          <div class=" col-md-8">
+            <%= t('actions') %>
+          </div>
 
-            <% if user_not_teacher? %>
-              <div class="add-another-fix">
-                <%= link_to new_button.html_safe, new_ficha_path, :class => 'btn-default btn-sm',
-                  title: 'Adicionar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
-              </div>
-            <% end %>
-
-          </center>
+          <% if user_not_teacher? %>
+            <%= link_to new_button.html_safe, new_ficha_path,
+                button_configs(:new, "btn-default") %>
+          <% end %>
         </th>
       <% end %>
 
@@ -44,40 +40,32 @@
 
           <td><%= ficha.user.name %></td>
 
-        <td><center> <span title="<%= ficha.group.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.group.matter.code %> </span></center></td>
+        <td class="center"><span title="<%= ficha.group.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.group.matter.code %> </span></td>
 
-        <td><center><%= ficha.group.semester.semester_with_year %></center></td>
+        <td class="center"><%= ficha.group.semester.semester_with_year %></td>
 
-        <td><center><%= ficha.group.name %></center></td>
+        <td class="center"><%= ficha.group.name %></td>
 
         <% if user_signed_in? %>
           <td><center><%= status_representation(ficha).html_safe %></center></td>
         <% end %>
 
-        <td id="actions"> <center>
+        <td id="actions" class="center">
 
-          <% if status_ready(ficha.status) %>
-              <div class="d-inline-block"><%= link_to download_button.html_safe, ficha_path(ficha, format:"pdf"), :class => 'btn btn-default btn-sm simple_button',
-                    title: 'Baixar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %> </div>
-
+          <% if ficha.ready? %>
+            <%= link_to download_button.html_safe, ficha_path(ficha, format: "pdf"),
+                button_configs(:download, "btn btn-default simple_button") %>
           <% elsif user_signed_in? %>
-              <%= link_to edit_button.html_safe,
-                    edit_ficha_path(ficha), :class => 'btn btn-default btn-sm simple_button',
-                    title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+            <%= link_to edit_button.html_safe, edit_ficha_path(ficha),
+                button_configs(:edit, "btn btn-default simple_button") %>
           <% end %>
 
           <% if user_not_appriser? %>
-
-            <%= link_to remove_button.html_safe,
-                        ficha_path(ficha),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem certeza?')) },
-                        title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right',
-                        :class => 'btn btn-sm btn-danger disable' %>
-
+            <%= link_to remove_button.html_safe, ficha_path(ficha),
+                button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
           <% end %>
 
-        </center> </td>
+        </td>
       </tr>
 
     <% end %>

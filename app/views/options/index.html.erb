@@ -1,33 +1,22 @@
 <%- model_class = Option -%>
 
 <div class="page-header no-mt-mb">
-  <center><h1><span class="<%=index_icon(option_icon)%>"></span> <%=t('options')%></h1></center>
-</div>
+  <h1 class="center"><span class="<%=index_icon(option_icon)%>"></span> <%=t('options')%></h1>
 
-<div class="search-box less">
+  <div class="search-box">
 
-  <%= search_form_for @q, url: search_options_path , html: { method: :post } do |f| %>
+    <%= search_form_for @q, url: search_options_path , html: { method: :post } do |f| %>
 
-    <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id),{},{:class => 'form form-group form-control filter-box'}) %>
+      <%= f.select( :semester_id_eq, options_for_select(semester_options, current_semester.id), {}, {:class => 'form form-control filter-box'}) %>
 
-    <%= f.text_field :id_eq, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher', :id => "fichas_input_search" %>
+      <%= f.text_field :id_eq, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher', :id => "fichas_input_search" %>
 
-  <% end %>
+    <% end %>
 
-</div>
-
-<div id="spinner" class="center spinner">
-  <div class="showbox">
-    <div class="loader">
-      <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-      </svg>
-    </div>
   </div>
-  <h4 style="margin-top:260px;">Gerando opções...</h4>
+
 </div>
 
-
-<div id="options_partial" class="mb-15pc" >
+<div id="options_partial" class="partial-content" >
   <%= render 'options' %>
 </div>

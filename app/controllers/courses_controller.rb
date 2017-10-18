@@ -83,6 +83,9 @@ class CoursesController < ApplicationController
     end
 
     def page_length
-      10
+      if user_signed_in? and (current_user.admin? or current_user.secretary?)
+        return 10
+      end
+      13
     end
 end

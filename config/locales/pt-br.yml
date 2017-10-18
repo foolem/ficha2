@@ -13,8 +13,8 @@
   availabilities: Disponibilidades
   availability: Disponibilidade
 
-  unavailabilities: Compromissos
-  unavailability: Compromisso
+  unavailabilities: Restrições
+  unavailability: Restrição
 
   user: "Usuário"
   users: "Usuários"
