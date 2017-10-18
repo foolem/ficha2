@@ -1,4 +1,9 @@
-$("#spinner").fadeOut(2000, function () {
-  $("#manage_actions").html("<%= escape_javascript(render("manage_result")) %>");
-  $("#manage_actions").fadeIn(2000);
+
+$("#spinner").fadeOut(1500, function () {
+  $("#alert-partial").hide().html("<%= escape_javascript(render("manage_result")) %>").slideDown(400, function() {
+    setTimeout(function(){
+      $('#alert-partial').html("<%= escape_javascript(render('manage_result')) %>").slideUp(300);
+    }, 2000);
+  });
+  $("#partial-manage-options").hide().html("<%= escape_javascript(render("manage_options")) %>").fadeIn(1000);
 });

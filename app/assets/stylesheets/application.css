@@ -55,6 +55,9 @@ body {
 .mb-70 {
   margin-bottom:70px;
 }
+.p-20 {
+  padding: 20px;
+}
 .pb-100 {
   padding-bottom:100px;
 }
@@ -104,6 +107,9 @@ body {
 }
 .m-0 {
   margin: 0;
+}
+.m-20 {
+  margin: 20px;
 }
 .w-221 {
   width: 211px;
@@ -447,23 +453,45 @@ li > a:hover{
 .p-10 {
   padding: 10px;
 }
+#alert-partial {
+  text-align: center;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  width: 40%;
+  height: 35px;
+  background-color: rgb(154, 255, 152);
+  display: none;
+}
 .new-option {
   margin:0 auto;
   display: flex;
   margin-top: 10px;
 }
-.manage-options {
+.big-btn {
+  width: 150px;
+  height: 150px;
+}
+.big-btn-align {
+  font-size: 5rem !important;
+  margin-top: 40px;
+  display: block;
+}
+.manage-panel-reset {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+
+}
+.manage-start {
   display: inline-block;
-  margin: 0 19%;
+  margin: 0 1%;
 }
 .manage-remove {
-  width: 50%;
-  height: 200px;
-  float: right;
-  background-color: rgb(255, 78, 78);
-  text-align: center;
-  border-radius: 0 5px 5px 0;
-
+  display: inline-block;
+  margin: 0 1%;
 }
 .manage-remove-btn {
   display: block;
@@ -502,10 +530,10 @@ li > a:hover{
 .d-block {
   display: block !important;
 }
-.bue-btn {
+.blue-btn {
   background-color: #455E8E;
 }
-.bue-btn:hover {
+.blue-btn:hover {
   background-color: #506ba0;
   border-color: #506ba0;
 }
