@@ -6,7 +6,7 @@ module AvailabilitiesHelper
   end
 
   def preferences
-    ["Aulas geminadas", "Aulas em mesmo dia", "Sextas livres", "Segundas livres", "Aulas em mesmo periodo"]
+    {"Aulas geminadas" => 0, "Aulas em mesmo dia" => 1, "Sextas livres" => 2, "Segundas livres" => 3, "Aulas em mesmo periodo" => 4}
   end
 
 end

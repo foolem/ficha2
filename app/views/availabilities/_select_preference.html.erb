@@ -1,0 +1,9 @@
+    <div class="col-md-10" style="padding: 0px;">
+      <%= select_tag @preference, options_for_select(preferences),
+          {id: :preference_first, class: "form-control", :prompt => "Selecione..."} %>
+    </div>
+
+    <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
+    <%= link_to simple_check_button.html_safe, fichas_path,
+        button_configs(:edit, "btn btn-success", {style: 'margin-bottom: 10px;'}) %>
+    </div>

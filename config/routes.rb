@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       match 'user_availability' => 'availabilities#user_availability', via: [:get], as: :user_availability
       match 'add_unavailability/:id' => 'availabilities#add_unavailability', via: [:get], as: :add_unavailability
       match 'open_unavailability/:id' => 'availabilities#open_unavailability', via: [:get], as: :open_unavailability
+
+      match 'select_preference/:id/:preference' => 'availabilities#select_preference', via: [:get], as: :select_preference
+
     end
   end
 

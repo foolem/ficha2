@@ -14,25 +14,36 @@
 
     <div class="row">
       <div class="col-md-12">
+        <h3 class="center col-md-offset-1 col-md-10">
+          <span class="<%=index_icon(schedule_icon)%>"></span> <%= t("preferences") %>
+        </h3>
+      </div>
+    </div>
+
+    <div id="preferences-partial">
+      <%= render "preferences" %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
 
         <h3 class="center col-md-offset-1 col-md-10">
           <span class="<%=index_icon(schedule_icon)%>"></span> <%= t("unavailabilities") %>
         </h3>
 
         <div style="layout: absolute; float:right; margin-top:35px;">
-
           <%= link_to new_button.html_safe, open_unavailability_availabilities_path(@availability), remote: true,
               title: 'Adicionar', 'data-toggle' => 'tooltip',
               'data-placement' => 'right', :class => 'btn-default btn-sm' %>
-
         </div>
-      </div>
 
+      </div>
     </div>
 
     <div id="unavailabilities_partial">
       <%= render 'unavailabilities' %>
     </div>
+
   </div>
 
 </div>

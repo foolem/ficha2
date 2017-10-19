@@ -1,6 +1,6 @@
 class AvailabilitiesController < ApplicationController
   before_action :bar_define
-  before_action :set_availability, only: [:show, :edit, :update, :destroy, :add_unavailability, :open_unavailability]
+  before_action :set_availability, only: [:show, :edit, :update, :destroy, :add_unavailability, :open_unavailability, :select_preference]
 
 
   def index
@@ -34,11 +34,11 @@ class AvailabilitiesController < ApplicationController
   def update
     respond_to do |format|
       if @availability.update(availability_params)
-        format.html { redirect_to @availability, notice: 'Availability was successfully updated.' }
-        format.json { render :show, status: :ok, location: @availability }
+        format.js
+        format.html { redirect_to availabilities_path, notice: 'Availability was successfully updated.' }
       else
+        format.js
         format.html { render :edit }
-        format.json { render json: @availability.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,6 +57,7 @@ class AvailabilitiesController < ApplicationController
       @availability = Availability.new(user_id: current_user.id, semester_id: Semester.current_semester.id)
       @availability.save
     end
+    @availability.preference_first = 1
   end
 
   def open_unavailability
@@ -70,6 +71,17 @@ class AvailabilitiesController < ApplicationController
     respond_to do |format|
       format.js
       format.html { redirect_to root, notice: 'Restrição adicionada com sucesso.' }
+    end
+  end
+
+  def select_preference
+    preferences = {"1" => "preference_first_div", "2" =>"preference_second_div", "3" => "preference_third_div"}
+    preference = params[:preference]
+
+    @preference = preferences[preference]
+    puts "Preferencia_id: #{@preference} "
+    respond_to do |format|
+      format.js
     end
   end
 

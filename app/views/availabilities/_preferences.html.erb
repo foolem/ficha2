@@ -1,0 +1,88 @@
+<div class=" panel panel-default" style="padding: 20px; padding-bottom: 0px;">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="header-panel">
+          <div class="row">
+
+            <div class="col-md-4 center">Preferência 1</div>
+            <div class="col-md-4 center">Preferência 2</div>
+            <div class="col-md-4 center">Preferência 3</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div id="preference_first_div" class="col-md-4">
+
+        <% if @availability.preference_first.blank? %>
+          <%= link_to "Selecionar", select_preference_availabilities_path(@availability.id, 1),
+              button_configs(:edit, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
+        <% else %>
+
+          <div class="col-md-10" style="padding: 0px;">
+              <div class="form-control">
+                <%= @availability.preference_first %>
+              </div>
+          </div>
+
+          <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
+          <%= link_to simple_edit_button.html_safe, fichas_path,
+              button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;'}) %>
+          </div>
+
+        <% end %>
+
+      </div>
+
+      <div id="preference_second_div" class="col-md-4">
+
+        <% if @availability.preference_second.blank? %>
+          <%= link_to "Selecionar", select_preference_availabilities_path(@availability.id, 2),
+              button_configs(:edit, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
+        <% else %>
+
+          <div class="col-md-10" style="padding: 0px;">
+              <div class="form-control">
+                <%= @availability.preference_second %>
+              </div>
+          </div>
+
+          <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
+          <%= link_to simple_edit_button.html_safe, fichas_path,
+              button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;'}) %>
+          </div>
+
+        <% end %>
+
+      </div>
+
+      <div id="preference_third_div" class="col-md-4">
+
+        <% if @availability.preference_third.blank? %>
+          <%= link_to "Selecionar", select_preference_availabilities_path(@availability.id, 3),
+              button_configs(:edit, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
+        <% else %>
+
+          <div class="col-md-10" style="padding: 0px;">
+              <div class="form-control">
+                <%= @availability.preference_third %>
+              </div>
+          </div>
+
+          <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
+          <%= link_to simple_edit_button.html_safe, fichas_path,
+              button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;'}) %>
+          </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+
+</div>
