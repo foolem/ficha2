@@ -20,11 +20,11 @@
 
         <% if @availability.preference_first.blank? %>
           <%= link_to "Selecionar", select_preference_availabilities_path(@availability.id, 1),
-              button_configs(:edit, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
+              button_configs(:select, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
         <% else %>
 
-          <div class="col-md-10" style="padding: 0px;">
-              <div class="form-control">
+          <div class="col-md-10" style="padding: 0 0 0 0px; margin-left: 0px;">
+              <div class="form-control" style="padding-left: 16px;">
                 <%= preferences.key(@availability.preference_first) %>
               </div>
           </div>
@@ -42,11 +42,11 @@
 
         <% if @availability.preference_second.blank? %>
           <%= link_to "Selecionar", select_preference_availabilities_path(@availability.id, 2),
-              button_configs(:edit, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
+              button_configs(:select, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
         <% else %>
 
-          <div class="col-md-10" style="padding: 0px;">
-              <div class="form-control">
+          <div class="col-md-10" style="padding: 0 0 0 0px; margin-left: 0px;">
+              <div class="form-control" style="padding-left: 16px;">
                   <%= preferences.key(@availability.preference_second) %>
               </div>
           </div>
@@ -64,11 +64,11 @@
 
         <% if @availability.preference_third.blank? %>
           <%= link_to "Selecionar", select_preference_availabilities_path(@availability.id, 3),
-              button_configs(:edit, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
+              button_configs(:select, "btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;', remote: true}) %>
         <% else %>
 
-          <div class="col-md-10" style="padding: 0px;">
-              <div class="form-control">
+          <div class="col-md-10" style="padding: 0 0 0 0px; margin-left: 0px;">
+              <div class="form-control" style="padding-left: 16px;">
                   <%= preferences.key(@availability.preference_third) %>
               </div>
           </div>
