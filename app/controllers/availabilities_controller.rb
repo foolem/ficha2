@@ -1,6 +1,8 @@
 class AvailabilitiesController < ApplicationController
   before_action :bar_define
-  before_action :set_availability, only: [:show, :edit, :update, :destroy, :add_unavailability, :open_unavailability, :select_preference]
+  before_action :set_preference, only: [:change_preference, :select_preference]
+  before_action :set_availability, only: [:show, :edit, :update, :destroy,
+                :add_unavailability, :open_unavailability, :select_preference, :add_preference, :change_preference]
 
 
   def index
@@ -57,7 +59,7 @@ class AvailabilitiesController < ApplicationController
       @availability = Availability.new(user_id: current_user.id, semester_id: Semester.current_semester.id)
       @availability.save
     end
-    @availability.preference_first = 1
+
   end
 
   def open_unavailability
@@ -75,15 +77,36 @@ class AvailabilitiesController < ApplicationController
   end
 
   def select_preference
-    preferences = {"1" => "preference_first_div", "2" =>"preference_second_div", "3" => "preference_third_div"}
-    preference = params[:preference]
-
-    @preference = preferences[preference]
-    puts "Preferencia_id: #{@preference} "
     respond_to do |format|
       format.js
     end
   end
+
+  def add_preference
+    preference_id = Integer(params[:preference])
+    preference = Integer(params[:preference_selected])
+
+    if preference_id == 1
+      @availability.preference_first = preference
+    elsif preference_id == 2
+      @availability.preference_second = preference
+    elsif preference_id == 3
+      @availability.preference_third = preference
+    end
+
+    @availability.save
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def change_preference
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   private
 
@@ -93,6 +116,12 @@ class AvailabilitiesController < ApplicationController
 
     def set_availability
       @availability = Availability.find(params[:id])
+    end
+
+    def set_preference
+      preferences = {"1" => "preference_first_div", "2" =>"preference_second_div", "3" => "preference_third_div"}
+      @preference_id = params[:preference]
+      @preference = preferences[@preference_id]
     end
 
     def availability_params

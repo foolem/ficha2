@@ -1,9 +1,19 @@
-    <div class="col-md-10" style="padding: 0px;">
-      <%= select_tag @preference, options_for_select(preferences),
-          {id: :preference_first, class: "form-control", :prompt => "Selecione..."} %>
-    </div>
+<%= form_tag(add_preference_availabilities_path, remote: true) do %>
 
-    <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
-    <%= link_to simple_check_button.html_safe, fichas_path,
-        button_configs(:edit, "btn btn-success", {style: 'margin-bottom: 10px;'}) %>
-    </div>
+  <input name="preference" type="hidden" value="<%= @preference_id %>" />
+  <input name="id" type="hidden" value="<%= @availability.id %>" />
+
+  <div class="col-md-10" style="padding: 0px;">
+    <%= select_tag :preference_selected, options_for_select(preferences_not_chosed),
+        {id: :preference_selector, class: "form-control", :prompt => "Selecione..."} %>
+  </div>
+
+  <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
+
+    <%= button_tag(type: "submit", class: "btn btn-success btn-sm", style: "margin-bottom: 10px;") do
+      simple_check_button.html_safe
+    end %>
+
+  </div>
+
+<% end %>

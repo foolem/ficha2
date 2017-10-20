@@ -25,13 +25,13 @@
 
           <div class="col-md-10" style="padding: 0px;">
               <div class="form-control">
-                <%= @availability.preference_first %>
+                <%= preferences.key(@availability.preference_first) %>
               </div>
           </div>
 
           <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
-          <%= link_to simple_edit_button.html_safe, fichas_path,
-              button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;'}) %>
+          <%= link_to simple_edit_button.html_safe, change_preference_availabilities_path(@availability.id, 1),
+              button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
           </div>
 
         <% end %>
@@ -47,13 +47,13 @@
 
           <div class="col-md-10" style="padding: 0px;">
               <div class="form-control">
-                <%= @availability.preference_second %>
+                  <%= preferences.key(@availability.preference_second) %>
               </div>
           </div>
 
           <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
-          <%= link_to simple_edit_button.html_safe, fichas_path,
-              button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;'}) %>
+            <%= link_to simple_edit_button.html_safe, change_preference_availabilities_path(@availability.id, 2),
+                button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
           </div>
 
         <% end %>
@@ -69,13 +69,13 @@
 
           <div class="col-md-10" style="padding: 0px;">
               <div class="form-control">
-                <%= @availability.preference_third %>
+                  <%= preferences.key(@availability.preference_third) %>
               </div>
           </div>
 
           <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
-          <%= link_to simple_edit_button.html_safe, fichas_path,
-              button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;'}) %>
+            <%= link_to simple_edit_button.html_safe, change_preference_availabilities_path(@availability.id, 3),
+                button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
           </div>
 
         <% end %>
