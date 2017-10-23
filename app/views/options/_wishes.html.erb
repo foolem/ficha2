@@ -4,20 +4,21 @@
 <table class="table table-striped">
   <thead>
     <tr class="header">
-      <th class="center header-border-left" width="110px"><%= t('interested') %></th>
-      <th class="center" width="80px"><%= t('priority') %></th>
-      <th class="center" width="80px"><%= t('preference') %></th>
-      <th class="center header-border-right" width="80px"> <%= t('comments') %> </th>
+      <th class="center header-border-left" width="10%"><%= t('priority') %></th>
+      <th class="center" width="10%"><%= t('preference') %></th>
+      <th class="center" width="30%"><%= t('interested') %></th>
+      <th class="center header-border-right" width="40%"> <%= t('comments') %> </th>
     </tr>
   </thead>
   <tbody>
     <% @option.wishes.each do |wish| %>
       <tr class="center">
         <div class="form_table">
-          <td><%= wish.user.name %></td>
           <td><%= wish.priority %></td>
           <td><%= wish.group.name %></td>
+          <td><%= wish.user.name %></td>
           <td>
+            asdasdasdashduasgduyagsuydas asjdkahsduhas ahsidgasyd gasg aysd y
             <% if wish.comments.present? %>
             <%= link_to messages_button.html_safe, open_comment_options_path(wish),
             :title => "Escolher", :class => "btn btn-default", :remote => true %>

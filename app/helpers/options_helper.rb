@@ -44,12 +44,33 @@ module OptionsHelper
     length = option.schedules.length
     if length > 0
       option.schedules.distinct.each do |schedule|
-        text = "<span> #{representation(schedule)} </span> </br>"
+        text = "<span> #{representation(schedule)} </span> <br/> "
         result << text
+
       end
       if length == 1
         result << "</br>"
       end
+
+    else
+      result = "<span>Nenhum horário definido <br></br> </span>"
+    end
+    result
+  end
+
+  def option_schedules_inline(option)
+    result = ""
+    length = option.schedules.length
+    if length > 0
+      option.schedules.distinct.each do |schedule|
+        text = "<span> #{representation(schedule)} </span>/ "
+        result << text
+
+      end
+      if length == 1
+        result << "</br>"
+      end
+
     else
       result = "<span>Nenhum horário definido <br></br> </span>"
     end

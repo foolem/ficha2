@@ -28,7 +28,9 @@ body {
 .partial-content {
   margin-bottom: 40px;
 }
-
+.text-left {
+  text-align: left !important;
+}
 .f-right {
   float: right;
 }
@@ -51,9 +53,14 @@ body {
 .mb-15pc {
   margin-bottom: 15%;
 }
-
+.ml-20 {
+  margin-left: 20px;
+}
 .mb-20 {
   margin-bottom: 20px !important;
+}
+.mb-10 {
+  margin-bottom: 10px !important;
 }
 .mb-30 {
   margin-bottom: 30px !important;
@@ -421,7 +428,7 @@ li > a:hover{
   border-radius: 3px;
   background-color: rgb(228, 228, 228);
   display: inline-block;
-  width: 200px;
+  width: auto;
   vertical-align: top;
 
 }

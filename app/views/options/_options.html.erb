@@ -13,7 +13,7 @@
               <%= link_to check_button.html_safe, open_wish_options_path(option),
                   :title => "Escolher", :class => "btn btn-default m-choose", :remote => true %>
             <% elsif option_wished(option) %>
-              <%= link_to check_button.html_safe, remove_wishes_path(option),
+              <%= link_to remove_button.html_safe, remove_wishes_path(option),
                   :title => "Escolher", :class => "btn btn-danger disable m-choose", :method => "delete" %>
             <% end %>
             <hr class="m-5">
@@ -32,7 +32,7 @@
                   <tr>
                     <td  class="center"> <%= group.name %> </td>
                     <td class="center"> <%= group.matter.code %></td>
-                    <td class="center"> <%= group.course.name %></td>
+                    <td > <%= group.course.name %></td>
                   </tr>
                 <% end %>
               </tbody>
