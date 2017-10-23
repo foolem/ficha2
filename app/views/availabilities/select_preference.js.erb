@@ -1,0 +1,4 @@
+var preference = "#<%= @preference %>";
+$(preference).fadeOut(400, function() {
+  $(this).html("<%= escape_javascript(render("select_preference")) %>").fadeIn(400);
+});

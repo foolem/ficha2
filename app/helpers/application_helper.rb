@@ -34,7 +34,7 @@ module ApplicationHelper
   end
 
   def button_configs(key, classes = nil, args = nil)
-    tip = {new: "Adicionar", edit: "Editar", remove: "Remover", begin: "Iniciar"}
+    tip = {new: "Adicionar", edit: "Editar", remove: "Remover", begin: "Iniciar", select: "Selecionar", download: "Baixar", confirm: "Confirmar"}
 
     configs = {
       class: "btn-sm #{classes}",

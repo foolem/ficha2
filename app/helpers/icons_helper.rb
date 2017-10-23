@@ -32,6 +32,10 @@ module IconsHelper
     '<i class="glyphicon glyphicon-edit"></i> Editar'
   end
 
+  def simple_edit_button
+    '<i class="glyphicon glyphicon-edit"></i>'
+  end
+
   def new_button
     '<i class="glyphicon glyphicon-plus"></i>'
   end
@@ -79,6 +83,11 @@ module IconsHelper
   def check_button
     '<i class="glyphicon glyphicon-ok blue"></i>'
   end
+
+  def simple_check_button
+    '<i class="glyphicon glyphicon-ok white"></i>'
+  end
+
 
   def send_button
     messages_button + " Enviar"

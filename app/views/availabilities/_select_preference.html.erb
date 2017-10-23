@@ -1,0 +1,19 @@
+<%= form_tag(add_preference_availabilities_path, remote: true) do %>
+
+  <input name="preference" type="hidden" value="<%= @preference_id %>" />
+  <input name="id" type="hidden" value="<%= @availability.id %>" />
+
+  <div class="col-md-10" style="padding: 0px;">
+    <%= select_tag :preference_selected, options_for_select(preferences_not_chosed),
+        {id: :preference_selector, class: "form-control", :prompt => "Selecione..."} %>
+  </div>
+
+  <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
+
+    <%= button_tag(type: "submit", class: "btn btn-success btn-sm", style: "margin-bottom: 10px;") do
+      simple_check_button.html_safe
+    end %>
+
+  </div>
+
+<% end %>

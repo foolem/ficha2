@@ -304,6 +304,16 @@ tr.header > th {
   padding-bottom:10px !important;
 
 }
+div > .header-panel  {
+  color: white;
+  opacity: 0.85;
+  background-color: #455E8E;
+  padding-top:10px !important;
+  padding-bottom:10px !important;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  margin-bottom: 10px;
+}
 
 label { color: #000; }
 select { color: #000; }
