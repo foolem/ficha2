@@ -32,6 +32,13 @@
           one: Opção
           other: Opções
 
+        manage:
+          one: Administrar
+
+        unavailability:
+          one: Restrição
+          other: Restrições
+
 
     attributes:
       matter:
@@ -75,6 +82,10 @@
         duration: "Duração"
         day: "Dia"
 
+      unavailability:
+
+        comments: "Comentários"
+        
       unite_matter:
         name: "Nome"
         matter: "Disciplina"

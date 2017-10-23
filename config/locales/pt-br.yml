@@ -10,11 +10,13 @@
   teacher: "Professor"
   interested: "Interessados"
 
-  availabilities: Disponibilidades
-  availability: Disponibilidade
+  availabilities: "Disponibilidades"
+  availability: "Disponibilidade"
 
-  unavailabilities: Restrições
-  unavailability: Restrição
+  unavailabilities: "Restrições"
+  unavailability: "Restrição"
+
+  comments: "Comentários"
 
   user: "Usuário"
   users: "Usuários"
@@ -38,8 +40,12 @@
   begin: "Início"
   duration: "Duração"
   day: "Dia"
+  comments: "Comentários"
+  preferences: "Preferências"
 
   preference: "Preferencia"
+
+  manage: "Administrar"
 
   end: "Fim"
   sunday: "Domingo"
