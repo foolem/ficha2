@@ -56,9 +56,27 @@ class ManageOptionsController < ApplicationController
 
   end
 
+  def select_teacher
+    puts "Group id: #{params[:id]}"
+    @group = Group.find(params[:id])
+    @group_id = params[:id]
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def choose_teacher
-    puts "User: #{params[:user]}"
-    puts "Group: #{params[:group]}"
+    @user = User.find(params[:user])
+    @group = Group.find(params[:group])
+    
+    if @group.ficha.blank?
+        Ficha.create(user: @user, group: @group)
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

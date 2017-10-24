@@ -1,0 +1,19 @@
+<% if !group.has_ficha? %>
+
+  <div class="col-md-8">
+    <%= link_to "Selecionar", manage_options_select_teacher_path(group.id),
+        button_configs(:select, "btn btn-success simple_button col-md-12",
+        {style: 'margin-bottom: 10px;', remote: true}) %>
+  </div>
+
+<% else %>
+  <div class="col-md-7">
+    <div class="form-control"> <%= group.ficha.user.name %> </div>
+  </div>
+
+  <div class="col-md-1" style="padding: 0 0 0 3px; margin-top: 2px;">
+    <%= button_tag(type: "submit", class: "btn btn-default btn-sm", style: "margin-bottom: 10px;") do
+      simple_edit_button.html_safe
+    end %>
+  </div>
+<% end %>
