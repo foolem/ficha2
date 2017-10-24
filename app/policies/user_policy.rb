@@ -1,11 +1,11 @@
 class UserPolicy < ApplicationPolicy
 
   def new?
-    !user.blank? and (user.admin? or user.secretary?)
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def create?
-    !user.blank? and (user.admin?  or user.secretary?)
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def edit?
@@ -17,14 +17,14 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    !user.blank? and (user.admin?)
+    !user.blank? and (user.has_role? ("admin") and user.actived?)
   end
 
   def show?
     true
   end
 
-  class Scope < Scope
+  class ScopeUser < Scope
     def resolve
       scope
     end

@@ -4,7 +4,7 @@
   <input name="id" type="hidden" value="<%= @availability.id %>" />
 
   <div class="col-md-10" style="padding: 0px;">
-    <%= select_tag :preference_selected, options_for_select(preferences_not_chosed),
+    <%= select_tag :preference_selected, options_for_select(preferences_not_choosed),
         {id: :preference_selector, class: "form-control", :prompt => "Selecione..."} %>
   </div>
 

@@ -1,11 +1,13 @@
 class OptionPolicy < ApplicationPolicy
 
   def new?
-    (user.admin? or user.secretary?) and user.actived?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
+
   end
 
   def create?
-    (user.admin? or user.secretary?) and user.actived?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
+
   end
 
   def edit?
@@ -21,27 +23,27 @@ class OptionPolicy < ApplicationPolicy
   end
 
   def destroy?
-    (user.admin? or user.secretary?) and user.actived?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def generate?
-    (user.admin? or user.secretary?) and user.actived?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def open_wish?
-    !user.blank? and !user.secretary?
+    !user.blank? and !user.has_role?("secretary")
   end
 
   def open_comment?
-    true
+    !user.blank?
   end
 
   def show?
-    true
+    !user.blank?
   end
 
 
-  class Scope < Scope
+  class ScopeOption < Scope
     def resolve
       scope
     end
