@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   delete 'manage_options/remove'
   get 'manage_options/start'
   get 'manage_options/end'
+  get 'manage_options/delivery'
+  post 'manage_options/choose_teacher'
 
   get 'welcome/index'
 
@@ -107,6 +109,7 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
       match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
+
     end
   end
 

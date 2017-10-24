@@ -52,6 +52,15 @@ class ManageOptionsController < ApplicationController
     end
   end
 
+  def delivery
+
+  end
+
+  def choose_teacher
+    puts "User: #{params[:user]}"
+    puts "Group: #{params[:group]}"
+  end
+
   private
 
     def bar_define

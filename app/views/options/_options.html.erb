@@ -2,35 +2,41 @@
 <% matters_order.each do |matter| %>
   <% matter_options(matter) %>
   <% if !@options.blank? %>
-  <h4 class="h4-options"><%= matter_group(matter) %></h4>
+
+    <h4 class="h4-options"><%= matter_group(matter) %></h4>
+
     <div id="scroll" class="panel panel-default panel-options">
       <% @options.each do |option| %>
 
-      <div class="option-body">
-        <div id= "option" class="option-head">
+        <div class="option-body">
 
+          <div class="option-buttom">
             <% if user_has_wishes? and !option_wished(option) %>
-              <%= link_to check_button.html_safe, open_wish_options_path(option),
-                  :title => "Escolher", :class => "btn btn-default m-choose", :remote => true %>
+            <%= link_to "Escolher", open_wish_options_path(option),
+                        :title => "Escolher", :class => "btn btn-default m-choose color-default",
+                        :remote => true, style: "width: 96%; color: white;" %>
+
             <% elsif option_wished(option) %>
-              <%= link_to remove_button.html_safe, remove_wishes_path(option),
-                  :title => "Escolher", :class => "btn btn-danger disable m-choose", :method => "delete" %>
+            <%= link_to "Remover escolha", remove_wishes_path(option),
+                        :title => "Escolher", :class => "btn btn-danger disable m-choose",
+                        :method => "delete", style: "width: 96%"  %>
             <% end %>
+          </div>
+
+          <div id= "option" class="center">
             <hr class="m-5">
-            <div id="option_schedules" class="option-schedules" data-href="<%= option_path(option) %>">
+            <div id="option_schedules" style="border: 1px solid #f2f2f2; background-color:white; color:black; border-radius:3px; padding:3px; margin: 5px;" data-href="<%= option_path(option) %>">
               <%= option_schedules2(option).html_safe %>
             </div>
-
-
           </div>
 
           <div class="p-10">
 
-            <table>
+            <table style="margin: 0 auto;">
               <tbody>
                 <% option.groups.distinct.each do |group| %>
                   <tr>
-                    <td  class="center"> <%= group.name %> </td>
+                    <td class="center"> <%= group.name %> </td>
                     <td class="center"> <%= group.matter.code %></td>
                     <td > <%= group.course.name %></td>
                   </tr>
@@ -43,7 +49,7 @@
 
       <% end %>
     </div>
-    <hr/>
+
   <% end %>
 <% end %>
 
