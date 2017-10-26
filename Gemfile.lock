@@ -262,6 +262,10 @@ GEM
       activesupport (>= 4.2.0)
     hipchat (1.0.1)
       httparty
+    htmltoword (0.5.1)
+      actionpack
+      nokogiri
+      rubyzip (>= 1.0)
     http (1.0.4)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -489,6 +493,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise (~> 4.0)
   faker
+  htmltoword
   jbuilder (~> 2.5)
   jquery-rails
   json (~> 1.8)

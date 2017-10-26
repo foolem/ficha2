@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post 'manage_options/choose_teacher'
 
   match 'manage_options/select_teacher/:id' => 'manage_options#select_teacher', via: [:get, :post], as: :manage_options_select_teacher
+  match 'manage_options/result_list' => 'manage_options#result_list', via: [:get], as: :manage_options_result_list
 
   get 'welcome/index'
 

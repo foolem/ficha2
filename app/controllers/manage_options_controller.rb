@@ -45,10 +45,18 @@ class ManageOptionsController < ApplicationController
     options_status(condition, true, true, true)
 
     # somente para testes
-    options_status(true, false, false, false)
+    # options_status(true, false, false, false)
 
     respond_to do |format|
       format.js { render :action => 'manage_result'}
+    end
+  end
+
+  def result_list
+    respond_to do |format|
+      format.docx
+      format.html
+      format.js
     end
   end
 
@@ -69,7 +77,7 @@ class ManageOptionsController < ApplicationController
   def choose_teacher
     @user = User.find(params[:user])
     @group = Group.find(params[:group])
-    
+
     if @group.ficha.blank?
         Ficha.create(user: @user, group: @group)
     end
