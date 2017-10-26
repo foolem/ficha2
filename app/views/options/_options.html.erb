@@ -4,7 +4,7 @@
   <% if !@options.blank? %>
 
     <h4 class="h4-options"><%= matter_group(matter) %></h4>
-
+    
     <div id="scroll" class="panel panel-default panel-options">
       <% @options.each do |option| %>
 
@@ -22,10 +22,9 @@
                         :method => "delete", style: "width: 96%"  %>
             <% end %>
           </div>
-
           <div id= "option" class="center">
             <hr class="m-5">
-            <div id="option_schedules" style="border: 1px solid #f2f2f2; background-color:white; color:black; border-radius:3px; padding:3px; margin: 5px;" data-href="<%= option_path(option) %>">
+            <div id="option_schedules" data-href="<%= option_path(option) %>">
               <%= option_schedules2(option).html_safe %>
             </div>
           </div>
@@ -43,6 +42,12 @@
                 <% end %>
               </tbody>
             </table>
+            <div>
+              <h5 class="text-center">Interessados:</h5>
+              <% option.wishes.each do |wish| %>
+                <h6 class="text-center m-0" style="line-height:0px;"><%= wish.user.name %>, prioridade: <%= wish.priority %></h6><br>
+              <% end %>
+            </div>
           </div>
 
         </div>
