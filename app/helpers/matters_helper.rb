@@ -17,6 +17,10 @@ module MattersHelper
     Matter.where(unite_matter: nil)
   end
 
+  def actived_matters
+    Matter.where(actived: true)
+  end
+
   def show_matter
     @show = true
   end

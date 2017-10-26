@@ -3,7 +3,7 @@
 	<div class="modal fade" id="modal-un">
 		<div class="modal-dialog modal-sg">
 			<div class="modal-content">
-
+				
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
         	<h3 style="text-align: center"><span class="<%=index_icon(schedule_icon)%>"></span> <%=t('unavailability')%></h3>
@@ -12,11 +12,11 @@
 				<div class="modal-body" id="form_unavailability">
           <%= render 'unavailabilities/form' %>
     		</div>
-
+<!--
         <%= link_to new_button.html_safe, add_unavailability_availabilities_path(@availability), remote: true,
             title: 'Adicionar', 'data-toggle' => 'tooltip',
             'data-placement' => 'right', :class => 'btn-default btn-sm' %>
-
+-->
 			</div>
 		</div>
 	</div>

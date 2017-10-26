@@ -10,11 +10,30 @@ module OptionsHelper
     result
   end
 
+  def option_matters_inline(option)
+    result = ""
+
+    option.matters.distinct.each do |matter|
+      text = "#{matter.code} "
+      result << text
+    end
+    result
+  end
+
 
   def option_classes(option)
     result = ""
     option.groups.each do |group|
       text = "<span> #{group.matter.code} - #{group.name} </span> </br>"
+      result << text
+    end
+    result
+  end
+
+  def option_classes_with_course(option)
+    result = ""
+    option.groups.each do |group|
+      text = "<span> #{group.matter.code} - #{group.name} - #{group.course.name} </span> </br>"
       result << text
     end
     result
@@ -44,12 +63,33 @@ module OptionsHelper
     length = option.schedules.length
     if length > 0
       option.schedules.distinct.each do |schedule|
-        text = "<span> #{representation(schedule)} </span> </br>"
+        text = "<span> #{representation(schedule)} </span> <br/> "
         result << text
+
       end
       if length == 1
         result << "</br>"
       end
+
+    else
+      result = "<span>Nenhum horário definido <br></br> </span>"
+    end
+    result
+  end
+
+  def option_schedules_inline(option)
+    result = ""
+    length = option.schedules.length
+    if length > 0
+      option.schedules.distinct.each do |schedule|
+        text = "<span> #{representation(schedule)} </span>/ "
+        result << text
+
+      end
+      if length == 1
+        result << "</br>"
+      end
+
     else
       result = "<span>Nenhum horário definido <br></br> </span>"
     end

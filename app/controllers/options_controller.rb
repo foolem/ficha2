@@ -79,7 +79,7 @@ class OptionsController < ApplicationController
     puts @wish.comments
 
     respond_to do |format|
-      format.jS
+      format.js
     end
   end
 

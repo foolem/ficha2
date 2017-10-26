@@ -137,7 +137,7 @@ namespace :utils do
         matter = Matter.where(code: code)[0].id
 
         group = Group.create(matter_id: matter, name: team, semester_id: 1, course_id: Random.rand(19) + 1)
-        Ficha.create(group_id: group.id, user_id: user)
+        #Ficha.create(group_id: group.id, user_id: user)
 
         schedule_associate(linha[3], linha[4], group)
         schedule_associate(linha[5], linha[6], group)

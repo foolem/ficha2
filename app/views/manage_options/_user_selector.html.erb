@@ -1,0 +1,27 @@
+<div class="panel panel-default" style="padding:3px; background-color: #f9f9f9f; margin: 0 0 0 0;">
+
+    <div class="row" style="margin: 0px;">
+
+      <div class="col-md-4" style="padding: 0px;">
+        <div class="form-control"> <%= group.code_with_group %> </div>
+      </div>
+
+      <div id="selector_<%=group.id%>_partial">
+        <%= render "choose_options", group: group %>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <% group.option.wishes.each do |wish| %>
+          <div>
+            <%= wish.priority %>
+            <%= wish.user.name %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+</div>

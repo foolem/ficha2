@@ -1,0 +1,28 @@
+<div class="page-header no-mt-mb">
+  <h1 class="center"><span class="<%=index_icon(account_icon)%>"></span> Distribuição </h1>
+  <div style="height: 35px;" ></div>
+</div>
+
+<div class="container">
+  <div class="panel panel-default col-md-12" style="padding: 0px;">
+
+    <header class="panel-heading header">
+      <div class="row">
+        <div class="col-md-offset-10 col-md-2 col-md-xs-12"> <%= current_semester.semester_with_year_show %> </div>
+      </div>
+    </header>
+
+    <% actived_matters.each do |matter| %>
+      <h4 class="h4-options"><%= matter_group(matter) %></h4>
+      <div class="row" style="margin: 0px;">
+        <% matter.get_groups.each do |group| %>
+          <div class="col-md-6" style="padding: 5px;">
+            <%= render "user_selector", group: group %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+
+  </div>
+</div>

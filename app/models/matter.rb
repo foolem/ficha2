@@ -24,4 +24,11 @@ class Matter < ApplicationRecord
     !unite_matter.blank?
   end
 
+  def get_groups
+    if !has_unite?
+      return Group.where(matter_id: id)
+    end
+    Group.joins(:matter).where("matters.unite_matter_id = #{unite_matter_id}")
+  end
+
 end

@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <style media="screen">
+
+      .center {
+        text-align: center;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+  <p style="text-align:center; font-size:30px;color:#ed6500;width: 600px;"><b>Title</b></p>
+
+  <table width="600" border="1">
+    <tr>
+      <td style="text-align:center; color:#595959;">Author:
+        <span style="color:#9d402b; text-decoration:underline;">Author name</span>
+      </td>
+      <td style="text-align:center; color:#595959;">Author:
+        <span style="color:#9d402b; text-decoration:underline;">Author name</span>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table width="600" border="1">
+    <tr>
+      <td>Table Of Contents</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Category 1</td>
+    </tr>
+    <tr>
+      <td style="padding-left:30px;">Sub Category 1</td>
+    </tr>
+  </table>
+
+    <%= User.where(actived: true).each do |user| %>
+      <h3 class="center"> <%= user.name %> </h3>
+      <h5> Email: <%= user.email %> </h5>
+      <% user.options.each do |o| %>
+        <div class="x">
+          <h5 style="color: blue;"> <%= option_schedules(o).html_safe %> </h5>
+          <h6 style="color: orange;"> <%= option_classes(o).html_safe %> </h6>
+        </div>
+      <% end %>
+    <br clear="all" style="page-break-before:always" />
+    <% end %>
+
+  </body>
+
+</html>

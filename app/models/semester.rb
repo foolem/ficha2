@@ -17,10 +17,17 @@ class Semester < ApplicationRecord
   def self.current_semester
 
     current_year = Time.zone.now.year
+    current_month = Time.zone.now.month
+
     current_semester = 1
 
-    if Time.zone.now.month > 5
+    if current_month > 5
       current_semester = 2
+    end
+
+    if current_month > 10
+      current_year += 1
+      current_semester = 1
     end
 
     semester = Semester.where(semester: current_semester, year: current_year).first;

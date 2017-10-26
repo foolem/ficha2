@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :ficha
   has_many :wishes
+  has_many :options, through: :wishes
 
   validates :name, presence: true
   validates :role, presence: true
