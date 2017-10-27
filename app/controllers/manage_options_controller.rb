@@ -57,6 +57,15 @@ class ManageOptionsController < ApplicationController
       format.docx
       format.html
       format.js
+
+      format.pdf do
+          pdf = ResultPdf.new()
+          send_data pdf.render,
+            filename: "Relatório de conselho",
+            type: "application/pdf",
+            disposition: "inline"
+        end
+
     end
   end
 
