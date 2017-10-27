@@ -1,6 +1,6 @@
 class OptionsController < ApplicationController
   before_action :set_option, only: [:show, :edit, :update, :destroy, :open_wish]
-  before_action :set_wish, only: [:open_comment]
+  before_action :set_wish, only: [:open_unavailability_comment]
   before_action :authenticate_user!
   before_action :authorize_user
   before_action :bar_define
@@ -75,7 +75,7 @@ class OptionsController < ApplicationController
     end
   end
 
-  def open_comment
+  def open_unavailability_comment
     puts @wish.comments
 
     respond_to do |format|

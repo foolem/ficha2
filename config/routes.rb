@@ -9,6 +9,10 @@ Rails.application.routes.draw do
       match 'add_unavailability/:id' => 'availabilities#add_unavailability', via: [:get], as: :add_unavailability
       match 'open_unavailability/:id' => 'availabilities#open_unavailability', via: [:get], as: :open_unavailability
 
+      match 'open_availability_comments/:id' => 'availabilities#open_availability_comments', via: [:get], as: :open_availability_comments
+      match 'add_availability_comments' => 'availabilities#add_availability_comments', via: [:get, :post], as: :add_availability_comments
+      match 'change_comments/:id' => 'availabilities#change_comments', via: [:get], as: :change_comments
+
       match 'select_preference/:id/:preference' => 'availabilities#select_preference', via: [:get], as: :select_preference
       match 'add_preference' => 'availabilities#add_preference', via: [:get, :post], as: :add_preference
       match 'change_preference/:id/:preference' => 'availabilities#change_preference', via: [:get], as: :change_preference
@@ -72,7 +76,7 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'options#search', via: [:get, :post], as: :search
       match 'open_wish/:id' => 'options#open_wish', via: [:get, :post], as: :open_wish
-      match 'open_comment/:id_wish' => 'options#open_comment', via: [:get, :post], as: :open_comment
+      match 'open_unavailability_comment/:id_wish' => 'options#open_unavailability_comment', via: [:get, :post], as: :open_unavailability_comment
     end
   end
 
