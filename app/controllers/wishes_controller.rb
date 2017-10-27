@@ -20,8 +20,14 @@ class WishesController < ApplicationController
 
     respond_to do |format|
       if @wish.save
+
+        if !user_has_wishes?
+          format.js
+          format.html { redirect_to user_availability_availabilities_path, notice: 'Opção escolhida com sucesso.' }
+        end
+
         format.js
-        format.html { redirect_to option_path(@option), notice: 'Wish was successfully updated.' }
+        format.html { redirect_to options_path, notice: 'Opção escolhida com sucesso.' }
       else
         format.js
         format.html
@@ -65,6 +71,10 @@ class WishesController < ApplicationController
   end
 
   private
+
+    def user_has_wishes?
+      current_user.wishes.length < 5
+    end
 
     def set_wish
       @wish = Wish.find(params[:id])

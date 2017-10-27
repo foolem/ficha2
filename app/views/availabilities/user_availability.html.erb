@@ -4,7 +4,7 @@
   <div style="height: 35px;" ></div>
 </div>
 
-<div class="panel panel-default col-md-12" style="padding: 0px;">
+<div class="panel panel-default col-md-12" style="margin-bottom: 70px;">
   <header class="panel-heading header">
     <div class="row">
       <div class="col-md-offset-10 col-md-2 col-md-xs-12"> <%= @availability.semester.semester_with_year_show %> </div>
@@ -43,6 +43,47 @@
 
     <div id="unavailabilities_partial">
       <%= render 'unavailabilities' %>
+    </div>
+
+    <div class="justify">
+      <h3 class="center col-md-offset-1 col-md-10">
+        Justificativa
+      </h3>
+
+
+    </div>
+
+    <div class="">
+
+      <table class="table table-striped">
+        <thead>
+          <tr class="header">
+            <th class="center" width="25%"><%= t('options') %></th>
+            <th class="center" width="30%"><%= t('groups') %></th>
+            <th class="center" width="30%"><%= t('schedules') %></th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <% current_user.options.each do |opt| %>
+
+            <tr>
+              <div class="form_table">
+
+                <td class="center"><%= option_classes(opt).html_safe %></td>
+                <td class="center"><%= option_classes_with_course(opt).html_safe %></td>
+                <td class="center"><%= option_schedules(opt).html_safe %></td>
+              </div>
+            </tr>
+
+          <% end %>
+
+        </tbody>
+      </table>
+
+
+
     </div>
 
     <div class="col-md-offset-11 col-md-1">
