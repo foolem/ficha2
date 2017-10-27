@@ -107,6 +107,16 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
+  def add_comments
+    comment = params[:comments]
+    @availability.comments = comment
+    @availability.save
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   private
 
@@ -122,6 +132,10 @@ class AvailabilitiesController < ApplicationController
       preferences = {"1" => "preference_first_div", "2" =>"preference_second_div", "3" => "preference_third_div"}
       @preference_id = params[:preference]
       @preference = preferences[@preference_id]
+    end
+
+    def set_comment
+
     end
 
     def availability_params
