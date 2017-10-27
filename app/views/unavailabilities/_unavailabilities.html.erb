@@ -1,0 +1,40 @@
+<% user = User.find(58) %>
+
+<table class="table">
+  <thead>
+    <tr class="header">
+      <th class="center">Horário</th>
+      <% [1,2,3,4,5,6].each do |day|   %>
+        <th class="center"> <%= t(Schedule.days[day]) %> </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% t = Time.parse("2000/01/01 7:00") %>
+    <% while t.hour != Time.parse("2000/01/01 22:00").hour %>
+      <tr>
+        <td class="center"> <%= t.strftime("%H:%M") %> - <%= (t + 30.minutes).strftime("%H:%M") %> </td>
+        <% [1,2,3,4,5,6].each do |day|   %>
+          <% if column_day(user, day)["#{t.hour}:#{t.min}"] %>
+            <td>
+              <div class="btn-danger center">
+                Ocupado
+              </div>
+            </td>
+
+          <% else %>
+            <td>
+              <div class="btn-success center">
+                Livre
+              </div>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+      <% t += 30.minutes %>
+    <% end %>
+
+  </tbody>
+</table>
