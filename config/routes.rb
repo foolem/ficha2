@@ -13,6 +13,10 @@ Rails.application.routes.draw do
       match 'add_availability_comments' => 'availabilities#add_availability_comments', via: [:get, :post], as: :add_availability_comments
       match 'change_comments/:id' => 'availabilities#change_comments', via: [:get], as: :change_comments
 
+      match 'open_general_comments/:id' => 'availabilities#open_general_comments', via: [:get], as: :open_general_comments
+      match 'add_general_comments' => 'availabilities#add_general_comments', via: [:get, :post], as: :add_general_comments
+      match 'change_general_comments/:id' => 'availabilities#change_general_comments', via: [:get], as: :change_general_comments
+
       match 'select_preference/:id/:preference' => 'availabilities#select_preference', via: [:get], as: :select_preference
       match 'add_preference' => 'availabilities#add_preference', via: [:get, :post], as: :add_preference
       match 'change_preference/:id/:preference' => 'availabilities#change_preference', via: [:get], as: :change_preference
