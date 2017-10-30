@@ -1,24 +1,30 @@
 <h3 class="center col-md-offset-1 col-md-10 mt-80">
 	Professor pesquisador?
 </h3>
-<div id="" class="col-md-4">
+<div class="col-md-5">
 </div>
+<div id="researcher-field">
+	<%= form_tag(is_researcher_availabilities_path, remote: true) do %>
 
-<%= form_tag(isresearcher_availabilities_path, remote: true) do %>
+	<input name="id" type="hidden" value="<%= @availability.id %>" />
 
-  <input name="id" type="hidden" value="<%= @availability.id %>" />
+	<div class="col-md-1" style="padding: 0px;">
+		<%= select_tag :researcher, options_for_select(researcher_options),
+		{id: :researcher_selector, class: "form-control"} %>
+	</div>
 
-  <div class="col-md-10" style="padding: 0px;">
-    <%= select_tag :researcher, options_for_select(researcher_options),
-        {id: :preference_selector, class: "form-control", :prompt => "Selecione..."} %>
-  </div>
+	<div class="col-md-5" style="margin-top: 2px;">
 
-  <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
+		<%= button_tag(type: "submit", class: "btn btn-success btn-sm", style: "margin-bottom: 10px;") do
+			simple_check_button.html_safe
+		end %>
 
-    <%= button_tag(type: "submit", class: "btn btn-success btn-sm", style: "margin-bottom: 10px;") do
-      simple_check_button.html_safe
-    end %>
+	</div>
 
-  </div>
+	<% end %>
+	<h6 class="justify col-md-offset-1 col-md-10">
+		Segundo decisão da plenária departamental, em sua 266ª reunião, realizada em 02/05/07, professor-pesquisador é todo professor do quadro efetivo que: 1. É pesquisador do CNPq ou 2. Faz parte de grupo de pesquisa do CNPq e publicou pelo menos um artigo nos últimos dois anos em revista que satisfaz a uma das seguintes condições: a) QUALIS A ou B ou b) é indexada no Web of Science e tem fator de impacto superior a 0,300.
 
-<% end %>
+	</h6>
+
+</div>

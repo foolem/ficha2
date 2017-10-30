@@ -17,6 +17,10 @@ Rails.application.routes.draw do
       match 'add_general_comments' => 'availabilities#add_general_comments', via: [:get, :post], as: :add_general_comments
       match 'change_general_comments/:id' => 'availabilities#change_general_comments', via: [:get], as: :change_general_comments
 
+      match 'is_researcher' => 'availabilities#is_researcher', via: [:get, :post], as: :is_researcher
+      match 'change_researcher/:id' => 'availabilities#change_researcher', via: [:get, :post], as: :change_researcher
+
+
       match 'select_preference/:id/:preference' => 'availabilities#select_preference', via: [:get], as: :select_preference
       match 'add_preference' => 'availabilities#add_preference', via: [:get, :post], as: :add_preference
       match 'change_preference/:id/:preference' => 'availabilities#change_preference', via: [:get], as: :change_preference

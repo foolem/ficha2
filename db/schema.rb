@@ -169,7 +169,6 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   create_table "unavailabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "availability_id"
     t.integer  "schedule_id"
-    t.string   "comments"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["availability_id"], name: "index_unavailabilities_on_availability_id", using: :btree
