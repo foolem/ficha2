@@ -10,6 +10,7 @@ class CreateAvailabilities < ActiveRecord::Migration[5.0]
 
       t.string :comments
       t.string :general_comments
+      t.boolean :researcher
 
 
       t.timestamps

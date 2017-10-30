@@ -2,7 +2,7 @@ class AvailabilitiesController < ApplicationController
   before_action :bar_define
   before_action :set_preference, only: [:change_preference, :select_preference]
   before_action :set_availability, only: [:show, :edit, :update, :destroy,
-                :add_unavailability, :add_availability_comments, :add_general_comments, :open_unavailability, :open_availability_comments,:open_general_comments, :select_preference, :add_preference, :change_preference, :change_comments, :change_general_comments]
+                :add_unavailability, :add_availability_comments, :add_general_comments, :open_unavailability, :open_availability_comments,:open_general_comments, :select_preference, :add_preference, :change_preference, :change_comments, :change_general_comments, :isresearcher]
 
 
   def index
@@ -148,6 +148,16 @@ class AvailabilitiesController < ApplicationController
   end
 
   def change_general_comments
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def isresearcher
+    researcher = params[:researcher]
+    @availability.researcher = researcher
+    puts researcher
+    @availability.save
     respond_to do |format|
       format.js
     end
