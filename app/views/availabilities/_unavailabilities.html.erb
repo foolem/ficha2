@@ -1,4 +1,4 @@
-<div class=" panel panel-default" style="padding: 20px; padding-bottom: 0px;">
+<div class=" panel panel-default" style="padding: 20px; padding-bottom: 180px;">
 
   <% [0,1,2,3,4,5,6].each do |day|   %>
 
@@ -11,13 +11,10 @@
         <header class="panel-heading header center">
 
         <div class="row">
-          <div class="col-md-3 col-xs-4">
+          <div class="col-md-10 col-xs-12">
             <%= t(@unavailabilities.first.schedule.day) %>
           </div>
-          <div class="col-md-8 col-xs-6">
-            Comentários
-          </div>
-          <div class="col-md-1 col-xs-2">
+          <div class="col-md-2 col-xs-2">
             Ações
           </div>
         </div>
@@ -29,9 +26,8 @@
             <% @unavailabilities.each do |un|  %>
 
               <tr>
-                <td class="center col-md-3 col-xs-4"> <%= "#{un.schedule.begin.strftime("%H:%M")} - #{end_generate(un.schedule)}" %> </td>
-                <td class="col-md-8 col-xs-6" style="text-align: center"> <%= un.comments %> </td>
-                <td class="col-md-1 col-xs-2 center">
+                <td class="center col-md-10 col-xs-10"> <%= "#{un.schedule.begin.strftime("%H:%M")} - #{end_generate(un.schedule)}" %> </td>
+                <td class="col-md-2 col-xs-2 center">
                   <%= link_to remove_button.html_safe, unavailability_path(un),
                       button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
                 </td>
@@ -46,5 +42,3 @@
     <% end %>
 
   <% end %>
-
-</div>

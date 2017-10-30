@@ -39,12 +39,8 @@
     </div>
   <% end %>
 
-  <div class="form-field">
-    <%= f.label :comments, {class: 'control-label col-md-7'} %>
-    <%= f.text_field :comments, {class: 'form-control w-400', style: 'display:block;margin:10px auto;height:5rem;', id: "comment"} %>
-  </div>
 
   <div class="actions text-right">
-    <%= f.submit "Enviar restrição", class: 'btn btn-default', onclick: "return validateComment()" %>
+    <%= f.submit "Enviar restrição", class: 'btn btn-default' %>
   </div>
 <% end %>

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20171006124656) do
     t.integer  "preference_third"
     t.string   "comments"
     t.string   "general_comments"
+    t.boolean  "researcher"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["semester_id"], name: "index_availabilities_on_semester_id", using: :btree
@@ -168,7 +169,6 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   create_table "unavailabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "availability_id"
     t.integer  "schedule_id"
-    t.string   "comments"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["availability_id"], name: "index_unavailabilities_on_availability_id", using: :btree

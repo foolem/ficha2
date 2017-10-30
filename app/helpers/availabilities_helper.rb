@@ -16,6 +16,20 @@ module AvailabilitiesHelper
     "Não dar duas aulas em sequência" => 8}
   end
 
+  def researcher_options
+    {"Não" => 0, "Sim" => 1}
+  end
+
+  def is_researcher
+    answer = @availability.researcher
+    if answer == true
+      answer = "Sim"
+    else
+      answer = "Não"
+    end
+    answer
+  end
+
   def preferences_not_chosed
 
     chosed = [@availability.preference_first, @availability.preference_second, @availability.preference_third]

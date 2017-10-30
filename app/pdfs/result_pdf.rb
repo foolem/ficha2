@@ -4,6 +4,11 @@ class ResultPdf < Prawn::Document
     super(top_margin: 20)
     @ficha = Ficha.first
     @user = User.find 58
+
+    @user.options.each do |opt| # Pegar opções e jogar na tabela....
+      puts "Option: #{opt.id}"
+    end
+
     @availability = @user.availabilities.first
     @margem = 50
     @number = 0
@@ -79,6 +84,8 @@ class ResultPdf < Prawn::Document
     move_down 5
     text  @user.name.upcase, size: 12, style: :bold, align: :center
     text  @user.email.downcase, size: 11, align: :center
+    text_box "Pesquisador: ", size: 11, :at => [435,cursor+10], style: :bold
+    text_box @availability.researcher ? "Sim" : "Não", size: 11, :at => [510,cursor+10]
     move_down 5
 
     transparent (0.5) { stroke_horizontal_rule }
