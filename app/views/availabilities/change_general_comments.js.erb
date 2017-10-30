@@ -1,0 +1,4 @@
+
+$("#general-commented").fadeOut(400, function() {
+ $(this).html("<%= escape_javascript(render("add_general_comments")) %>").fadeIn(400);
+});

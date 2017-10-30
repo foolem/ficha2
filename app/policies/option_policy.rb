@@ -32,7 +32,7 @@ class OptionPolicy < ApplicationPolicy
     !user.blank? and !user.secretary?
   end
 
-  def open_comment?
+  def open_unavailability_comment?
     true
   end
 

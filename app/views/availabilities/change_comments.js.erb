@@ -1,0 +1,4 @@
+
+$("#commented").fadeOut(400, function() {
+ $(this).html("<%= escape_javascript(render("add_availability_comments")) %>").fadeIn(400);
+});

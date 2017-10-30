@@ -1,0 +1,19 @@
+<%= form_tag(add_general_comments_availabilities_path, remote: true) do %>
+
+<input name="id" type="hidden" value="<%= @availability.id %>" />
+
+	<div class="col-md-4">
+		<div class="form-group">
+			<%= text_area_tag :general_comments, "comente", {class: 'form-control', style: 'display:block;height:5rem;max-width:380px', id: "comment"} %>
+		</div>
+
+	</div>
+
+	<div class="col-md-4" style="margin-top: 2px;">
+
+		<%= button_tag(type: "submit", class: "btn btn-success btn-sm") do
+			simple_check_button.html_safe
+		end %>
+
+	</div>
+	<% end %>

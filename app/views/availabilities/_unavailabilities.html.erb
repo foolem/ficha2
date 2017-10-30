@@ -30,7 +30,7 @@
 
               <tr>
                 <td class="center col-md-3 col-xs-4"> <%= "#{un.schedule.begin.strftime("%H:%M")} - #{end_generate(un.schedule)}" %> </td>
-                <td class="col-md-8 col-xs-6" style="text-align: justify"> <%= un.comments %> </td>
+                <td class="col-md-8 col-xs-6" style="text-align: center"> <%= un.comments %> </td>
                 <td class="col-md-1 col-xs-2 center">
                   <%= link_to remove_button.html_safe, unavailability_path(un),
                       button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
