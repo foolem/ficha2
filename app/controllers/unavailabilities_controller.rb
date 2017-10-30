@@ -7,6 +7,11 @@ class UnavailabilitiesController < ApplicationController
     schedule = Schedule.new(schedule_params)
     schedule.parse_to_time
 
+    #força o padrão...
+    schedule.begin = schedule.begin.change(min: 30)
+    schedule.duration = schedule.duration.change(min: 0)
+
+
     result = Schedule.where(day: schedule.day, begin: schedule.begin, duration: schedule.duration).first
     if result.blank?
       @unavailability.schedule = schedule

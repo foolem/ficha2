@@ -1,12 +1,21 @@
 class ResultPdf < Prawn::Document
 
+  def initialize()
+    super(top_margin: 20)
+    @ficha = Ficha.first
+    @user = User.find 58
+    @availability = @user.availabilities.first
+    @margem = 50
+    @number = 0
+    record_generate
+  end
 
   def default_array
     column = {}
-    t = Time.parse("2000/01/01 7:00")
-    while t.hour != Time.parse("2000/01/01 22:00").hour
-      t += 30.minutes
+    t = Time.parse("2000/01/01 7:30")
+    while t.hour != 22
       column["#{t.hour}:#{t.min}"] = false
+      t += 1.hours
     end
     column
   end
@@ -17,14 +26,13 @@ class ResultPdf < Prawn::Document
     column = default_array
     schedules.each do |sch|
       start = sch.begin
-      finish = sch.begin + sch.duration.hour.hours + sch.duration.min.minutes
+      finish = sch.begin + sch.duration.hour.hours
       new_start = start
 
       while new_start != finish
         column["#{new_start.hour}:#{new_start.min}"] = true;
-        new_start += 30.minutes
+        new_start += 1.hours
       end
-
     end
 
     column
@@ -46,13 +54,13 @@ class ResultPdf < Prawn::Document
     user = User.find(58)
     all_rows = []
     all_rows.push(header)
-    t = Time.parse("2000/01/01 7:00")
+    t = Time.parse("2000/01/01 7:30")
 
     columns = get_columns(user)
 
-    while t.hour != Time.parse("2000/01/01 22:00").hour
+    while t.hour != 22
       current_row = []
-      current_row.push("#{t.strftime("%H:%M")} - #{(t + 30.minutes).strftime("%H:%M")}")
+      current_row.push("#{t.strftime("%H:%M")} - #{(t + 1.hours).strftime("%H:%M")}")
 
       [1,2,3,4,5].each do |day|
         if columns[day - 1]["#{t.hour}:#{t.min}"]
@@ -61,176 +69,109 @@ class ResultPdf < Prawn::Document
           current_row.push("")
         end
       end
-
       all_rows.push(current_row)
-      t += 30.minutes
+      t += 1.hours
      end
      all_rows
   end
 
-  def initialize()
-    super(top_margin: 20)
-    @ficha = Ficha.first
-    @margem = 50
-    @number = 0
-    record_generate
-  end
-
   def header_generate
-    prawn_logo = "app/pdfs/icon.jpg"
-    image prawn_logo, :at => [@margem,740], :width => 80
-
-    text_box  "MINISTÉRIO DA EDUCAÇÃO
-    UNIVERSIDADE FEDERAL DO PARANÁ
-    SETOR DE CIÊNCIAS EXATAS", size: 11, :at => [85+ @margem,735]
-
-    text_box  "DEPARTAMENTO DE MATEMÁTICA", size: 11, :at => [85 + @margem,680]
-    move_down 80
-
-    stroke_horizontal_line @margem,450 + @margem,:at=> cursor
-
-    move_down 17
-    text  "PLANO DE ENSINO", size: 12, style: :bold, align: :center
-    text  "Ficha n° 2 (variável)", size: 11, align: :center
-    move_down 20
+    move_down 5
+    text  @user.name.upcase, size: 12, style: :bold, align: :center
+    text  @user.email.downcase, size: 11, align: :center
+    move_down 5
 
     transparent (0.5) { stroke_horizontal_rule }
-    transparent (0.5) {stroke_vertical_line 592,17,:at=> 0}
-    transparent (0.5) {stroke_vertical_line 592,17,:at=> 540}
+    transparent (0.5) {stroke_vertical_line cursor,17,:at=> 0}
+    transparent (0.5) {stroke_vertical_line cursor,17,:at=> 540}
     transparent (0.5) { stroke_horizontal_line 0, 540, :at=> 17}
 
     @number+=1
     text_box  @number.to_s, size: 11, :at => [530,11]
-
-
   end
 
   def record_generate
 
     header_generate
 
-    table get_rows
+    move_down 5
+    text_box "Indisponibilidades", size: 12, style: :bold, :at => [0,cursor], align: :center
+    move_down 15
+    table get_rows, cell_style: {height: 19, size: 10, align: :center}, column_widths: [100,80,80, 80,80,80,80],position: 20
+    move_down 5
 
-    user = User.find(58)
+    simple_title_generate "Justifcativa: ", 20, 5
+    bounding_box([95, cursor], :width => 425) do
+      text @availability.comments
+    end
 
     move_down 5
-    text_box "Professor:", size: 11, style: :bold, :at => [10,cursor]
-    show_value(@ficha.user.name(), 70)
-
-    move_down 15
     transparent (0.5) { stroke_horizontal_rule }
 
-    simple_title_generate("Disciplina:", 10, 5)
-    show_value(@ficha.group.matter.name(), 70)
-
-    transparent (0.5) {stroke_vertical_line cursor+5,cursor-55,:at=> 348}
-    simple_title_generate("Código:", 358, 0)
-    show_value(@ficha.group.matter.code(), 403)
-
-    move_down 15
-    transparent (0.5) { stroke_horizontal_rule }
-
-    simple_title_generate("Turma:", 10, 5)
-    show_value(@ficha.group.name, 50)
-
-    simple_title_generate("Semestre:", 358, 0)
-    show_value(@ficha.group.semester.semester_with_year, 413)
-
-    move_down 15
-    transparent (0.5) { stroke_horizontal_rule }
-
-    transparent (0.5) {stroke_vertical_line cursor-20,cursor,:at=> 174}
-
-    simple_title_generate("Natureza:", 10, 5)
-    show_value(@ficha.group.matter.nature(), 64)
-
-    simple_title_generate("Modalidade:", 187, 0)
-    show_value(@ficha.group.matter.modality(), 257)
-
-
-    transparent (0.5) {stroke_vertical_line cursor+5,cursor+5,:at=> 325}
-
-    simple_title_generate("Tipo:", 358, 0)
-    show_value(@ficha.group.matter.kind(), 388)
-
-    move_down 15
-    transparent (0.5) { stroke_horizontal_rule }
-
-    simple_title_generate("Pré-requisito:", 10, 5)
-    show_value(@ficha.group.matter.prerequisite(), 85)
-
-    transparent (0.5) {stroke_vertical_line cursor+5,cursor-15,:at=> 275}
-
-    simple_title_generate("Co-requisito:", 280, 0)
-    show_value(@ficha.group.matter.corequisite, 350)
-
-    move_down 15
-    transparent (0.5) { stroke_horizontal_rule }
-
-    transparent (0.5) {stroke_vertical_line cursor,cursor-100,:at=> 275}
-
-    simple_title_generate("Carga Horária", 100, 10)
-    simple_title_generate("Códigos", 390, 0)
-
-    simple_title_generate("Semestral Total:", 10, 20)
-    show_value(@ficha.group.matter.total_weekly_workload().to_s + "h", 97)
-
-    simple_title_generate("Padrão:", 290, 0)
-    show_value(@ficha.group.matter.pd().to_s, 333)
-
-    simple_title_generate("Orientada:", 380, 0)
-    show_value(@ficha.group.matter.or().to_s, 437)
-
-    simple_title_generate("Anual Total:", 10, 15)
-    show_value(@ficha.group.matter.total_annual_workload().to_s + "h", 74)
-
-
-    simple_title_generate("Laboratório:", 290, 0)
-    show_value(@ficha.group.matter.lc().to_s, 357)
-
-    simple_title_generate("Modular Total:", 10, 15)
-    show_value(@ficha.group.matter.total_modular_workload().to_s + "h", 87)
-
-    simple_title_generate("Campo:", 290, 0)
-    show_value(@ficha.group.matter.cp().to_s, 333)
-
-    simple_title_generate("Semanal:", 10, 15)
-    show_value(@ficha.group.matter.weekly_workload.to_s + "h", 62)
-
-    simple_title_generate("Estágio:", 290, 0)
-    show_value(@ficha.group.matter.es().to_s, 336)
-
-
-    @counter = 25
-    title_generate("EMENTA")
-    new_page(@ficha.group.matter.menu.to_s, 10)
+    simple_title_generate "Preferências: ", 20, 5
+    bounding_box([95, cursor], :width => 500) do
+      font_size(12) { text "1º: #{get_preference(@availability.preference_first)}" }
+      font_size(12) { text "2º: #{get_preference(@availability.preference_second)}" }
+      font_size(12) { text "3º: #{get_preference(@availability.preference_third)}" }
+    end
 
     move_down 5
-    title_generate("PROGRAMA")
-    new_page(@ficha.program, 10)
+    transparent (0.5) { stroke_horizontal_rule }
 
-    title_generate("OBJETIVO GERAL")
-    new_page(@ficha.general_objective, 10)
+    #outras_escolhas
 
-    title_generate("OBJETIVOS ESPECÍFICOS")
-    new_page(@ficha.specific_objective, 10)
+    move_down 5
+    text_box "Escolhas", size: 12, style: :bold, :at => [0,cursor], align: :center
+    move_down 15
+    table [
+      ["Opção", "Disciplina", "Horário"],
+      [1, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"],
+      [2, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"],
+      [3, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"],
+      [4, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"]],
+      column_widths: [50, 200, 250], cell_style: {padding: 5, size: 10, align: :center},position: 20
 
-    title_generate("PROCEDIMENTOS DIDÁTICOS")
-    new_page(@ficha.didactic_procedures, 10)
+    move_down 10
+    transparent (0.5) { stroke_horizontal_rule }
 
-    title_generate("FORMAS DE AVALIAÇÃO")
-    new_page(@ficha.evaluation, 10)
+    simple_title_generate "Comentários: ", 20, 5
+    bounding_box([95, cursor], :width => 425) do
+      text @availability.general_comments, size: 12
+    end
 
-    title_generate("BIBLIOGRAFIA BÁSICA")
-    new_page(@ficha.basic_bibliography, 10)
+    move_down 5
+  end
 
-    title_generate("BIBLIOGRAFIA COMPLEMENTAR")
-    new_page(@ficha.bibliography, 10)
+  def outras_escolhas
+
+    move_down 5
+    text_box "Escolhas", size: 12, style: :bold, :at => [0,cursor], align: :center
+    move_down 15
+
+    bounding_box([95, cursor], :width => 425) do
+      font_size(12) { text "1º: CM107 A (Otimização II, 2ª4º 15:30)" }
+    end
+    move_down 2
+    bounding_box([95, cursor], :width => 425) do
+      font_size(12) { text "2º: CM107 A (Otimização II, 2ª4º 15:30)" }
+    end
+    move_down 2
+    bounding_box([95, cursor], :width => 425) do
+      font_size(12) { text "3º: CM107 A (Otimização II, 2ª4º 15:30)" }
+    end
+    move_down 2
+    bounding_box([95, cursor], :width => 425) do
+      font_size(12) { text "4º: CM107 A (Otimização II, 2ª4º 15:30)" }
+    end
+    move_down 2
+    bounding_box([95, cursor], :width => 425) do
+      font_size(12) { text "5º: CM107 A (Otimização II, 2ª4º 15:30)" }
+    end
 
   end
 
   def title_generate(title)
-    move_down(@counter)
+
     if(cursor < 85)
       start_new_page
       header_generate
@@ -263,7 +204,7 @@ class ResultPdf < Prawn::Document
         text_box value, size: 10, :at => [x,cursor], :width => 520, :align => :justify
       end
     end
-    end
+  end
 
   def new_page(text, x)
     if !text.blank?
@@ -333,6 +274,20 @@ class ResultPdf < Prawn::Document
     return ficha.semester.to_s + "º de " + ficha.year.to_s
   end
 
+  def get_preference(input)
+    if input.blank?
+      return
+    end
+
+    ["Concentrar minhas aulas pela manhã",
+    "Concentrar minhas aulas à tarde",
+    "Concentrar minhas aulas à noite",
+    "Não dar aulas às 7:30",
+    "Não dar aulas à noite",
+    "Concentrar todas minhas aulas em 2 ou 3 dias da semana",
+    "Ficar apenas com disciplinas iguais","Dar duas aulas em sequência",
+    "Não dar duas aulas em sequência"][input]
+   end
 
   #http://prawnpdf.org/docs/0.11.1/index.html
   #http://prawnpdf.org/manual.pdf
