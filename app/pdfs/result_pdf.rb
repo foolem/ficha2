@@ -1,5 +1,73 @@
 class ResultPdf < Prawn::Document
 
+
+  def default_array
+    column = {}
+    t = Time.parse("2000/01/01 7:00")
+    while t.hour != Time.parse("2000/01/01 22:00").hour
+      t += 30.minutes
+      column["#{t.hour}:#{t.min}"] = false
+    end
+    column
+  end
+
+  def column_day(user, day)
+    schedules = Schedule.find_by_users_and_day(user, day)
+
+    column = default_array
+    schedules.each do |sch|
+      start = sch.begin
+      finish = sch.begin + sch.duration.hour.hours + sch.duration.min.minutes
+      new_start = start
+
+      while new_start != finish
+        column["#{new_start.hour}:#{new_start.min}"] = true;
+        new_start += 30.minutes
+      end
+
+    end
+
+    column
+  end
+
+  def header
+    ["Horário",  "Segunda",  "Terça",  "Quarta",  "Quinta",  "Sexta"]
+  end
+
+  def get_columns(user)
+    columns = []
+    [1,2,3,4,5].each do |day|
+      columns.push(column_day(user, day))
+    end
+    columns
+  end
+
+  def get_rows
+    user = User.find(58)
+    all_rows = []
+    all_rows.push(header)
+    t = Time.parse("2000/01/01 7:00")
+
+    columns = get_columns(user)
+
+    while t.hour != Time.parse("2000/01/01 22:00").hour
+      current_row = []
+      current_row.push("#{t.strftime("%H:%M")} - #{(t + 30.minutes).strftime("%H:%M")}")
+
+      [1,2,3,4,5].each do |day|
+        if columns[day - 1]["#{t.hour}:#{t.min}"]
+          current_row.push("x")
+        else
+          current_row.push("")
+        end
+      end
+
+      all_rows.push(current_row)
+      t += 30.minutes
+     end
+     all_rows
+  end
+
   def initialize()
     super(top_margin: 20)
     @ficha = Ficha.first
@@ -41,8 +109,9 @@ class ResultPdf < Prawn::Document
 
     header_generate
 
-    a =  Prawn::Table.new
+    table get_rows
 
+    user = User.find(58)
 
     move_down 5
     text_box "Professor:", size: 11, style: :bold, :at => [10,cursor]

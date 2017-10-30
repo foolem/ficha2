@@ -19,6 +19,7 @@ gem "roo", "~> 2.7.0"
 gem 'roo-xls'
 # prawn
 gem 'prawn'
+gem 'prawn-table'
 
 # pundit
 gem 'pundit'
