@@ -65,7 +65,7 @@
       <div class=" panel panel-default" style="padding: 20px;">
 
         <% if !current_user.options.blank? %>
-        <table class="table table-striped">
+        <table class="table table-striped" style="margin-bottom: 15px;">
           <thead>
             <tr class="header">
               <th class="center" width="25%"><%= t('options') %></th>
@@ -92,7 +92,15 @@
           </tbody>
         </table>
         <% end %>
-        <h2>Escolha</h2>
+
+
+        <div class="row" style="margin: 0">
+          <div class="col-md-offset-1 col-md-10">
+            <%= link_to "Clique aqui para selecionar", options_path,
+            button_configs(:options, "btn btn-success simple_button col-md-offset-3 col-md-6", {style: "margin-bottom: 10px;color:white"}) %>
+          </div>
+        </div>
+
       </div>
 
 

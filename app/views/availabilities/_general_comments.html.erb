@@ -1,28 +1,31 @@
+<div class="row" style="margin: 10px 0 0 10px">
 
-<h3 class="center col-md-offset-1 col-md-10 mt-80">
-	Comentários gerais
-</h3>
-	<div id="" class="col-md-2">
-	</div>
+	<h3 class="center">Comentários gerais </h3>
 
-	<% if @availability.general_comments.blank? %>
-	<%= link_to "Comentar", open_general_comments_availabilities_path(@availability),
-	button_configs(:select, "btn btn-success simple_button col-md-offset-2  col-md-4", {style: 'color:white', remote: true}) %>
-	<% else %>
+	<div class="row">
 
-	<div id="general-commented">
-		<div class="col-md-8">
-			<div class="form-control" style="padding-left: 16px;height:auto;margin:0 auto;">
-				<%= @availability.general_comments %>
+		<div class="col-md-offset-1 col-md-10">
+
+			<div id="general-commented">
+				<% if @availability.general_comments.blank? %>
+					<%= link_to "Clique aqui para inserir", open_general_comments_availabilities_path(@availability),
+							button_configs(:select, "btn btn-success simple_button col-md-offset-3  col-md-6", {style: 'color:white', remote: true}) %>
+				<% else %>
+
+					<div class="col-md-10">
+						<div class="form-control" style="height:100px;">
+							<%= @availability.general_comments %>
+						</div>
+					</div>
+
+					<div id="general-edited" class="col-md-2" style="margin-top: 2px;">
+						<%= link_to "Editar", change_general_comments_availabilities_path(@availability),
+						button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
+					</div>
+				<% end %>
 			</div>
-		</div>
 
-		<div id="general-edited" class="col-md-2" style="margin-top: 2px;">
-			<%= link_to simple_edit_button.html_safe, change_general_comments_availabilities_path(@availability),
-			button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
 		</div>
-
 	</div>
 
-
-	<% end %>
+</div>

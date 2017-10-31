@@ -24,7 +24,7 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
-  class ScopeUser < Scope
+  class Scope < Scope
     def resolve
       scope
     end

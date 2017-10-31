@@ -5,9 +5,9 @@ namespace :utils do
 
       def pass_generate
         password = ""
-        character = ['1', '2', '3', 'a', 'b', 'c', 'd']
+        character = ['1', '2', '3', 'a', 'b', 'c']
         6.times do |i|
-          password << character[Random.rand(7)]
+          password << character[Random.rand(6)]
         end
         password
       end

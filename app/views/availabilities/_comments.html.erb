@@ -9,7 +9,7 @@
 				<div id="commented">
 					<% if @availability.comments.blank? %>
 							<%= link_to "Clique aqui para inserir", open_availability_comments_availabilities_path(@availability),
-							button_configs(:select, "btn-sm btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;color:white', remote: true}) %>
+							button_configs(:select, "btn-sm btn btn-success simple_button col-md-offset-3 col-md-6", {style: 'margin-bottom: 10px;color:white', remote: true}) %>
 					<% else %>
 
 						<div class="col-md-10">
