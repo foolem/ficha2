@@ -67,7 +67,7 @@ class UniteGroupsController < ApplicationController
     end
   end
 
-  def chose
+  def choose
     @unite_matter = UniteMatter.find(params[:unite_matter_id])
     @unite_group = UniteGroup.find(params[:unite_group_id])
     puts @unite_matter.name
