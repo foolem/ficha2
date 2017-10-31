@@ -1,9 +1,10 @@
+
 <div class="page-header no-mt-mb">
   <h1 class="center"><span class="<%=index_icon(account_icon)%>"></span> <%= t("availability") %></h1>
   <div style="height: 35px;" ></div>
 </div>
 
-<div class="panel panel-default col-md-12" style="padding: 0px;">
+<div class="panel panel-default col-md-12" style="margin-bottom: 70px;">
   <header class="panel-heading header">
     <div class="row">
       <div class="col-md-offset-10 col-md-2 col-md-xs-12"> <%= @availability.semester.semester_with_year_show %> </div>
@@ -15,7 +16,7 @@
     <div class="row">
       <div class="col-md-12">
         <h3 class="center col-md-offset-1 col-md-10">
-          <span class="<%=index_icon(schedule_icon)%>"></span> <%= t("preferences") %>
+          <span class="<%=index_icon(option_icon)%>"></span> <%= t("preferences") %>
         </h3>
       </div>
     </div>
@@ -40,13 +41,64 @@
       </div>
     </div>
 
-    <div id="unavailabilities_partial">
+    <div id="unavailabilities-partial">
       <%= render 'unavailabilities' %>
+      <div id="comments-partial" class="justify">
+        <%= render 'comments' %>
+      </div>
     </div>
 
-    <div class="col-md-offset-11 col-md-1">
-      <%= link_to "Escolher", options_path, class: "btn btn-default bt-lg" %>
+
+
+
+    <div class=" panel panel-default" style="padding: 20px;">
+
+      <% if !current_user.options.blank? %>
+        <h3 class="center col-md-offset-1 col-md-10">
+          <span class="<%=index_icon(option_icon)%>"></span> <%= t("options") %>
+        </h3>
+        <table class="table table-striped">
+          <thead>
+            <tr class="header">
+              <th class="center" width="25%"><%= t('options') %></th>
+              <th class="center" width="30%"><%= t('groups') %></th>
+              <th class="center" width="30%"><%= t('schedules') %></th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            <% current_user.options.each do |opt| %>
+
+              <tr>
+                <div class="form_table">
+
+                  <td class="center"><%= option_classes(opt).html_safe %></td>
+                  <td class="center"><%= option_classes_with_course(opt).html_safe %></td>
+                  <td class="center"><%= option_schedules(opt).html_safe %></td>
+                </div>
+              </tr>
+
+            <% end %>
+
+          </tbody>
+        </table>
+
+      <% end %>
+
     </div>
+
+    <div id="general-comments-partial" class="justify">
+      <%= render 'general_comments' %>
+    </div>
+
+    <div id="researcher-partial" class="justify">
+      <%= render 'researcher' %>
+    </div>
+
+    <!--<div class="col-md-offset-11 col-md-1">
+      <%= link_to "Escolher", options_path, class: "btn btn-default bt-lg" %>
+    </div>-->
 
   </div>
 

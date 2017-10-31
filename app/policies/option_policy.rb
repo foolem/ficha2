@@ -34,8 +34,8 @@ class OptionPolicy < ApplicationPolicy
     !user.blank? and !user.has_role?("secretary")
   end
 
-  def open_comment?
-    !user.blank?
+  def open_unavailability_comment?
+    true
   end
 
   def show?

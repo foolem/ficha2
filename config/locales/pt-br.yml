@@ -44,8 +44,10 @@
   preferences: "Preferências"
 
   preference: "Preferencia"
+  priority: "Prioridade"
 
   manage: "Administrar"
+  delivery: "Distribuição"
 
   end: "Fim"
   sunday: "Domingo"

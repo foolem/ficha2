@@ -35,9 +35,7 @@
       </div>
     </div>
 
-  <div id="manage_actions" class="panel panel-default p-20 m-20">
-    <h4 class="text-center">Gráficos aqui</h4>
-  </div>
+
   <% elsif options_finished? %>
 
     <div class="manage-panel-reset">
@@ -49,8 +47,26 @@
           <h4 style="text-align:center;margin-top:20px">Encerrar</h4>
           <% end %>
     </div>
+    <div id="manage_actions" class="panel panel-default p-20 m-20">
+      <h4 class="text-center">Gráficos aqui</h4>
+    </div>
 
   <% else %>
-    <h4> Opções finalizadas neste semestre. </h4>
+    <div class="manage-panel-reset">
+      <%= link_to "#{manage_options_result_list_path}.pdf",
+          id: "",
+          :"data-load" => "Encerrando período de seleção  ...",
+          class: 'btn big-btn blue-btn white' do %>
+            <%= big_download_button.html_safe %>
+            <h4 style="text-align:center;margin-top:20px">Gerar relatório</h4>
+          <% end %>
+      <%= link_to "#{manage_options_result_list_path}.pdf",
+          id: "",
+          :"data-load" => "Encerrando período de seleção  ...",
+          class: 'btn big-btn blue-btn white' do %>
+            <%= big_download_button.html_safe %>
+            <h4 style="text-align:center;margin-top:20px">Gerar relatório</h4>
+          <% end %>
+    </div>
   <% end %>
 </div>

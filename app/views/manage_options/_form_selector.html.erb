@@ -1,0 +1,15 @@
+<%= form_tag manage_options_choose_teacher_path, remote: true do %>
+
+  <input name="group" type="hidden" value="<%= group.id %>"/>
+
+  <div class="col-md-7">
+    <%= collection_select :user, :id, User.all, :id, :name, {prompt: "Selecione..."}, {class: "form-control", name: "user"} %>
+  </div>
+
+  <div class="col-md-1" style="padding: 0 0 0 3px; margin-top: 2px;">
+    <%= button_tag(type: "submit", class: "btn btn-success btn-sm") do
+      simple_check_button.html_safe
+    end %>
+  </div>
+
+<% end %>

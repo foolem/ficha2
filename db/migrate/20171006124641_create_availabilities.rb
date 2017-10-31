@@ -8,6 +8,11 @@ class CreateAvailabilities < ActiveRecord::Migration[5.0]
       t.integer :preference_second
       t.integer :preference_third
 
+      t.string :comments
+      t.string :general_comments
+      t.boolean :researcher
+
+
       t.timestamps
     end
   end

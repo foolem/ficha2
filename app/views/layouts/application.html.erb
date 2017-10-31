@@ -102,6 +102,7 @@
               <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t('options') %> <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
                 <ul class="dropdown-menu forAnimate" role="menu">
+                  <li class="side_bar"><a href="<%= manage_options_delivery_path %>"><%= t('delivery') %></a></li>
                   <li class="side_bar"><a href="<%= manage_options_index_path %>"><%= t('manage') %></a></li>
                   <li class="divider"></li>
                   <li class="side_bar"><a href="<%= user_availability_availabilities_path %>"><%= t('availability') %></a></li>

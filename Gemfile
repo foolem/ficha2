@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'htmltoword'
+
 gem 'rolify'
 
 gem 'whenever'
@@ -17,6 +19,7 @@ gem "roo", "~> 2.7.0"
 gem 'roo-xls'
 # prawn
 gem 'prawn'
+gem 'prawn-table'
 
 # pundit
 gem 'pundit'
@@ -45,7 +48,7 @@ gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

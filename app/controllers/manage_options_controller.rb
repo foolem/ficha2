@@ -45,10 +45,54 @@ class ManageOptionsController < ApplicationController
     options_status(condition, true, true, true)
 
     # somente para testes
-    options_status(true, false, false, false)
+    # options_status(true, false, false, false)
 
     respond_to do |format|
       format.js { render :action => 'manage_result'}
+    end
+  end
+
+  def result_list
+    respond_to do |format|
+      format.docx
+      format.html
+      format.js
+
+      format.pdf do
+          pdf = ResultPdf.new()
+          send_data pdf.render,
+            filename: "Relatório de conselho",
+            type: "application/pdf",
+            disposition: "inline"
+        end
+
+    end
+  end
+
+  def delivery
+
+  end
+
+  def select_teacher
+    puts "Group id: #{params[:id]}"
+    @group = Group.find(params[:id])
+    @group_id = params[:id]
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def choose_teacher
+    @user = User.find(params[:user])
+    @group = Group.find(params[:group])
+
+    if @group.ficha.blank?
+        Ficha.create(user: @user, group: @group)
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 

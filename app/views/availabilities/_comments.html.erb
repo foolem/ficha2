@@ -1,0 +1,25 @@
+<h3 class="center col-md-offset-1 col-md-10 ">
+	Justificativa
+</h3>
+<div id="" class="col-md-2">
+</div>
+<% if @availability.comments.blank? %>
+	<%= link_to "Justificar", open_availability_comments_availabilities_path(@availability),
+			button_configs(:select, "btn btn-success simple_button col-md-offset-2 col-md-4", {style: 'margin-bottom: 10px;color:white', remote: true}) %>
+<% else %>
+	<div id="commented">
+		<div class="col-md-8">
+			<div class="form-control" style="padding-left: 16px;height:auto;margin:0 auto;">
+				<%= @availability.comments %>
+			</div>
+		</div>
+
+		<div id="edited" class="col-md-2" style="margin-top: 2px;">
+			<%= link_to simple_edit_button.html_safe, change_comments_availabilities_path(@availability),
+			button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
+		</div>
+
+	</div>
+
+
+<% end %>

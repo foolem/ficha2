@@ -9,6 +9,18 @@ Rails.application.routes.draw do
       match 'add_unavailability/:id' => 'availabilities#add_unavailability', via: [:get], as: :add_unavailability
       match 'open_unavailability/:id' => 'availabilities#open_unavailability', via: [:get], as: :open_unavailability
 
+      match 'open_availability_comments/:id' => 'availabilities#open_availability_comments', via: [:get], as: :open_availability_comments
+      match 'add_availability_comments' => 'availabilities#add_availability_comments', via: [:get, :post], as: :add_availability_comments
+      match 'change_comments/:id' => 'availabilities#change_comments', via: [:get], as: :change_comments
+
+      match 'open_general_comments/:id' => 'availabilities#open_general_comments', via: [:get], as: :open_general_comments
+      match 'add_general_comments' => 'availabilities#add_general_comments', via: [:get, :post], as: :add_general_comments
+      match 'change_general_comments/:id' => 'availabilities#change_general_comments', via: [:get], as: :change_general_comments
+
+      match 'is_researcher' => 'availabilities#is_researcher', via: [:get, :post], as: :is_researcher
+      match 'change_researcher/:id' => 'availabilities#change_researcher', via: [:get, :post], as: :change_researcher
+
+
       match 'select_preference/:id/:preference' => 'availabilities#select_preference', via: [:get], as: :select_preference
       match 'add_preference' => 'availabilities#add_preference', via: [:get, :post], as: :add_preference
       match 'change_preference/:id/:preference' => 'availabilities#change_preference', via: [:get], as: :change_preference
@@ -23,6 +35,11 @@ Rails.application.routes.draw do
   delete 'manage_options/remove'
   get 'manage_options/start'
   get 'manage_options/end'
+  get 'manage_options/delivery'
+  post 'manage_options/choose_teacher'
+
+  match 'manage_options/select_teacher/:id' => 'manage_options#select_teacher', via: [:get, :post], as: :manage_options_select_teacher
+  match 'manage_options/result_list' => 'manage_options#result_list', via: [:get], as: :manage_options_result_list
 
   get 'welcome/index'
 
@@ -67,7 +84,7 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'options#search', via: [:get, :post], as: :search
       match 'open_wish/:id' => 'options#open_wish', via: [:get, :post], as: :open_wish
-      match 'open_comment/:id_wish' => 'options#open_comment', via: [:get, :post], as: :open_comment
+      match 'open_unavailability_comment/:id_wish' => 'options#open_unavailability_comment', via: [:get, :post], as: :open_unavailability_comment
     end
   end
 
@@ -107,6 +124,7 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
       match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
+
     end
   end
 

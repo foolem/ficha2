@@ -1,5 +1,9 @@
 module IconsHelper
 
+  def big_download_button
+    '<i class="glyphicon glyphicon-save big-btn-align"></i>'
+  end
+
   def big_trash_button
     '<i class="glyphicon glyphicon-trash big-btn-align"></i>'
   end

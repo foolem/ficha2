@@ -24,6 +24,10 @@ class Group < ApplicationRecord
     !unite_group.blank?
   end
 
+  def has_ficha?
+    !ficha.blank?
+  end
+
   def same_groups
     if schedules.length == 0
       return [self]

@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <style media="screen">
+
+      .center {
+        text-align: center;
+      }
+
+      .table-content {
+        text-align: center;
+        height: 40px;
+      }
+    </style>
+
+  </head>
+
+  <body style="margin-left: 30px;">
+
+  <p style="text-align:center; font-size:30px;color:#ed6500;"><b>Title</b></p>
+
+    <% user = User.find(58) %>
+      <h3 class="center"> <%= user.name %> </h3>
+      <h5> Email: <%= user.email %> </h5>
+
+      <table style="margin-left: 50px;">
+
+        <thead>
+          <tr class="header">
+            <th class="center table-content">Horário</th>
+            <% [1,2,3,4,5,6].each do |day|   %>
+              <th class="center table-content"> <%= t(Schedule.days[day]) %> </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% t = Time.parse("2000/01/01 7:00") %>
+          <% while t.hour != Time.parse("2000/01/01 22:00").hour %>
+            <tr>
+              <td> <%= t.strftime("%H:%M") %> - <%= (t + 30.minutes).strftime("%H:%M") %> </td>
+              <% [1,2,3,4,5,6].each do |day|   %>
+                <td class="table-content">
+                  <% if column_day(user, day)["#{t.hour}:#{t.min}"] %>
+                    x
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+            <% t += 30.minutes %>
+          <% end %>
+        </tbody>
+
+      </table>
+
+      <% user.options.each do |o| %>
+        <div class="x">
+          <h5 style="color: blue;"> <%= option_schedules(o).html_safe %> </h5>
+          <h6 style="color: orange;"> <%= option_classes(o).html_safe %> </h6>
+        </div>
+      <% end %>
+
+      <br clear="all" style="page-break-before:always" />
+
+
+  </body>
+
+</html>

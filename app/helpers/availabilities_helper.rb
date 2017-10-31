@@ -6,7 +6,28 @@ module AvailabilitiesHelper
   end
 
   def preferences
-    {"Aulas geminadas" => 0, "Aulas em mesmo dia" => 1, "Sextas livres" => 2, "Segundas livres" => 3, "Aulas em mesmo periodo" => 4}
+    {"Concentrar minhas aulas pela manhã" => 0,
+    "Concentrar minhas aulas à tarde" => 1,
+    "Concentrar minhas aulas à noite" => 2,
+    "Não dar aulas às 7:30" => 3, 
+    "Não dar aulas à noite" => 4,
+    "Concentrar todas minhas aulas em 2 ou 3 dias da semana" => 5,
+    "Ficar apenas com disciplinas iguais" => 6, "Dar duas aulas em sequência" => 7,
+    "Não dar duas aulas em sequência" => 8}
+  end
+
+  def researcher_options
+    {"Não" => 0, "Sim" => 1}
+  end
+
+  def is_researcher
+    answer = @availability.researcher
+    if answer == true
+      answer = "Sim"
+    else
+      answer = "Não"
+    end
+    answer
   end
 
   def preferences_not_choosed

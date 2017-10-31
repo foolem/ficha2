@@ -7,6 +7,11 @@ class UnavailabilitiesController < ApplicationController
     schedule = Schedule.new(schedule_params)
     schedule.parse_to_time
 
+    #força o padrão...
+    schedule.begin = schedule.begin.change(min: 30)
+    schedule.duration = schedule.duration.change(min: 0)
+
+
     result = Schedule.where(day: schedule.day, begin: schedule.begin, duration: schedule.duration).first
     if result.blank?
       @unavailability.schedule = schedule
@@ -55,7 +60,7 @@ class UnavailabilitiesController < ApplicationController
     end
 
     def unavailability_params
-      params.require(:unavailability).permit(:availability_id, :comments, schedule_attributes: [:begin, :duration, :day])
+      params.require(:unavailability).permit(:availability_id, schedule_attributes: [:begin, :duration, :day])
     end
 
     def schedule_params
