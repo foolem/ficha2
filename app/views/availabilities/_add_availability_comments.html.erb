@@ -1,9 +1,10 @@
 <%= form_tag(add_availability_comments_availabilities_path, remote: true) do %>
 	<input name="id" type="hidden" value="<%= @availability.id %>" />
 
-	<div class="col-md-8">
+	<div class="col-md-10">
 		<div class="form-group">
-			<%= text_area_tag :comments, '', {placeholder: "Escreva uma justificativa", :maxlength => 255, class: 'form-control', style: 'display:block;height:5rem;max-width:475px', id: "comment"} %>
+			<%= text_area_tag :comments, '', {placeholder: "Escreva uma justificativa",
+					:maxlength => 255, rows: 4, class: 'form-control', id: "comment"} %>
 		</div>
 
 	</div>
@@ -11,8 +12,8 @@
 	<div class="col-md-2" style="margin-top: 2px;">
 
 		<%= button_tag(type: "submit", class: "btn btn-success btn-sm") do
-			simple_check_button.html_safe
+			"Salvar"
 		end %>
 
 	</div>
-	<% end %>
+<% end %>

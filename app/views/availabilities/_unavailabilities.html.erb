@@ -1,44 +1,44 @@
-<div class=" panel panel-default" style="padding: 20px; padding-bottom: 180px;">
 
-  <% [0,1,2,3,4,5,6].each do |day|   %>
+<% [0,1,2,3,4,5,6].each do |day|   %>
 
-    <% unavailabilities_day(day) %>
+  <% unavailabilities_day(day) %>
 
-    <% if !@unavailabilities.blank? %>
+  <% if !@unavailabilities.blank? %>
 
-      <div class=" panel panel-default">
+    <div class=" panel panel-default">
 
-        <header class="panel-heading header center">
+      <header class="panel-heading header center">
 
-        <div class="row">
-          <div class="col-md-10 col-xs-12">
-            <%= t(@unavailabilities.first.schedule.day) %>
-          </div>
-          <div class="col-md-2 col-xs-2">
-            Ações
-          </div>
+      <div class="row">
+        <div class="col-md-10 col-xs-12">
+          <%= t(@unavailabilities.first.schedule.day) %>
         </div>
-
-        </header>
-
-        <table class="table table-striped">
-          <tbody>
-            <% @unavailabilities.each do |un|  %>
-
-              <tr>
-                <td class="center col-md-10 col-xs-10"> <%= "#{un.schedule.begin.strftime("%H:%M")} - #{end_generate(un.schedule)}" %> </td>
-                <td class="col-md-2 col-xs-2 center">
-                  <%= link_to remove_button.html_safe, unavailability_path(un),
-                      button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
-                </td>
-              </tr>
-
-            <% end %>
-          </tbody>
-        </table>
-
+        <div class="col-md-2 col-xs-2">
+          Ações
+        </div>
       </div>
 
-    <% end %>
+      </header>
+
+      <table class="table table-striped">
+        <tbody>
+          <% @unavailabilities.each do |un|  %>
+
+            <tr>
+              <td class="center col-md-10 col-xs-10"> <%= "#{un.schedule.begin.strftime("%H:%M")} - #{end_generate(un.schedule)}" %> </td>
+              <td class="col-md-2 col-xs-2 center">
+                <%= link_to remove_button.html_safe, unavailability_path(un),
+                    button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
+              </td>
+            </tr>
+
+          <% end %>
+        </tbody>
+      </table>
+
+
+    </div>
 
   <% end %>
+
+<% end %>

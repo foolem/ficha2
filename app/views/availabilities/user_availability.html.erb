@@ -4,7 +4,7 @@
   <div style="height: 35px;" ></div>
 </div>
 
-<div class="panel panel-default col-md-12" style="margin-bottom: 70px;">
+<div class="panel panel-default col-md-12">
   <header class="panel-heading header">
     <div class="row">
       <div class="col-md-offset-10 col-md-2 col-md-xs-12"> <%= @availability.semester.semester_with_year_show %> </div>
@@ -41,22 +41,25 @@
       </div>
     </div>
 
-    <div id="unavailabilities-partial">
-      <%= render 'unavailabilities' %>
-      <div id="comments-partial" class="justify">
+    <div class=" panel panel-default" style="padding: 20px; 0px 10px 20px; background-color: black:">
+
+      <div id="unavailabilities-partial">
+        <%= render 'unavailabilities' %>
+      </div>
+
+      <div id="comments-partial">
         <%= render 'comments' %>
       </div>
+
     </div>
 
+    <% if !current_user.options.blank? %>
+      <div class=" panel panel-default" style="padding: 20px;">
 
-
-
-    <div class=" panel panel-default" style="padding: 20px;">
-
-      <% if !current_user.options.blank? %>
         <h3 class="center col-md-offset-1 col-md-10">
           <span class="<%=index_icon(option_icon)%>"></span> <%= t("options") %>
         </h3>
+
         <table class="table table-striped">
           <thead>
             <tr class="header">
@@ -84,9 +87,10 @@
           </tbody>
         </table>
 
-      <% end %>
-
-    </div>
+      </div>
+    <% else %>
+      <h2>Escolha</h2>
+    <% end %>
 
     <div id="general-comments-partial" class="justify">
       <%= render 'general_comments' %>
