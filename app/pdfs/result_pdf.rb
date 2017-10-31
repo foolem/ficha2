@@ -1,18 +1,26 @@
 class ResultPdf < Prawn::Document
 
+  include OptionsHelper
+
   def initialize()
     super(top_margin: 20)
-    @ficha = Ficha.first
+
     @user = User.find 58
-
-    @user.options.each do |opt| # Pegar opções e jogar na tabela....
-      puts "Option: #{opt.id}"
-    end
-
     @availability = @user.availabilities.first
+
     @margem = 50
     @number = 0
     record_generate
+  end
+
+  def get_options(user)
+    result = [["Opção", "Disciplina", "Horário"]]
+    user.wishes.sort_by{ |w| w.priority }.each do |wish|
+      opt = wish.option
+      line = [wish.priority, matter_group(opt.matters.first), "So falta isso"]
+      result.push line
+    end
+    result
   end
 
   def default_array
@@ -130,12 +138,7 @@ class ResultPdf < Prawn::Document
     move_down 5
     text_box "Escolhas", size: 12, style: :bold, :at => [0,cursor], align: :center
     move_down 15
-    table [
-      ["Opção", "Disciplina", "Horário"],
-      [1, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"],
-      [2, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"],
-      [3, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"],
-      [4, "Álgebra Linear: CM005", "2a4a 15:30 - 17:30"]],
+    table get_options(@user),
       column_widths: [50, 200, 250], cell_style: {padding: 5, size: 10, align: :center},position: 20
 
     move_down 10
