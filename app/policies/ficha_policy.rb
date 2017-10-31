@@ -9,20 +9,19 @@ class FichaPolicy < ApplicationPolicy
   end
 
   def edit?
-    !user.blank? and (user.admin? or user.appraiser? or user.teacher? or user.secretary?)
+    !user.blank? and (user.has_any_role? ["secretary", "teacher"] and user.actived?)
   end
 
   def update?
-    !user.blank? and (user.admin? or user.appraiser? or user.teacher? or user.secretary?)
+    !user.blank? and (user.has_any_role? ["secretary", "teacher"] and user.actived?)
   end
 
   def copy?
-    !user.blank? and (user.admin? or user.teacher? or user.secretary?)
+    !user.blank? and (user.has_any_role? ["secretary", "teacher"] and user.actived?)
   end
 
   def destroy?
-    # teacher apenas em suas fichas
-    !user.blank? and (user.admin? or user.teacher? or user.secretary?)
+    !user.blank? and (user.has_any_role? ["secretary", "teacher"] and user.actived?)
   end
 
   def show?
@@ -30,7 +29,7 @@ class FichaPolicy < ApplicationPolicy
   end
 
 
-  class Scope < Scope
+  class ScopeFicha < Scope
     def resolve
       scope
     end

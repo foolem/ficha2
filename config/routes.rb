@@ -58,7 +58,7 @@ Rails.application.routes.draw do
 
   resources :unite_groups do
     collection do
-      match 'chose/:unite_group_id/:unite_matter_id' => 'unite_groups#chose', via: [:get, :post], as: :chose
+      match 'choose/:unite_group_id/:unite_matter_id' => 'unite_groups#choose', via: [:get, :post], as: :choose
       match 'add/:id/:group_id' => 'unite_groups#add', via: [:get, :post], as: :add
       match 'remove/:id/:group_id' => 'unite_groups#remove', via: [:delete], as: :remove
       match 'search' => 'unite_groups#search', via: [:get, :post], as: :search

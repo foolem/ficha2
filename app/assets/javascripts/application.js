@@ -101,10 +101,10 @@ $(document).on('change','#select_unite_matter', function() {
 
   var selected = $(this).find(":selected").attr('value');
   var unite =  $(this).data('group');
-  alert('/unite_groups/chose/'+ unite +"/"+ selected);
+  alert('/unite_groups/choose/'+ unite +"/"+ selected);
 
   $.ajax({
-        url: '/unite_groups/chose/'+ unite +"/"+ selected,
+        url: '/unite_groups/choose/'+ unite +"/"+ selected,
         type: 'GET',
         error: function () {
             alert("Erro ao carregar grupos pertencentes a esta união.");
