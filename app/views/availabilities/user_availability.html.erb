@@ -53,13 +53,18 @@
 
     </div>
 
-    <% if !current_user.options.blank? %>
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="center col-md-offset-1 col-md-10">
+            <span class="<%=index_icon(option_icon)%>"></span> <%= t("options") %>
+          </h3>
+        </div>
+      </div>
+
+
       <div class=" panel panel-default" style="padding: 20px;">
 
-        <h3 class="center col-md-offset-1 col-md-10">
-          <span class="<%=index_icon(option_icon)%>"></span> <%= t("options") %>
-        </h3>
-
+        <% if !current_user.options.blank? %>
         <table class="table table-striped">
           <thead>
             <tr class="header">
@@ -86,11 +91,10 @@
 
           </tbody>
         </table>
-
+        <% end %>
+        <h2>Escolha</h2>
       </div>
-    <% else %>
-      <h2>Escolha</h2>
-    <% end %>
+
 
     <div id="general-comments-partial" class="justify">
       <%= render 'general_comments' %>

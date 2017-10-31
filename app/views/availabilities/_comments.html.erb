@@ -1,15 +1,15 @@
 
 <div class="row" style="margin: 10px 0 0 10px">
 
-		<h3 class="center"> Justificativa </h3>
+		<h4 class="center"> Justificativa </h4>
 
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 
 				<div id="commented">
 					<% if @availability.comments.blank? %>
-							<%= link_to "Justificar", open_availability_comments_availabilities_path(@availability),
-							button_configs(:select, "btn btn-success simple_button col-md-offset-2 col-md-4", {style: 'margin-bottom: 10px;color:white', remote: true}) %>
+							<%= link_to "Clique aqui para inserir", open_availability_comments_availabilities_path(@availability),
+							button_configs(:select, "btn-sm btn btn-success simple_button col-md-12", {style: 'margin-bottom: 10px;color:white', remote: true}) %>
 					<% else %>
 
 						<div class="col-md-10">
