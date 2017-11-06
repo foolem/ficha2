@@ -19,6 +19,7 @@ body, html{
 
  @media (min-width: 765px) {
 
+
     .main{
       position: relative!important;
       width: calc(100% - 40px);
@@ -92,22 +93,7 @@ body, html{
     }
   }
 
-  @media (min-width: 1900px) {
 
-    .main{
-      width: calc(100% - 200px);
-      margin-left: 200px;
-    }
-
-    nav.sidebar{
-      margin-left: 0px;
-      float: left;
-    }
-
-    nav.sidebar .forAnimate{
-      opacity: 1;
-    }
-  }
 
 
   nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {

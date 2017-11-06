@@ -4,6 +4,14 @@ module IconsHelper
     '<i class="glyphicon glyphicon-save big-btn-align"></i>'
   end
 
+  def big_user_button
+    '<i class="glyphicon glyphicon-user big-btn-align"></i>'
+  end
+
+  def big_matter_button
+    '<i class="glyphicon glyphicon-tags big-btn-align"></i>'
+  end
+
   def big_trash_button
     '<i class="glyphicon glyphicon-trash big-btn-align"></i>'
   end
@@ -160,6 +168,7 @@ module IconsHelper
   def wish_icon
     'time'
   end
+
 
   def menu_icon(key)
     "pull-right hidden-sm showopacity  menu-font-size glyphicon glyphicon-#{key}"

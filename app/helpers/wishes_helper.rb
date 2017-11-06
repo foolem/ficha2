@@ -13,10 +13,10 @@ module WishesHelper
     wishes = current_user.wishes.select { |wish| wish.option.semester == current_semester }
     priorities = []
     wishes.each do |wish|
-      priorities.push(wish.priority)
+      x = priorities.push(wish.priority)
     end
     priorities.each {|pr| puts "Elemento: #{pr}"}
-    all.each {|pr| puts "Elemento: #{pr}"}
+    all.each {|pr| puts "Elementoall: #{pr}"}
 
     all - priorities
   end

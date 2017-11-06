@@ -24,7 +24,23 @@ body {
   min-height: 100%;
   background: rgb(238, 238, 238);
 }
-
+#toTop {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: rgb(64, 64, 64);
+	color: rgb(238, 238, 238);
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	display: none;
+	text-align: center;
+	line-height: 5rem;
+  font-size: 2rem;
+}
+#toTop:hover {
+	cursor: pointer;
+}
 .partial-content {
   margin-bottom: 40px;
 }
@@ -126,6 +142,12 @@ body {
 }
 .m-20 {
   margin: 20px;
+}
+.m-l-10 {
+  margin-left: 10px;
+}
+.m-r-10 {
+  margin-right: 10px;
 }
 .w-221 {
   width: 211px;
@@ -515,8 +537,17 @@ li > a:hover{
 .m-0-toggle {
   margin: 7px;
 }
+.p-0 {
+  padding: 0 !important;
+}
 .p-10 {
   padding: 10px;
+}
+.p-unavailability {
+  padding: 20px;
+}
+.justify {
+  text-align: justify;
 }
 #alert-partial {
   text-align: center;

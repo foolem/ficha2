@@ -28,16 +28,24 @@
       unite_matter:
         one: Unir disciplinas
 
-        option:
-          one: Opção
-          other: Opções
+      option:
+        one: Opção
+        other: Opções
 
-        manage:
-          one: Administrar
+      manage:
+        one: Administrar
 
-        unavailability:
-          one: Restrição
-          other: Restrições
+      unavailability:
+        one: Restrição
+        other: Restrições
+
+      availability:
+        one: Disponibilidade
+        other: Disponibilidades
+
+      wish:
+        one: Desejo
+        other: Desejos
 
 
     attributes:
@@ -86,9 +94,17 @@
         duration: "Duração"
         comments: "Comentários"
 
+      availability:
+        day: "Dia"
+        duration: "Duração"
+        comments: "Comentários"
+
       unite_matter:
         name: "Nome"
         matter: "Disciplina"
+
+      wish:
+        priority: "Prioridade"  
 
       option:
         option: "Opção"

@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title><%= content_for?(:title) ? yield(:title) : "Ficha2" %></title>
+
+    <%= favicon_link_tag "favicon-16.png" %>
 
     <%= csrf_meta_tags %>
 
@@ -167,7 +168,7 @@
       </div>
     </div>
   </div>
-
+  <div id="toTop"><i class="glyphicon glyphicon-chevron-up"></i></div>
   <footer class="footer">
     <div class="page-link"><a href="<%= fichas_path %>" class="text-decoration-none">Fichas</a> | <a href="<%= groups_path %>" class="text-decoration-none">Turmas</a><br> <a href="<%= matters_path %>" class="text-decoration-none">Disciplinas</a> | <a href="<%= new_contact_path %>" class="text-decoration-none">Contato</a></div>
     <i class="vertical-hr"></i>

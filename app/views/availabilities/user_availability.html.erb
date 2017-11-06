@@ -4,7 +4,7 @@
   <div style="height: 35px;" ></div>
 </div>
 
-<div class="panel panel-default col-md-12">
+<div class="panel panel-default col-md-12 mb-70 p-0">
   <header class="panel-heading header">
     <div class="row">
       <div class="col-md-offset-10 col-md-2 col-md-xs-12"> <%= @availability.semester.semester_with_year_show %> </div>
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class=" panel panel-default" style="padding: 20px; 0px 10px 20px; background-color: black:">
+    <div class=" panel panel-default p-unavailability">
 
       <div id="unavailabilities-partial">
         <%= render 'unavailabilities' %>

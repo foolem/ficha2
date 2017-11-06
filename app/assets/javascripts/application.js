@@ -28,6 +28,20 @@ document.addEventListener("turbolinks:load", function() {
     $(this).css("background", "#455E8E");
   });
 */
+/* Seta para voltar ao topo da página */
+  $(window).scroll(function() {
+    if ($(this).scrollTop()) {
+      $('#toTop').fadeIn();
+    } else {
+      $('#toTop').fadeOut();
+    }
+  });
+  $("#toTop").click(function() {
+    $("html, body").animate({
+      scrollTop: 0
+    }, 1000);
+  });
+
   $(document).on('click', '#option_schedules', function () {
     var path_parent = $(this).data("href");
     if(path_parent.length > 0){
