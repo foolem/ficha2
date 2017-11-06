@@ -168,4 +168,23 @@ module OptionsHelper
     Option.count("semester_id = #{semester.id}") > 0
   end
 
+  def schedules_report(option)
+
+    schedule_list = {}
+
+    option.schedules.distinct.each do |schedule|
+      item = "#{schedule.begin.strftime("%H:%M")} - #{schedule.end.strftime("%H:%M")}"
+      if !schedule_list[item].blank?
+        schedule_list[item] = schedule_list[item] + [schedule.day_to_i + 1]
+      else
+        schedule_list[item] = [schedule.day_to_i + 1]
+      end
+    end
+    result = schedule_list.map do |key, value|
+      days = value.collect { |v| "#{v}a"  }.join(", ")
+      "#{days} #{key}"
+    end
+
+    return result.join(" e ")
+  end
 end

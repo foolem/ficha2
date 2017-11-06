@@ -17,7 +17,7 @@ class ResultPdf < Prawn::Document
     result = [["Opção", "Disciplina", "Horário"]]
     user.wishes.sort_by{ |w| w.priority }.each do |wish|
       opt = wish.option
-      line = [wish.priority, matter_group(opt.matters.first), "So falta isso"]
+      line = [wish.priority, matter_group(opt.matters.first), schedules_report(opt)]
       result.push line
     end
     result
@@ -107,177 +107,81 @@ class ResultPdf < Prawn::Document
 
   def record_generate
 
-    header_generate
+    @users = User.joins(:availabilities).where("availabilities.semester_id = #{Semester.current_semester.id}")
 
-    move_down 5
-    text_box "Indisponibilidades", size: 12, style: :bold, :at => [0,cursor], align: :center
-    move_down 15
-    table get_rows, cell_style: {height: 19, size: 10, align: :center}, column_widths: [100,80,80, 80,80,80,80],position: 20
-    move_down 5
+    @users.each do |user|
+      @user = user
+      @availability = user.availabilities.first
 
-    simple_title_generate "Justifcativa: ", 20, 5
-    bounding_box([95, cursor], :width => 425) do
-      text @availability.comments
-    end
-
-    move_down 5
-    transparent (0.5) { stroke_horizontal_rule }
-
-    simple_title_generate "Preferências: ", 20, 5
-    bounding_box([95, cursor], :width => 500) do
-      font_size(12) { text "1º: #{get_preference(@availability.preference_first)}" }
-      font_size(12) { text "2º: #{get_preference(@availability.preference_second)}" }
-      font_size(12) { text "3º: #{get_preference(@availability.preference_third)}" }
-    end
-
-    move_down 5
-    transparent (0.5) { stroke_horizontal_rule }
-
-    #outras_escolhas
-
-    move_down 5
-    text_box "Escolhas", size: 12, style: :bold, :at => [0,cursor], align: :center
-    move_down 15
-    table get_options(@user),
-      column_widths: [50, 200, 250], cell_style: {padding: 5, size: 10, align: :center},position: 20
-
-    move_down 10
-    transparent (0.5) { stroke_horizontal_rule }
-
-    simple_title_generate "Comentários: ", 20, 5
-    bounding_box([95, cursor], :width => 425) do
-      text @availability.general_comments, size: 12
-    end
-
-    move_down 5
-  end
-
-  def outras_escolhas
-
-    move_down 5
-    text_box "Escolhas", size: 12, style: :bold, :at => [0,cursor], align: :center
-    move_down 15
-
-    bounding_box([95, cursor], :width => 425) do
-      font_size(12) { text "1º: CM107 A (Otimização II, 2ª4º 15:30)" }
-    end
-    move_down 2
-    bounding_box([95, cursor], :width => 425) do
-      font_size(12) { text "2º: CM107 A (Otimização II, 2ª4º 15:30)" }
-    end
-    move_down 2
-    bounding_box([95, cursor], :width => 425) do
-      font_size(12) { text "3º: CM107 A (Otimização II, 2ª4º 15:30)" }
-    end
-    move_down 2
-    bounding_box([95, cursor], :width => 425) do
-      font_size(12) { text "4º: CM107 A (Otimização II, 2ª4º 15:30)" }
-    end
-    move_down 2
-    bounding_box([95, cursor], :width => 425) do
-      font_size(12) { text "5º: CM107 A (Otimização II, 2ª4º 15:30)" }
-    end
-
-  end
-
-  def title_generate(title)
-
-    if(cursor < 85)
-      start_new_page
       header_generate
-      move_down(5);
-    else
+
+      move_down 5
+      text_box "Indisponibilidades", size: 12, style: :bold, :at => [0,cursor], align: :center
+      move_down 15
+      table get_rows, cell_style: {height: 19, size: 10, align: :center}, column_widths: [100,80,80, 80,80,80,80],position: 20
+      move_down 5
+
+      simple_title_generate "Justifcativa: ", 20, 5
+      bounding_box([95, cursor], :width => 425) do
+        text get_value(@availability.comments)
+      end
+
+      move_down 5
       transparent (0.5) { stroke_horizontal_rule }
+
+      simple_title_generate "Preferências: ", 20, 5
+      bounding_box([95, cursor], :width => 500) do
+        font_size(12) { text "1º: #{get_preference(@availability.preference_first)}" }
+        font_size(12) { text "2º: #{get_preference(@availability.preference_second)}" }
+        font_size(12) { text "3º: #{get_preference(@availability.preference_third)}" }
+      end
+
+      move_down 5
+      transparent (0.5) { stroke_horizontal_rule }
+
+      #outras_escolhas
+
+      move_down 5
+      text_box "Escolhas", size: 12, style: :bold, :at => [0,cursor], align: :center
+      move_down 15
+      table get_options(@user),
+        column_widths: [50, 200, 250], cell_style: {padding: 5, size: 10, align: :center},position: 20
+
+      move_down 10
+      transparent (0.5) { stroke_horizontal_rule }
+
+      simple_title_generate "Comentários: ", 20, 5
+      bounding_box([95, cursor], :width => 425) do
+        text get_value(@availability.general_comments), size: 12
+      end
+
+      start_new_page
     end
 
-    move_down 15
-    text_box title, size: 12, style: :bold, :at => [0,cursor], align: :center
-    move_down 20
+    outstanding
+  end
+
+  def outstanding
+      move_down 5
+      text  "PENDENCIAS", size: 12, style: :bold, align: :center
+      move_down 5
+
+      transparent (0.5) { stroke_horizontal_rule }
+      transparent (0.5) {stroke_vertical_line cursor,17,:at=> 0}
+      transparent (0.5) {stroke_vertical_line cursor,17,:at=> 540}
+
+
+      @number+=1
+      text_box  @number.to_s, size: 11, :at => [530,11]
+
+      move_down 15
+      table ([["Nome", "Email"]] + User.where("id not in (?) and actived = true", @users.collect {|usr| usr.id}).map {|usr| [usr.name, usr.email] }),
+      cell_style: {height: 18, size: 9}, column_widths: [250,250],position: 20
   end
 
   def simple_title_generate(title, x, move)
     move_down move
     text_box title, size: 11, style: :bold, :at => [x,cursor]
-  end
-
-  #apagar
-  def subtitle_generate()
-    text_box "Legenda:", size: 11, style: :bold, :at => [50,40]
-    legenda = "Conforme Resolução 15/10-CEPE: PD- Padrão LB- Laboratório CP- Campo
-    ES- Estágio OR-Orientada"
-    text_box legenda, size: 11, :at => [110,40], :height => 50
-  end
-
-  def show_value(value, x)
-    if(!value.blank?)
-      font("app/fonts/DejaVuSans.ttf") do
-        text_box value, size: 10, :at => [x,cursor], :width => 520, :align => :justify
-      end
-    end
-  end
-
-  def new_page(text, x)
-    if !text.blank?
-      count_lines(text)
-      if(!@content[1].blank?)
-        show_value(@content[0], x)
-        start_new_page
-        header_generate
-        move_down(5);
-        show_value(@content[1], x)
-        true
-      else
-        show_value(@content[0], x)
-        false
-      end
-    else
-      false
-    end
-  end
-
-  def count_total_lines(text)
-    title = 4
-    (text.lines.count + title) * 14
-  end
-
-  def  count_lines(text)
-    cont = 0
-    result = 0
-    text2 = ""
-    text3 = ""
-
-    text2_cont = 0
-    @content = []
-
-    for i in 0..text.length - 1
-      l = text[i]
-      cont += 1
-
-      if((cont >= 90 and l == ' ') or l == "\n" or cont >= 95)
-        result += 1
-        cont = 0
-
-        if( (cursor - ((result * 13) + 5)) < 30 ) and text2.blank?
-          text2 = text[0, i-1]
-          text3 = text[i, text.length-1]
-          result = 1
-        end
-
-      end
-    end
-    if(cont > 0)
-      result += 1
-    end
-
-    if(text2.blank? and text3.blank?)
-      text2 = text
-    end
-
-    @content << text2
-    @content << text3
-    @counter = result * 13 + 5
-    @counter
-
   end
 
   def getSemester(ficha)
@@ -299,8 +203,14 @@ class ResultPdf < Prawn::Document
     "Não dar duas aulas em sequência"][input]
    end
 
+   def get_value(text)
+     if text.blank?
+       return "Sem comentários registrados"
+     end
+     text
+   end
+
   #http://prawnpdf.org/docs/0.11.1/index.html
   #http://prawnpdf.org/manual.pdf
-
   #https://github.com/prawnpdf/prawn-table
 end

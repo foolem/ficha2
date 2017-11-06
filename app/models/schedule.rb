@@ -9,6 +9,10 @@ class Schedule < ApplicationRecord
     [:sunday, :monday, :thursday, :wednesday, :tuesday, :friday, :saturday]
   end
 
+  def day_to_i
+    {"sunday" => 0, "monday" => 1, "thursday" => 2, "wednesday" => 3, "tuesday" => 4, "friday" => 5, "saturday" => 6}[day]
+  end
+
   def parse_to_time
     self.begin = self.begin.to_time
     self.duration = self.duration.to_time
@@ -19,6 +23,10 @@ class Schedule < ApplicationRecord
     .where("availabilities.user_id = #{user.id}")
     .where("availabilities.semester_id = #{Semester.current_semester.id}")
     .where("schedules.day = #{day} ")
-
   end
+
+  def end
+    return self.begin + self.duration.hour.hours + self.duration.min.minutes
+  end
+
 end
