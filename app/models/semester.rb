@@ -25,7 +25,7 @@ class Semester < ApplicationRecord
       current_semester = 2
     end
 
-    if current_month > 10
+    if current_month >= 10
       current_year += 1
       current_semester = 1
     end
