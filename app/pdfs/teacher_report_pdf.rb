@@ -5,9 +5,6 @@ class TeacherReportPdf < Prawn::Document
   def initialize()
     super(top_margin: 20)
 
-    @user = User.find 58
-    @availability = @user.availabilities.first
-
     @margem = 50
     @number = 0
     record_generate
@@ -111,7 +108,7 @@ class TeacherReportPdf < Prawn::Document
 
     @users.each do |user|
       @user = user
-      @availability = user.availabilities.first
+      @availability = Availability.find_by_user(@user)
 
       header_generate
 
@@ -163,7 +160,7 @@ class TeacherReportPdf < Prawn::Document
 
   def outstanding
       move_down 5
-      text  "PENDENCIAS", size: 12, style: :bold, align: :center
+      text  "PENDÊNCIAS", size: 12, style: :bold, align: :center
       move_down 5
 
       transparent (0.5) { stroke_horizontal_rule }
