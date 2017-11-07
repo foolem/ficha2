@@ -53,13 +53,13 @@
 
   <% else %>
     <div class="manage-panel-reset">
-      <%= link_to "#{manage_options_result_list_path}.pdf",
+      <%= link_to "#{manage_options_teacher_report_path}.pdf",
           :"data-load" => "Encerrando período de seleção  ...",
           class: 'btn big-btn blue-btn white m-r-10' do %>
             <%= big_user_button.html_safe %>
             <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
           <% end %>
-      <%= link_to "#{manage_options_result_list_path}.pdf",
+      <%= link_to "#{manage_options_matter_report_path}.pdf",
           :"data-load" => "Encerrando período de seleção  ...",
           class: 'btn big-btn blue-btn white m-l-10' do %>
             <%= big_matter_button.html_safe %>

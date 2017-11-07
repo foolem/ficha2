@@ -1,4 +1,4 @@
-class ResultPdf < Prawn::Document
+class TeacherReportPdf < Prawn::Document
 
   include OptionsHelper
 
