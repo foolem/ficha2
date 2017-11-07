@@ -57,7 +57,7 @@ class ManageOptionsController < ApplicationController
       format.pdf do
           pdf = TeacherReportPdf.new()
           send_data pdf.render,
-            filename: "Relatório por professor",
+            filename: "Relatório por docente.pdf",
             type: "application/pdf",
             disposition: "inline"
         end
@@ -69,7 +69,7 @@ class ManageOptionsController < ApplicationController
       format.pdf do
           pdf = MatterReportPdf.new()
           send_data pdf.render,
-            filename: "Relatório por disciplina",
+            filename: "Relatório por disciplina.pdf",
             type: "application/pdf",
             disposition: "inline"
         end
