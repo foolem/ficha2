@@ -1,5 +1,5 @@
-every 1.day, :at => '13:30 pm' do
+every 7.day, :at => '9:0 am' do
 
-        command "backup perform -t backupDB"
+      command "backup perform --trigger backup_database --config-file ~/ficha2/backup/config.rb"
 
-        end
+      end

@@ -1,2 +1,7 @@
 $('#spinner').fadeOut(600);
-$('#perform_render').hide().html("<%= escape_javascript (render("perform_backup")) %>").fadeIn(3000);
+$('#perform_backup').fadeOut(600);
+$('#perform_render').hide().html("<%= escape_javascript (render("perform_backup")) %>").fadeIn(400);
+  setTimeout(function(){
+    $('#perform_render').html("<%= escape_javascript (render('perform_backup')) %>").fadeOut(300);
+    location.reload();
+  }, 3000);

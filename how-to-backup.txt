@@ -1,0 +1,6 @@
+###Criar config.rb
+backup generate:config --config-file ~/ficha2/backup/config.rb
+###Criar model do backup
+backup generate:model --trigger backup_database --storages='local' --compressor='gzip' --notifiers='mail' --databases='mysql' --config-file ~/ficha2/backup/config.rb
+###Para realizar o backup digitar o seguinte comando no terminal
+backup perform --trigger backup_database --config-file ~/ficha2/backup/config.rb
