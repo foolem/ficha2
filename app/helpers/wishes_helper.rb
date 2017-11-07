@@ -15,7 +15,6 @@ module WishesHelper
     wishes.each do |wish|
       x = priorities.push(wish.priority)
     end
-
     [1,2,3,4,5] - priorities
   end
 

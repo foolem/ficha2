@@ -52,20 +52,27 @@ class ManageOptionsController < ApplicationController
     end
   end
 
-  def result_list
+  def teacher_report
     respond_to do |format|
-      format.docx
-      format.html
-      format.js
-
       format.pdf do
-          pdf = ResultPdf.new()
+          pdf = TeacherReportPdf.new()
           send_data pdf.render,
-            filename: "Relatório de conselho",
+            filename: "Relatório por professor",
             type: "application/pdf",
             disposition: "inline"
         end
+    end
+  end
 
+  def matter_report
+    respond_to do |format|
+      format.pdf do
+          pdf = MatterReportPdf.new()
+          send_data pdf.render,
+            filename: "Relatório por disciplina",
+            type: "application/pdf",
+            disposition: "inline"
+        end
     end
   end
 
