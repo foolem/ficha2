@@ -20,6 +20,14 @@ class Group < ApplicationRecord
     "#{name} -  #{matter.code} - #{matter.name}"
   end
 
+  def name_with_course
+    "#{name} - #{course.name}"
+  end
+
+  def code_name_and_course
+    "#{matter.code} #{name_with_course}"
+  end
+
   def has_unite?
     !unite_group.blank?
   end

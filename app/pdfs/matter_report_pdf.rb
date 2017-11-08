@@ -33,10 +33,10 @@ class MatterReportPdf < Prawn::Document
 
   def get_rows
     rows = []
-    rows.push ["Opções", "Horários", "Turmas", "Docentes"]
+    rows.push ["Opções", "Horários", "Docentes"]
 
     @options.each_with_index do |option, index|
-      rows.push [option.id, schedules_report(option), "Turmas...", "Wishes"]
+      rows.push [get_groups(option), schedules_report(option), get_teachers(option)]
       #option.groups.distinct.each do |group|
     #    puts "#{group.name} - #{group.matter.code} - #{group.course.name}"
   #    end
@@ -49,15 +49,34 @@ class MatterReportPdf < Prawn::Document
     rows
   end
 
-  def record_generate
+  def get_groups(option)
+    groups = ""
+    option.groups.each do |group|
+      groups << group.code_name_and_course
+      groups << "\n"
+    end
+    groups
+  end
 
+  def get_teachers(option)
+    wishes = ""
+    option.wishes.sort_by{ |w| w.priority }.each do |wish|
+      wishes << "(#{wish.priority}) #{wish.user.name}\n"
+    end
+    wishes
+  end
+
+  def record_generate
     @unites = []
     matters_order.each do |matter|
       matter_options(matter)
       if !@options.blank?
         header_generate(matter)
 
-        table get_rows, cell_style: {size: 11, align: :center}, column_widths: [200,190,190,180],position: 5
+        table_data = get_rows
+        table(table_data, header: true, cell_style: {size: 11}, column_widths: [240,230,290], position: 5) do
+          row(0).style font_style: :bold, align: :center # header style
+        end
 
         move_down 15
       end
