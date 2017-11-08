@@ -6,4 +6,5 @@ class ContactMailer < ActionMailer::Base
     @time = Time.now.strftime("%d/%m/%Y %H:%M")
     mail(:to => 'ficha2.mat@gmail.com', :subject => 'Mensagem de Contato')
   end
+
 end

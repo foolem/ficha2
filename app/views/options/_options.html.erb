@@ -4,17 +4,17 @@
   <% if !@options.blank? %>
 
     <h4 class="h4-options"><%= matter_group(matter) %></h4>
-    
+
     <div id="scroll" class="panel panel-default panel-options">
       <% @options.each do |option| %>
 
         <div class="option-body">
 
-          <div class="option-buttom">
+          <div class="option-button">
             <% if user_has_wishes? and !option_wished(option) %>
             <%= link_to "Escolher", open_wish_options_path(option),
                         :title => "Escolher", :class => "btn btn-default m-choose color-default",
-                        :remote => true, style: "width: 96%; color: white;" %>
+                        :remote => true, style: "width: 96%;" %>
 
             <% elsif option_wished(option) %>
             <%= link_to "Remover escolha", remove_wishes_path(option),

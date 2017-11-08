@@ -94,6 +94,10 @@ namespace :utils do
         end
 
         user.save
+        #if user.save
+          #  UserMailer.send_password(user).deliver
+
+        #end
 
       end
 

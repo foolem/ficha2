@@ -61,7 +61,7 @@ class TeacherReportPdf < Prawn::Document
   end
 
   def get_rows
-    user = User.find(58)
+    user = @user
     all_rows = []
     all_rows.push(header)
     t = Time.parse("2000/01/01 7:30")
