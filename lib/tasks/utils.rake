@@ -109,7 +109,7 @@ namespace :utils do
         name = linha[1]
 
         Matter.create(code: code, name: name, menu: "Exemplo", modality: "Presencial",
-        nature: "Obrigatória", kind: "Presencial", prerequisite: "Nenhum", corequisite: "Nenhum", bibliography: "q")
+        nature: "Obrigatória", kind: "Presencial", prerequisite: "Nenhum", corequisite: "Nenhum")
 
       end
 
@@ -118,7 +118,7 @@ namespace :utils do
         Course.create(name: "Curso: #{i+1}")
       end
 
-      Semester.create(semester: 2, year: 2017)
+      Semester.create(semester: 1, year: 2018)
 
       puts "\n------------ Fichas ------------"
       path = "lib/assets/inserts.xlsx"

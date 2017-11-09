@@ -1,4 +1,6 @@
 class ManageOptionsController < ApplicationController
+  before_action :authorize_user
+  #before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
   before_action :set_semester
   before_action :bar_define
 
@@ -174,6 +176,10 @@ class ManageOptionsController < ApplicationController
 
     def set_semester
       @semester = Semester.current_semester
+    end
+
+    def authorize_user
+      authorize ManageOptions
     end
 
 end

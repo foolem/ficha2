@@ -21,7 +21,7 @@ module SemestersHelper
   end
 
   def options_not_generated?
-    !Semester.current_semester.options_generated?
+    Semester.current_semester.options_generated?
   end
 
   def options_selection?

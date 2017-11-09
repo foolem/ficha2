@@ -16,19 +16,9 @@
 //= require turbolinks
 //= require_tree
 
-//script para selecionar status da ficha -------------
-
 document.addEventListener("turbolinks:load", function() {
-/*
-  $(document).on('mouseenter', 'div #option', function () {
-    $(this).css("background", "#7a9ec3");
-  });
 
-  $(document).on('mouseleave', 'div #option', function () {
-    $(this).css("background", "#455E8E");
-  });
-*/
-/* Seta para voltar ao topo da página */
+  //Seta para voltar ao topo da página =>
   $(window).scroll(function() {
     if ($(this).scrollTop()) {
       $('#toTop').fadeIn();
@@ -36,19 +26,14 @@ document.addEventListener("turbolinks:load", function() {
       $('#toTop').fadeOut();
     }
   });
+
   $("#toTop").click(function() {
     $("html, body").animate({
       scrollTop: 0
     }, 1000);
   });
 
-  $(document).on('click', '#option_schedules', function () {
-    var path_parent = $(this).data("href");
-    if(path_parent.length > 0){
-        window.location = path_parent;
-    }
-  });
-
+  // Seleção de status da ficha =>
   $( document ).ready(function() {
     $("#ficha_status").hide();
   });
@@ -57,60 +42,61 @@ document.addEventListener("turbolinks:load", function() {
   var ready = $("#buttonReady");
   var reproved = $("#buttonReproved");
 
-    sent.click(function() {
-      $("#ficha_status option[value=sent]").prop("selected", "selected");
-      sent.addClass("active");
-      if (ready.hasClass("active")) {
-        ready.removeClass("active");
-      }
-      else if (reproved.hasClass("active")) {
-        reproved.removeClass("active");
-      }
-    });
-    ready.click(function() {
-      $("#ficha_status option[value=ready]").prop("selected", "selected");
-      ready.addClass("active");
-      if (sent.hasClass("active")) {
-        sent.removeClass("active");
-      }
-      else if (reproved.hasClass("active")) {
-        reproved.removeClass("active");
-      }
-    });
-    reproved.click(function() {
-      $("#ficha_status option[value=reproved]").prop("selected", "selected");
-      reproved.addClass("active");
-      if (sent.hasClass("active")) {
-        sent.removeClass("active");
-      }
-      else if (ready.hasClass("active")) {
-        ready.removeClass("active");
-      }
-    });
-});
-//----------------------------
+  sent.click(function() {
+    $("#ficha_status option[value=sent]").prop("selected", "selected");
+    sent.addClass("active");
+    if (ready.hasClass("active")) {
+      ready.removeClass("active");
+    }
+    else if (reproved.hasClass("active")) {
+      reproved.removeClass("active");
+    }
+  });
 
-//script para mostrar o footer só quando chegar ao fim da página -------------
-$( document ).ready(function() {
-  function verticalScrollPresent() {
-    return (document.documentElement.scrollHeight !== document.documentElement.clientHeight);
-  }
-  if (verticalScrollPresent) {
+  ready.click(function() {
+    $("#ficha_status option[value=ready]").prop("selected", "selected");
+    ready.addClass("active");
+    if (sent.hasClass("active")) {
+      sent.removeClass("active");
+    }
+    else if (reproved.hasClass("active")) {
+      reproved.removeClass("active");
+    }
+  });
+
+  reproved.click(function() {
+    $("#ficha_status option[value=reproved]").prop("selected", "selected");
+    reproved.addClass("active");
+    if (sent.hasClass("active")) {
+      sent.removeClass("active");
+    }
+    else if (ready.hasClass("active")) {
+      ready.removeClass("active");
+    }
+  });
+});
+
+
+// Dinamic footer
+document.addEventListener("turbolinks:load", function() {
+  if($(window).scrollTop() + $(window).height() < $(document).height()) {
     $('footer').hide();
   }
 });
 
-$(window).scroll(function() {
-  if($(window).scrollTop() + $(window).height() >= $(document).height()) {
-    $('footer').slideDown(200);
-  }
-  else {
-    $('footer').slideUp(200);
-  }
+$(document).ready(function() {
+  $(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+      $('footer').slideDown(150);
+    }
+    else {
+      $('footer').slideUp(150);
+    }
+  });
 });
 
-//-------------------------------------------------
 
+//-------------------------------------------------
 $(document).on('change','#select_unite_matter', function() {
 
   var selected = $(this).find(":selected").attr('value');
@@ -148,14 +134,14 @@ $(document).on('change','#unite_group_groups', function() {
 
 document.addEventListener("turbolinks:load", function() {
 
-
-
+    // Backup spinner
     $(document).on('click', '#perform_backup',function(){
       $("#form_backup").fadeOut(500);
       $("#perform_render").html("");
       $("#spinner").fadeIn(2000);
     });
 
+    //Pagination ajax link
     $(document).on('click', '.pagination a',function(){
       $.getScript(this.href);
       return false;
@@ -166,18 +152,21 @@ document.addEventListener("turbolinks:load", function() {
       return false;
     });
 
+    //Bootstrap alert message
     $(".alert")
       .fadeTo(2000, 500)
       .slideUp(500);
 
-      $(document).on('mouseenter', 'tr:not(:first)', function () {
-        $(this).css("background", "#7a9ec3");
-      });
+    //table highlight
+    $(document).on('mouseenter', 'tr:not(:first)', function () {
+      $(this).css("background", "#7a9ec3");
+    });
 
-      $(document).on('mouseleave', 'tr:not(:first)', function () {
-        $(this).css("background", "");
-      });
+    $(document).on('mouseleave', 'tr:not(:first)', function () {
+      $(this).css("background", "");
+    });
 
+    // table row-link
     $(document).on('click', 'td', function () {
       var id = $(this).attr("id");
       var path_parent = $(this).parent("tr").data("href");
@@ -186,10 +175,12 @@ document.addEventListener("turbolinks:load", function() {
       }
     });
 
+    // Add error class
     $('.error').parent('div').find('.col-lg-8').addClass('has-error has-feedback');
     $('.error').parent('div').find('.col-lg-9').addClass('has-error has-feedback');
     $('.error').parent('div').find('.col-lg-2').addClass('has-error has-feedback');
 
+    //Change ficha status
     $(document).on('change', '#select_status select', function() {
       if($(this).val() != 'reproved'){
         $("#appraisal_show").slideUp(1000, function(){
@@ -210,45 +201,13 @@ document.addEventListener("turbolinks:load", function() {
       } else {
         $('#ficha_status_icon i').addClass('glyphicon glyphicon-ok').css("color","green");
       }
-
     });
-
-    $(document).on('click', '.nav-tabs li', function() {
-      $("#matters_nav").removeClass('active');
-      $("#teachers_nav").removeClass('active');
-      $("#fichas").removeClass('active');
-      $(this).addClass('active');
-
-      var id = $(this).attr('id');
-      if(id == 'matters_nav'){
-        $("#matters_import").show();
-        $("#teachers_import").hide();
-        $("#imports_partial").hide();
-      } else if (id == 'teachers_nav') {
-        $("#matters_import").hide();
-        $("#teachers_import").show();
-        $("#imports_partial").hide();
-      } else {
-        $("#matters_import").hide();
-        $("#teachers_import").hide();
-        $("#imports_partial").show();
-      }
-
-    });
-
-    $('#loading-indicator').hide();
-
   });
 
-
-
-  $( document ).ready(function() {
+  $(document).ready(function() {
     $(".spinner").hide();
 
-    $(document).on('click', '#import_btn', function() {
-      $('#loading-indicator').slideDown(1000);
-    });
-
+    // Chekbox user role
     $(document).on('click', '#yours_checkbox', function(){
 
       var role = $(this).data('role');
@@ -283,23 +242,10 @@ document.addEventListener("turbolinks:load", function() {
     });
   });
 
-
   document.addEventListener("turbolinks:load", function() {
     var role = $('#yours_checkbox').data('role');
     if (role == "teacher") {
       $('#q_status_cont').hide();
       $('#yours_checkbox').prop('checked', false);
-    }
-
-  });
-
-  $(document).on("click", ".header", function() {
-
-    var details =  $(this).parent('div').find("#details");
-
-    if(!details.hasClass("show")){
-      details.addClass('show').slideDown(2000);
-    } else {
-      details.removeClass('show').slideUp(2000);
     }
   });

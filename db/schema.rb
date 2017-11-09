@@ -27,14 +27,6 @@ ActiveRecord::Schema.define(version: 20171006124656) do
     t.index ["user_id"], name: "index_availabilities_on_user_id", using: :btree
   end
 
-  create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "email"
-    t.text     "message",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -83,11 +75,9 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   end
 
   create_table "matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.boolean  "actived",                              default: true,     null: false
     t.integer  "unite_matter_id"
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.boolean  "actived",                              default: true,     null: false
+    t.string   "name"
     t.string   "code"
     t.string   "kind"
     t.string   "prerequisite",                         default: "Nenhum"
@@ -106,6 +96,8 @@ ActiveRecord::Schema.define(version: 20171006124656) do
     t.integer  "cp",                                   default: 0
     t.integer  "es",                                   default: 0
     t.integer  "or",                                   default: 0
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.index ["unite_matter_id"], name: "index_matters_on_unite_matter_id", using: :btree
   end
 
@@ -219,12 +211,9 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   create_table "wishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "option_id"
     t.integer  "user_id"
-    t.integer  "group_id"
     t.integer  "priority"
-    t.text     "comments",   limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["group_id"], name: "index_wishes_on_group_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["option_id"], name: "index_wishes_on_option_id", using: :btree
     t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
   end
@@ -250,7 +239,6 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   add_foreign_key "unavailabilities", "schedules"
   add_foreign_key "unite_groups", "matters"
   add_foreign_key "unite_groups", "semesters"
-  add_foreign_key "wishes", "groups"
   add_foreign_key "wishes", "options"
   add_foreign_key "wishes", "users"
 end

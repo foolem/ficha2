@@ -1,7 +1,7 @@
 
 <div id="manage_actions" class="panel panel-default panel-manage p-20">
 
-  <% if options_not_generated? %>
+  <% if !options_not_generated? %>
 
     <div class="manage-panel-reset">
       <%= link_to manage_options_generate_path,

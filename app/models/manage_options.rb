@@ -1,0 +1,2 @@
+class ManageOptions < ApplicationRecord
+end

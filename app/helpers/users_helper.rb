@@ -44,6 +44,10 @@ module UsersHelper
     user_not_teacher or !user_signed_in?
   end
 
+  def user_admin_or_adviser?
+    !user.blank? and (user.has_any_role? ["admin", "adviser"] and user.actived?)
+  end
+
   def options_for_roles
     result  = {'Todos os tipos' => ''}
     roles = Role.all
