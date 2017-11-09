@@ -42,6 +42,7 @@ body {
 	text-align: center;
 	line-height: 5rem;
   font-size: 2rem;
+  z-index: 6;
 }
 #toTop:hover {
 	cursor: pointer;
@@ -468,10 +469,11 @@ li > a:hover{
 }
 
 .color-default {
-    background-color: #455E8E;
+  background-color: #455E8E;
+  color: white;
 }
 
-.option-buttom {
+.option-button {
   text-align: center;
   background-color: #f2f2f2;
   margin: 0 auto;
