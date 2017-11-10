@@ -63,11 +63,10 @@ namespace :utils do
       path = "lib/assets/inserts.xlsx"
       xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
-      puts "------------ Users ------------"
-
+      puts "\n============= USERS ============="
       roles = ["teacher", "appraiser", "admin", "secretary", "counselor"]
 
-      (xlsx.sheet(1).last_row - 1).times do |i| #mudar pra sheet 3 para teste
+      (xlsx.sheet(1).last_row - 1).times do |i| 
         linha = xlsx.sheet(1).row(i+2)
 
         name = linha[0]
@@ -81,8 +80,7 @@ namespace :utils do
         password = pass_generate
 
         puts "|  #{name}  -  #{email} - #{role} - #{password} "
-
-        user = User.create(name: name, email: email, password: password,  role: role)
+        user = User.create(name: name, email: email,  role: role, password: password)
 
         if (role != 3 and role != 0)
           user.add_role "teacher"
@@ -117,11 +115,6 @@ namespace :utils do
 
       end
 
-      puts "\nGerando cursos...\n"
-      20.times do |i|
-        Course.create(name: "Curso: #{i+1}")
-      end
-
       Semester.create(semester: 1, year: 2018)
 
       puts "\n------------ Fichas ------------"
@@ -140,7 +133,7 @@ namespace :utils do
         user = User.where(name:  name)[0].id
         matter = Matter.where(code: code)[0].id
 
-        group = Group.create(matter_id: matter, name: team, semester_id: 1, course_id: Random.rand(19) + 1)
+        group = Group.create(matter_id: matter, name: team, semester_id: 1, course_id: Random.rand(39) + 1)
         #Ficha.create(group_id: group.id, user_id: user)
 
         schedule_associate(linha[3], linha[4], group)
@@ -156,4 +149,70 @@ namespace :utils do
 
   end
 
+  desc "Inset of teachers and matters"
+  task init_2018: :environment do
+
+    def find_matter(code, name)
+      matters = Matter.where(code: code)
+      if matters.length == 0
+        matter = Matter.new(code: code, name: name, menu: "Ementa...", modality: "Presencial",
+        nature: "Obrigatória", kind: "Presencial", prerequisite: "Nenhum", corequisite: "Nenhum")
+
+        matter.save
+      else
+        matter = matters.first
+      end
+      matter
+    end
+
+    def name_pattern(name)
+      words = name.split.map do |peace|
+        if @romans.include? peace.upcase
+          peace.upcase
+        elsif @conectives.include? peace.downcase
+          peace.downcase
+        else
+          peace.capitalize
+        end
+      end
+      words.join(" ")
+    end
+
+    @romans = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"]
+    @conectives = ["e", "de", "para", "a", "à", "às", "em"]
+
+    path = "lib/assets/cursos.xlsx"
+    xlsx = Roo::Excelx.new(path, extension: :xlsx)
+
+    puts "============= COURSES ============="
+    sheet = xlsx.sheet(0)
+    puts "ID\tCODE\tNAME\t"
+    (sheet.last_row).times do |i|
+      linha = sheet.row(i+1)
+
+      code = linha[0]
+      name = name_pattern(linha[1].chomp)
+      course = Course.new(code: code, name: name)
+      course.save
+
+      puts "#{course.id}\t#{code}\t#{name}"
+    end
+
+    path = "lib/assets/2018.xlsx"
+    xlsx = Roo::Excelx.new(path, extension: :xlsx)
+
+    puts "\n============= MATTERS ============="
+    sheet = xlsx.sheet(0)
+
+    puts "ID\tCODE\tMATTER\t"
+    (sheet.last_row() -1).times do |i|
+      linha = sheet.row(i+2)
+
+      matter_code = linha[0].chomp.upcase
+      matter_name = name_pattern(linha[1].chomp)
+
+      matter = find_matter(matter_code, matter_name)
+      puts "#{matter.id}\t#{matter_code}\t#{matter_name}"
+    end
+  end
 end

@@ -399,6 +399,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rolify (5.1.0)
+    roman-numerals (0.3.0)
     roo (2.7.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
@@ -511,6 +512,7 @@ DEPENDENCIES
   ransack
   remotipart (~> 1.2)
   rolify
+  roman-numerals
   roo (~> 2.7.0)
   roo-xls
   sass-rails (~> 5.0)

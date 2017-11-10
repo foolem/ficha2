@@ -20,7 +20,6 @@ module ApplicationHelper
   def bar_active
     classes = {}
     classes[session[:page]] = session[:page].blank? ? "home" : "active"
-    classes.each{ |chr| puts chr  }
     classes
   end
 

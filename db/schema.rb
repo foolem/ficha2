@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   end
 
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "code"
     t.string   "name"
+    t.string   "short_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 20171006124656) do
     t.integer  "option_id"
     t.integer  "unite_group_id"
     t.integer  "course_id"
+    t.integer  "vacancies"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["course_id"], name: "index_groups_on_course_id", using: :btree
@@ -183,6 +186,7 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "phone"
     t.string   "email",                                 null: false
     t.string   "encrypted_password",                    null: false
     t.string   "name",                                  null: false
