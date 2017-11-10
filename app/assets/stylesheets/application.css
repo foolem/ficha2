@@ -72,6 +72,9 @@ body {
   margin-top: 15px;
   margin-bottom: 0px;
 }
+.mt-5 {
+  margin-top: 5px !important;
+}
 .mt-30 {
   margin-top:30px;
 }
@@ -113,7 +116,10 @@ body {
   float: right;
   margin-right: 10px;
 }
-
+.max-form {
+  min-width: 501.85px !important;
+  max-width: 501.85px !important;
+}
 .fixed-bottom {
   margin-bottom: 0;
   margin-top: 0.1em;
@@ -134,7 +140,7 @@ body {
 }
 .m-3-inline-block {
   display:inline-block;
-  text-align: left;
+  text-align: center;
   margin: 3px;
 }
 .w-130 {
@@ -180,6 +186,13 @@ body {
   width:120px;
   float:left;
   margin-right:5px;
+}
+.role-checkbox {
+  width: 20px !important;
+  float: right;
+}
+.priority-selector {
+  width: 50px !important;
 }
 .option-schedules {
   width: calc(100% - 43px);

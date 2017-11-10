@@ -38,7 +38,7 @@ class WishesController < ApplicationController
   def update
     respond_to do |format|
       if @wish.update(wish_params)
-        format.html { redirect_to @wish, notice: 'Wish was successfully updated.' }
+        format.html { redirect_to @wish, notice: 'Desejo foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @wish }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class WishesController < ApplicationController
     end
 
     respond_to do |format|
-        format.html { redirect_to options_path, notice: 'Wish was successfully destroyed.' }
+        format.html { redirect_to options_path, notice: 'Opção foi excluído com sucesso.' }
         format.js { flash[:alert] = "Desejo removido com sucesso."}
     end
   end
@@ -65,7 +65,7 @@ class WishesController < ApplicationController
   def destroy
     @wish.destroy
     respond_to do |format|
-      format.html { redirect_to wishes_url, notice: 'Wish was successfully destroyed.' }
+      format.html { redirect_to wishes_url, notice: 'Opção foi excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
