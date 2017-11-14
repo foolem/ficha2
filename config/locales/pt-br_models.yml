@@ -36,8 +36,8 @@
         one: Administrar
 
       unavailability:
-        one: Restrição
-        other: Restrições
+        one: Restrição de Horário
+        other: Restrições de Horários
 
       availability:
         one: Disponibilidade
@@ -104,7 +104,7 @@
         matter: "Disciplina"
 
       wish:
-        priority: "Prioridade"  
+        priority: "Prioridade"
 
       option:
         option: "Opção"

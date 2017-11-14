@@ -1,20 +1,19 @@
 <h3 class="center col-md-offset-1 col-md-10 mt-80">
 	Professor pesquisador?
 </h3>
-<div class="col-md-5">
-</div>
+
 <div id="researcher-field">
 	<%= form_tag(is_researcher_availabilities_path, remote: true) do %>
 
 	<input name="id" type="hidden" value="<%= @availability.id %>" />
 
 
-	<div class="col-md-1" style="padding: 0px;">
+	<div class="col-md-1 col-md-offset-5" style="padding: 0px;">
 		<%= select_tag :researcher, options_for_select(researcher_options),
 		{id: :researcher_selector, class: "form-control"} %>
 	</div>
 
-	<div class="col-md-5" style="margin-top: 2px;">
+	<div class="col-md-1" style="margin-top: 2px;">
 
 		<%= button_tag(type: "submit", class: "btn btn-success btn-sm", style: "margin-bottom: 10px;") do
 			simple_check_button.html_safe

@@ -17,6 +17,8 @@
 
 </div>
 
-<div id="options_partial" class="partial-content" >
-  <%= render 'options' %>
-</div>
+<% if @semester.options_selection? == true and @semester.options_finished != true %>
+  <div id="options_partial" class="partial-content" >
+    <%= render 'options' %>
+  </div>
+<% end %>

@@ -76,6 +76,7 @@ GEM
     buftok (0.2.0)
     builder (3.2.3)
     byebug (9.1.0)
+    chartkick (2.2.5)
     chronic (0.10.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -399,7 +400,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rolify (5.1.0)
-    roman-numerals (0.3.0)
     roo (2.7.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
@@ -492,6 +492,7 @@ DEPENDENCIES
   autoprefixer-rails
   backup (~> 5.0.0.beta.1)
   byebug
+  chartkick
   coffee-rails (~> 4.2)
   devise (~> 4.0)
   faker
@@ -512,7 +513,6 @@ DEPENDENCIES
   ransack
   remotipart (~> 1.2)
   rolify
-  roman-numerals
   roo (~> 2.7.0)
   roo-xls
   sass-rails (~> 5.0)
@@ -529,4 +529,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.15.3
+   1.16.0.pre.3

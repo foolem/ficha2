@@ -106,12 +106,7 @@ body {
   margin-left: 40px !important;
   margin-right: 40px !important;
 }
-.header-border-left {
-  border-top-left-radius: 3px;
-}
-.header-border-right {
-  border-top-right-radius: 3px;
-}
+
 .right {
   float: right;
   margin-right: 10px;
@@ -356,7 +351,23 @@ tr.header > th {
   background-color: #455E8E;
   padding-top:10px !important;
   padding-bottom:10px !important;
+}
+tr.header >th:last-child{
+  color: white;
+  opacity: 0.85;
+  background-color: #455E8E;
+  padding-top:10px !important;
+  padding-bottom:10px !important;
 
+  border-top-right-radius: 3px !important;
+}
+tr.header >th:first-child{
+  color: white;
+  opacity: 0.85;
+  background-color: #455E8E;
+  padding-top:10px !important;
+  padding-bottom:10px !important;
+  border-top-left-radius: 3px !important;
 }
 div > .header-panel  {
   color: white;
@@ -368,7 +379,9 @@ div > .header-panel  {
   border-top-left-radius: 3px;
   margin-bottom: 10px;
 }
-
+tr > .no-hover:hover {
+  background-color: rgb(236, 236, 236) !important;
+}
 label { color: #000; }
 select { color: #000; }
 
