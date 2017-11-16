@@ -1,6 +1,7 @@
 class OptionsController < ApplicationController
   before_action :set_option, only: [:show, :edit, :update, :destroy, :open_wish]
   before_action :set_wish, only: [:open_unavailability_comment]
+  before_action :set_semester
   before_action :authenticate_user!
   before_action :authorize_user
   before_action :bar_define
@@ -15,6 +16,7 @@ class OptionsController < ApplicationController
     @page = params[:page].to_i
     @page = pages_verify(@page, @elements, page_length)
     @options = @options.paginate(:per_page => page_length, :page => @page)
+
 
   end
 
@@ -95,6 +97,10 @@ class OptionsController < ApplicationController
 
     def set_wish
       @wish = Wish.find(params[:id_wish])
+    end
+
+    def set_semester
+      @semester = Semester.current_semester
     end
 
     def option_params

@@ -1,13 +1,13 @@
 
 
 <div id="researcher-selected">
-	<div class="col-md-1"  style="padding: 0px;">
+	<div class="col-md-1 col-md-offset-5"  style="padding: 0px;">
 		<div class="form-control" style="padding-left: 16px;height:auto;width:60px">
 			<%= is_researcher %>
 		</div>
 	</div>
 
-	<div class="col-md-5" style="margin-top: 2px;">
+	<div class="col-md-1" style="margin-top: 2px;">
 		<%= link_to simple_edit_button.html_safe, change_researcher_availabilities_path(@availability),
 		button_configs(:edit, "btn btn-default simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
 	</div>

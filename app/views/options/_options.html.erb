@@ -34,7 +34,7 @@
             <table style="margin: 0 auto;">
               <tbody>
                 <% option.groups.distinct.each do |group| %>
-                  <tr>
+                  <tr id="nohover">
                     <td class="center"> <%= group.name %> </td>
                     <td class="center"> <%= group.matter.code %></td>
                     <td > <%= group.course.name %></td>

@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require Chart.bundle
+//= require chartkick
 //= require_tree
 
 document.addEventListener("turbolinks:load", function() {
@@ -158,14 +160,23 @@ document.addEventListener("turbolinks:load", function() {
       .slideUp(500);
 
     //table highlight
+
+
     $(document).on('mouseenter', 'tr:not(:first)', function () {
-      $(this).css("background", "#7a9ec3");
+      $(this).css("background", "#e3e3e3");
     });
 
     $(document).on('mouseleave', 'tr:not(:first)', function () {
       $(this).css("background", "");
     });
 
+    $(document).on('mouseenter', '#nohover', function () {
+      $(this).css("background", "");
+    });
+
+    $(document).on('mouseleave', '#nohover', function () {
+      $(this).css("background", "");
+    });
     // table row-link
     $(document).on('click', 'td', function () {
       var id = $(this).attr("id");

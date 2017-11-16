@@ -45,6 +45,7 @@ class ManageOptionsController < ApplicationController
     @action = :end
     condition = @semester.options_generated? and @semester.options_selection?
     options_status(condition, true, true, true)
+    
 
     # somente para testes
     # options_status(true, false, false, false)
