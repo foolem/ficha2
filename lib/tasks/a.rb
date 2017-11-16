@@ -1,13 +1,13 @@
 namespace :utils do
 
-  desc "Import of users of lib/files/users.xlsx"
+  desc "Import of teachers: lib/users.xlsx"
   task import_users: :environment do
 
       def pass_generate
         password = ""
-        character = ['1', '2', '3', 'a', 'b', 'c']
+        character = ("0".."9").to_a + ("a".."z").to_a
         6.times do |i|
-          password << character[Random.rand(6)]
+          password << character.sample
         end
         password
       end
@@ -50,8 +50,8 @@ namespace :utils do
       end
   end
 
-  desc "Inset of courses, matters and groups of lib/files/inserts.xlsx"
-  task init: :environment do
+  desc "Inset of teachers and matters"
+  task init_2018: :environment do
 
     def find_matter(code, name)
       matters = Matter.where(code: code)

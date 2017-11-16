@@ -36,8 +36,7 @@ module SchedulesHelper
       "Terça" => "thursday",
       "Quarta" => "wednesday",
       "Quinta" => "tuesday",
-      "Sexta" => "friday",
-      "Sabado" => "saturday" }
+      "Sexta" => "friday"}
   end
 
   def representation(schedule)
