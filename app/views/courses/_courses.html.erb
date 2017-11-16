@@ -25,7 +25,7 @@
   <tbody>
     <% @courses.each do |course| %>
       <tr data-href="<%= course_path(course) %>">
-        <td>codigo</td>
+        <td><%= course.code %></td>
         <td><%= course.name %></td>
 
         <% if user_admin_or_secretary? %>
