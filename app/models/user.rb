@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :availabilities
 
   validates :name, presence: true
-  validates :role, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -1,54 +1,59 @@
-namespace :utils do
+namespace :import do
 
   desc "Import of users of lib/files/users.xlsx"
-  task import_users: :environment do
+  task users: :environment do
 
-      def pass_generate
-        password = ""
-        character = ['1', '2', '3', 'a', 'b', 'c']
-        6.times do |i|
-          password << character[Random.rand(6)]
-        end
-        password
+    User.create(name: "Admin", email: "adm@adm", password: "123123").add_role "admin"
+    User.create(name: "Professor", email: "prof@prof", password: "123123").add_role "teacher"
+    User.create(name: "Avaliador", email: "av@av", password: "123123").add_role "appraiser"
+    User.create(name: "Secretário", email: "se@se", password: "123123").add_role "secretary"
+
+    def pass_generate
+      password = ""
+      character = ("0".."9").to_a + ("a".."f").to_a
+      6.times do |i|
+        password << character.sample
+      end
+      password
+    end
+
+    path = "lib/files/users.xlsx"
+    xlsx = Roo::Excelx.new(path, extension: :xlsx)
+
+    puts "\n============= USERS ============="
+    roles = ["teacher", "appraiser", "admin", "secretary", "counselor"]
+
+    (xlsx.sheet(1).last_row - 1).times do |i|
+      linha = xlsx.sheet(1).row(i+2)
+
+      name = linha[0]
+      email = linha[1]
+      role = linha[2]
+      password = pass_generate
+      user = User.create(name: name, email: email, password: password)
+      puts "|  #{name}  -  #{email} - #{role} - #{password} "
+
+      if(linha[2].blank?)
+          role = 0
       end
 
-      path = "lib/files/users.xlsx"
-      xlsx = Roo::Excelx.new(path, extension: :xlsx)
-
-      puts "\n============= USERS ============="
-      roles = ["teacher", "appraiser", "admin", "secretary", "counselor"]
-
-      (xlsx.sheet(1).last_row - 1).times do |i|
-        linha = xlsx.sheet(1).row(i+2)
-
-        name = linha[0]
-        email = linha[1]
-        role = linha[2]
-        password = pass_generate
-        user = User.create(name: name, email: email, password: password)
-        puts "|  #{name}  -  #{email} - #{role} - #{password} "
-
-        if(linha[2].blank?)
-            role = 0
-        end
-
-        if (role != 3 and role != 0)
-          user.add_role "teacher"
-          user.add_role roles[role]
-        elsif (role == 0)
-          user.add_role "teacher"
-        else
-          user.add_role "secretary"
-        end
-
-        user.save
-        #if user.save
-          #  UserMailer.send_password(user).deliver
-        #end
+      if (role != 3 and role != 0)
+        user.add_role "teacher"
+        user.add_role roles[role]
+      elsif (role == 0)
+        user.add_role "teacher"
+      else
+        user.add_role "secretary"
       end
+
+      user.save
+      #if user.save
+        #  UserMailer.send_password(user).deliver
+      #end
+    end
   end
 
-  desc "Inset of courses, matters and groups of lib/files/inserts.xlsx"
+  desc "Import of courses, matters and groups of lib/files/inserts.xlsx"
   task init: :environment do
 
     def find_matter(code, name)
@@ -186,7 +191,7 @@ namespace :utils do
         schedule_end = get_time(linha[6])
         schedule_duration = get_duration(schedule_begin, schedule_end)
         schedule = find_schedule(line_day -1, schedule_begin, schedule_duration)
-        puts "#{schedule.id}\t#{schedule.day}\t#{schedule.begin}\t#{schedule.duration}"
+        #puts "#{schedule.id}\t#{schedule.day}\t#{schedule.begin}\t#{schedule.duration}"
         add_schedule(group, schedule)
       end
 
