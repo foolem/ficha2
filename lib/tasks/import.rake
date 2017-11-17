@@ -192,6 +192,7 @@ namespace :import do
         schedule_duration = get_duration(schedule_begin, schedule_end)
         schedule = find_schedule(line_day -1, schedule_begin, schedule_duration)
         #puts "#{schedule.id}\t#{schedule.day}\t#{schedule.begin}\t#{schedule.duration}"
+        print "."
         add_schedule(group, schedule)
       end
 

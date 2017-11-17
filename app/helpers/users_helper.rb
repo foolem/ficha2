@@ -1,7 +1,8 @@
 module UsersHelper
 
   def users_order
-    @teachers = User.all.where("role != 3").where(actived: true).order(name: :asc)
+    @teachers = User.all.where(actived: true).order(name: :asc)
+    # adicionar verificação para nao pegar secretarios.... Join(:role)
   end
 
   def user_teacher?
