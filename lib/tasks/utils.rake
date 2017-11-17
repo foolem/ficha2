@@ -24,15 +24,13 @@ namespace :utils do
         name = linha[0]
         email = linha[1]
         role = linha[2]
+        password = pass_generate
+        user = User.create(name: name, email: email, password: password)
+        puts "|  #{name}  -  #{email} - #{role} - #{password} "
 
         if(linha[2].blank?)
             role = 0
         end
-
-        password = pass_generate
-
-        puts "|  #{name}  -  #{email} - #{role} - #{password} "
-        user = User.create(name: name, email: email,  role: role, password: password)
 
         if (role != 3 and role != 0)
           user.add_role "teacher"

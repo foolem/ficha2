@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   rolify
 
-  enum role: [:teacher, :appraiser, :admin, :secretary]
-
   has_many :ficha
   has_many :wishes
   has_many :options, through: :wishes
@@ -40,4 +38,25 @@ class User < ApplicationRecord
       Role::ROLES[role.name.to_sym]
     end
   end
+
+  def admin?
+    return self.has_role?("admin")
+  end
+
+  def secretary?
+    return self.has_role?("secretary")
+  end
+
+  def appraiser?
+    return self.has_role?("appraiser")
+  end
+
+  def counselor?
+    return self.has_role?("counselor")
+  end
+
+  def teacher?
+    return self.has_role?("teacher")
+  end
+
 end

@@ -6,8 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :email,              null: false
       t.string :encrypted_password, null: false
       t.string :name, null: false
-
-      t.integer  :role, default: 0, null: false
       t.boolean  :actived, default: true, null: false
 
       ## Recoverable

@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:name, :password, :email, :password_confirmation, :role)
+        params.require(:user).permit(:name, :password, :email, :password_confirmation)
     end
 
     def authorize_user
@@ -130,11 +130,13 @@ class UsersController < ApplicationController
      def update_roles
       remove_all_roles
       roles = params[:user][:role_ids]
-      roles.each do |role|
-        if role != ""
-          puts role.to_i - 1
-          puts Role.role_by_index (role.to_i - 1)
-          @user.add_role(Role.role_by_index (role.to_i - 1))
+      if !roles.blank?
+        roles.each do |role|
+          if role != ""
+            puts role.to_i - 1
+            puts Role.role_by_index (role.to_i - 1)
+            @user.add_role(Role.role_by_index (role.to_i - 1))
+          end
         end
       end
     end
