@@ -217,23 +217,7 @@ document.addEventListener("turbolinks:load", function() {
 
   $(document).ready(function() {
     $(".spinner").hide();
-
-    // Chekbox user role
-    $(document).on('click', '#yours_checkbox', function(){
-
-      var role = $(this).data('role');
-      if (role == "teacher") {
-        if($('#q_status_cont').hasClass('showing')) {
-          $('#q_status_cont').hide().removeClass('showing');
-        } else {
-          $('#q_status_cont').show().addClass('showing');
-        }
-        var yourSelect = document.getElementById( "q_status_cont" );
-        yourSelect.selectedIndex = 0;
-      }
-
-    });
-
+    
     $(document).on('turbolinks:load', function() {
 
        $('form').on('click', '.remove_record', function(event) {
@@ -251,12 +235,4 @@ document.addEventListener("turbolinks:load", function() {
        });
 
     });
-  });
-
-  document.addEventListener("turbolinks:load", function() {
-    var role = $('#yours_checkbox').data('role');
-    if (role == "teacher") {
-      $('#q_status_cont').hide();
-      $('#yours_checkbox').prop('checked', false);
-    }
   });
