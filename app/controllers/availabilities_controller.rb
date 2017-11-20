@@ -2,7 +2,10 @@ class AvailabilitiesController < ApplicationController
   before_action :bar_define
   before_action :set_preference, only: [:change_preference, :select_preference]
   before_action :set_availability, only: [:show, :edit, :update, :destroy,
-                :add_unavailability, :add_availability_comments, :add_general_comments, :open_unavailability, :open_availability_comments,:open_general_comments, :select_preference, :add_preference, :change_preference, :change_researcher, :change_comments, :change_general_comments, :is_researcher]
+                :add_unavailability, :add_availability_comments, :add_general_comments,
+                :add_phone, :change_phone, :open_unavailability, :open_availability_comments,
+                :open_general_comments, :select_preference, :add_preference, :change_preference,
+                :change_researcher, :change_comments, :change_general_comments, :is_researcher]
 
 
   def index
@@ -98,6 +101,21 @@ class AvailabilitiesController < ApplicationController
     @availability.general_comments = general_comments
     @availability.save
 
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_phone
+    phone = params[:phone]
+    current_user.phone = phone
+    current_user.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def change_phone
     respond_to do |format|
       format.js
     end

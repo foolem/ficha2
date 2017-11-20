@@ -29,8 +29,8 @@
         one: Unir disciplinas
 
       option:
-        one: Opção
-        other: Opções
+        one: Seleção
+        other: Seleções
 
       manage:
         one: Administrar
@@ -40,8 +40,8 @@
         other: Restrições de Horários
 
       availability:
-        one: Disponibilidade
-        other: Disponibilidades
+        one: Preferência
+        other: Preferências
 
       wish:
         one: Desejo

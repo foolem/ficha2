@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       match 'is_researcher' => 'availabilities#is_researcher', via: [:get, :post], as: :is_researcher
       match 'change_researcher/:id' => 'availabilities#change_researcher', via: [:get, :post], as: :change_researcher
 
+      match 'add_phone' => 'availabilities#add_phone', via: [:get, :post], as: :add_phone
+      match 'change_phone/:id' => 'availabilities#change_phone', via: [:get, :post], as: :change_phone
+
 
       match 'select_preference/:id/:preference' => 'availabilities#select_preference', via: [:get], as: :select_preference
       match 'add_preference' => 'availabilities#add_preference', via: [:get, :post], as: :add_preference

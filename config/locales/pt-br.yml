@@ -10,8 +10,8 @@
   teacher: "Professor"
   interested: "Interessados"
 
-  availabilities: "Disponibilidades"
-  availability: "Disponibilidade"
+  availabilities: "Preferências"
+  availability: "Preferências"
 
   unavailabilities: "Restrições de Horários"
   unavailability: "Restrição de Horário"
@@ -34,8 +34,8 @@
 
   courses: "Cursos"
 
-  option: "Opção"
-  options: "Opções"
+  option: "Seleção"
+  options: "Seleções"
 
   begin: "Início"
   duration: "Duração"

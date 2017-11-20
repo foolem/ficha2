@@ -217,7 +217,7 @@ document.addEventListener("turbolinks:load", function() {
 
   $(document).ready(function() {
     $(".spinner").hide();
-    
+
     $(document).on('turbolinks:load', function() {
 
        $('form').on('click', '.remove_record', function(event) {
@@ -235,4 +235,10 @@ document.addEventListener("turbolinks:load", function() {
        });
 
     });
+  });
+
+  $(document).ready(function(){
+
+    $('#phone').mask('(00) 00000-0000');
+
   });
