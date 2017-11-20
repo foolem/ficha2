@@ -11,10 +11,11 @@
 				<%= form_for @wish, :url => create_wishes_path(@option), :method => new_wish_path, :html => { :class => "form-horizontal wish" } do |f| %>
 
 				<div class="modal-body mb-30">
-					<div class="col-xs-4 col-md-offset-2">
+
+					<div class="col-md-5 col-md-offset-1">
 						<%= f.label :priority, :class => 'control-label' %>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-md-5">
 						<%= f.select(:priority, priority_list, {}, {:class => 'form-control priority-selector'}) %>
 						<%= f.error_span(:priority) %>
 					</div>
