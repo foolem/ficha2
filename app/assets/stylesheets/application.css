@@ -187,7 +187,7 @@ body {
   float: right;
 }
 .priority-selector {
-  width: 50px !important;
+  width: 100px !important;
 }
 .option-schedules {
   width: calc(100% - 43px);
@@ -485,6 +485,11 @@ li > a:hover{
   border-top-left-radius: 0px;
 
 }
+
+.panel-options > .option-body{
+  white-space:normal;
+}
+
 .option-head {
   height: auto;
   width: auto;

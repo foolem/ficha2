@@ -153,7 +153,7 @@ namespace :import do
       puts "#{course.id}\t#{code}\t#{name}"
     end
 
-    path = "lib/files/inserts.xlsx"
+    path = "lib/files/2018.xlsx"
     xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
     matters_list = []

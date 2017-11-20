@@ -1,7 +1,3 @@
-<!-- https://www.youtube.com/watch?v=zJYuLebl-Js
-http://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-password
--->
-
 <div class="login-page mt-80">
   <div class="form-login">
 
@@ -11,22 +7,10 @@ http://bootsnipp.com/snippets/featured/custom-login-registration-amp-forgot-pass
 
       <%= f.password_field :password, autocomplete: "off", placeholder: "Senha", size: 25%>
 
-      <!--
-      <% if devise_mapping.rememberable? -%>
-        <div >
-          <%= f.check_box :remember_me, value: "trab" %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end -%>
-        -->
-
-      <button name="commit" data-disable-with="Login" type="submit ">
-      Login</button>
+      <button name="commit" data-disable-with="Entrar" type="submit">Entrar</button>
       <p class="message mt-30">Esqueceu sua senha?   <%= link_to "Mudar minha senha", new_password_path(resource_name), :class => 'btn btn-default btn-sm' %> </p>
-
 
     <% end %>
 
   </div>
-
 </div>
