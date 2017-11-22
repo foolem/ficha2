@@ -1,5 +1,38 @@
 namespace :import do
 
+  desc "Send password"
+  task pass: :environment do
+
+    def pass_generate
+      password = ""
+      character = ("0".."9").to_a + ("a".."f").to_a
+      6.times do |i|
+        password << character.sample
+      end
+      password
+    end
+
+    def send_to(users)
+      users.each do |user|
+        password = pass_generate
+        user.password = password
+        user.save
+        puts "User: #{user.name}\tPassword: #{password}"
+        UserMailer.send_password(user).deliver
+      end
+    end
+
+    users = []
+    ids = [61]
+    ids.each do |id|
+      users.push User.find(id)
+    end
+
+    # Envia para ids específicos
+    send_to(users)
+
+  end
+
   desc "Import of users of lib/files/users.xlsx"
   task users: :environment do
 
@@ -30,8 +63,9 @@ namespace :import do
       email = linha[1]
       role = linha[2]
       password = pass_generate
-      user = User.create(name: name, email: email, password: password)
-      puts "|  #{name}  -  #{email} - #{role} - #{password} "
+      user = User.new(name: name, email: email, password: password)
+      user.save
+      puts "|  #{user.id} - #{name}  -  #{email} - #{role} - #{password} "
 
       if(linha[2].blank?)
           role = 0
@@ -46,10 +80,7 @@ namespace :import do
         user.add_role "secretary"
       end
 
-      user.save
-      #if user.save
-        #  UserMailer.send_password(user).deliver
-      #end
+      puts user.id
     end
   end
 
