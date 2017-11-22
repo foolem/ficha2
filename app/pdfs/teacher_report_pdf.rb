@@ -88,9 +88,15 @@ class TeacherReportPdf < Prawn::Document
   def header_generate
     move_down 5
     text  @user.name.upcase, size: 12, style: :bold, align: :center
+
     text  @user.email.downcase, size: 11, align: :center
-    text_box "Pesquisador: ", size: 11, :at => [435,cursor+10], style: :bold
-    text_box @availability.researcher ? "Sim" : "Não", size: 11, :at => [510,cursor+10]
+    text_box "Pesquisador: ", size: 11, :at => [420,cursor+10], style: :bold
+    text_box @availability.researcher ? "Sim" : "Não", size: 11, :at => [495,cursor+10]
+
+    if !@user.phone.blank?
+      text_box "Telefone: ", size: 11, :at => [20,cursor+10], style: :bold
+      text_box @user.phone, size: 11, :at => [75,cursor+10]
+    end
     move_down 5
 
     transparent (0.5) { stroke_horizontal_rule }
