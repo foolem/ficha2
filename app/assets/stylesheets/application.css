@@ -613,16 +613,27 @@ li > a:hover{
   margin-top: 40px;
   display: block;
 }
+
+.report_generate {
+  margin-top: 10px;
+}
+
+.progress-panel {
+    padding: 20px;
+    margin: 15px 0 15px 0;
+}
+
 .manage-panel-reset {
   display: block;
   margin: 0 auto;
   text-align: center;
 
 }
-.manage-start {
+.manage-start, .manage-end {
   display: inline-block;
   margin: 0 1%;
 }
+
 .manage-remove {
   display: inline-block;
   margin: 0 1%;

@@ -1,6 +1,8 @@
 
+
 <div id="manage_actions" class="panel panel-default panel-manage p-20">
 
+  <h3 class="center"><%= current_semester.semester_with_year_show %> </h3>
 
   <% if !options_not_generated? %>
     <div class="manage-panel-reset">
@@ -12,68 +14,88 @@
           <h4 style="text-align:center;margin-top:20px">Gerar</h4>
           <% end %>
     </div>
-
-  <% elsif options_selection? %>
-    <div class="manage-panel-reset">
-      <div class="manage-start">
-        <%= link_to manage_options_start_path,
-            id: "options_start", remote: true,
-            :"data-load" => "Iniciando período de seleções...",
-            class: 'btn big-btn blue-btn white' do %>
-            <%= big_play_button.html_safe %>
-            <h4 style="text-align:center;margin-top:20px">Iniciar</h4>
-            <% end %>
-      </div>
-      <div class="manage-remove">
-        <%= link_to manage_options_remove_path,
-            id: "options_remove", remote: true, method: :delete,
-            :"data-load" => "Removendo opções...",
-            class: 'btn big-btn blue-btn white' do %>
-            <%= big_trash_button.html_safe %>
-            <h4 style="text-align:center;margin-top:20px">Remover</h4>
-            <% end %>
-      </div>
-    </div>
-
-
-
-  <% elsif options_finished? %>
-    <div class="manage-panel-reset">
-      <%= link_to manage_options_end_path,
-          id: "options_remove", remote: true,
-          :"data-load" => "Encerrando período de seleção  ...",
-          class: 'btn big-btn blue-btn white' do%>
-          <%= big_stop_button.html_safe %>
-          <h4 style="text-align:center;margin-top:20px">Encerrar</h4>
-          <% end %>
-    </div>
-    <div id="manage_actions" class="panel panel-default p-20 m-20">
-      <div class="d-inline-block" style="margin-right:10px">
-        <h4 class="center">Professores</h4>
-        <%= pie_chart({"Finalizados" => 5, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#57acfb", "#454545"]) %>
-      </div>
-      <div class="d-inline-block" style="margin-left:10px">
-        <h4 class="center">Opções</h4>
-
-        <%= pie_chart({"Finalizados" => 20, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#15489e", "#454545"]) %>
-      </div>
-    </div>
-
   <% else %>
-    <div class="manage-panel-reset">
-      <%= link_to "#{manage_options_teacher_report_path}.pdf",
-          :"data-load" => "Encerrando período de seleção  ...",
-          class: 'btn big-btn blue-btn white m-r-10' do %>
-            <%= big_user_button.html_safe %>
-            <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
+
+  <div class="panel panel-default progress-panel">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-5">
+        <div class="center">
+          <% if !options_started? %>
+            <div class="manage-start">
+              <%= link_to manage_options_start_path,
+                  id: "options_start", remote: true,
+                  :"data-load" => "Iniciando período de seleções...",
+                  class: 'btn big-btn blue-btn white' do %>
+                  <%= big_play_button.html_safe %>
+                  <h4 style="text-align:center;margin-top:20px">Iniciar</h4>
+                  <% end %>
+            </div>
+          <% else %>
+            <div class="manage-end">
+                <%= link_to manage_options_end_path,
+                    id: "options_remove", remote: true,
+                    :"data-load" => "Encerrando período de seleção  ...",
+                    class: 'btn big-btn blue-btn white' do%>
+                    <%= big_stop_button.html_safe %>
+                    <h4 style="text-align:center;margin-top:20px">Finalizar</h4>
+                    <% end %>
+              </div>
           <% end %>
-      <%= link_to "#{manage_options_matter_report_path}.pdf",
-          :"data-load" => "Encerrando período de seleção  ...",
-          class: 'btn big-btn blue-btn white m-l-10' do %>
-            <%= big_matter_button.html_safe %>
-            <h4 style="text-align:center;margin-top:10px">Relatório<br>disciplinas</h4>
-          <% end %>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="center">
+          <div class="manage-remove">
+            <%= link_to manage_options_remove_path,
+                id: "options_remove", remote: true, method: :delete,
+                :"data-load" => "Removendo opções...",
+                class: 'btn big-btn blue-btn white' do %>
+                <%= big_trash_button.html_safe %>
+                <h4 style="text-align:center;margin-top:20px">Remover</h4>
+                <% end %>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+    <% if options_started? or options_finished? %>
+      <div class="panel panel-default progress-panel">
+
+        <div class="row">
+          <div class="col-md-offset-1 col-md-5">
+            <h4 class="center">Professores</h4>
+            <%= pie_chart({"Finalizados" => 5, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#57acfb", "#454545"]) %>
+
+            <div class="center report_generate">
+              <%= link_to "#{manage_options_teacher_report_path}.pdf",
+                :"data-load" => "Encerrando período de seleção  ...",
+                class: 'btn big-btn blue-btn white m-r-10' do %>
+                  <%= big_user_button.html_safe %>
+                  <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
+              <% end %>
+            </div>
+
+          </div>
+
+          <div class="col-md-5">
+            <h4 class="center">Opções</h4>
+            <%= pie_chart({"Finalizados" => 20, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#15489e", "#454545"]) %>
+
+            <div class="center report_generate">
+              <%= link_to "#{manage_options_matter_report_path}.pdf",
+                  :"data-load" => "Encerrando período de seleção  ...",
+                  class: 'btn big-btn blue-btn white m-l-10' do %>
+                    <%= big_matter_button.html_safe %>
+                    <h4 style="text-align:center;margin-top:10px">Relatório<br>disciplinas</h4>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+
   <% end %>
 
 </div>

@@ -9,8 +9,8 @@ class ManageOptionsController < ApplicationController
 
   def generate
     @action = :generate
-    condition = !@semester.options_generated?
-    options_status(condition, true, false, false)
+    #condition = !@semester.options_generated?
+    options_status(true, true, false, false)
 
     generate_method
 
@@ -21,8 +21,8 @@ class ManageOptionsController < ApplicationController
 
   def remove
     @action = :remove
-    condition = @semester.options_generated? and !@semester.options_selection?
-    options_status(condition, false, false, false)
+    #condition = @semester.options_generated? and !@semester.options_selection?
+    options_status(true, false, false, false)
 
     Option.hard_reset
 
@@ -33,8 +33,8 @@ class ManageOptionsController < ApplicationController
 
   def start
     @action = :start
-    condition = @semester.options_generated? and !@semester.options_selection?
-    options_status(condition, true, true, false)
+    #condition = @semester.options_generated? and !@semester.options_selection?
+    options_status(true, true, true, false)
 
     respond_to do |format|
       format.js { render :action => 'manage_result'}
@@ -43,9 +43,8 @@ class ManageOptionsController < ApplicationController
 
   def end
     @action = :end
-    condition = @semester.options_generated? and @semester.options_selection?
-    options_status(condition, true, true, true)
-    
+    #condition = @semester.options_generated? and @semester.options_selection?
+    options_status(true, true, false, true)
 
     # somente para testes
     # options_status(true, false, false, false)

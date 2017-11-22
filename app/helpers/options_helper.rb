@@ -187,4 +187,5 @@ module OptionsHelper
 
     return result.join(" e ")
   end
+
 end

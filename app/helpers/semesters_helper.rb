@@ -29,7 +29,11 @@ module SemestersHelper
   end
 
   def options_finished?
-    !current_semester.options_finished?
+    current_semester.options_finished?
+  end
+
+  def options_started?
+    current_semester.options_selection?
   end
 
 end
