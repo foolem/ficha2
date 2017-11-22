@@ -17,7 +17,7 @@ namespace :import do
       password
     end
 
-    path = "lib/files/users.xlsx"
+    path = "lib/files/users_1.xlsx"
     xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
     puts "\n============= USERS ============="
