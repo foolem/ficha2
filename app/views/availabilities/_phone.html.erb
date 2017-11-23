@@ -4,34 +4,42 @@
 	<h4 class="center">Telefone</h4>
 
 	<div class="row">
-		<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+		<div id="change_event">
+			<% if current_user.phone.blank? %>
 
-			<div id="commented">
-				<% if current_user.phone.blank? %>
-					<%= form_tag(add_phone_availabilities_path, remote: true) do %>
-						<input name="id" type="hidden" value="<%= current_user.id %>" />
-
-						<%= text_field_tag :phone, nil, {:placeholder => 'Insira seu número de telefone', :class => 'form-control', :required => true} %>
-
-						<%= button_tag(type: "submit", class: "btn btn-success btn-sm") do
-							"Salvar"
-						end %>
-
-					<% end %>
-					<% else %>
-
-						<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-							<div class="form-control">
-								<%= current_user.phone %>
-							</div>
-						</div>
-
-						<div id="edited" class="col-xs-2 col-md-2 col-lg-2" style="margin-top: 2px;">
-							<%= link_to "Editar", change_phone_availabilities_path(current_user),
-									button_configs(:edit, "btn btn-default btn-sm simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
-						</div>
-					<% end %>
+			<%= form_tag(add_phone_availabilities_path, remote: true) do %>
+			<input name="id" type="hidden" value="<%= current_user.id %>" />
+			<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<div class="form-group">
+					<%= text_field_tag :phone, nil,  {:placeholder => '(41)998765432', class: 'form-control', required: true, autocomplete: false} %>
 				</div>
 			</div>
+			<div id="edited" class="col-xs-2 col-md-2 col-lg-2" style="margin-top: 2px;">
+				<%= button_tag(type: "submit", class: "btn btn-success btn-sm") do
+					"Salvar"
+				end %>
+			</div>
+
+			<% end %>
+
+
+
+
+			<% else %>
+
+			<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+				<div class="form-control">
+					<%= current_user.phone %>
+				</div>
+			</div>
+
+			<div id="edited" class="col-xs-2 col-md-2 col-lg-2" style="margin-top: 2px;">
+				<%= link_to "Editar", change_phone_availabilities_path(current_user),
+				button_configs(:edit, "btn btn-default btn-sm simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
+			</div>
+			<% end %>
+		</div>
+
+
 		</div>
 </div>

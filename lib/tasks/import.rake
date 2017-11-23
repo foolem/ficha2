@@ -23,7 +23,7 @@ namespace :import do
     end
 
     users = []
-    ids = [61]
+    ids = [5, 38, 41, 58, 43, 49, 59]
     ids.each do |id|
       users.push User.find(id)
     end

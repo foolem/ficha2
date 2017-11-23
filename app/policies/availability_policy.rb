@@ -21,28 +21,37 @@ class AvailabilityPolicy < ApplicationPolicy
     !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
+
   def user_availability?
-    !user.blank? and (user.has_any_role? ["teacher", "secretary"] and user.actived?)
+    !user.blank? and (user.has_role?("teacher") and user.actived?)
   end
 
   def open_unavailability?
-    !user.blank? and (user.has_any_role? ["teacher", "secretary"] and user.actived?)
+    !user.blank? and (user.has_role?("teacher") and user.actived?)
   end
 
   def add_unavailability?
-    !user.blank? and (user.has_any_role? ["teacher", "secretary"] and user.actived?)
+    !user.blank? and (user.has_role?("teacher") and user.actived?)
   end
 
   def select_preference?
-    !user.blank? and (user.has_any_role? ["teacher", "secretary"] and user.actived?)
+    !user.blank? and (user.has_role?("teacher") and user.actived?)
   end
 
   def add_preference?
-    !user.blank? and (user.has_any_role? ["teacher", "secretary"] and user.actived?)
+    !user.blank? and (user.has_role?("teacher") and user.actived?)
   end
 
   def change_preference?
-    !user.blank? and (user.has_any_role? ["teacher", "secretary"] and user.actived?)
+    !user.blank? and (user.has_role?("teacher") and user.actived?)
+  end
+
+  def add_phone?
+    true
+  end
+
+  def change_phone?
+    true
   end
 
 
