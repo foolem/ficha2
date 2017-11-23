@@ -3,10 +3,19 @@ namespace :import do
   desc "Import of users of lib/files/users.xlsx"
   task users: :environment do
 
-    User.create(name: "Admin", email: "adm@adm", password: "123123").add_role "admin"
-    User.create(name: "Professor", email: "prof@prof", password: "123123").add_role "teacher"
-    User.create(name: "Avaliador", email: "av@av", password: "123123").add_role "appraiser"
-    User.create(name: "Secretário", email: "se@se", password: "123123").add_role "secretary"
+    u = User.create(name: "Professor", email: "prof@prof", password: "123123")
+    u.add_role "teacher"
+
+    u = User.create(name: "Admin", email: "adm@adm", password: "123123")
+    u.add_role "admin"
+    u.add_role "teacher"
+
+    u = User.create(name: "Avaliador", email: "av@av", password: "123123")
+    u.add_role "appraiser"
+    u.add_role "teacher"
+
+    u = User.create(name: "Secretário", email: "se@se", password: "123123")
+    u.add_role "secretary"
 
     def pass_generate
       password = ""
@@ -21,7 +30,7 @@ namespace :import do
     xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
     puts "\n============= USERS ============="
-    roles = ["teacher", "appraiser", "admin", "secretary", "counselor"]
+    roles = ["appraiser", "admin", "secretary", "counselor"]
 
     (xlsx.sheet(1).last_row - 1).times do |i|
       linha = xlsx.sheet(1).row(i+2)
@@ -30,26 +39,18 @@ namespace :import do
       email = linha[1]
       role = linha[2]
       password = pass_generate
-      user = User.create(name: name, email: email, password: password)
-      puts "|  #{name}  -  #{email} - #{role} - #{password} "
 
-      if(linha[2].blank?)
-          role = 0
-      end
-
-      if (role != 3 and role != 0)
-        user.add_role "teacher"
-        user.add_role roles[role]
-      elsif (role == 0)
-        user.add_role "teacher"
-      else
-        user.add_role "secretary"
-      end
-
-      user.save
-      #if user.save
+      user = User.new(name: name, email: email, password: password)
+      if user.save
         #  UserMailer.send_password(user).deliver
-      #end
+        puts "|  #{name}  -  #{email} - #{role} - #{password} "
+
+        user.add_role "teacher"
+        if(!linha[2].blank?)
+          user.add_role roles[(role -1)]
+        end
+      end
+
     end
   end
 
@@ -207,5 +208,28 @@ namespace :import do
     groups_list.each { |group| puts group }
 
 
+  end
+
+
+  desc "Import unite of matters from lib/files/unite_matters.xlsx"
+  task unite_matters: :environment do
+
+    path = "lib/files/unite_matters.xlsx"
+    xlsx = Roo::Excelx.new(path, extension: :xlsx)
+
+    sheet = xlsx.sheet(0)
+    (sheet.last_row() -1).times do |i|
+      linha = sheet.row(i+2)
+
+      unite_name = linha[0].chomp
+      first_matter = linha[1].chomp
+      second_matter = linha[2].chomp
+      puts "#{unite_name}: #{first_matter} with #{second_matter}"
+
+      unite = UniteMatter.create(name: unite_name)
+      unite.matters.push Matter.where(code: first_matter).first
+      unite.matters.push Matter.where(code: second_matter).first
+
+    end
   end
 end

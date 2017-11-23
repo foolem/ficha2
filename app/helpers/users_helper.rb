@@ -62,4 +62,8 @@ module UsersHelper
     !params[:q].blank? and params[:q][:roles_id_eq].blank?
   end
 
+  def wishes_ordered(user)
+    user.wishes.sort_by{ |w| w.priority }
+  end
+
 end

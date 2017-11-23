@@ -72,22 +72,22 @@
         <table class="table table-striped" style="margin-bottom: 15px;">
           <thead>
             <tr class="header">
-              <th class="center header-border-left" width="25%"><%= t('options') %></th>
+              <th class="center"><%= t('priority') %> </th>
+              <th class="center header-border-left" width="25%"> Opção </th>
               <th class="center" width="30%"><%= t('groups') %></th>
               <th class="center header-border-right" width="30%"><%= t('schedules') %></th>
-
             </tr>
           </thead>
           <tbody>
 
-            <% current_user.options.each do |opt| %>
+            <% wishes_ordered(current_user).each do |wish| %>
 
               <tr>
                 <div class="form_table">
-
-                  <td class="center"><%= option_classes(opt).html_safe %></td>
-                  <td class="center"><%= option_classes_with_course(opt).html_safe %></td>
-                  <td class="center"><%= option_schedules(opt).html_safe %></td>
+                  <td class="center"><%= wish.priority %></td>
+                  <td class="center"><%= option_classes(wish.option).html_safe %></td>
+                  <td class="center"><%= option_classes_with_course(wish.option).html_safe %></td>
+                  <td class="center"><%= option_schedules(wish.option).html_safe %></td>
                 </div>
               </tr>
 
