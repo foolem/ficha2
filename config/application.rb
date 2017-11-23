@@ -2,7 +2,6 @@ require_relative 'boot'
 
 require 'roo'
 require 'roo-xls'
-require 'htmltoword'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems

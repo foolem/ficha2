@@ -85,7 +85,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'https://024e87c9.ngrok.io'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
@@ -98,5 +98,5 @@ Rails.application.configure do
     :user_name => 'ficha2.mat@gmail.com',
     :password => 'passwdubuntu'
   }
-  
+
 end

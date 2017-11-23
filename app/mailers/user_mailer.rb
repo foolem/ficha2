@@ -3,8 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def send_password(user)
     @user = user
-    @time = Time.now.strftime("%d/%m/%Y %H:%M")
-    mail(:to => @user.email, :subject => 'Troca de senha')
+    mail(:to => @user.email, :subject => 'Encargos didáticos')
     #mail(:to => 'ficha2.mat@gmail.com', :subject => 'Mensagem de Contato')
   end
 
