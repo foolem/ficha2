@@ -79,28 +79,28 @@ ActiveRecord::Schema.define(version: 20171006124656) do
 
   create_table "matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "unite_matter_id"
-    t.boolean  "actived",                              default: true,     null: false
+    t.boolean  "actived",                          default: true,     null: false
     t.string   "name"
     t.string   "code"
     t.string   "kind"
-    t.string   "prerequisite",                         default: "Nenhum"
-    t.string   "corequisite",                          default: "Nenhum"
+    t.string   "prerequisite",                     default: "Nenhum"
+    t.string   "corequisite",                      default: "Nenhum"
     t.string   "modality"
     t.string   "nature"
-    t.text     "menu",                   limit: 65535
-    t.text     "basic_bibliography",     limit: 65535
-    t.text     "bibliography",           limit: 65535
-    t.integer  "total_annual_workload",                default: 0
-    t.integer  "total_weekly_workload",                default: 0
-    t.integer  "total_modular_workload",               default: 0
-    t.integer  "weekly_workload",                      default: 0
-    t.integer  "pd",                                   default: 0
-    t.integer  "lc",                                   default: 0
-    t.integer  "cp",                                   default: 0
-    t.integer  "es",                                   default: 0
-    t.integer  "or",                                   default: 0
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.text     "menu",               limit: 65535
+    t.text     "basic_bibliography", limit: 65535
+    t.text     "bibliography",       limit: 65535
+    t.integer  "annual_workload",                  default: 0
+    t.integer  "semester_workload",                default: 0
+    t.integer  "modular_workload",                 default: 0
+    t.integer  "weekly_workload",                  default: 0
+    t.integer  "pd",                               default: 0
+    t.integer  "lc",                               default: 0
+    t.integer  "cp",                               default: 0
+    t.integer  "es",                               default: 0
+    t.integer  "or",                               default: 0
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.index ["unite_matter_id"], name: "index_matters_on_unite_matter_id", using: :btree
   end
 

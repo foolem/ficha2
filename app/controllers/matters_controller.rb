@@ -93,7 +93,7 @@ class MattersController < ApplicationController
 
     def matter_params
       params.require(:matter).permit(:name, :code, :kind, :corequisite, :prerequisite, :modality, :menu, :nature,
-      :total_annual_workload, :total_weekly_workload, :total_modular_workload, :weekly_workload,
+      :annual_workload, :semester_workload, :modular_workload, :weekly_workload,
       :pd, :lc, :cp, :es, :or, :basic_bibliography, :bibliography)
     end
 

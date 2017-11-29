@@ -74,7 +74,7 @@ def new_matter_requisite(name, code, kind, modality, nature, menu, total_w, tota
   Matter.create(name: name, code: code, kind: kind,
   prerequisite: requisite, corequisite: corequisite,
   modality: modality , nature: nature, menu: menu,
-  total_weekly_workload: total_w, total_modular_workload:  total_m, total_annual_workload: total_a, weekly_workload: weekly)
+  semester_workload: total_w, modular_workload:  total_m, annual_workload: total_a, weekly_workload: weekly)
 
   puts ("| #{name} - #{code} ")
 end

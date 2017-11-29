@@ -17,9 +17,9 @@ class CreateMatters < ActiveRecord::Migration[5.0]
       t.text :basic_bibliography
       t.text :bibliography
 
-      t.integer :total_annual_workload, default: 0
-      t.integer :total_weekly_workload, default: 0
-      t.integer :total_modular_workload, default: 0
+      t.integer :annual_workload, default: 0
+      t.integer :semester_workload, default: 0
+      t.integer :modular_workload, default: 0
       t.integer :weekly_workload, default: 0
 
       t.integer :pd, default: 0

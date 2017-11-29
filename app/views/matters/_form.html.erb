@@ -142,40 +142,40 @@
     <br>
 
     <div class="form-group">
-      <%= f.label :total_annual_workload, :class => 'control-label col-xs-2' %>
+      <%= f.label :annual_workload, :class => 'control-label col-xs-2' %>
       <div class="col-xs-2">
 
         <% if @show %>
-          <%= f.text_field :total_annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
+          <%= f.text_field :annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
         <% else %>
-          <%= f.number_field :total_annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
+          <%= f.number_field :annual_workload, :class => 'form-control',  in: 0...201, :readonly => @show %>
         <% end %>
-        <%=f.error_span(:total_annual_workload) %>
+        <%=f.error_span(:annual_workload) %>
       </div>
 
     </div>
 
     <div class="form-group">
-      <%= f.label :total_weekly_workload, :class => 'control-label col-xs-2' %>
+      <%= f.label :semester_workload, :class => 'control-label col-xs-2' %>
       <div class="col-xs-2">
         <% if @show %>
-          <%= f.text_field :total_weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+          <%= f.text_field :semester_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
-          <%= f.number_field :total_weekly_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+          <%= f.number_field :semester_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% end %>
-        <%=f.error_span(:total_weekly_workload) %>
+        <%=f.error_span(:semester_workload) %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :total_modular_workload, :class => 'control-label col-xs-2' %>
+      <%= f.label :modular_workload, :class => 'control-label col-xs-2' %>
       <div class="col-xs-2">
         <% if @show %>
-          <%= f.text_field :total_modular_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+          <%= f.text_field :modular_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% else %>
-          <%= f.number_field :total_modular_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
+          <%= f.number_field :modular_workload, :class => 'form-control', in: 0...101, :readonly => @show %>
         <% end %>
-        <%=f.error_span(:total_modular_workload) %>
+        <%=f.error_span(:modular_workload) %>
       </div>
     </div>
 

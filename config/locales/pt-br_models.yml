@@ -61,9 +61,9 @@
         basic_bibliography: "Bibliografia Básica"
         bibliography: "Bibliografia"
 
-        total_annual_workload: "Anual"
-        total_weekly_workload: "Semestral"
-        total_modular_workload: "Modular"
+        annual_workload: "Anual"
+        semester_workload: "Semestral"
+        modular_workload: "Modular"
         weekly_workload: "Semanal"
 
         pd: "Padrão"

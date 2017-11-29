@@ -72,12 +72,6 @@ namespace :import do
       email = linha[1]
       role = linha[2]
       password = pass_generate
-<<<<<<< HEAD
-=======
-      user = User.new(name: name, email: email, password: password)
-      user.save
-      puts "|  #{user.id} - #{name}  -  #{email} - #{role} - #{password} "
->>>>>>> 32891811aaffcec3357887167f816d179e32a58b
 
       user = User.new(name: name, email: email, password: password)
       if user.save
@@ -90,10 +84,6 @@ namespace :import do
         end
       end
 
-<<<<<<< HEAD
-=======
-      puts user.id
->>>>>>> 32891811aaffcec3357887167f816d179e32a58b
     end
   end
 
