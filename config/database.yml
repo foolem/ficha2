@@ -2,7 +2,7 @@ default: &default
   reconnect: false
   adapter: mysql2
   username: root
-  password: admin
+  password: #admin
   host: localhost
   pool: 5
   port: 3306

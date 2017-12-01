@@ -103,7 +103,7 @@ class RecordPdf < Prawn::Document
     simple_title_generate("Códigos", 390, 0)
 
     simple_title_generate("Semestral Total:", 10, 20)
-    show_value(@ficha.group.matter.total_weekly_workload().to_s + "h", 97)
+    show_value(@ficha.group.matter.semester_workload().to_s + "h", 97)
 
     simple_title_generate("Padrão:", 290, 0)
     show_value(@ficha.group.matter.pd().to_s, 333)
@@ -112,14 +112,14 @@ class RecordPdf < Prawn::Document
     show_value(@ficha.group.matter.or().to_s, 437)
 
     simple_title_generate("Anual Total:", 10, 15)
-    show_value(@ficha.group.matter.total_annual_workload().to_s + "h", 74)
+    show_value(@ficha.group.matter.annual_workload().to_s + "h", 74)
 
 
     simple_title_generate("Laboratório:", 290, 0)
     show_value(@ficha.group.matter.lc().to_s, 357)
 
     simple_title_generate("Modular Total:", 10, 15)
-    show_value(@ficha.group.matter.total_modular_workload().to_s + "h", 87)
+    show_value(@ficha.group.matter.modular_workload().to_s + "h", 87)
 
     simple_title_generate("Campo:", 290, 0)
     show_value(@ficha.group.matter.cp().to_s, 333)

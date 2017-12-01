@@ -12,8 +12,6 @@ class CreateFichas < ActiveRecord::Migration[5.0]
       t.text :basic_bibliography
       t.text :bibliography
 
-      t.text :appraisal
-
       t.references :user, foreign_key: true
       t.references :group, foreign_key: true
 
