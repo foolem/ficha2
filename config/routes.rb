@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   match 'manage_options/select_teacher/:id' => 'manage_options#select_teacher', via: [:get, :post], as: :manage_options_select_teacher
   match 'manage_options/teacher_report' => 'manage_options#teacher_report', via: [:get], as: :manage_options_teacher_report
   match 'manage_options/matter_report' => 'manage_options#matter_report', via: [:get], as: :manage_options_matter_report
+  match 'manage_options/final_report' => 'manage_options#final_report', via: [:get], as: :manage_options_final_report
 
   get 'welcome/index'
 

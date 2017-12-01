@@ -73,23 +73,37 @@
     </header>
     <br>
 
-    <% if !@show and (user_signed_in? and ((@ficha.reproved? && current_user.teacher?) || !current_user.teacher?))  %>
+
+    <% if !@show && (current_user.appraiser? || current_user.admin? )  %>
 
       <div class="form-group">
         <%= f.label :status, :class => 'control-label col-xs-3' %>
         <div class="col-xs-8" id='select_status'>
-          <button id="buttonSent" type="button" class="<%= active_status("sent") %>"><%= getIcon("glyphicon glyphicon-refresh", "Encaminhado", "blue").html_safe %></button>
-          <button id="buttonReady" type="button" class="<%= active_status("ready") %>"><%= getIcon("glyphicon glyphicon-ok", "Aprovado", "green").html_safe %></button>
-          <button id="buttonReproved" type="button" class="<%= active_status("reproved") %>"><%= getIcon("glyphicon glyphicon-ban-circle", "Reprovado", "red").html_safe %></button>
+
+          <button type="button" name="btn_status" value="editing" class="<%= active_status("editing") %>">
+            <%= getIcon("glyphicon glyphicon-pencil", "Editando", "black").html_safe %>
+          </button>
+
+          <button type="button" name="btn_status" value="sent" class="<%= active_status("sent") %>">
+            <%= getIcon("glyphicon glyphicon-refresh", "Encaminhado", "blue").html_safe %>
+          </button>
+
+          <button type="button" name="btn_status" value="ready" class="<%= active_status("ready") %>">
+            <%= getIcon("glyphicon glyphicon-ok", "Aprovado", "green").html_safe %>
+          </button>
+
+          <button type="button" name="btn_status" value="reproved" class="<%= active_status("reproved") %>">
+            <%= getIcon("glyphicon glyphicon-ban-circle", "Reprovado", "red").html_safe %>
+          </button>
+
         </div>
         <%=f.error_span(:status) %>
       </div>
 
-
+      <input id="hidden_status" type="hidden" name="ficha[status]" value="<%= @ficha.status%>">
 
     <% end %>
 
-    <!-- no lugar do selector -->
 
     <div class="form-group">
       <%= f.label :teacher, :class => 'control-label col-xs-3' %>
@@ -183,19 +197,11 @@
 
     <% if !@show %>
 
-
       <div class="form-group">
         <div class="col-xs-offset-2 col-xs-10">
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-          groups_path, :class => 'btn btn-default right' %>
+          fichas_path, :class => 'btn btn-default right' %>
           <%= f.submit nil, :class => 'btn btn-primary right' %>
-          <!-- esse select some, ele só auxilia os botôes!-->
-          <select class="form-control" name="ficha[status]" id="ficha_status">
-            <option selected="selected" value="sent">Encaminhado</option>
-            <option value="reproved">Reprovado</option>
-            <option value="ready">Aprovado</option>
-          </select>
-          <!-- esse select some, ele só auxilia os botôes!-->
         </div>
       </div>
     <% end %>

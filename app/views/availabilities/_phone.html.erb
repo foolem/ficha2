@@ -8,10 +8,13 @@
 			<% if current_user.phone.blank? %>
 
 			<%= form_tag(add_phone_availabilities_path, remote: true) do %>
-			<input name="id" type="hidden" value="<%= current_user.id %>" />
+			<input name="user_id" type="hidden" value="<%= current_user.id %>" />
+			<input name="id" type="hidden" value="<%= @availability.id %>" />
+
+
 			<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
 				<div class="form-group">
-					<%= text_field_tag :phone, nil,  {:placeholder => '(41)998765432', class: 'form-control', required: true, autocomplete: false} %>
+					<%= text_field_tag :phone, nil,  {:placeholder => 'Insira seu número de telefone aqui', class: 'form-control', required: true, autocomplete: false} %>
 				</div>
 			</div>
 			<div id="edited" class="col-xs-2 col-md-2 col-lg-2" style="margin-top: 2px;">
@@ -22,9 +25,6 @@
 
 			<% end %>
 
-
-
-
 			<% else %>
 
 			<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
@@ -34,7 +34,7 @@
 			</div>
 
 			<div id="edited" class="col-xs-2 col-md-2 col-lg-2" style="margin-top: 2px;">
-				<%= link_to "Editar", change_phone_availabilities_path(current_user),
+				<%= link_to "Editar", change_phone_availabilities_path(@availability),
 				button_configs(:edit, "btn btn-default btn-sm simple_button", {style: 'margin-bottom: 10px;', remote: true}) %>
 			</div>
 			<% end %>

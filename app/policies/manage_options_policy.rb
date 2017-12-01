@@ -24,6 +24,10 @@ class ManageOptionsPolicy < ApplicationPolicy
     user_admin_or_adviser?
   end
 
+  def final_report?
+    user_admin_or_adviser?
+  end
+
   def matter_report?
     user_admin_or_adviser?
   end

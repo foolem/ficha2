@@ -58,6 +58,7 @@ class FichasController < ApplicationController
     @message = Message.new
     @ficha.messages.build
     coppy_bibliography
+
   end
 
   #rever
@@ -92,11 +93,13 @@ class FichasController < ApplicationController
   def update
     list = edit_params
 
-    if(current_user.teacher?)
+    puts "Current status: #{list[:status]}"
+
+    if(current_user.teacher? && (!current_user.appraiser? && !current_user.admin?)  )
       if ficha_blank(Ficha.new(list))
-        list[:status] = 0
+        list[:status] = 'editing'
       else
-        list[:status] = 1
+        list[:status] = 'sent'
       end
     end
 
@@ -162,9 +165,8 @@ class FichasController < ApplicationController
 
     def edit_params
       if current_user.appraiser? and @ficha.user.id != current_user.id
-        params.require(:ficha).permit(
-          :appraisal,
-          :status)
+        params.require(:ficha).permit(:status)
+
       else
         params.require(:ficha).permit(
           :program,

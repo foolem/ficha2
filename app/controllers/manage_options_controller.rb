@@ -66,6 +66,18 @@ class ManageOptionsController < ApplicationController
     end
   end
 
+  def final_report
+    respond_to do |format|
+      format.pdf do
+          pdf = FinalReportPdf.new()
+          send_data pdf.render,
+            filename: "Relatório relação docente disciplina.pdf",
+            type: "application/pdf",
+            disposition: "inline"
+        end
+    end
+  end
+
   def matter_report
     respond_to do |format|
       format.pdf do

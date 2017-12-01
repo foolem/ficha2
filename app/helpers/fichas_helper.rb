@@ -35,7 +35,8 @@ module FichasHelper
 
   def active_status(key)
 
-    status = { "sent" => "btn btn-default btn-sm",
+    status = { "editing" => "btn btn-default btn-sm",
+      "sent" => "btn btn-default btn-sm",
       "ready" => "btn btn-default btn-sm",
       "reproved" => "btn btn-default btn-sm" }
 
@@ -44,6 +45,10 @@ module FichasHelper
       end
 
       status[key]
+  end
+
+  def status_options
+    {"Encaminhado" => "sent", "Aprovado" => "ready", "Reprovado" => "reproved"}
   end
 
   def messages_length
@@ -65,7 +70,7 @@ module FichasHelper
   end
 
   def options_status
-      [['Encaminhado', 'sent'], ['Reprovado', 'reproved'],['Aprovado', 'ready']]
+    {"Encaminhado" => "sent", "Reprovado" => "reproved","Aprovado" => "ready"}
   end
 
   def show_ficha

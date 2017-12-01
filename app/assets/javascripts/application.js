@@ -40,41 +40,12 @@ document.addEventListener("turbolinks:load", function() {
     $("#ficha_status").hide();
   });
 
-  var sent = $("#buttonSent");
-  var ready = $("#buttonReady");
-  var reproved = $("#buttonReproved");
 
-  sent.click(function() {
-    $("#ficha_status option[value=sent]").prop("selected", "selected");
-    sent.addClass("active");
-    if (ready.hasClass("active")) {
-      ready.removeClass("active");
-    }
-    else if (reproved.hasClass("active")) {
-      reproved.removeClass("active");
-    }
-  });
-
-  ready.click(function() {
-    $("#ficha_status option[value=ready]").prop("selected", "selected");
-    ready.addClass("active");
-    if (sent.hasClass("active")) {
-      sent.removeClass("active");
-    }
-    else if (reproved.hasClass("active")) {
-      reproved.removeClass("active");
-    }
-  });
-
-  reproved.click(function() {
-    $("#ficha_status option[value=reproved]").prop("selected", "selected");
-    reproved.addClass("active");
-    if (sent.hasClass("active")) {
-      sent.removeClass("active");
-    }
-    else if (ready.hasClass("active")) {
-      ready.removeClass("active");
-    }
+  $('body').on('click', 'button[name=btn_status]', function() {
+    value = $(this).val();
+    $('#hidden_status').val(value);
+    $('button.active').removeClass('active');
+    $(this).addClass('active');
   });
 });
 

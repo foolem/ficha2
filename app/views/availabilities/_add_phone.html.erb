@@ -1,6 +1,8 @@
 <%= form_tag(add_phone_availabilities_path, remote: true) do %>
 
-	<input name="id" type="hidden" value="<%= current_user.id %>" />
+	<input name="user_id" type="hidden" value="<%= current_user.id %>" />
+	<input name="id" type="hidden" value="<%= @availability.id %>" />
+
 
 		<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
 			<div class="form-group">

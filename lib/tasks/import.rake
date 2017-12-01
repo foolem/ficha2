@@ -71,13 +71,7 @@ namespace :import do
       name = linha[0]
       email = linha[1]
       role = linha[2]
-      password = pass_generate
-<<<<<<< HEAD
-=======
-      user = User.new(name: name, email: email, password: password)
-      user.save
-      puts "|  #{user.id} - #{name}  -  #{email} - #{role} - #{password} "
->>>>>>> 32891811aaffcec3357887167f816d179e32a58b
+      password = pass_generate.chomp
 
       user = User.new(name: name, email: email, password: password)
       if user.save
@@ -90,10 +84,7 @@ namespace :import do
         end
       end
 
-<<<<<<< HEAD
-=======
-      puts user.id
->>>>>>> 32891811aaffcec3357887167f816d179e32a58b
+
     end
   end
 
@@ -197,7 +188,7 @@ namespace :import do
       puts "#{course.id}\t#{code}\t#{name}"
     end
 
-    path = "lib/files/2018.xlsx"
+    path = "lib/files/2018-1-Atualizada.xlsx"
     xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
     matters_list = []

@@ -33,4 +33,8 @@ module GroupsHelper
       and groups.semester_id = #{@unite_group.semester_id}")
   end
 
+  def current_groups
+    Group.where(semester_id: Semester.current_semester.id)
+  end
+
 end

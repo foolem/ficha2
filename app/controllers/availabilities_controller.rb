@@ -107,8 +107,9 @@ class AvailabilitiesController < ApplicationController
   end
 
   def add_phone
+    @availability = params[:id]
+    
     phone = params[:phone]
-    puts phone
     current_user.phone = phone
     current_user.save
     respond_to do |format|

@@ -125,7 +125,7 @@
 
             <% end %>
 
-            <% if user_signed_in? and current_user.teacher? and options_not_generated? %>
+            <% if user_signed_in? and current_user.teacher? and options_not_generated? and !current_user.admin? %>
 
               <li class="dropdown dropdown-list side_bar <%= classes["options"]%>">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Encargos Didáticos <span class="caret"></span><span class="<%=menu_icon(option_icon)%>"></span></a>
