@@ -115,12 +115,12 @@ namespace :import do
       course
     end
 
-    def find_group(course ,matter, group_name, group_vacances)
+    def find_group(course ,matter, group_name, group_vacancies)
       groups = Group.where(course_id: course.id, matter_id: matter.id, name: group_name,
-        vacancies: group_vacances, semester_id: Semester.current_semester.id)
+        vacancies: group_vacancies, semester_id: Semester.current_semester.id)
       if groups.length == 0
         group = Group.new(course_id: course.id, matter_id: matter.id, name: group_name,
-          vacancies: group_vacances, semester_id: Semester.current_semester.id)
+          vacancies: group_vacancies, semester_id: Semester.current_semester.id)
         group.save
       else
         group = groups.first
@@ -193,6 +193,7 @@ namespace :import do
 
     matters_list = []
     groups_list = []
+    new_matters = []
 
     sheet = xlsx.sheet(0)
     (sheet.last_row() -1).times do |i|
@@ -211,8 +212,8 @@ namespace :import do
       course = find_course(course_code)
 
       group_name = linha[2].chomp
-      group_vacances = linha[3]
-      group = find_group(course ,matter, group_name, group_vacances)
+      group_vacancies = linha[3]
+      group = find_group(course ,matter, group_name, group_vacancies)
 
       groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
       if !groups_list.include? groups_item
@@ -233,12 +234,91 @@ namespace :import do
 
     end
 
+    8.times do |matter|
+      case matter
+      when 0
+        matter_code = "EMA703"
+        matter_name = "Álgebras e Módulos"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+
+      when 1
+        matter_code = "EMA701"
+        matter_name = "Álgebra Linear Aplicada"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+      when 2
+        matter_code = "EMA702"
+        matter_name = "Álgebras Linear Avançada"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+      when 3
+        matter_code = "EMA706"
+        matter_name = "Análise em Rn"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+      when 4
+        matter_code = "EMA728"
+        matter_name = "Medida e Integração"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+      when 5
+        matter_code = "EMA761"
+        matter_name = "Otimização I"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+      when 6
+        matter_code = "EMA711"
+        matter_name = "Equações Diferenciais Parciais"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+      when 7
+        matter_code = "EMA765"
+        matter_name = "Teoria de Distribuições e Análise de Fourier"
+        matter = find_matter(matter_code, matter_name)
+        #group = find_group("Pós-Graduação em Matemática" ,matter, "A", 30)
+        #groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        #groups_list.push groups_item
+        matters_item = "#{matter_code}\t#{matter_name}"
+        matters_list.push matters_item
+      end
+
+    end
+
     puts "\n============= MATTERS ============="
     puts "CODE\tMATTER"
     matters_list.sort.each { |matter| puts matter }
 
     puts "\n============= GROUPS ============="
-    puts "ID\tMATTER - NAME\tVAGA\tCOURSE"
+    puts "ID\tMATTER - NAME\tVACANCIES\tCOURSE"
     groups_list.each { |group| puts group }
 
 

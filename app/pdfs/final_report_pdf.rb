@@ -1,76 +1,112 @@
 class FinalReportPdf < Prawn::Document
 
   include GroupsHelper
+  include SchedulesHelper
 
   def initialize()
-    super(top_margin: 20)
+    super(top_margin: 20, :page_size => "A4", :page_layout => :landscape)
     @margem = 50
     @number = 0
 
-    header_generate
     record_generate
   end
 
-  def header_generate
-    prawn_logo = "app/pdfs/icon.jpg"
-    image prawn_logo, :at => [@margem,740], :width => 80
 
-    text_box  "MINISTÉRIO DA EDUCAÇÃO
-    UNIVERSIDADE FEDERAL DO PARANÁ
-    SETOR DE CIÊNCIAS EXATAS", size: 11, :at => [85+ @margem,735]
+  def get_rows
+    rows = []
+    rows.push ["Código", "Turma", "Disciplina", "Horário", "Nº Alunos", "Sala", "Curso", "Professor"]
 
-    text_box  "DEPARTAMENTO DE MATEMÁTICA", size: 11, :at => [85 + @margem,680]
-    move_down 80
+    current_groups.each_with_index do |group, i|
 
-    stroke_horizontal_line @margem,450 + @margem,:at=> cursor
+      rows.push [get_code(group), get_classes(group), get_matter(group), get_schedule(group),
+                get_vacancies(group), get_classroom(group), get_course(group), get_teacher(group)]
 
-    move_down 28
-    text  "RELAÇÃO DE TURMAS", size: 12, style: :bold, align: :center
-    move_down 22
-
-    transparent (0.5) { stroke_horizontal_rule }
-    transparent (0.5) {stroke_vertical_line 592,17,:at=> 0}
-    transparent (0.5) {stroke_vertical_line 592,17,:at=> 540}
-    transparent (0.5) { stroke_horizontal_line 0, 540, :at=> 17}
-
-    @number+=1
-   text_box  @number.to_s, size: 11, :at => [530,11]
+    end
+    rows
   end
+
+  def get_code(group)
+    code = group.matter.code
+    code
+  end
+
+  def get_classes(group)
+    classes = group.name
+    classes
+  end
+
+  def get_matter(group)
+    matter = group.matter.name
+    matter
+  end
+
+  def get_schedule(group)
+
+    schedule_list = {}
+
+    group.schedules.distinct.each do |schedule|
+      item = "#{schedule.begin.strftime("%H:%M")} - #{schedule.end.strftime("%H:%M")}"
+      if !schedule_list[item].blank?
+        schedule_list[item] = schedule_list[item] + [schedule.day_to_i + 1]
+      else
+        schedule_list[item] = [schedule.day_to_i + 1]
+      end
+    end
+    result = schedule_list.map do |key, value|
+      days = value.collect { |v| "#{v}a"  }.join(", ")
+      "#{days} #{key}"
+    end
+
+    return result.join(" e ")
+
+  end
+
+  def get_vacancies(group)
+    vacancies = group.vacancies
+    vacancies
+  end
+
+  def get_classroom(group)
+    classroom = group.class_room
+    classroom
+  end
+
+  def get_course(group)
+    course = group.course.name
+    course
+  end
+
+  def get_teacher(group)
+    owner = group.ficha.blank? ? " " : group.ficha.user.name
+    owner
+  end
+
 
 
   def record_generate
 
-    table_header
-
-    current_groups.each_with_index do |group, i|
-      move_down 7
-
-      owner = group.ficha.blank? ? " " : group.ficha.user.name
-      text_box  owner , size: 12, :at => [20, cursor]
-      text_box  group.code_with_group_show , size: 12, :at => [360, cursor]
-      if ((i+1) % 25) == 0
-        puts i
-        start_new_page
-        header_generate
-        table_header
-      else
-        move_down 15
-        transparent (0.5) { stroke_horizontal_line 0, 540, :at=>  cursor}
-      end
-
+    table_data = get_rows
+    table(table_data, header: true, cell_style: {size: 11}, column_widths: [60,45,160,130,50,50,120,150], position: 5) do
+      row(0).style font_style: :bold, align: :center
     end
 
-    move_down 15
+
   end
 
   def table_header
     move_down 7
 
-    text_box "Docente", style: :bold, size: 12, :at => [20, cursor]
-    text_box "Turma", style: :bold, size: 12, :at => [360, cursor]
-    text_box "Sala", style: :bold, size: 12, :at => [480, cursor]
+    text_box "Código", style: :bold, size: 12, :at => [10, cursor]
+    text_box "Turma", style: :bold, size: 12, :at => [10, cursor]
+    text_box "Código", style: :bold, size: 12, :at => [10, cursor]
+    text_box "Horários", style: :bold, size: 12, :at => [380, cursor]
+    text_box "Nº Alunos", style: :bold, size: 12, :at => [500, cursor]
+    text_box "Sala", style: :bold, size: 12, :at => [550, cursor]
+    text_box "Curso", style: :bold, size: 12, :at => [600, cursor]
+    text_box "Professor", style: :bold, size: 12, :at => [670, cursor]
+
     move_down 15
-    transparent (0.5) { stroke_horizontal_line 0, 540, :at=>  cursor}
+    transparent (0.5) { stroke_horizontal_line 0, 770, :at=>  cursor}
 
   end
 

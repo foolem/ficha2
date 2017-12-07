@@ -9,7 +9,11 @@ class Group < ApplicationRecord
   belongs_to :unite_group, optional: true
 
   def code_with_group
-    "#{name} -  #{matter.code}"
+    "#{name} - #{matter.code}"
+  end
+
+  def group_with_code
+    "#{matter.code}-#{name}"
   end
 
   def code_with_group_show

@@ -3,16 +3,18 @@
   <div class="col-md-8">
     <%= link_to "Selecionar", manage_options_select_teacher_path(group.id),
         button_configs(:select, "btn btn-success simple_button col-md-12",
-        {style: 'padding: 7px 10px !important;', remote: true}) %>
+        {style: 'padding: 7px 10px !important;color:white', remote: true}) %>
   </div>
 
 <% else %>
-
-  <div class="col-md-7">
+  <div class="col-md-2" style="padding:0;margin-right:10px">
+    <div class="form-control"> <%= group.class_room %> </div>
+  </div>
+  <div class="col-md-5" style="padding:0">
     <div class="form-control"> <%= group.ficha.user.name %> </div>
   </div>
 
-  <div class="col-md-1" style="padding: 0 0 0 3px; margin-top: 2px;">
+  <div class="col-md-1" style="padding: 0 0 0 10px; margin-top: 2px;">
     <%= link_to simple_edit_button.html_safe, "#", class: "btn btn-default btn-sm", remote: true%>
   </div>
 

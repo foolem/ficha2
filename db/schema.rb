@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20171006124656) do
     t.text     "specific_objective",  limit: 65535
     t.text     "basic_bibliography",  limit: 65535
     t.text     "bibliography",        limit: 65535
-    t.text     "appraisal",           limit: 65535
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at",                                    null: false
@@ -61,6 +60,7 @@ ActiveRecord::Schema.define(version: 20171006124656) do
     t.integer  "unite_group_id"
     t.integer  "course_id"
     t.integer  "vacancies"
+    t.string   "class_room"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["course_id"], name: "index_groups_on_course_id", using: :btree

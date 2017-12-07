@@ -107,7 +107,9 @@ class ManageOptionsController < ApplicationController
   def choose_teacher
     @user = User.find(params[:user])
     @group = Group.find(params[:group])
-
+    class_room = params[:class_room]
+    @group.class_room = class_room
+    @group.save
     if @group.ficha.blank?
         Ficha.create(user: @user, group: @group)
     end
