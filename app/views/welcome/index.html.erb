@@ -1,12 +1,6 @@
 <div class="jumbotron" style="height:822px; background-color:rgb(237, 237, 237);">
-
   <h1><%= t('welcome') %></h1>
-
   <% if user_signed_in? %>
     <%= link_to "Encargos Didáticos",  user_availability_availabilities_path(current_user.id), class: "btn btn-primary btn-sm white" %>
   <% end %>
-
-
-  <%= link_to "Final report",  "#{manage_options_final_report_path}.pdf", class: "btn btn-success btn-sm" %>
-
 </div>

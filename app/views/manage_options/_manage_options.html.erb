@@ -91,6 +91,18 @@
               <% end %>
             </div>
           </div>
+
+
+
+          <div class="center report_generate">
+            <%= link_to "#{manage_options_final_report_path}.pdf",
+                :"data-load" => "Encerrando período de seleção  ...",
+                class: 'btn big-btn blue-btn white mt-30' do %>
+                  <%= big_matter_button.html_safe %>
+                  <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
+            <% end %>
+          </div>
+
         </div>
 
       </div>

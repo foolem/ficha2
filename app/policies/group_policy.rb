@@ -9,13 +9,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    !user.blank? and (user.has_any_role? ["secretary", "teacher"] and user.actived?)
-
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def update?
-    !user.blank? and (user.has_any_role? ["secretary", "teacher"] and user.actived?)
-
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def destroy?
