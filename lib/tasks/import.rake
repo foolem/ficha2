@@ -227,94 +227,12 @@ namespace :import do
         schedule_end = get_time(linha[6])
         schedule_duration = get_duration(schedule_begin, schedule_end)
         schedule = find_schedule(line_day -1, schedule_begin, schedule_duration)
-        #puts "#{schedule.id}\t#{schedule.day}\t#{schedule.begin}\t#{schedule.duration}"
         print "."
         add_schedule(group, schedule)
       end
 
     end
 
-    #mudar esta parte após esse semestre
-    course = find_course(200)
-
-    8.times do |matter|
-      case matter
-      when 0
-        matter_code = "EMA703"
-        matter_name = "Álgebras e Módulos"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-
-      when 1
-        matter_code = "EMA701"
-        matter_name = "Álgebra Linear Aplicada"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-      when 2
-        matter_code = "EMA702"
-        matter_name = "Álgebras Linear Avançada"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-      when 3
-        matter_code = "EMA706"
-        matter_name = "Análise em Rn"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-      when 4
-        matter_code = "EMA728"
-        matter_name = "Medida e Integração"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-      when 5
-        matter_code = "EMA761"
-        matter_name = "Otimização I"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-      when 6
-        matter_code = "EMA711"
-        matter_name = "Equações Diferenciais Parciais"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-      when 7
-        matter_code = "EMA765"
-        matter_name = "Teoria de Distribuições e Análise de Fourier"
-        matter = find_matter(matter_code, matter_name)
-        group = find_group(course ,matter, "A", 30)
-        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-        groups_list.push groups_item
-        matters_item = "#{matter_code}\t#{matter_name}"
-        matters_list.push matters_item
-      end
-
-    end
 
     puts "\n============= MATTERS ============="
     puts "CODE\tMATTER"
