@@ -11,15 +11,73 @@ class FinalReportPdf < Prawn::Document
     record_generate
   end
 
-
   def get_rows
     rows = []
     rows.push ["Código", "Turma", "Disciplina", "Horário", "Nº Alunos", "Sala", "Curso", "Professor"]
 
     current_groups.each_with_index do |group, i|
 
-      rows.push [get_code(group), get_classes(group), get_matter(group), get_schedule(group),
-                get_vacancies(group), get_classroom(group), get_course(group), get_teacher(group)]
+      if group.matter.code == "CM041" && group.name == "B" && group.course.name == "Matemática Industrial"
+        group.vacancies = group.vacancies + 60
+        group.course.name = group.course.name + ", Engenharia Industrial Madeireira Diurno"
+      end
+      if group.matter.code == "CM041" && group.name == "C" && group.course.name == "Engenharia Industrial Madeireira Diurno"
+        i = "a"
+      end
+
+      if group.matter.code == "CM043" && group.name == "C" && group.course.name == "Engenharia Civil"
+        group.vacancies = group.vacancies + 5
+        group.course.name = group.course.name + ", Ciência da Computação"
+      end
+      if group.matter.code == "CM043" && group.name == "C" && group.course.name == "Ciência Da Computação"
+        i = "a"
+      end
+
+      if group.matter.code == "CM043" && group.name == "D" && group.course.name == "Licenciatura em Química Noturno"
+        group.vacancies = group.vacancies + 20
+        group.course.name = group.course.name + ", Matemática Industrial"
+      end
+      if group.matter.code == "CM043" && group.name == "D" && group.course.name == "Matemática Industrial"
+        i = "a"
+      end
+
+      if group.matter.code == "CM044" && group.name == "B" && group.course.name == "Física Noturno"
+        group.vacancies = group.vacancies + 15
+        group.course.name = group.course.name + ", Matemática Industrial"
+      end
+      if group.matter.code == "CM044" && group.name == "B" && group.course.name == "Matemática Industrial"
+        i = "a"
+      end
+
+      if group.matter.code == "CM053" && group.name == "A" && group.course.name == "Matemática Diurno"
+        group.vacancies = group.vacancies + 40
+        group.course.name = group.course.name + ", Matemática Industrial"
+      end
+      if group.matter.code == "CM053" && group.name == "A" && group.course.name == "Matemática Industrial"
+        i = "a"
+      end
+
+      if group.matter.code == "CM068" && group.name == "A" && group.course.name == "Matemática Diurno"
+        group.vacancies = group.vacancies + 40
+        group.course.name = group.course.name + ", Matemática Industrial"
+      end
+      if group.matter.code == "CM068" && group.name == "A" && group.course.name == "Matemática Industrial"
+        i = "a"
+      end
+
+      if group.matter.code == "CM102" && group.name == "A" && group.course.name == "Matemática Diurno"
+        group.vacancies = group.vacancies + 20
+        group.course.name = group.course.name + ", Matemática Industrial"
+      end
+      if group.matter.code == "CM102" && group.name == "A" && group.course.name == "Matemática Industrial"
+        i = "a"
+      end
+
+      if i!="a"
+        rows.push [get_code(group), get_classes(group), get_matter(group), get_schedule(group),
+          get_vacancies(group), get_classroom(group), get_course(group), get_teacher(group)]
+      end
+
 
     end
     rows
@@ -42,6 +100,7 @@ class FinalReportPdf < Prawn::Document
 
   def get_schedule(group)
 
+
     schedule_list = {}
 
     group.schedules.distinct.each do |schedule|
@@ -58,7 +117,6 @@ class FinalReportPdf < Prawn::Document
     end
 
     return result.join(" e ")
-
   end
 
   def get_vacancies(group)
@@ -71,7 +129,7 @@ class FinalReportPdf < Prawn::Document
     classroom
   end
 
-  def get_course(group)
+def get_course(group)
     course = group.course.name
     course
   end
@@ -81,15 +139,12 @@ class FinalReportPdf < Prawn::Document
     owner
   end
 
-
-
   def record_generate
 
     table_data = get_rows
     table(table_data, header: true, cell_style: {size: 11}, column_widths: [60,45,160,130,50,50,120,150], position: 5) do
       row(0).style font_style: :bold, align: :center
     end
-
 
   end
 

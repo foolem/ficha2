@@ -215,6 +215,8 @@ namespace :import do
       group_vacancies = linha[3]
       group = find_group(course ,matter, group_name, group_vacancies)
 
+
+
       groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
       if !groups_list.include? groups_item
         groups_list.push groups_item
@@ -230,7 +232,7 @@ namespace :import do
         print "."
         add_schedule(group, schedule)
       end
-
+      
     end
 
 
