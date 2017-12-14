@@ -1,4 +1,4 @@
-class FinalReportPdf < Prawn::Document
+class FinalReportBackupPdf < Prawn::Document
 
   include GroupsHelper
 

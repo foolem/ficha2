@@ -100,7 +100,6 @@ class FinalReportPdf < Prawn::Document
 
   def get_schedule(group)
 
-
     schedule_list = {}
 
     group.schedules.distinct.each do |schedule|

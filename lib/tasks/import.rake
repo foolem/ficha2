@@ -232,9 +232,8 @@ namespace :import do
         print "."
         add_schedule(group, schedule)
       end
-      
-    end
 
+    end
 
     puts "\n============= MATTERS ============="
     puts "CODE\tMATTER"
@@ -244,6 +243,7 @@ namespace :import do
     puts "ID\tMATTER - NAME\tVACANCIES\tCOURSE"
     groups_list.each { |group| puts group }
 
+    
 
   end
 
