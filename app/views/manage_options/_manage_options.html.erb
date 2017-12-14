@@ -63,24 +63,30 @@
       <div class="panel panel-default progress-panel">
 
         <div class="row">
-          <div class="col-md-offset-1 col-md-5">
+          <!--<div class="col-md-offset-1 col-md-5">
             <h4 class="center">Professores</h4>
             <%= pie_chart({"Finalizados" => 5, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#57acfb", "#454545"]) %>
-
+          -->
+          <div class="col-md-4">
             <div class="center report_generate">
               <%= link_to "#{manage_options_teacher_report_path}.pdf",
-                :"data-load" => "Gerando relatório...",
-                class: 'btn big-btn blue-btn white m-r-10' do %>
-                  <%= big_user_button.html_safe %>
-                  <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
+              :"data-load" => "Gerando relatório...",
+              class: 'btn big-btn blue-btn white m-r-10' do %>
+              <%= big_user_button.html_safe %>
+              <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
               <% end %>
             </div>
 
           </div>
 
-          <div class="col-md-5">
+
+
+
+            <!--
             <h4 class="center">Opções</h4>
             <%= pie_chart({"Finalizados" => 20, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#15489e", "#454545"]) %>
+          -->
+          <div class="col-md-4">
 
             <div class="center report_generate">
               <%= link_to "#{manage_options_matter_report_path}.pdf",
@@ -94,14 +100,17 @@
 
 
 
+          <div class="col-md-4">
+
           <div class="center report_generate">
             <%= link_to "#{manage_options_final_report_path}.pdf",
                 :"data-load" => "Gerando relatório...",
-                class: 'btn big-btn blue-btn white mt-30' do %>
+                class: 'btn big-btn blue-btn white m-l-10' do %>
                   <%= big_matter_button.html_safe %>
                   <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
             <% end %>
           </div>
+        </div>
 
         </div>
 

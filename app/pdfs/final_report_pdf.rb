@@ -17,67 +17,8 @@ class FinalReportPdf < Prawn::Document
 
     current_groups.each_with_index do |group, i|
 
-      if group.matter.code == "CM041" && group.name == "B" && group.course.name == "Matemática Industrial"
-        group.vacancies = group.vacancies + 60
-        group.course.name = group.course.name + ", Engenharia Industrial Madeireira Diurno"
-      end
-      if group.matter.code == "CM041" && group.name == "C" && group.course.name == "Engenharia Industrial Madeireira Diurno"
-        i = "a"
-      end
-
-      if group.matter.code == "CM043" && group.name == "C" && group.course.name == "Engenharia Civil"
-        group.vacancies = group.vacancies + 5
-        group.course.name = group.course.name + ", Ciência da Computação"
-      end
-      if group.matter.code == "CM043" && group.name == "C" && group.course.name == "Ciência Da Computação"
-        i = "a"
-      end
-
-      if group.matter.code == "CM043" && group.name == "D" && group.course.name == "Licenciatura em Química Noturno"
-        group.vacancies = group.vacancies + 20
-        group.course.name = group.course.name + ", Matemática Industrial"
-      end
-      if group.matter.code == "CM043" && group.name == "D" && group.course.name == "Matemática Industrial"
-        i = "a"
-      end
-
-      if group.matter.code == "CM044" && group.name == "B" && group.course.name == "Física Noturno"
-        group.vacancies = group.vacancies + 15
-        group.course.name = group.course.name + ", Matemática Industrial"
-      end
-      if group.matter.code == "CM044" && group.name == "B" && group.course.name == "Matemática Industrial"
-        i = "a"
-      end
-
-      if group.matter.code == "CM053" && group.name == "A" && group.course.name == "Matemática Diurno"
-        group.vacancies = group.vacancies + 40
-        group.course.name = group.course.name + ", Matemática Industrial"
-      end
-      if group.matter.code == "CM053" && group.name == "A" && group.course.name == "Matemática Industrial"
-        i = "a"
-      end
-
-      if group.matter.code == "CM068" && group.name == "A" && group.course.name == "Matemática Diurno"
-        group.vacancies = group.vacancies + 40
-        group.course.name = group.course.name + ", Matemática Industrial"
-      end
-      if group.matter.code == "CM068" && group.name == "A" && group.course.name == "Matemática Industrial"
-        i = "a"
-      end
-
-      if group.matter.code == "CM102" && group.name == "A" && group.course.name == "Matemática Diurno"
-        group.vacancies = group.vacancies + 20
-        group.course.name = group.course.name + ", Matemática Industrial"
-      end
-      if group.matter.code == "CM102" && group.name == "A" && group.course.name == "Matemática Industrial"
-        i = "a"
-      end
-
-      if i!="a"
-        rows.push [get_code(group), get_classes(group), get_matter(group), get_schedule(group),
-          get_vacancies(group), get_classroom(group), get_course(group), get_teacher(group)]
-      end
-
+      rows.push [get_code(group), get_classes(group), get_matter(group), get_schedule(group),
+                get_vacancies(group), get_classroom(group), get_course(group), get_teacher(group)]
 
     end
     rows

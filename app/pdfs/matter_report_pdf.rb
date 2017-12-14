@@ -37,14 +37,6 @@ class MatterReportPdf < Prawn::Document
 
     @options.each_with_index do |option, index|
       rows.push [get_groups(option), schedules_report(option), get_teachers(option)]
-      #option.groups.distinct.each do |group|
-    #    puts "#{group.name} - #{group.matter.code} - #{group.course.name}"
-  #    end
-
-        #Interessados
-      #option.wishes.each do |wish|
-      #  <h6 class="text-center m-0" style="line-height:0px;"= wish.user.name, prioridade:= wish.priority</h6><br>
-    # end
     end
     rows
   end
