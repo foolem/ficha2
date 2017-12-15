@@ -12,24 +12,24 @@ namespace :import do
       password
     end
 
-    def send_to(users)
-      users.each do |user|
+    def send_to(user)
         password = pass_generate
         user.password = password
         user.save
         puts "User: #{user.name}\tPassword: #{password}"
         UserMailer.send_password(user).deliver
+    end
+
+
+    users = User.all
+    users.each do |user|
+      if user.id >= 5 && user.id <= 59
+        send_to(user)
       end
     end
 
-    users = []
-    ids = [5, 38, 41, 58, 43, 49, 59]
-    ids.each do |id|
-      users.push User.find(id)
-    end
-
     # Envia para ids específicos
-    send_to(users)
+    #send_to(users)
 
   end
 
@@ -243,7 +243,7 @@ namespace :import do
     puts "ID\tMATTER - NAME\tVACANCIES\tCOURSE"
     groups_list.each { |group| puts group }
 
-    
+
 
   end
 

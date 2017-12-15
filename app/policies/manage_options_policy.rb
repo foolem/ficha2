@@ -8,6 +8,10 @@ class ManageOptionsPolicy < ApplicationPolicy
     user_admin_or_adviser? and !Semester.current_semester.options_generated
   end
 
+  def send_password?
+    user_admin_or_adviser?
+  end
+
   def remove?
     user_admin_or_adviser? and Semester.current_semester.options_generated
   end

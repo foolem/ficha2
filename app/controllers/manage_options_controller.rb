@@ -7,6 +7,15 @@ class ManageOptionsController < ApplicationController
   def index
   end
 
+  def send_password
+    users = User.all
+    users.each do |user|
+      if user.id >= 5 && user.id <=59
+        UserMailer.send_password(user).deliver
+      end
+    end
+  end
+
   def generate
     @action = :generate
     #condition = !@semester.options_generated?

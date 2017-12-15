@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   get 'manage_options/index'
   get 'manage_options/generate'
+  get 'manage_options/send_password'
+
   delete 'manage_options/remove'
   get 'manage_options/start'
   get 'manage_options/end'

@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def send_password(user)
     @user = user
-    mail(:to => @user.email, :subject => 'Encargos didáticos')
+    mail(:to => @user.email, :subject => 'Encargos Didáticos')
     #mail(:to => 'ficha2.mat@gmail.com', :subject => 'Mensagem de Contato')
   end
 

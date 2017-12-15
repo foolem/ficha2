@@ -2,5 +2,6 @@
   <h1><%= t('welcome') %></h1>
   <% if user_signed_in? %>
     <%= link_to "Encargos Didáticos",  user_availability_availabilities_path(current_user.id), class: "btn btn-primary btn-sm white" %>
+
   <% end %>
 </div>
