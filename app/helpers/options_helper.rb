@@ -188,4 +188,15 @@ module OptionsHelper
     return result.join(" e ")
   end
 
+  def hidden_field(option)
+     option.groups.distinct.each do |group|
+       if group.course.name == "Honors"
+         hidden = "display:none;"
+         return hidden
+       else
+         return ""
+       end
+     end
+  end
+
 end

@@ -1,4 +1,3 @@
-
 <% matters_order.each do |matter| %>
   <% matter_options(matter) %>
   <% if !@options.blank? %>
@@ -8,52 +7,49 @@
     <div id="scroll" class="panel panel-default panel-options">
       <% @options.each do |option| %>
 
+        <div class="option-body" style="<%= hidden_field(option) %>">
 
-            <div class="option-body">
+          <div class="option-button">
+            <% if user_has_wishes? and !option_wished(option) %>
+            <%= link_to "Escolher", open_wish_options_path(option),
+                        :title => "Escolher", :class => "btn btn-default m-choose color-default",
+                        :remote => true, style: "width: 96%;" %>
 
-              <div class="option-button">
-                <% if user_has_wishes? and !option_wished(option) %>
-                <%= link_to "Escolher", open_wish_options_path(option),
-                            :title => "Escolher", :class => "btn btn-default m-choose color-default",
-                            :remote => true, style: "width: 96%;" %>
-
-                <% elsif option_wished(option) %>
-                <%= link_to "Remover escolha", remove_wishes_path(option),
-                            :title => "Escolher", :class => "btn btn-danger disable m-choose",
-                            :method => "delete", style: "width: 96%"  %>
-                <% end %>
-              </div>
-              <div id= "option" class="center">
-                <hr class="m-5">
-                <div id="option_schedules" data-href="<%= option_path(option) %>">
-                  <%= option_schedules2(option).html_safe %>
-                </div>
-              </div>
-
-              <div class="p-10">
-
-                <table style="margin: 0 auto;">
-                  <tbody>
-                    <% option.groups.distinct.each do |group| %>
-
-                      <tr id="nohover" style="width:290px">
-                        <td class="center"> <%= group.name %> </td>
-                        <td class="center"> <%= group.matter.code %></td>
-                        <td> <%= group.course.name %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-                <div>
-                  <h5 class="text-center">Interessados:</h5>
-                  <% option.wishes.each do |wish| %>
-                    <h6 class="text-center m-0" style="line-height:0px;"><%= wish.user.name %>, prioridade: <%= wish.priority %></h6><br>
-                  <% end %>
-                </div>
-              </div>
-
+            <% elsif option_wished(option) %>
+            <%= link_to "Remover escolha", remove_wishes_path(option),
+                        :title => "Escolher", :class => "btn btn-danger disable m-choose",
+                        :method => "delete", style: "width: 96%"  %>
+            <% end %>
+          </div>
+          <div id= "option" class="center">
+            <hr class="m-5">
+            <div id="option_schedules" data-href="<%= option_path(option) %>">
+              <%= option_schedules2(option).html_safe %>
             </div>
+          </div>
 
+          <div class="p-10">
+
+            <table style="margin: 0 auto;">
+              <tbody>
+                <% option.groups.distinct.each do |group| %>
+                  <tr id="nohover" style="width:290px">
+                    <td class="center"> <%= group.name %> </td>
+                    <td class="center"> <%= group.matter.code %></td>
+                    <td> <%= group.course.name %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <div>
+              <h5 class="text-center">Interessados:</h5>
+              <% option.wishes.each do |wish| %>
+                <h6 class="text-center m-0" style="line-height:0px;"><%= wish.user.name %>, prioridade: <%= wish.priority %></h6><br>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
 
       <% end %>
     </div>
