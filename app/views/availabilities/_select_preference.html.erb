@@ -1,4 +1,4 @@
-<%= form_tag(add_preference_availabilities_path, remote: true) do %>
+<%= form_tag(add_preference_availabilities_path, remote: true, id: 'form_preference') do %>
 
   <input name="preference" type="hidden" value="<%= @preference_id %>" />
   <input name="id" type="hidden" value="<%= @availability.id %>" />
@@ -10,7 +10,7 @@
 
   <div class="col-md-2" style="padding: 0 0 0 3px; margin-top: 2px;">
 
-    <%= button_tag(type: "submit", class: "btn btn-success btn-sm", style: "margin-bottom: 10px;") do
+    <%= button_tag(type: "submit", class: "btn btn-success btn-sm", style: "margin-bottom: 10px;", id: "submit_preference") do
       simple_check_button.html_safe
     end %>
 
