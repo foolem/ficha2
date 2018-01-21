@@ -7,11 +7,31 @@ class ManageOptionsController < ApplicationController
   def index
   end
 
-  def send_password
+  def pass_generate
+    password = ""
+    character = ("0".."9").to_a + ("a".."f").to_a
+    6.times do |i|
+      password << character.sample
+    end
+    password
+  end
+
+  def send_to(user)
+      password = pass_generate
+      user.password = password
+      user.password_confirmation = password
+      user.save
+      puts "User: #{user.name}\tPassword: #{password}"
+      UserMailer.send_password(user).deliver
+  end
+
+  def send_email
     users = User.all
     users.each do |user|
-      if user.id >= 5 && user.id <=59
-        UserMailer.send_password(user).deliver
+      # >=5 para ignorar usuários padrão do sistema
+      #if user.id >= 5 && user.id <= 59
+      if user.id == 71
+        send_to(user)
       end
     end
   end
@@ -107,6 +127,16 @@ class ManageOptionsController < ApplicationController
     puts "Group id: #{params[:id]}"
     @group = Group.find(params[:id])
     @group_id = params[:id]
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def edit_teacher
+    @group = Group.find(params[:id])
+    @group.ficha.destroy
+    @group.save
 
     respond_to do |format|
       format.js

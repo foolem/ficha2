@@ -28,12 +28,10 @@ namespace :import do
       end
     end
 
-    # Envia para ids específicos
-    #send_to(users)
 
   end
 
-  desc "Import of users of lib/files/users.xlsx"
+  desc "Importation of users of lib/files/users.xlsx"
   task users: :environment do
 
     u = User.create(name: "Professor", email: "prof@prof", password: "123123")
@@ -88,7 +86,7 @@ namespace :import do
     end
   end
 
-  desc "Import of courses, matters and groups of lib/files/inserts.xlsx"
+  desc "Importation of courses, matters and groups of lib/files/inserts.xlsx"
   task init: :environment do
 
     def find_matter(code, name)
@@ -248,7 +246,7 @@ namespace :import do
   end
 
 
-  desc "Import unite of matters from lib/files/unite_matters.xlsx"
+  desc "Importation unite of matters from lib/files/unite_matters.xlsx"
   task unite_matters: :environment do
 
     path = "lib/files/unite_matters.xlsx"

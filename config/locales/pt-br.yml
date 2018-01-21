@@ -37,6 +37,9 @@
   option: "Seleção"
   options: "Seleções"
 
+  groups_import: "Importar turmas"
+  courses_import: "Importar cursos"
+
   begin: "Início"
   duration: "Duração"
   day: "Dia"

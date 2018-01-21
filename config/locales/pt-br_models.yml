@@ -47,6 +47,10 @@
         one: Desejo
         other: Desejos
 
+      import:
+        one: Importação
+        other: Importações
+
 
     attributes:
       matter:

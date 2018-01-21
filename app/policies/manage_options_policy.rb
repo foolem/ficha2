@@ -8,7 +8,7 @@ class ManageOptionsPolicy < ApplicationPolicy
     user_admin_or_adviser? and !Semester.current_semester.options_generated
   end
 
-  def send_password?
+  def send_email?
     user_admin_or_adviser?
   end
 
@@ -41,6 +41,10 @@ class ManageOptionsPolicy < ApplicationPolicy
   end
 
   def select_teacher?
+    user_admin_or_adviser?
+  end
+
+  def edit_teacher?
     user_admin_or_adviser?
   end
 

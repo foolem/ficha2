@@ -629,15 +629,11 @@ li > a:hover{
   text-align: center;
 
 }
-.manage-start, .manage-end {
+.manage-start, .manage-end, .manage-remove, .manage-email {
   display: inline-block;
   margin: 0 1%;
 }
 
-.manage-remove {
-  display: inline-block;
-  margin: 0 1%;
-}
 .manage-remove-btn {
   display: block;
   margin: 90px auto !important;

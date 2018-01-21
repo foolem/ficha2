@@ -37,7 +37,7 @@
                   button_configs(:edit, "btn btn-default simple_button") %>
 
               <% if matter.actived? %>
-                <%= link_to desable_button.html_safe, matter_path(matter),
+                <%= link_to disable_button.html_safe, matter_path(matter),
                     button_configs(:desable, "btn btn-danger disable", remove_configs_default) %>
               <% else %>
 

@@ -41,12 +41,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    update_roles
     respond_to do |format|
       if @user.save
         #@user.send_reset_password_instructions
         #UserMailer.send_password(@user).deliver
-
         format.html { redirect_to users_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @user }
       else
