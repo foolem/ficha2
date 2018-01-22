@@ -15,7 +15,9 @@
   </div>
 
   <div class="col-md-1" style="padding: 0 0 0 10px; margin-top: 2px;">
-    <%= link_to simple_edit_button.html_safe, "#", class: "btn btn-default btn-sm", remote: true%>
+    <%= link_to simple_edit_button.html_safe, manage_options_edit_teacher_path(group.id),
+    class: "btn btn-default btn-sm", remote: true, id: "edit_teacher_delivery",
+    data: {confirm: 'Você tem certeza que deseja editar este campo?'}%>
   </div>
 
 <% end %>

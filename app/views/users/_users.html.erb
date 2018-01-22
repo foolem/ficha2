@@ -40,7 +40,7 @@
                 button_configs(:edit, "btn btn-default simple_button") %>
 
             <% if user.actived? %>
-              <%= link_to desable_button.html_safe, user_path(user),
+              <%= link_to disable_button.html_safe, user_path(user),
                   button_configs(:desable, "btn btn-danger disable", remove_configs_default) %>
             <% else %>
               <%= link_to enable_button.html_safe, user_path(user),

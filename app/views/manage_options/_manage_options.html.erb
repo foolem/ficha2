@@ -18,7 +18,7 @@
 
   <div class="panel panel-default progress-panel">
     <div class="row">
-      <div class="col-md-offset-1 col-md-5">
+      <div class="col-md-4">
         <div class="center">
           <% if !options_started? %>
             <div class="manage-start">
@@ -43,7 +43,20 @@
           <% end %>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
+        <div class="center">
+          <div class="manage-email">
+            <%= link_to manage_options_send_email_path,
+                id: "options_send_email", remote: true,
+                :"data-load" => "Enviando emails...",
+                class: 'btn big-btn blue-btn white' do %>
+                <%= big_user_button.html_safe %>
+                <h4 style="text-align:center;margin-top:10px">Enviar e-mail<br> aos docentes</h4>
+                <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
         <div class="center">
           <div class="manage-remove">
             <%= link_to manage_options_remove_path,
@@ -79,9 +92,6 @@
 
           </div>
 
-
-
-
             <!--
             <h4 class="center">Opções</h4>
             <%= pie_chart({"Finalizados" => 20, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#15489e", "#454545"]) %>
@@ -98,15 +108,13 @@
             </div>
           </div>
 
-
-
           <div class="col-md-4">
 
           <div class="center report_generate">
             <%= link_to "#{manage_options_final_report_path}.pdf",
                 :"data-load" => "Gerando relatório...",
                 class: 'btn big-btn blue-btn white m-l-10' do %>
-                  <%= big_matter_button.html_safe %>
+                  <%= big_record_button.html_safe %>
                   <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
             <% end %>
           </div>

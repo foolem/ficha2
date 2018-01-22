@@ -1,4 +1,4 @@
-Important: You may need to add a javascript runtime to your Gemfile in order for bootstrap's LESS files to compile to CSS. 
+Importationant: You may need to add a javascript runtime to your Gemfile in order for bootstrap's LESS files to compile to CSS. 
 
 **********************************************
 

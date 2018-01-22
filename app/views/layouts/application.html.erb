@@ -114,6 +114,14 @@
                   </ul>
               </li>
 
+              <li class="dropdown dropdown-list side_bar <%= classes["imports"]%>">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Importações <span class="caret"></span><span class="<%=menu_icon(imports_icon)%>"></span></a>
+                <ul class="dropdown-menu forAnimate" role="menu">
+                  <li class="side_bar"><a href="<%= importations_courses_path %>"><%= t('courses_import') %></a></li>
+                  <li class="side_bar"><a href="<%= importations_groups_path %>"><%= t('groups_import') %></a></li>
+                </ul>
+              </li>
+
               <li class="side_bar <%= classes["perform_backups"] %>"><a href="<%= perform_backups_path %>"><%= t('perform_backups') %><span class="<%=menu_icon(backups_icon)%>"></span></a></li>
 
               <li class="side_bar <%= classes["user"]%>" ><a href="<%= users_path %>">Usuários<span class="<%=menu_icon(user_icon)%>"></span></a></li>
@@ -178,7 +186,7 @@
     <div class="page-link"><a href="<%= fichas_path %>" class="text-decoration-none">Fichas</a> | <a href="<%= groups_path %>" class="text-decoration-none">Turmas</a><br> <a href="<%= matters_path %>" class="text-decoration-none">Disciplinas</a> | <a href="<%= new_contact_path %>" class="text-decoration-none">Contato</a></div>
     <i class="vertical-hr"></i>
     <div class="relacted"><a href="" class="text-decoration-none">PRAE</a> | <a href="" class="text-decoration-none">DPMAT</a><br><a href="" class="text-decoration-none">NC-UFPR</a> | <a href="" class="text-decoration-none">UFPR</a><br></div>
-    <h6 class="fixed-bottom">Universidade Federal do Paraná 2017</h6>
+    <h6 class="fixed-bottom">Universidade Federal do Paraná</h6>
   </footer>
 
   </body>

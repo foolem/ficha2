@@ -12,6 +12,10 @@ module IconsHelper
     '<i class="glyphicon glyphicon-tags big-btn-align"></i>'
   end
 
+  def big_record_button
+    '<i class="glyphicon glyphicon-list-alt big-btn-align"></i>'
+  end
+
   def big_trash_button
     '<i class="glyphicon glyphicon-trash big-btn-align"></i>'
   end
@@ -36,7 +40,7 @@ module IconsHelper
     '<i class="glyphicon glyphicon-off"></i>'
   end
 
-  def desable_button
+  def disable_button
     '<i class="glyphicon glyphicon-off"></i>'
   end
 
@@ -111,6 +115,10 @@ module IconsHelper
 
   def ok_icon
     'ok'
+  end
+
+  def imports_icon
+    'import'
   end
 
   def backups_icon
