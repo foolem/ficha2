@@ -7,4 +7,10 @@ class UserMailer < ActionMailer::Base
     #mail(:to => 'ficha2.mat@gmail.com', :subject => 'Mensagem de Contato')
   end
 
+  def notify_record(user, group)
+    @user = user
+    @group = group
+    mail(:to => @user.email, :subject => 'Preenchimento da ficha2')
+  end
+
 end

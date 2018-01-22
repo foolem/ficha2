@@ -149,13 +149,18 @@ class ManageOptionsController < ApplicationController
     class_room = params[:class_room]
     @group.class_room = class_room
     @group.save
+
     if @group.ficha.blank?
         Ficha.create(user: @user, group: @group)
     end
 
+    # send instructions to teacher via e-mail
+    # Thread.new { UserMailer.notify_record(@user, @group).deliver }
+
     respond_to do |format|
       format.js
     end
+
   end
 
   private

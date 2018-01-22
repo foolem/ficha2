@@ -1,5 +1,37 @@
-<h2>Importação de turmas</h2>
-<%= form_tag import_groups_importations_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Importation" %>
-<% end %>
+<div class="page-header no-mt-mb pattern-header">
+
+  <h1 class="center"><span class="<%=index_icon(imports_icon)%>"></span> <%=t('groups_import')%></h1>
+
+</div>
+
+<div class="panel panel-default less p-20">
+  <div style="margin: 0 auto;text-align:center">
+    <%= form_tag import_groups_importations_path, multipart: true do %>
+    <input type="file" name="file" id="file" class="input_file" data-multiple-caption="{count} files selected" multiple />
+    <label for="file"><span>Selecione um arquivo</span></label>
+    <%= submit_tag "Importar", class: "btn btn-primary mt-30" %>
+    <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+var inputs = document.querySelectorAll( '.input_file' );
+Array.prototype.forEach.call( inputs, function( input ) {
+  var label	 = input.nextElementSibling,
+      labelVal = label.innerHTML;
+
+  input.addEventListener( 'change', function( e ) {
+    var fileName = '';
+    if( this.files && this.files.length > 1 ) {
+      fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+    }
+    else {
+      fileName = e.target.value.split( '\\' ).pop();
+    }
+
+    if( fileName )
+      label.querySelector( 'span' ).innerHTML = fileName;
+    else
+      label.innerHTML = labelVal;
+    });
+  });
+</script>
