@@ -37,7 +37,7 @@ class ManageOptionsPolicy < ApplicationPolicy
   end
 
   def delivery?
-    user_admin_or_adviser?
+    user_admin_or_adviser? && Semester.current_semester.options_generated
   end
 
   def select_teacher?
