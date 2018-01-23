@@ -1,8 +1,8 @@
 class Role < ApplicationRecord
 
   ROLES = {
-    admin: "Administrador",
     teacher: "Professor",
+    admin: "Administrador",
     appraiser: "Avaliador",
     secretary: "Secretário",
     counselor: "Conselheiro"}

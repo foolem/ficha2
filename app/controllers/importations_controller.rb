@@ -1,5 +1,6 @@
 class ImportationsController < ApplicationController
   before_action :bar_define
+  before_action :authorize_user
 
   def groups
   end
@@ -25,6 +26,9 @@ class ImportationsController < ApplicationController
       session[:page] = "Importation"
     end
 
+    def authorize_user
+      authorize Importation
+    end
 
 
 
