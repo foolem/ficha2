@@ -1,5 +1,6 @@
 namespace :import do
 
+
   desc "Send password"
   task pass: :environment do
 
@@ -267,4 +268,45 @@ namespace :import do
 
     end
   end
+
+  desc "Import of matters data (ficha1)"
+  task matters_data: :environment do
+
+    code = "CM005"
+    matter = Matter.where(code: code)
+    matter = matter.first
+    puts matter.class
+    puts matter.semester_workload
+    puts matter.prerequisite
+    matter.semester_workload = 60
+    matter.menu = "Matrizes e equações lineares. Espaços vetoriais. Transformações lineares. Operadores e matrizes diagonalizáveis. Espaços com produto interno. Operadores sobre espaços com produto interno. Cônicas. Quádricas."
+    matter.basic_bibliography = "DAVID, C. I. - Álgebra Linear e suas Aplicações, Livros Técnicos e Científicos Editora.
+    STEVEN, I. L. - Álgebra Linear com Aplicações, LTC, RJ, 1999.
+    BOLDRINI et al - Álgebra Linear, Harbra.
+    LIMA, E. I - Álgebra Linear, Col. Matemática Universitária. IMPA, CNPq, RJ, 1996."
+    matter.save
+
+    code = "CM040"
+    matter = Matter.where(code: code)
+    matter = matter.first
+
+    matter.semester_workload = 60
+    matter.menu = "Ementa variável, focalizando tópicos e fundamentos da matemática I. Abordagem de temas tais como: computabilidade e funções recursivas, análise não-standart, álgebra universal e outros."
+    matter.basic_bibliography = "LOVASZ, PELIKAN, VESZETERGOMBI, Matemática Discreta, IMPA, J.J. Rotman, An introduction to abtract algebra."
+    matter.save
+
+    code = "CM041"
+    matter = Matter.where(code: code)
+    matter = matter.first
+
+    matter.semester_workload = 90
+    matter.menu = "Função real de uma variável. Derivadas. Integrais. Introdução às equações diferenciais. Tópicos de Cálculo."
+    matter.basic_bibliography = "GUIDORIZZI, H. L. - Um Curso de Cálculo, vol. 1, Editora LTC, RJ.
+    LEITHOLD, L. - O Cálculo com Geometria Analítica, v.1, Harbra, RJ
+    SWOKOWSKI, E. - Cálculo com Geometria Analítica, v.1 e 2. Makron, SP."
+    matter.save
+
+
+  end
+
 end
