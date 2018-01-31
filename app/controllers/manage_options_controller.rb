@@ -22,17 +22,21 @@ class ManageOptionsController < ApplicationController
       user.password_confirmation = password
       user.save
       puts "User: #{user.name}\tPassword: #{password}"
-      UserMailer.send_password(user).deliver
+      Thread.new { UserMailer.send_password(user).deliver }
   end
 
   def send_email
+    @action = :send_email
     users = User.all
     users.each do |user|
       # >=5 para ignorar usuários padrão do sistema
       #if user.id >= 5 && user.id <= 59
-      if user.id == 71
+      if user.id == 7
         send_to(user)
       end
+    end
+    respond_to do |format|
+      format.js { render :action => 'manage_result'}
     end
   end
 

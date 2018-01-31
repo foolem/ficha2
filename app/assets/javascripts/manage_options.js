@@ -1,6 +1,6 @@
 $(document).ready(function(){
   document.addEventListener("turbolinks:load", function() {
-    $(document).on("click", "#options_generate, #options_start, #options_remove, #options_end", function(){
+    $(document).on("click", "#options_generate, #options_start, #options_remove, #options_send_email, #options_end", function(){
       $("#manage_actions").fadeOut(200, function() {
         $(this).html();
       });
