@@ -1,4 +1,4 @@
-class Importation < ApplicationRecord
+class Importation < Semester
 
   def self.find_matter(code, name)
     matters = Matter.where(code: code)
@@ -90,13 +90,13 @@ class Importation < ApplicationRecord
 
       matter_code = linha[0].chomp.upcase
       matter_name = linha[1].chomp
-      matter = Importation.find_matter(matter_code, matter_name)
+      matter = self.find_matter(matter_code, matter_name)
 
       course_code = linha[8].chomp[0 .. -2].to_i
       course = find_course(course_code)
       group_name = linha[2].chomp
       group_vacancies = linha[3]
-      group = Importation.find_group(course ,matter, group_name, group_vacancies)
+      group = self.find_group(course ,matter, group_name, group_vacancies)
 
       matters_item = { code: matter_code, name: matter_name, group: group_name }
       if !matters_list.include? matters_item
@@ -106,12 +106,12 @@ class Importation < ApplicationRecord
       input_schedule = linha[4]
       if !input_schedule.blank?
         line_day = linha[4].first.to_i
-        schedule_begin = Importation.get_time(linha[5])
-        schedule_end = Importation.get_time(linha[6])
-        schedule_duration = Importation.get_duration(schedule_begin, schedule_end)
-        schedule = Importation.find_schedule(line_day -1, schedule_begin, schedule_duration)
+        schedule_begin = self.get_time(linha[5])
+        schedule_end = self.get_time(linha[6])
+        schedule_duration = self.get_duration(schedule_begin, schedule_end)
+        schedule = self.find_schedule(line_day -1, schedule_begin, schedule_duration)
         print "."
-        group = Importation.add_schedule(group, schedule)
+        group = self.add_schedule(group, schedule)
       end
 
       groups_item = {group_id: group.id, matter: group.matter.code, matter_name: group.matter.name, group_name: group.name, vacancies: group.vacancies, course: group.course.name, schedules: group.schedules }
@@ -175,7 +175,7 @@ class Importation < ApplicationRecord
 
       code = linha[0]
       name = name_pattern(linha[1].chomp)
-      Importation.course_existence(code, name)
+      self.course_existence(code, name)
 
     end
   end
