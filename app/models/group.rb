@@ -49,10 +49,10 @@ class Group < ApplicationRecord
     result = []
     groups = []
 
-    if !matter.unite_matter.blank?
-      matter.unite_matter.matters.each do |matter|
-        matter.groups.each do |grp|
-          if grp.semester = semester
+    if !matter.unite_matter.blank? #se existe uma união de matérias
+      matter.unite_matter.matters.each do |matter| #faz um each para cada matéria dessa união
+        matter.groups.each do |grp| #para cada turma de uma matéria dessa união
+          if grp.semester = semester #se o semestre dessa turma for igual ao semester
             groups << grp
           end
         end
@@ -62,7 +62,7 @@ class Group < ApplicationRecord
     end
 
     groups.each do |grp|
-      if schedules == grp.schedules
+      if schedules == grp.schedules && semester == Semester.current_semester && grp.semester == Semester.current_semester
         result << grp
       end
     end

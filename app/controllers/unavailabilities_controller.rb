@@ -24,7 +24,7 @@ class UnavailabilitiesController < ApplicationController
     respond_to do |format|
       if @unavailability.save
         format.js
-        format.html { redirect_to @unavailability, notice: 'Unavailability was successfully created.' }
+        format.html { redirect_to @unavailability, notice: 'Restrição foi cridada com sucesso.' }
       else
         format.js
         format.html { render :new }
@@ -37,7 +37,7 @@ class UnavailabilitiesController < ApplicationController
   def update
     respond_to do |format|
       if @unavailability.update(unavailability_params)
-        format.html { redirect_to @unavailability, notice: 'Unavailability was successfully updated.' }
+        format.html { redirect_to @unavailability, notice: 'Restrição foi atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @unavailability }
       else
         format.html { render :edit }
@@ -50,7 +50,7 @@ class UnavailabilitiesController < ApplicationController
     @unavailability.destroy
     respond_to do |format|
       format.js
-      format.html { redirect_to user_availability_availabilities_path, notice: 'Unavailability was successfully destroyed.' }
+      format.html { redirect_to user_availability_availabilities_path, notice: 'Restrição foi excluída com sucesso.' }
     end
   end
 

@@ -139,6 +139,10 @@ module OptionsHelper
   end
 
   def query(matter)
+    if @semester_id.blank?
+      @semester_id = Semester.current_semester.id
+    end
+
     if matter.unite_matter.blank?
       simple_query(matter)
     elsif !@unites.include? matter.unite_matter
@@ -151,13 +155,16 @@ module OptionsHelper
     "SELECT DISTINCT options.id FROM options
     inner join groups on options.id = groups.option_id
     inner join matters on groups.matter_id = matters.id
-    where matters.unite_matter_id = #{matter.unite_matter.id}"
+    inner join semesters on semesters.id = options.semester_id
+    where matters.unite_matter_id = #{matter.unite_matter.id}
+    and options.semester_id = #{@semester_id}"
   end
 
   def simple_query(matter)
     "SELECT DISTINCT options.id FROM options
     inner join groups on options.id = groups.option_id
-    where groups.matter_id = #{matter.id}"
+    inner join semesters on semesters.id = options.semester_id
+    where groups.matter_id = #{matter.id} and options.semester_id = #{@semester_id}"
   end
 
   def comments_length

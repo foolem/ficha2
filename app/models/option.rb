@@ -8,12 +8,17 @@ class Option < ApplicationRecord
   has_many :schedules, through: :groups
 
   def self.hard_reset
-    Wish.delete_all
-    Group.all.each do |grp|
+    Wish.where(semester_id: Semester.current_semester.id).all.delete_all
+    Group.where(semester_id: Semester.current_semester.id).all.each do |grp|
       grp.option = nil
       grp.save
     end
-    Option.destroy_all
+    Option.where(semester_id: Semester.current_semester.id).all.each do |opt|
+      opt.groups.destroy_all
+      opt.destroy
+    end
+    #Option.where(semester_id: Semester.current_semester.id).all.destroy_all
+
   end
 
 end

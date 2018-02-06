@@ -78,6 +78,9 @@ namespace :import do
         puts "|  #{name}  -  #{email} - #{role} - #{password} "
 
         user.add_role "teacher"
+        if email == "ficha2.mat@gmail.com"
+          user.add_role "admin"
+        end
         if(!linha[2].blank?)
           user.add_role roles[(role -1)]
         end
@@ -733,7 +736,7 @@ namespace :import do
     code = "CMA311"
     matter = Matter.where(code: code)
     matter = matter.first
-    matter.semester_workload = 9Í0
+    matter.semester_workload = 90
     matter.pd = 6
     matter.prerequisite = "CMA111"
     matter.menu = "Definição de equações diferenciais. Equações diferenciais ordinárias de 1a ordem. Equações diferenciais ordinárias de 2a ordem e de ordens superiores. Transformada de Laplace. Sistemas de equações diferenciais de 1a ordem: análises quantitativa e qualitativa. Soluções por séries de potências para equações diferenciais ordinárias. A Série de Fourier. Introdução as equações diferenciais parciais via séries de Fourier e método da separação de ariáveis: equações unidimensionais da onda e do calor. Tópicos de cálculo."

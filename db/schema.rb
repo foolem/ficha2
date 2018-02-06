@@ -214,10 +214,12 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   create_table "wishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "option_id"
     t.integer  "user_id"
+    t.integer  "semester_id"
     t.integer  "priority"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["option_id"], name: "index_wishes_on_option_id", using: :btree
+    t.index ["semester_id"], name: "index_wishes_on_semester_id", using: :btree
     t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
   end
 
@@ -243,5 +245,6 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   add_foreign_key "unite_groups", "matters"
   add_foreign_key "unite_groups", "semesters"
   add_foreign_key "wishes", "options"
+  add_foreign_key "wishes", "semesters"
   add_foreign_key "wishes", "users"
 end

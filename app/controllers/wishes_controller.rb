@@ -16,6 +16,7 @@ class WishesController < ApplicationController
   def create
     @wish = Wish.new(wish_params)
     @wish.option = @option
+    @wish.semester_id = Semester.current_semester.id
     @wish.user = current_user
 
     respond_to do |format|

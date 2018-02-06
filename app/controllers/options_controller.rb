@@ -9,15 +9,6 @@ class OptionsController < ApplicationController
   def index
     @unites = []
 
-    @q = Option.ransack(model_define("Option"))
-    @options = @q.result
-    @elements = @options.length
-
-    @page = params[:page].to_i
-    @page = pages_verify(@page, @elements, page_length)
-    @options = @options.paginate(:per_page => page_length, :page => @page)
-
-
   end
 
   def show
@@ -28,7 +19,7 @@ class OptionsController < ApplicationController
   end
 
   def search
-    index
+    @semester_id = params[:semester_id]
     render :index
   end
 

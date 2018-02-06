@@ -4,11 +4,22 @@ module SemestersHelper
     Semester.all.order(id: :desc)
   end
 
-  def semester_options()
+  def semester_options
     current_semester
 
     options = {}
     options['Todos semestres'] = ''
+    semester_order.each do |semester|
+      options[semester.semester_with_year] = semester.id
+    end
+
+    return options
+  end
+
+  def semester_options_diff
+    current_semester
+
+    options = {}
     semester_order.each do |semester|
       options[semester.semester_with_year] = semester.id
     end
