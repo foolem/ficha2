@@ -1,4 +1,6 @@
-validate = (input, div, error) ->
+document.addEventListener 'turbolinks:load', ->
+
+  validate = (input, div, error) ->
     error_class = 'has-error has-feedback'
     sucess_calss = 'has-success has-feedback'
     input.blur ->
@@ -29,3 +31,5 @@ validate = (input, div, error) ->
   $('#group_search select').change ->
     $.get $('#group_search').attr('action'), $('#group_search').serialize(), null, 'script'
     false
+
+return

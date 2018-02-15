@@ -25,7 +25,9 @@ gem 'roo-xls'
 # prawn
 gem 'prawn'
 gem 'prawn-table'
-
+gem 'responders'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
 # pundit
 gem 'pundit'
 

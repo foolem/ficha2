@@ -5,10 +5,13 @@ class OptionsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
   before_action :bar_define
-
+  skip_before_action :verify_authenticity_token
   def index
     @unites = []
 
+    if @semester_id.blank?
+      @semester_id = Semester.current_semester.id
+    end
   end
 
   def show

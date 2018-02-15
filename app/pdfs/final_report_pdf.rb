@@ -3,11 +3,21 @@ class FinalReportPdf < Prawn::Document
   include GroupsHelper
   include SchedulesHelper
 
-  def initialize()
+  def initialize(semester)
+
     super(top_margin: 20, :page_size => "A4", :page_layout => :landscape)
     @margem = 50
     @number = 0
-
+    if semester.blank?
+      current_groups.each_with_index do |group, i|
+        if i == 1
+          @semester = get_semester(group)
+          break
+        end
+      end
+    else
+      @semester = Semester.find(semester)
+    end
     record_generate
   end
 
@@ -15,7 +25,7 @@ class FinalReportPdf < Prawn::Document
     rows = []
     rows.push ["Código", "Turma", "Disciplina", "Horário", "Nº Alunos", "Sala", "Curso", "Professor"]
 
-    current_groups.each_with_index do |group, i|
+    selected_groups(@semester.id).each_with_index do |group, i|
 
       rows.push [get_code(group), get_classes(group), get_matter(group), get_schedule(group),
                 get_vacancies(group), get_classroom(group), get_course(group), get_teacher(group)]
@@ -80,6 +90,8 @@ def get_course(group)
   end
 
   def record_generate
+    text  @semester.semester_with_year_show, size: 14, style: :bold, align: :center
+    move_down 15
 
     table_data = get_rows
     table(table_data, header: true, cell_style: {size: 11}, column_widths: [60,45,160,130,50,50,120,150], position: 5) do
@@ -88,25 +100,9 @@ def get_course(group)
 
   end
 
-  def table_header
-    move_down 7
 
-    text_box "Código", style: :bold, size: 12, :at => [10, cursor]
-    text_box "Turma", style: :bold, size: 12, :at => [10, cursor]
-    text_box "Código", style: :bold, size: 12, :at => [10, cursor]
-    text_box "Horários", style: :bold, size: 12, :at => [380, cursor]
-    text_box "Nº Alunos", style: :bold, size: 12, :at => [500, cursor]
-    text_box "Sala", style: :bold, size: 12, :at => [550, cursor]
-    text_box "Curso", style: :bold, size: 12, :at => [600, cursor]
-    text_box "Professor", style: :bold, size: 12, :at => [670, cursor]
-
-    move_down 15
-    transparent (0.5) { stroke_horizontal_line 0, 770, :at=>  cursor}
-
-  end
-
-  def getSemester(ficha)
-    return ficha.semester.to_s + "º de " + ficha.year.to_s
+  def get_semester(group)
+    return group.semester
   end
 
 end

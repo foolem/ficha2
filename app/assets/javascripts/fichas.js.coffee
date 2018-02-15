@@ -1,4 +1,6 @@
-validate = (input, div, error) ->
+document.addEventListener 'turbolinks:load', ->
+
+  validate = (input, div, error) ->
     error_class = 'has-error has-feedback'
     sucess_calss = 'has-success has-feedback'
     input.blur ->
@@ -14,6 +16,7 @@ validate = (input, div, error) ->
         error.hide()
       return
     return
+  
 
   $('#ficha_search input').keyup ->
     $.get $('#ficha_search').attr('action'), $('#ficha_search').serialize(), null, 'script'
@@ -25,5 +28,4 @@ validate = (input, div, error) ->
     false
 
   validate $('textfield#ficha_team'), $('#div_team'), $('#team_error')
-
-  
+return

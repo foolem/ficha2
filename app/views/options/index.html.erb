@@ -5,11 +5,10 @@
 
   <!-- Colocar pesquisa aqui... -->
   <% if user_admin? %>
-    <%= form_tag({controller: "options", action: "search"}, method: "post") do %>
+    <%= form_tag(search_options_path) do %>
 
-      <%= select_tag( :semester_id, options_for_select(semester_options_diff, current_semester.id),
+      <%= select_tag( :semester_id, options_for_select(semester_options_diff, selected: @semester_id),
           {:class => 'form form-control filter-box'}) %>
-
 
     <% end %>
   <% end %>

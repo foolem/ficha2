@@ -1,4 +1,6 @@
-validate = (input, div, error) ->
+document.addEventListener 'turbolinks:load', ->
+
+  validate = (input, div, error) ->
     error_class = 'has-error has-feedback'
     sucess_calss = 'has-success has-feedback'
     input.blur ->
@@ -41,3 +43,5 @@ validate = (input, div, error) ->
   $('#matter_corequisite').focus ->
     if $(this).attr('readonly') != 'readonly' and $(this).val() == 'Nenhum'
         $(this).val('')
+
+return

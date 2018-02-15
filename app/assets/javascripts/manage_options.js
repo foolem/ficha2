@@ -7,6 +7,12 @@ $(document).ready(function(){
       var content = $(this).attr('data-load');
       $('#loading-action').html(content);
       $('#spinner').fadeIn(2000);
-    })
-  
+    });
+
+    $("#teachers, #matters, #final").on('click', function(){
+        $('#selected').val(this.id);
+        this.closest('form').submit();
+      });
+
+
 });

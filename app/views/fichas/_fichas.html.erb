@@ -60,7 +60,7 @@
                 button_configs(:edit, "btn btn-default simple_button") %>
           <% end %>
 
-          <% if user_not_appriser? %>
+          <% if user_not_appriser? && user_not_teacher? %>
             <%= link_to remove_button.html_safe, ficha_path(ficha),
                 button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
           <% end %>

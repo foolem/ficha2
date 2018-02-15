@@ -5,7 +5,7 @@
     <%= text_field_tag :class_room, nil,  {:placeholder => 'Sala', class: 'form-control', autocomplete: false, } %>
   </div>
   <div class="col-md-5" style="padding:0">
-    <%= collection_select :user, :id, User.all, :id, :name, {prompt: "Selecione..."}, {class: "form-control", name: "user"} %>
+    <%= collection_select :user, :id, user_delivery, :id, :name, {prompt: "Selecione..."}, {class: "form-control", name: "user"} %>
   </div>
 
   <div class="col-md-1" style="padding: 0 0 0 10px; margin-top: 2px;">

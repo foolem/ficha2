@@ -27,6 +27,8 @@ module SemestersHelper
     return options
   end
 
+
+
   def current_semester
     Semester.current_semester
   end
@@ -36,15 +38,18 @@ module SemestersHelper
   end
 
   def options_selection?
-    !current_semester.options_selection and !current_semester.options_finished
+
+    !Semester.current_semester.options_selection and !Semester.current_semester.options_finished
   end
 
   def options_finished?
-    current_semester.options_finished?
+
+    Semester.current_semester.options_finished?
   end
 
   def options_started?
-    current_semester.options_selection?
+
+    Semester.current_semester.options_selection?
   end
 
 end

@@ -2,9 +2,13 @@ class TeacherReportPdf < Prawn::Document
 
   include OptionsHelper
 
-  def initialize()
+  def initialize(semester)
     super(top_margin: 20)
-
+    if semester.blank?
+      @semester = Semester.current_semester
+    else
+      @semester = Semester.find(semester)
+    end
     @margem = 50
     @number = 0
     record_generate
@@ -109,10 +113,11 @@ class TeacherReportPdf < Prawn::Document
   end
 
   def record_generate
-
-    @users = User.joins(:availabilities).where("availabilities.semester_id = #{Semester.current_semester.id}")
-
+    @users = User.joins(:availabilities).where("availabilities.semester_id = #{@semester.id}")
     @users.each do |user|
+      if user.id == 60
+        next
+      end
       @user = user
       @availability = Availability.find_by_user(@user)
 
@@ -165,21 +170,22 @@ class TeacherReportPdf < Prawn::Document
   end
 
   def outstanding
-      move_down 5
-      text  "PENDÊNCIAS", size: 12, style: :bold, align: :center
-      move_down 5
+    move_down 5
+    text  "PENDÊNCIAS", size: 12, style: :bold, align: :center
+    move_down 5
 
-      transparent (0.5) { stroke_horizontal_rule }
-      transparent (0.5) {stroke_vertical_line cursor,17,:at=> 0}
-      transparent (0.5) {stroke_vertical_line cursor,17,:at=> 540}
+    transparent (0.5) { stroke_horizontal_rule }
+    transparent (0.5) {stroke_vertical_line cursor,17,:at=> 0}
+    transparent (0.5) {stroke_vertical_line cursor,17,:at=> 540}
 
 
-      @number+=1
-      text_box  @number.to_s, size: 11, :at => [530,11]
+    @number+=1
+    text_box  @number.to_s, size: 11, :at => [530,11]
 
-      move_down 15
-      table ([["Nome", "Email"]] + User.where("id not in (?) and actived = true", @users.collect {|usr| usr.id}).map {|usr| [usr.name, usr.email] }),
-      cell_style: {height: 18, size: 9}, column_widths: [250,250],position: 20
+    move_down 15
+    query = User.where("id not in (?) and actived = true", @users.collect {|usr| usr.id}).map {|usr| [usr.name, usr.email] }
+    table ([["Nome", "Email"]] + query),
+    cell_style: {height: 18, size: 9}, column_widths: [250,250],position: 20
   end
 
   def simple_title_generate(title, x, move)
