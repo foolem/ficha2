@@ -210,4 +210,4 @@ document.addEventListener("turbolinks:load", function() {
 
   $(document).on('change', '#preference_selector', function() {
     $(this).closest('form').submit();
-  });
+});

@@ -79,6 +79,13 @@ GEM
     chartkick (2.2.5)
     choice (0.2.0)
     chronic (0.10.2)
+    coffee-rails (4.2.2)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     commonjs (0.2.7)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
@@ -443,9 +450,9 @@ GEM
     tilt (2.0.8)
     trollop (2.1.2)
     ttfunk (1.5.1)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.3)
+    turbolinks (5.1.0)
+      turbolinks-source (~> 5.1)
+    turbolinks-source (5.1.0)
     twitter (5.17.0)
       addressable (~> 2.3)
       buftok (~> 0.2.0)
@@ -492,6 +499,7 @@ DEPENDENCIES
   backup (~> 5.0.0.beta.1)
   byebug
   chartkick
+  coffee-rails
   devise (~> 4.0)
   faker
   jbuilder (~> 2.5)
@@ -510,6 +518,7 @@ DEPENDENCIES
   rails-i18n
   ransack
   remotipart (~> 1.2)
+  responders
   rolify
   roo (~> 2.7.0)
   roo-xls
@@ -527,4 +536,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.1

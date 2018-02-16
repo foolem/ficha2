@@ -78,6 +78,9 @@ namespace :import do
         puts "|  #{name}  -  #{email} - #{role} - #{password} "
 
         user.add_role "teacher"
+        if email == "ficha2.mat@gmail.com"
+          user.add_role "admin"
+        end
         if(!linha[2].blank?)
           user.add_role roles[(role -1)]
         end

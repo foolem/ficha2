@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   match 'manage_options/matter_report' => 'manage_options#matter_report', via: [:get], as: :manage_options_matter_report
   match 'manage_options/final_report' => 'manage_options#final_report', via: [:get], as: :manage_options_final_report
 
+
   get 'manage_options/send_email', to: 'manage_options#send_email'
 
 
@@ -99,6 +100,14 @@ Rails.application.routes.draw do
       match 'search' => 'options#search', via: [:get, :post], as: :search
       match 'open_wish/:id' => 'options#open_wish', via: [:get, :post], as: :open_wish
       match 'open_unavailability_comment/:id_wish' => 'options#open_unavailability_comment', via: [:get, :post], as: :open_unavailability_comment
+    end
+  end
+
+  resources :manage_options do
+    collection do
+      match 'search' => 'manage_options#search', via: [:get, :post], as: :search
+      match 'manage_options/find_pdf' => 'manage_options#find_pdf', via: [:get], as: :find_pdf
+
     end
   end
 

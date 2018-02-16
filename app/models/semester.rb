@@ -30,9 +30,9 @@ class Semester < ApplicationRecord
       current_semester = 1
     end
 
-    semester = Semester.where(semester: current_semester, year: current_year).first;
+    semester = Semester.where(semester: 4, year: current_year).first;
     if semester.blank?
-      semester = Semester.create(semester: current_semester, year: current_year);
+      semester = Semester.create(semester: 4, year: current_year);
     end
     semester
   end

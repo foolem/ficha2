@@ -4,7 +4,7 @@
 
 	<div class="col-md-10">
 		<div class="form-group">
-			<%= text_area_tag :general_comments, '', {placeholder: "Escreva um comentário",
+			<%= text_area_tag :general_comments, "#{@availability.general_comments}", {placeholder: "Escreva um comentário",
 				 	rows:4, :maxlength => 255, class: 'form-control max-form', id: "general-comment"} %>
 		</div>
 

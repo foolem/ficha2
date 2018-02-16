@@ -8,6 +8,7 @@ class WishesController < ApplicationController
 
   def new
     @wish = Wish.new
+    @wish.semester_id = Semester.current_semester.id
   end
   def edit
   end
@@ -16,6 +17,7 @@ class WishesController < ApplicationController
   def create
     @wish = Wish.new(wish_params)
     @wish.option = @option
+    @wish.semester_id = Semester.current_semester.id
     @wish.user = current_user
 
     respond_to do |format|
@@ -73,7 +75,13 @@ class WishesController < ApplicationController
   private
 
     def user_has_wishes?
-      current_user.wishes.length < 5
+      current_wishes = []
+      current_user.wishes.each do |w|
+        if w.semester_id == Semester.current_semester.id
+          current_wishes.push w
+        end
+      end
+      current_wishes.length < 5
     end
 
     def set_wish

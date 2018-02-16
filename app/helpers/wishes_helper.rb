@@ -1,7 +1,13 @@
 module WishesHelper
 
   def user_has_wishes?
-    current_user.wishes.length < 5
+    current_wishes = []
+    current_user.wishes.each do |w|
+      if w.semester_id == Semester.current_semester.id
+        current_wishes.push w
+      end
+    end
+    current_wishes.length < 5
   end
 
   def option_wished(option)
@@ -18,5 +24,5 @@ module WishesHelper
     [1,2,3,4,5] - priorities
   end
 
-  
+
 end

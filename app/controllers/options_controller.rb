@@ -5,19 +5,13 @@ class OptionsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_user
   before_action :bar_define
-
+  skip_before_action :verify_authenticity_token
   def index
     @unites = []
 
-    @q = Option.ransack(model_define("Option"))
-    @options = @q.result
-    @elements = @options.length
-
-    @page = params[:page].to_i
-    @page = pages_verify(@page, @elements, page_length)
-    @options = @options.paginate(:per_page => page_length, :page => @page)
-
-
+    if @semester_id.blank?
+      @semester_id = Semester.current_semester.id
+    end
   end
 
   def show
@@ -28,7 +22,7 @@ class OptionsController < ApplicationController
   end
 
   def search
-    index
+    @semester_id = params[:semester_id]
     render :index
   end
 

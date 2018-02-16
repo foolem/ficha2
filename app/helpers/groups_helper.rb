@@ -37,4 +37,8 @@ module GroupsHelper
     Group.where(semester_id: Semester.current_semester.id)
   end
 
+  def selected_groups(semester)
+    Group.where(semester_id: semester)
+  end
+
 end

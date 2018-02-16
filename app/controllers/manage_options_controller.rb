@@ -4,8 +4,9 @@ class ManageOptionsController < ApplicationController
   before_action :set_semester
   before_action :bar_define
 
-  def index
-  end
+
+
+
 
   def pass_generate
     password = ""
@@ -87,10 +88,10 @@ class ManageOptionsController < ApplicationController
     end
   end
 
-  def teacher_report
+  def teacher_report(*args)
     respond_to do |format|
       format.pdf do
-          pdf = TeacherReportPdf.new()
+          pdf = TeacherReportPdf.new(args.first)
           send_data pdf.render,
             filename: "Relatório por docente.pdf",
             type: "application/pdf",
@@ -99,10 +100,10 @@ class ManageOptionsController < ApplicationController
     end
   end
 
-  def final_report
+  def final_report(*args)
     respond_to do |format|
       format.pdf do
-          pdf = FinalReportPdf.new()
+          pdf = FinalReportPdf.new(args.first)
           send_data pdf.render,
             filename: "Relatório relação docente disciplina.pdf",
             type: "application/pdf",
@@ -111,10 +112,10 @@ class ManageOptionsController < ApplicationController
     end
   end
 
-  def matter_report
+  def matter_report(*args)
     respond_to do |format|
       format.pdf do
-          pdf = MatterReportPdf.new()
+          pdf = MatterReportPdf.new(args.first)
           send_data pdf.render,
             filename: "Relatório por disciplina.pdf",
             type: "application/pdf",
@@ -123,8 +124,32 @@ class ManageOptionsController < ApplicationController
     end
   end
 
-  def delivery
+  def index
+    delivery
+  end
 
+  def delivery
+    if @semester_id.blank?
+      @semester_id = Semester.current_semester.id
+    end
+  end
+
+  def search
+    @semester_id = params[:semester_id]
+    render :delivery
+  end
+
+  def find_pdf
+    semester = params[:semester_id]
+    btn = params[:selected]
+    if btn == "final"
+      final_report(semester)
+    elsif btn == "matters"
+      matter_report(semester)
+    else
+      teacher_report(semester)
+    end
+    #render :index
   end
 
   def select_teacher

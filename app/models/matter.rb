@@ -24,11 +24,12 @@ class Matter < ApplicationRecord
     !unite_matter.blank?
   end
 
-  def get_groups
+  def get_groups(semester)
     if !has_unite?
-      return Group.where(matter_id: id)
+      return Group.where(matter_id: id, semester_id: semester)
     end
-    Group.joins(:matter).where("matters.unite_matter_id = #{unite_matter_id}")
+    Group.joins(:matter).where("matters.unite_matter_id = #{unite_matter_id} and semester_id = #{semester}")
   end
+
 
 end

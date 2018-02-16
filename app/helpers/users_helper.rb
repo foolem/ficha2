@@ -63,7 +63,27 @@ module UsersHelper
   end
 
   def wishes_ordered(user)
-    user.wishes.sort_by{ |w| w.priority }
+    current_wishes = []
+    current_user.wishes.each do |w|
+      if w.semester_id == Semester.current_semester.id
+        current_wishes.push w
+      end
+    end
+    current_wishes.sort_by { |w| w.priority }
+
+  end
+
+  def user_delivery
+    users = []
+    undefined = User.where(name: "Não definido")
+    users.push undefined.first
+    User.all.each do |u|
+      if u.name == "Não definido"
+        next
+      end
+      users.push u
+    end
+    users
   end
 
 end

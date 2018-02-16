@@ -4,12 +4,26 @@
   <h1 class="center"><span class="<%=index_icon(option_icon)%>"></span> <%=t('options')%></h1>
 
   <!-- Colocar pesquisa aqui... -->
+  <% if user_admin? %>
+    <%= form_tag(search_options_path) do %>
+
+      <%= select_tag( :semester_id, options_for_select(semester_options_diff, selected: @semester_id),
+          {:class => 'form form-control filter-box'}) %>
+
+    <% end %>
+  <% end %>
   <div style="height: 35px;"></div> <!-- tirar isso -->
 
 </div>
 
-<% if @semester.options_selection? == true and @semester.options_finished != true %>
+<% if @semester.options_selection? == true and @semester.options_finished != true or user_admin? %>
   <div id="options_partial" class="partial-content" >
     <%= render 'options' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $('#semester_id').change(function(){
+    this.closest('form').submit();
+  });
+</script>

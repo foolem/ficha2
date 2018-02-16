@@ -4,12 +4,12 @@ class MatterReportPdf < Prawn::Document
   include MattersHelper
   include SchedulesHelper
 
-  def initialize()
+  def initialize(semester)
     super(top_margin: 20, :page_size => "A4", :page_layout => :landscape)
 
     @user = User.find 58
     @availability = @user.availabilities.first
-
+    @semester_id = Semester.find(semester).id
     @margem = 50
     @number = 0
     record_generate
