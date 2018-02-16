@@ -164,9 +164,8 @@ class ManageOptionsController < ApplicationController
 
   def edit_teacher
     @group = Group.find(params[:id])
-    @group.ficha.destroy
-    @group.save
-
+    #@group.ficha.destroy
+    #@group.save
     respond_to do |format|
       format.js
     end
@@ -179,6 +178,13 @@ class ManageOptionsController < ApplicationController
     @group.class_room = class_room
     @group.save
 
+    if !@group.ficha.blank?
+      if @group.ficha.user.id != @user.id
+        @group.ficha.destroy
+        @group.save
+      end
+    end
+
     if @group.ficha.blank?
         Ficha.create(user: @user, group: @group)
     end
@@ -190,6 +196,15 @@ class ManageOptionsController < ApplicationController
       format.js
     end
 
+  end
+
+  def send_ficha2_email
+    Ficha.all.each do |f|
+      if f.group.semester.id == Semester.current_semester.id
+        Thread.new { UserMailer.notify_record(f.user, f.group).deliver }
+      end
+    end
+    render :index
   end
 
   private

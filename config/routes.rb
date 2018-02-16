@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   match 'manage_options/matter_report' => 'manage_options#matter_report', via: [:get], as: :manage_options_matter_report
   match 'manage_options/final_report' => 'manage_options#final_report', via: [:get], as: :manage_options_final_report
 
+  match 'manage_options/send_ficha2_email' => 'manage_options#send_ficha2_email', via: [:get], as: :manage_options_send_ficha2_email
 
   get 'manage_options/send_email', to: 'manage_options#send_email'
 
