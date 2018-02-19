@@ -285,3 +285,4 @@ class ManageOptionsController < ApplicationController
     end
 
 end
+
