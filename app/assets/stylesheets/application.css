@@ -650,8 +650,8 @@ li > a:hover{
 }
 
 .progress-panel {
-    padding: 20px;
-    margin: 15px 0 15px 0;
+  padding: 20px;
+  margin: 15px 0 15px 0;
 }
 
 .manage-panel-reset {
@@ -776,6 +776,22 @@ li > a:hover{
   background-color: #fff;
   border-radius: 5px;
 }
-#ficha_status {
-
+/*Manage Options semester selection*/
+.more-semesters {
+  width: 300px;
+  height: 150px;
+  display: block;
+  margin: 50px auto 20px auto;
+  font-size: 8em;
+  text-align: center;
+}
+.more-semesters:hover {
+  cursor: pointer;
+}
+.select-center {
+  display: block;
+  margin: 20px auto;
+}
+.panel-width-manage {
+  width: 80% !important;
 }

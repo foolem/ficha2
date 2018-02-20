@@ -1,8 +1,8 @@
 
 
-<div id="manage_actions" class="panel panel-default panel-manage p-20">
+<div id="manage_actions" class="panel panel-default panel-manage p-20 panel-width-manage">
 
-  <h3 class="center"><%= current_semester.semester_with_year_show %> </h3>
+  <h3 class="center" id="semester_text"><%= current_semester.semester_with_year_show %> </h3>
 
   <% if !options_not_generated? %>
     <div class="manage-panel-reset">
@@ -121,50 +121,108 @@
         </div>
 
 
-        <%= form_tag("#{find_pdf_manage_options_path}.pdf", method: :get) do %>
 
-          <%= select_tag( :semester_id, options_for_select(semester_options_diff, selected: @semester_id),
-              {:class => 'form form-control filter-box'}) %>
 
-          <input id="selected" type="hidden" name="selected" value="">
-
-          <div class="center report_generate">
-            <%= link_to "#",
-              :"data-load" => "Gerando relatório...",
-              class: 'btn big-btn blue-btn white m-r-10',
-              id: 'teachers' do %>
-                <%= big_user_button.html_safe %>
-                <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
-            <% end %>
-          </div>
-
-          <div class="center report_generate">
-            <%= link_to "#",
-                :"data-load" => "Gerando relatório...",
-                class: 'btn big-btn blue-btn white m-l-10',
-                id: 'matters' do %>
-                  <%= big_matter_button.html_safe %>
-                  <h4 style="text-align:center;margin-top:10px">Relatório<br>disciplinas</h4>
-            <% end %>
-          </div>
-
-          <div class="center report_generate">
-            <%= link_to "#",
-              :"data-load" => "Gerando relatório...",
-              class: 'btn big-btn blue-btn white m-l-10',
-              id: 'final' do %>
-                <%= big_record_button.html_safe %>
-                <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
-              <% end %>
-          </div>
-
-        <% end %>
 
       </div>
-
     </div>
+    <div class="more-semesters disabled_btn" id="btn_trigger">
+      <h2 id="h2_text">Mais semestres</h2>
+      <i class="glyphicon glyphicon-menu-down blue" id="animation_icon"></i>
+    </div>
+
+    <%= form_tag("#{find_pdf_manage_options_path}.pdf", method: :get, id: "form_semesters") do %>
+
+      <%= select_tag( :semester_id, options_for_select(semester_options_diff, selected: @semester_id),
+          {:class => 'form form-control filter-box select-center'}) %>
+
+      <input id="selected" type="hidden" name="selected" value="">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="center report_generate">
+            <%= link_to "#",
+            :"data-load" => "Gerando relatório...",
+            class: 'btn big-btn blue-btn white m-r-10',
+              id: 'teachers' do %>
+              <%= big_user_button.html_safe %>
+              <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
+              <% end %>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="center report_generate">
+            <%= link_to "#",
+            :"data-load" => "Gerando relatório...",
+            class: 'btn big-btn blue-btn white m-l-10',
+              id: 'matters' do %>
+              <%= big_matter_button.html_safe %>
+              <h4 style="text-align:center;margin-top:10px">Relatório<br>disciplinas</h4>
+              <% end %>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="center report_generate">
+            <%= link_to "#",
+            :"data-load" => "Gerando relatório...",
+            class: 'btn big-btn blue-btn white m-l-10',
+              id: 'final' do %>
+              <%= big_record_button.html_safe %>
+              <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
+              <% end %>
+            </div>
+        </div>
+      </div>
+
+
+
+    <% end %>
+
   <% end %>
 
 <% end %>
 
+
 </div>
+<script type="text/javascript">
+  $("#form_semesters").hide();
+  $("#teachers, #matters, #final").on('click', function(){
+      $('#selected').val(this.id);
+      this.closest('form').submit();
+  });
+
+var clicked = false;
+
+  $("#btn_trigger").on('click', function(){
+    $("#semester_text").fadeOut();
+
+      $("#form_semesters").slideDown(function(){
+        $("#animation_icon").fadeOut(function(){
+          $("#animation_icon").addClass("glyphicon glyphicon-menu-down");
+          $("#h2_text").html("Menos semestres");
+          $("#animation_icon").fadeIn();
+        });
+      });
+
+    clicked = true;
+    $("#btn_trigger").on('click', function(){
+      if (clicked == true) {
+
+        $("#form_semesters").slideUp(function(){
+          $("#animation_icon").fadeOut(function(){
+            $("#animation_icon").removeClass("glyphicon-menu-down")
+            $("#animation_icon").addClass("glyphicon-menu-up");
+            $("#h2_text").html("Mais semestres");
+            $("#animation_icon").fadeIn();
+          });
+        });
+        clicked = false;
+      }
+    });
+  });
+
+
+
+
+
+
+</script>

@@ -9,10 +9,6 @@ $(document).ready(function(){
       $('#spinner').fadeIn(2000);
     });
 
-    $("#teachers, #matters, #final").on('click', function(){
-        $('#selected').val(this.id);
-        this.closest('form').submit();
-      });
 
 
 });
