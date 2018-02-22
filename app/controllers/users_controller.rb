@@ -77,13 +77,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       if(@user.save)
         if(@user.actived?)
-          format.html { redirect_to users_path, notice: 'Usuário ativado com sucesso.' }
+          format.html { redirect_to (:back), notice: 'Usuário ativado com sucesso.' }
         else
-          format.html { redirect_to users_path, notice: 'Usuário desativado com sucesso.' }
+          format.html { redirect_to (:back), notice: 'Usuário desativado com sucesso.' }
         end
         format.json { head :no_content }
       else
-        format.html { redirect_to users_path, alert: 'Erro ao atualizar usuário.' }
+        format.html { redirect_to (:back), alert: 'Erro ao atualizar usuário.' }
       end
 
     end

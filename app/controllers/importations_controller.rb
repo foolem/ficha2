@@ -14,7 +14,7 @@ class ImportationsController < ApplicationController
       return true
     else
       respond_to do |format|
-        format.html { redirect_to root_path, notice: 'Somente são permitidos arquivos com a extensão xlsx.' }
+        format.html { redirect_to (:back), notice: 'Somente são permitidos arquivos com a extensão xlsx.' }
       end
       return false
     end
