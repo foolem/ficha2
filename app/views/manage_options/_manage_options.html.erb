@@ -190,39 +190,24 @@
       this.closest('form').submit();
   });
 
-var clicked = false;
+  $("#btn_trigger").click(function() {
+    var self = $(this);
 
-  $("#btn_trigger").on('click', function(){
-    $("#semester_text").fadeOut();
+    if (self.hasClass('actived')) {
+      $("#form_semesters").slideUp(function() {
+        self.find("#animation_icon").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
+        self.find("#h2_text").html("Mais semestres");
 
-      $("#form_semesters").slideDown(function(){
-        $("#animation_icon").fadeOut(function(){
-          $("#animation_icon").addClass("glyphicon glyphicon-menu-down");
-          $("#h2_text").html("Menos semestres");
-          $("#animation_icon").fadeIn();
-        });
       });
-
-    clicked = true;
-    $("#btn_trigger").on('click', function(){
-      if (clicked == true) {
-
-        $("#form_semesters").slideUp(function(){
-          $("#animation_icon").fadeOut(function(){
-            $("#animation_icon").removeClass("glyphicon-menu-down")
-            $("#animation_icon").addClass("glyphicon-menu-up");
-            $("#h2_text").html("Mais semestres");
-            $("#animation_icon").fadeIn();
-          });
-        });
-        clicked = false;
-      }
-    });
+      $(this).removeClass("actived");
+    }
+    else {
+      $("#form_semesters").slideDown(function() {
+        self.find("#animation_icon").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
+        self.find("#h2_text").html("Menos semestres");
+      });
+      $(this).addClass("actived");
+    }
   });
-
-
-
-
-
 
 </script>

@@ -9,7 +9,11 @@ class MatterReportPdf < Prawn::Document
 
     @user = User.find 58
     @availability = @user.availabilities.first
-    @semester_id = Semester.find(semester).id
+    if semester.blank?
+      @semester_id = Semester.current_semester.id
+    else
+      @semester_id = Semester.find(semester).id
+    end
     @margem = 50
     @number = 0
     record_generate
