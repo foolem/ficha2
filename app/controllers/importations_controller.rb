@@ -8,16 +8,32 @@ class ImportationsController < ApplicationController
   def courses
   end
 
-  def import_groups
-    Importation.import_groups(params[:file])
+  def verify_extension(file)
+    file_extension = file.original_filename.partition('.').last
+    if file_extension.to_s == "xlsx"
+      return true
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Somente são permitidos arquivos com a extensão xlsx.' }
+      end
+      return false
+    end
+  end
 
-    redirect_to root_url, notice: 'Products imported.'
+  def import_groups
+    file = params[:file]
+    if verify_extension(file)
+      Importation.import_groups(params[:file])
+      redirect_to root_url, notice: 'Products imported.'
+    end
   end
 
   def import_courses
-    Importation.import_courses(params[:file])
-
-    redirect_to root_url, notice: 'Products imported.'
+    file = params[:file]
+    if verify_extension(file)
+      Importation.import_courses(params[:file])
+      redirect_to root_url, notice: 'Products imported.'
+    end
   end
 
   private

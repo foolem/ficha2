@@ -73,22 +73,17 @@ class UsersController < ApplicationController
   def destroy
     @user.actived = !@user.actived
 
-    if(!@user.teacher?)
-      path = users_path
-    else
-      path = teachers_users_url
-    end
 
     respond_to do |format|
       if(@user.save)
         if(@user.actived?)
-          format.html { redirect_to path, notice: 'Usuário ativado com sucesso.' }
+          format.html { redirect_to users_path, notice: 'Usuário ativado com sucesso.' }
         else
-          format.html { redirect_to path, notice: 'Usuário desativado com sucesso.' }
+          format.html { redirect_to users_path, notice: 'Usuário desativado com sucesso.' }
         end
         format.json { head :no_content }
       else
-        format.html { redirect_to path, alert: 'Erro ao atualizar usuário.' }
+        format.html { redirect_to users_path, alert: 'Erro ao atualizar usuário.' }
       end
 
     end
