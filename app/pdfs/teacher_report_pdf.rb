@@ -1,6 +1,7 @@
 class TeacherReportPdf < Prawn::Document
 
   include OptionsHelper
+  include UsersHelper
 
   def initialize(semester)
     super(top_margin: 20)
@@ -16,7 +17,7 @@ class TeacherReportPdf < Prawn::Document
 
   def get_options(user)
     result = [["Opção", "Disciplina", "Horário"]]
-    user.wishes.sort_by{ |w| w.priority }.each do |wish|
+    wishes_ordered_report(user, @semester.id).each do |wish|
       opt = wish.option
       line = [wish.priority, matter_group(opt.matters.first), schedules_report(opt)]
       result.push line
@@ -119,7 +120,7 @@ class TeacherReportPdf < Prawn::Document
         next
       end
       @user = user
-      @availability = Availability.find_by_user(@user)
+      @availability = Availability.find_by_semester(@user, @semester.id)
 
       header_generate
 

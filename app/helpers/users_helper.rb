@@ -64,8 +64,19 @@ module UsersHelper
 
   def wishes_ordered(user)
     current_wishes = []
-    current_user.wishes.each do |w|
+    user.wishes.each do |w|
       if w.semester_id == Semester.current_semester.id
+        current_wishes.push w
+      end
+    end
+    current_wishes.sort_by { |w| w.priority }
+
+  end
+
+  def wishes_ordered_report(user, semester)
+    current_wishes = []
+    user.wishes.each do |w|
+      if w.semester_id == semester
         current_wishes.push w
       end
     end
