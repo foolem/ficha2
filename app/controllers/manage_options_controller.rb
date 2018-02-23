@@ -1,12 +1,7 @@
 class ManageOptionsController < ApplicationController
   before_action :authorize_user
-  #before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
   before_action :set_semester
   before_action :bar_define
-
-
-
-
 
   def pass_generate
     password = ""
@@ -171,22 +166,40 @@ class ManageOptionsController < ApplicationController
     end
   end
 
-  def choose_teacher
-    @user = User.find(params[:user])
+  def edit_class_room
+    @group = Group.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def choose_class_room
     @group = Group.find(params[:group])
     class_room = params[:class_room]
     @group.class_room = class_room
     @group.save
 
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def choose_teacher
+    @user = User.find(params[:user])
+    @group = Group.find(params[:group])
+
     if !@group.ficha.blank?
       if @group.ficha.user.id != @user.id
-        @group.ficha.destroy
+        @group.ficha = nil
         @group.save
       end
     end
 
-    if @group.ficha.blank?
+    if @group.ficha == nil
         Ficha.create(user: @user, group: @group)
+        @group.save
+
     end
 
     # send instructions to teacher via e-mail
@@ -285,4 +298,3 @@ class ManageOptionsController < ApplicationController
     end
 
 end
-

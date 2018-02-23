@@ -2,7 +2,7 @@
 
     <div class="row" style="margin: 0px;">
 
-      <div class="col-md-3" style="padding: 0px;margin-right:10px">
+      <div class="col-md-2" style="padding: 0px;margin-right:10px; width: 19.76666667%;">
         <div class="form-control"> <%= group.group_with_code %> </div>
       </div>
 
@@ -14,12 +14,13 @@
 
     <div class="row">
       <div class="col-md-12">
-
-        <% group.option.wishes.each do |wish| %>
-          <div>
-            <%= wish.priority %>
-            <%= wish.user.name %>
-          </div>
+        <% if !group.option.blank? %>
+          <% group.option.wishes.each do |wish| %>
+            <div>
+              <%= wish.priority %>
+              <%= wish.user.name %>
+            </div>
+          <% end %>
         <% end %>
 
       </div>

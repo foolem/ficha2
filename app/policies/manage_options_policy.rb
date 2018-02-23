@@ -64,6 +64,14 @@ class ManageOptionsPolicy < ApplicationPolicy
     user_admin_or_adviser?
   end
 
+  def edit_class_room?
+    user_admin_or_adviser?
+  end
+
+  def choose_class_room?
+    user_admin_or_adviser?
+  end
+
   def user_admin_or_adviser?
     !user.blank? and (user.has_any_role? ["admin", "adviser"] and user.actived?)
   end

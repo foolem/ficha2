@@ -42,9 +42,13 @@ Rails.application.routes.draw do
   get 'manage_options/end'
   get 'manage_options/delivery'
   post 'manage_options/choose_teacher'
+  post 'manage_options/choose_class_room'
+
 
   match 'manage_options/select_teacher/:id' => 'manage_options#select_teacher', via: [:get, :post], as: :manage_options_select_teacher
   match 'manage_options/edit_teacher/:id' => 'manage_options#edit_teacher', via: [:get, :post], as: :manage_options_edit_teacher
+  match 'manage_options/edit_class_room/:id' => 'manage_options#edit_class_room', via: [:get, :post], as: :manage_options_edit_class_room
+
 
   match 'manage_options/teacher_report' => 'manage_options#teacher_report', via: [:get], as: :manage_options_teacher_report
   match 'manage_options/matter_report' => 'manage_options#matter_report', via: [:get], as: :manage_options_matter_report

@@ -2,7 +2,7 @@
 
   <input name="group" type="hidden" value="<%= group.id %>"/>
   <div class="col-md-2" style="padding:0;margin-right:10px">
-    <%= text_field_tag :class_room, nil,  {:placeholder => 'Sala', class: 'form-control', autocomplete: false, } %>
+    <div class="form-control"> <%= group.class_room %> </div>
   </div>
   <div class="col-md-5" style="padding:0">
     <%= collection_select :user, :id, user_delivery, :id, :name, {prompt: "Selecione..."}, {class: "form-control", name: "user"} %>

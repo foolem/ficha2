@@ -1,0 +1,4 @@
+var a = "#selector_<%=@group.id%>_partial";
+$(a).fadeOut(400, function(){
+  $(this).html("<%= escape_javascript(render("form_selector_class_room", group: @group)) %>").fadeIn(400);
+});

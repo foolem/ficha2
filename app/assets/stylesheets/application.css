@@ -795,3 +795,10 @@ li > a:hover{
 .panel-width-manage {
   width: 80% !important;
 }
+.edit-field {
+  background-color: red;
+  color:white;
+}
+.edit-field:hover {
+  cursor: pointer;
+}
