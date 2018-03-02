@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20171006124656) do
     t.integer  "course_id"
     t.string   "vacancies"
     t.string   "class_room"
+    t.boolean  "active"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["course_id"], name: "index_groups_on_course_id", using: :btree

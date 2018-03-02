@@ -24,9 +24,11 @@
     <h4 class="h4-options"><%= matter_group(matter) %></h4>
     <div class="row" style="margin: 0px;">
       <% matter.get_groups(@semester_id).each do |group| %>
-        <div class="col-md-6" style="padding: 5px;">
-          <%= render "user_selector", group: group %>
-        </div>
+        <% if group.active == nil || group.active == true %>
+          <div class="col-md-6" style="padding: 5px;">
+            <%= render "user_selector", group: group %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>

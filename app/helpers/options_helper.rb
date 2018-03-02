@@ -206,4 +206,13 @@ module OptionsHelper
      end
   end
 
+  def hidden_groups(group)
+    if group.active == false
+      hidden = "display:none;"
+      return hidden
+    else
+      return
+    end
+  end
+
 end

@@ -26,9 +26,11 @@ class Matter < ApplicationRecord
 
   def get_groups(semester)
     if !has_unite?
-      return Group.where(matter_id: id, semester_id: semester)
+      groups = Group.where(matter_id: id, semester_id: semester)
+      return groups.sort_by{ |g| [g.matter, g.name] }
     end
-    Group.joins(:matter).where("matters.unite_matter_id = #{unite_matter_id} and semester_id = #{semester}")
+    groups = Group.joins(:matter).where("matters.unite_matter_id = #{unite_matter_id} and semester_id = #{semester}")
+    groups.sort_by { |g| [g.matter, g.name] }
   end
 
 

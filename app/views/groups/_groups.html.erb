@@ -27,23 +27,25 @@
 
   <tbody>
     <% @groups.each do |group| %>
-      <tr data-href="<%= group_path(group) %>">
-        <td class="center"><%= group.matter.code %></td>
-        <td class="center"><%= group.name %></td>
-        <td><%= group.matter.name %></td>
-        <td class="center" ><%= group.semester.semester_with_year %></td>
-        <% if user_admin_or_secretary? %>
-          <td id="actions" class="center">
+      <% if group.active == nil || group.active == true %>
+        <tr data-href="<%= group_path(group) %>">
+          <td class="center"><%= group.matter.code %></td>
+          <td class="center"><%= group.name %></td>
+          <td><%= group.matter.name %></td>
+          <td class="center" ><%= group.semester.semester_with_year %></td>
+          <% if user_admin_or_secretary? %>
+            <td id="actions" class="center">
 
-            <%= link_to edit_button.html_safe, edit_group_path(group),
-                button_configs(:edit, "btn btn-default simple_button") %>
+              <%= link_to edit_button.html_safe, edit_group_path(group),
+                  button_configs(:edit, "btn btn-default simple_button") %>
 
-            <%= link_to remove_button.html_safe, group_path(group),
-                button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
+              <%= link_to remove_button.html_safe, group_path(group),
+                  button_configs(:remove, "btn btn-danger disable", remove_configs_default) %>
 
-          </td>
-        <% end %>
-      </tr>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

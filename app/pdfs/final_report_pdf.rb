@@ -9,12 +9,8 @@ class FinalReportPdf < Prawn::Document
     @margem = 50
     @number = 0
     if semester.blank?
-      current_groups.each_with_index do |group, i|
-        if i == 1
-          @semester = get_semester(group)
-          break
-        end
-      end
+      group = current_groups.last
+      @semester = group.semester
     else
       @semester = Semester.find(semester)
     end
@@ -79,7 +75,7 @@ class FinalReportPdf < Prawn::Document
     classroom
   end
 
-def get_course(group)
+  def get_course(group)
     course = group.course.name
     course
   end

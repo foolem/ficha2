@@ -24,7 +24,7 @@ class ImportationsController < ApplicationController
     file = params[:file]
     if verify_extension(file)
       Importation.import_groups(params[:file])
-      redirect_to root_url, notice: 'Products imported.'
+      redirect_to root_url, notice: 'Turmas importadas.'
     end
   end
 
@@ -32,7 +32,7 @@ class ImportationsController < ApplicationController
     file = params[:file]
     if verify_extension(file)
       Importation.import_courses(params[:file])
-      redirect_to root_url, notice: 'Products imported.'
+      redirect_to root_url, notice: 'Cursos importados.'
     end
   end
 

@@ -9,6 +9,7 @@ class CreateGroups < ActiveRecord::Migration[5.0]
       t.references :course, foreign_key: true
       t.string :vacancies
       t.string :class_room
+      t.boolean :active
 
       t.timestamps
     end

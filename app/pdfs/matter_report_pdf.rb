@@ -48,8 +48,10 @@ class MatterReportPdf < Prawn::Document
   def get_groups(option)
     groups = ""
     option.groups.each do |group|
-      groups << group.code_name_and_course
-      groups << "\n"
+      if group.active == nil || group.active == true
+        groups << group.code_name_and_course
+        groups << "\n"
+      end
     end
     groups
   end

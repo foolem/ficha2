@@ -38,7 +38,14 @@ module GroupsHelper
   end
 
   def selected_groups(semester)
-    Group.where(semester_id: semester)
+    groups = Group.where(semester_id: semester)
+    sorted_groups = []
+    groups.each do |g|
+      if g.active == true || g.active == nil
+        sorted_groups.push g
+      end
+    end
+    sorted_groups.sort_by { |g| [g.matter.code, g.name] }
   end
 
 end
