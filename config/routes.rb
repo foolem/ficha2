@@ -80,7 +80,11 @@ Rails.application.routes.draw do
     collection do
       match 'choose/:unite_group_id/:unite_matter_id' => 'unite_groups#choose', via: [:get, :post], as: :choose
       match 'add/:id/:group_id' => 'unite_groups#add', via: [:get, :post], as: :add
+      match 'add_course/:id/:course_id' => 'unite_groups#add_course', via: [:get, :post], as: :add_course
+
       match 'remove/:id/:group_id' => 'unite_groups#remove', via: [:delete], as: :remove
+      match 'remove_course/:id/:course_id' => 'unite_groups#remove_course', via: [:delete], as: :remove_course
+
       match 'search' => 'unite_groups#search', via: [:get, :post], as: :search
     end
   end

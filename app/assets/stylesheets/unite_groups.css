@@ -1,4 +1,6 @@
-
 .empty-groups > span {
   color: red;
+}
+.add-course {
+  margin-top: 40px;
 }

@@ -10,8 +10,28 @@
         <%= link_to new_button.html_safe, add_unite_groups_path(@unite_group, 0),
               :class => 'btn btn-primary btn-sm join mt-10',
               :id => 'add_group',
-              title: 'Adicionar Disciplina', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
+              title: 'Adicionar turma', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
       </div>
+    <% end %>
+    <% if @unite_group.groups.length == 1 %>
+      <div class="add-course">
+        <h4 class="center">Uma turma selecionada</h4>
+        <h4 class="center">Deseja unir cursos à turma?</h4>
+        <h4 class="center mb-20"> Curso atual: <%= @unite_group.groups.first.course.name %> </h4>
+
+        <%= select_tag('unite_group_course', options_from_collection_for_select(courses_not_united, 'id', 'course_name'), prompt: "Selecione o curso", :class => 'form-control width-form-unite') %>
+
+        <div class="add-another">
+          <%= link_to new_button.html_safe, add_course_unite_groups_path(@unite_group, 0),
+          :class => 'btn btn-primary btn-sm join mt-10',
+          :id => 'add_course',
+          title: 'Adicionar cursos', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
+
+        </div>
+
+      </div>
+
+
     <% end %>
 
   </div>

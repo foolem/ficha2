@@ -1,5 +1,5 @@
 class UniteGroupsController < ApplicationController
-  before_action :set_unite_group, only: [:show, :edit, :update, :destroy, :add, :remove]
+  before_action :set_unite_group, only: [:show, :edit, :update, :destroy, :add, :remove, :add_course]
   before_action :set_group, only: [:add, :remove]
   before_action :bar_define
 
@@ -15,6 +15,33 @@ class UniteGroupsController < ApplicationController
   end
 
   def edit
+  end
+
+  def add_course
+    puts @unite_groups
+    group = @unite_group.groups.first
+    new_course = Course.find(params[:course_id])
+    course = Course.where(name: "#{group.course.name}, #{new_course.name}").first
+
+    if course.blank?
+      course = Course.create(name: "#{group.course.name}, #{new_course.name}")
+    end
+
+    group.active = false
+    group.save
+
+    new_group = Group.create(name: group.name, matter_id: group.matter.id, course_id: course.id, semester_id: Semester.current_semester.id, active: true, vacancies: group.vacancies)
+    new_group.schedules.push group.schedules
+    @unite_group.groups.delete(group)
+
+    puts @unite_group.groups.length
+    @unite_group.groups.push new_group
+
+    respond_to do |format|
+      format.js
+    end
+
+
   end
 
   def add

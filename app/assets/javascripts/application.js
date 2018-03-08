@@ -105,6 +105,25 @@ $(document).on('change','#unite_group_groups', function() {
     $('#add_group').attr('href', link);
 });
 
+$(document).on('change','#unite_group_course', function() {
+    var value = $('#unite_group_course').find(":selected").val();
+    var link = $('#add_course').attr('href');
+    var times = link.length;
+    var i = times;
+    var old  = ""
+    while (i >= 0) {
+      if (link.charAt(i) != '/') {
+        old = old + link.charAt(i);
+      } else {
+        break;
+      }
+      i--;
+    }
+    link = link.substring(0, (link.length-old.length))
+    link = link + value;
+    $('#add_course').attr('href', link);
+});
+
 document.addEventListener("turbolinks:load", function() {
 
     // Backup spinner
