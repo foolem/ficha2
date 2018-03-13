@@ -364,7 +364,14 @@ body {
   text-decoration: none;
   background-color: #455E85;
 }
-
+.decoration-none {
+  text-decoration: none;
+}
+.decoration-none:hover {
+  text-decoration: none;
+  color: blue;
+  background-color: white;
+}
 h1 {
   color: #444;
   font-size: 4.5rem !important;
@@ -593,7 +600,9 @@ li > a:hover{
 	border-radius: 10px;
 	background-color: #455E8E;
 }
-
+.d-block {
+  display: block;
+}
 .pb-80 {
   padding-bottom:20px;
 }
@@ -699,9 +708,6 @@ li > a:hover{
   background-color: rgb(108,255,78);
 }
 
-.d-block {
-  display: block !important;
-}
 .blue-btn {
   background-color: #455E8E;
 }

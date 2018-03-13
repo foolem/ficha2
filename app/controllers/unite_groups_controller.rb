@@ -1,5 +1,5 @@
 class UniteGroupsController < ApplicationController
-  before_action :set_unite_group, only: [:show, :edit, :update, :destroy, :add, :remove, :add_course]
+  before_action :set_unite_group, only: [:show, :edit, :update, :destroy, :add, :remove, :add_course, :remove_course]
   before_action :set_group, only: [:add, :remove]
   before_action :bar_define
 
@@ -18,7 +18,6 @@ class UniteGroupsController < ApplicationController
   end
 
   def add_course
-    puts @unite_groups
     group = @unite_group.groups.first
     new_course = Course.find(params[:course_id])
     course = Course.where(name: "#{group.course.name}, #{new_course.name}").first
@@ -41,7 +40,30 @@ class UniteGroupsController < ApplicationController
       format.js
     end
 
+  end
 
+  def remove_course
+    group = @unite_group.groups.first
+    old_course = Course.where(name: group.course.name).first
+    puts old_course.name
+
+    course = Course.where(name: group.course.name.split(',').first).first
+    puts course.name
+
+    old_group = Group.where(active: false, name: group.name, course_id: course.id).first
+    if old_group.blank?
+      old_group = Group.where(active: true, name: group.name, course_id: course.id).first
+    end
+    puts old_group
+    old_group.active = true
+
+    @unite_group.groups.delete(group)
+    group.destroy
+    @unite_group.groups.push old_group
+
+    respond_to do |format|
+      format.js { flash[:alert] = "Curso removido com sucesso."}
+    end
   end
 
   def add
@@ -133,7 +155,6 @@ class UniteGroupsController < ApplicationController
           end
         end
 
-
         g.active = false
         g.save
         i.active = false
@@ -174,8 +195,6 @@ class UniteGroupsController < ApplicationController
   def remove
     @unite_group.groups.delete(@group)
 
-
-
     if @unite_group.groups.length == 2
       groups = @unite_group.groups
       groups.each_cons(2) do |g, i|
@@ -203,9 +222,6 @@ class UniteGroupsController < ApplicationController
 
           group.schedules = @group.schedules
           group.save
-
-
-
         else
           if g.course != i.course
             course = Course.where(name: "#{g.course.name}, #{i.course.name}").first
@@ -269,7 +285,9 @@ class UniteGroupsController < ApplicationController
         if group.blank?
           group = Group.where(name: g.name, matter_id: g.matter.id, course_id: course.id, semester_id: Semester.current_semester.id, active: true, vacancies: "#{g.vacancies}+#{i.vacancies}").first
         end
-        puts group
+        if group.blank?
+          group = Group.where(name: "#{i.name}, #{g.name}", matter_id: g.matter.id, course_id: course.id, semester_id: Semester.current_semester.id, active: true, vacancies: "#{g.vacancies}+#{i.vacancies}").first
+        end
 
         group.destroy
         redirect_to request.referrer
@@ -309,6 +327,28 @@ class UniteGroupsController < ApplicationController
   end
 
   def destroy
+
+    if @unite_group.groups.length == 1
+      group = @unite_group.groups.first
+      if group.course.name.include? ","
+        course = Course.where(name: group.course.name.split(',').first).first
+        puts course.name
+
+        old_group = Group.where(active: false, name: group.name, course_id: course.id).first
+        if old_group.blank?
+          old_group = Group.where(active: true, name: group.name, course_id: course.id).first
+        end
+        old_group.active = true
+
+        @unite_group.groups.delete(group)
+        group.active = false
+        group.destroy
+        @unite_group.groups.push old_group
+
+      end
+
+    end
+
     if @unite_group.groups.length == 2
       @unite_group.groups.each_cons(2) do |a, b|
         a.active = true
@@ -316,21 +356,26 @@ class UniteGroupsController < ApplicationController
         b.active = true
         b.save
 
-        course_united = Course.where(name: "#{a.course.name}, #{b.course.name}").first
+        course_united = Course.where(name: "#{a.course.name}, #{b.course.name}").last
         if course_united.blank?
-          course_united = Course.where(name: "#{b.course.name}, #{a.course.name}").first
-          if course_united.blank?
-            course_united = Course.find(a.course.id)
-          end
+          course_united = Course.where(name: "#{b.course.name}, #{a.course.name}").last
         end
-        group_united = Group.where(name: "#{a.name}, #{b.name}", matter_id: a.matter.id, course_id: course_united.id).first
+        if course_united.blank?
+          course_united = Course.find(a.course.id)
+        end
+        puts course_united.name
+        group_united = Group.where(name: "#{a.name}, #{b.name}", matter_id: a.matter.id, course_id: course_united.id).last
 
         if group_united.blank?
-          group_united = Group.where(name: a.name, matter_id: a.matter.id, course_id: course_united.id).first
-          if group_united.blank?
-            group_united = Group.where(name: "#{b.name}, #{a.name}", matter_id: a.matter.id, course_id: course_united.id).first
-          end
+          group_united = Group.where(name: "#{b.name}, #{a.name}", matter_id: a.matter.id, course_id: course_united.id).last
         end
+
+        if group_united.blank?
+          group_united = Group.where(name: a.name, matter_id: a.matter.id, course_id: course_united.id).last
+        end
+
+        group_united.active = false
+        @unite_group.groups.delete(group_united)
         group_united.destroy
       end
     end
@@ -352,6 +397,7 @@ class UniteGroupsController < ApplicationController
           group_united = Group.where(name: a.name, matter_id: a.matter.id, course_id: course_united.id).first
           group_united.destroy
         end
+        group_united.active = false
         group_united.destroy
       end
     end
@@ -362,7 +408,6 @@ class UniteGroupsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to unite_groups_url, notice: 'União foi deletada com sucesso.' }
-      format.json { head :no_content }
     end
   end
 

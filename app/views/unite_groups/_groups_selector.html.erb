@@ -28,6 +28,15 @@
           title: 'Adicionar cursos', 'data-toggle' => 'tooltip', 'data-placement' => 'right', :remote => true %>
 
         </div>
+        <% if @unite_group.groups.first.course.name.include? "," %>
+          <%= link_to "Remover curso",
+                remove_course_unite_groups_path(@unite_group),
+                :method => :delete,
+                :remote => true,
+                :class => 'd-block center decoration-none mt-10',
+                title: 'Remover', 'data-toggle' => 'tooltip', 'data-placement' => 'right'%>
+        <% end %>
+
 
       </div>
 

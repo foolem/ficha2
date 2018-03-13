@@ -83,7 +83,7 @@ Rails.application.routes.draw do
       match 'add_course/:id/:course_id' => 'unite_groups#add_course', via: [:get, :post], as: :add_course
 
       match 'remove/:id/:group_id' => 'unite_groups#remove', via: [:delete], as: :remove
-      match 'remove_course/:id/:course_id' => 'unite_groups#remove_course', via: [:delete], as: :remove_course
+      match 'remove_course/:id' => 'unite_groups#remove_course', via: [:delete], as: :remove_course
 
       match 'search' => 'unite_groups#search', via: [:get, :post], as: :search
     end
