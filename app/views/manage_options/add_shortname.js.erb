@@ -1,0 +1,4 @@
+$("#shortname").val("");
+$("#add_shortname").fadeOut(400, function(){
+  $(this).html("<%= escape_javascript(render("add_shortname")) %>").fadeIn(400);
+});

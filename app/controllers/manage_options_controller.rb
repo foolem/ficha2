@@ -220,6 +220,24 @@ class ManageOptionsController < ApplicationController
     render :index
   end
 
+  def add_shortname
+    user = User.find(params[:user])
+
+    shortname = params[:shortname]
+
+    user.shortname = shortname
+    user.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def shortname
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
 
     def bar_define

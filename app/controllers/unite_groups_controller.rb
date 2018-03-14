@@ -224,7 +224,7 @@ class UniteGroupsController < ApplicationController
           group.save
         else
           if g.course != i.course
-            course = Course.where(name: "#{g.course.name}, #{i.course.name}").first
+            course = Course.where(name: "#{g.course.name}, #{i.course.name}").last
             if course.blank?
               course = Course.create(name: "#{g.course.name}, #{i.course.name}")
             end
@@ -237,7 +237,7 @@ class UniteGroupsController < ApplicationController
           i.active = false
           i.save
 
-          group = Group.where(name: "#{g.name}, #{i.name}", matter_id: g.matter.id, course_id: course.id, semester_id: Semester.current_semester.id, active: true, vacancies: "#{g.vacancies}+#{i.vacancies}").first
+          group = Group.where(name: "#{g.name}, #{i.name}", matter_id: g.matter.id, course_id: course.id, semester_id: Semester.current_semester.id, active: true, vacancies: "#{g.vacancies}+#{i.vacancies}").last
 
           if group.blank?
             group = Group.create(name: "#{g.name}, #{i.name}", matter_id: g.matter.id, course_id: course.id, semester_id: Semester.current_semester.id, active: true, vacancies: "#{g.vacancies}+#{i.vacancies}")
@@ -420,6 +420,7 @@ class UniteGroupsController < ApplicationController
       format.js
     end
   end
+
 
   private
     def bar_define

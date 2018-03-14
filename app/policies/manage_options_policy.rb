@@ -16,6 +16,14 @@ class ManageOptionsPolicy < ApplicationPolicy
     !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
   end
 
+  def add_shortname?
+    !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
+  end
+
+  def shortname?
+    !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
+  end
+
   def generate?
     user_admin_or_adviser? and !Semester.current_semester.options_generated
   end

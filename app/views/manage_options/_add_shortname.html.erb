@@ -1,0 +1,19 @@
+  <h2 class="mb-30 mt-10">Adicionar nome curto</h2>
+  <%= form_tag manage_options_add_shortname_path, remote: true do %>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-5" style="padding:0">
+      <%= collection_select :user, :id, user_delivery, :id, :name, {prompt: "Selecione..."}, {class: "form-control", name: "user"} %>
+    </div>
+
+    <div class="col-md-5">
+      <%= text_field_tag :shortname, "", {class: 'form-control', placeholder: "Digite um apelido", id: "shortname"} %>
+    </div>
+
+    <div class="col-md-1" style="padding: 0 0 0 10px; margin-top: 2px;">
+      <%= button_tag(type: "submit", class: "btn btn-success btn-sm") do
+        simple_check_button.html_safe
+      end %>
+    </div>
+
+  </div>
+  <% end %>

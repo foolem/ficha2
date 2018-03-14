@@ -20,7 +20,11 @@
 
   <div class="col-md-5" style="padding:0">
     <div class="form-control">
-      <%= group.ficha.user.name %>
+      <%= if group.ficha.user.shortname.blank?
+            group.ficha.user.name
+          else
+            group.ficha.user.shortname
+      end %>
     </div>
   </div>
 

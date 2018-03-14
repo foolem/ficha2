@@ -58,9 +58,8 @@ Rails.application.routes.draw do
 
   get 'manage_options/send_email', to: 'manage_options#send_email'
 
-
-
-
+  match 'manage_options/add_shortname' => 'manage_options#add_shortname',via: [:post], as: :manage_options_add_shortname
+  get 'manage_options/shortname', to: 'manage_options#shortname'
   get 'welcome/index'
 
   root 'welcome#index'
