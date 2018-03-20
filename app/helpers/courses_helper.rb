@@ -4,7 +4,14 @@ module CoursesHelper
   end
 
   def courses_not_united
-    return Course.all
+    courses = Course.all
+    r_courses = []
+    courses.each do |c|
+      if !c.name.include? ","
+        r_courses.push c
+      end
+    end
+    return r_courses
   end
 
 end

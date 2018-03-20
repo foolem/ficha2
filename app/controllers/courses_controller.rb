@@ -1,6 +1,9 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :bar_define
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+
 
   def index
     @q = Course.ransack(model_define("Course"))
@@ -69,6 +72,10 @@ class CoursesController < ApplicationController
   end
 
   private
+
+    def authorize_user
+      authorize Group
+    end
 
     def set_course
       @course = Course.find(params[:id])

@@ -1,4 +1,4 @@
-class UserPolicy < ApplicationPolicy
+class GroupPolicy < ApplicationPolicy
 
   def new?
     !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)

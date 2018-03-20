@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :bar_define
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   def index
     @q = Group.ransack(model_define("Group"))
@@ -82,6 +84,10 @@ class GroupsController < ApplicationController
   private
     def bar_define
       session[:page] = "group"
+    end
+
+    def authorize_user
+      authorize Group
     end
 
     def set_group
