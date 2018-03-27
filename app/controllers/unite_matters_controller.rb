@@ -1,6 +1,8 @@
 class UniteMattersController < ApplicationController
   before_action :set_unite_matter, only: [:show, :edit, :update, :destroy, :add, :remove]
   before_action :set_matter, only: [:add, :remove]
+  before_action :authorize_user, only: [:index, :show, :new, :add, :remove, :create, :destroy]
+  before_action :authenticate_user!, only: [:index, :edit, :update, :add, :remove, :destroy, :create]
   before_action :bar_define
 
   def index
@@ -67,6 +69,10 @@ class UniteMattersController < ApplicationController
   end
 
   private
+
+    def authorize_user
+      authorize UniteMatter
+    end
 
     def bar_define
       session[:page] = "matters"

@@ -17,6 +17,18 @@ class UniteGroupPolicy < ApplicationPolicy
     !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
+  def remove_course?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
+  end
+
+  def add_course?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
+  end
+
+  def show?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
+  end
+
   def create?
     !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end

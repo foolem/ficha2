@@ -1,6 +1,8 @@
 class UniteGroupsController < ApplicationController
   before_action :set_unite_group, only: [:show, :edit, :update, :destroy, :add, :remove, :add_course, :remove_course]
   before_action :set_group, only: [:add, :remove]
+  before_action :authorize_user, only: [:index, :show, :new, :add_course, :remove_course, :add, :remove, :create, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :new, :add_course, :remove_course, :add, :remove, :create, :destroy]
   before_action :bar_define
 
   def index
@@ -331,13 +333,15 @@ class UniteGroupsController < ApplicationController
     if @unite_group.groups.length == 1
       group = @unite_group.groups.first
       if group.course.name.include? ","
+        old_course = Course.where(name: group.course.name).first
         course = Course.where(name: group.course.name.split(',').first).first
         puts course.name
 
-        old_group = Group.where(active: false, name: group.name, course_id: course.id).first
+        old_group = Group.where(name: group.name, matter_id: group.matter.id, course_id: course.id).first
         if old_group.blank?
-          old_group = Group.where(active: true, name: group.name, course_id: course.id).first
+          old_group = Group.where(name: group.name, matter_id: group.matter.id, course_id: course.id).first
         end
+        puts old_group
         old_group.active = true
 
         @unite_group.groups.delete(group)
@@ -423,6 +427,11 @@ class UniteGroupsController < ApplicationController
 
 
   private
+
+    def authorize_user
+      authorize UniteGroup
+    end
+
     def bar_define
       session[:page] = "groups"
     end

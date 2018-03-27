@@ -127,6 +127,7 @@ module OptionsHelper
 
   def matter_options(matter)
     @options = []
+    @unites = [] # estudar esse erro de duplicação de turmas
     conn = ActiveRecord::Base.connection
     q = query(matter)
     if !q.blank?

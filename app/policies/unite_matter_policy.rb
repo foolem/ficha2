@@ -17,6 +17,10 @@ class UniteMatterPolicy < ApplicationPolicy
     !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
+  def show?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
+  end
+
   def create?
     !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
