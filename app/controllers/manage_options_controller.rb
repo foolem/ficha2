@@ -248,63 +248,22 @@ class ManageOptionsController < ApplicationController
       if condition
         @semester.options_generated = generated;
         @semester.options_selection = selection;
-        @semester.options_finished = finished;
+        @semester.options_finished  = finished;
         @semester.save
       end
     end
 
     def generate_method
       Group.where(semester_id: Semester.current_semester.id).each do |group|
-        option_generate(group)
+        option_generate(group) if group.option.blank?
       end
     end
 
     def option_generate(group)
-      if !has_option_group(group.id)
-        option = Option.new
+      Option.create do |option|
         option.semester = Semester.current_semester
-
-        group.same_groups.each do |same_group|
-          option.groups << same_group
-        end
-
-        option.save
+        option.groups   = group.same_groups
       end
-    end
-
-    def has_option_group(group_id)
-      options = select_result(select_options_group(group_id))
-      options.length > 0
-    end
-
-    def select_options_unite(unite_id)
-      "select distinct o.id from options as o
-      inner join groups as g on g.option_id = o.id
-      inner join matters as m on g.matter_id = m.id
-      where m.unite_matter_id = #{unite_id};"
-    end
-
-    def select_options_matters(matter_id)
-      "select distinct g.id from groups as g
-      inner join matters as m on g.matter_id = m.id
-      where m.unite_matter_id = #{matter_id};"
-    end
-
-    def select_options_group(group_id)
-      "select o.id from options as o
-      inner join groups as g on o.id = g.option_id
-      where g.id = #{group_id};"
-    end
-
-    def select_result(query)
-      list = []
-      conn = ActiveRecord::Base.connection
-      result = conn.execute query
-
-      result.each do |r|
-        list << r[0]
-      end
-      list
     end
 
     def set_semester
@@ -314,5 +273,4 @@ class ManageOptionsController < ApplicationController
     def authorize_user
       authorize ManageOptions
     end
-
 end

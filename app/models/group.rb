@@ -41,33 +41,16 @@ class Group < ApplicationRecord
   end
 
   def same_groups
-    if schedules.length == 0
-      return [self]
-    end
+    return [self] if schedules.blank?
 
-
-    result = []
-    groups = []
-
-    if !matter.unite_matter.blank? #se existe uma união de matérias
-      matter.unite_matter.matters.each do |matter| #faz um each para cada matéria dessa união
-        matter.groups.each do |grp| #para cada turma de uma matéria dessa união
-          if grp.semester = semester #se o semestre dessa turma for igual ao semester
-            groups << grp
-          end
-        end
-      end
-    else
-      groups = matter.groups
-    end
-
-    groups.each do |grp|
-      if schedules == grp.schedules && semester == Semester.current_semester && grp.semester == Semester.current_semester
-        result << grp
-      end
-    end
-
-    result
+    same_matter_groups.reject { |grp| self.schedules.pluck(:id) != grp.schedules.pluck(:id) }
   end
 
+  def same_matter_groups
+    return matter.groups.where(semester_id: self.semester_id) if matter.unite_matter.blank?
+
+    matter.unite_matter.matters.map do |matter|
+      matter.groups.where(semester_id: self.semester_id)
+    end.flatten
+  end
 end
