@@ -378,9 +378,18 @@ class UniteGroupsController < ApplicationController
           group_united = Group.where(name: a.name, matter_id: a.matter.id, course_id: course_united.id).last
         end
 
-        group_united.active = false
-        @unite_group.groups.delete(group_united)
-        group_united.destroy
+        if group_united.has_ficha?
+          a.active = false
+          a.save
+          b.active = false
+          b.save
+          return respond_to { |format| format.html { redirect_to request.referrer, notice: 'A turma já possui uma ficha, impossível excluir.' } }
+        else
+          group_united.active = false
+          @unite_group.groups.delete(group_united)
+          group_united.destroy
+        end
+
       end
     end
 
