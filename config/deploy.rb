@@ -1,7 +1,7 @@
 # Change these
 server 'encardida.c3sl.ufpr.br', port: 80, roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'git@github.com:leonardogodoy/ficha2.git'
+set :repo_url,        'git@github.com:ficha2/ficha2.git'
 set :application,     'ficha2'
 set :user,            'foolem'
 set :puma_threads,    [4, 16]
