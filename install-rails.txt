@@ -1,3 +1,0 @@
-https://gorails.com/setup/ubuntu/17.04
-
-rake db:create db:migrate import:init import:users import:unite_mattres

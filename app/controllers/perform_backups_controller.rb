@@ -22,7 +22,7 @@ before_action :authenticate_user!, only: [:index, :update, :do_perform]
         day_or_night = 'am'
       end
       File.write('config/schedule.rb', "every #{days}.day, :at => '#{time} #{day_or_night}' do\n
-      command \"backup perform --trigger backup_database --config-file ~/ficha2/backup/config.rb\"\n
+      command \"backup perform --trigger backup_database --config-file /app/backup/config.rb\"\n
       end")
       update_cron = `whenever --update-crontab`
       respond_to do |format|
@@ -32,7 +32,7 @@ before_action :authenticate_user!, only: [:index, :update, :do_perform]
   end
 
   def do_perform
-    perform =  `backup perform --trigger backup_database --config-file ~/ficha2/backup/config.rb`
+    perform =  `backup perform --trigger backup_database --config-file /app/backup/config.rb`
     respond_to do |format|
       format.js
     end
@@ -61,7 +61,7 @@ before_action :authenticate_user!, only: [:index, :update, :do_perform]
           day_or_night = 'am'
         end
         File.write('config/schedule.rb', "every #{days}.day, :at => '#{time} #{day_or_night}' do\n
-        command \"backup perform --trigger backup_database --config-file ~/ficha2/backup/config.rb\"\n
+        command \"backup perform --trigger backup_database --config-file /app/backup/config.rb\"\n
         end")
         update_cron = `whenever --update-crontab`
       end

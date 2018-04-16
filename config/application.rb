@@ -16,8 +16,7 @@ module Ficha2
     config.i18n.default_locale = "pt-BR"
 
     config.active_record.time_zone_aware_types = [:datetime, :time]
-
-
+    config.assets.paths << Rails.root.join("app", "assets", "fonts") 
     end
 
 end

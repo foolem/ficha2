@@ -1,0 +1,9 @@
+*.lock
+rdoc
+*.log
+.DS_Store
+*.swp
+*.swo
+pkg
+.bundle
+/bin

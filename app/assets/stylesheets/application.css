@@ -18,6 +18,8 @@
  /*
  cores: https://pt.wix.com/blog/2012/12/usando-as-cores-certas-para-o-seu-site/*/
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css");
+
 
 body {
   margin: 0;
@@ -63,6 +65,7 @@ body {
   float: left;
 }
 .d-inline-block {
+  display: inline-block;
   display: inline-block;
 }
 .margin-bottom-unite {

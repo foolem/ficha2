@@ -49,6 +49,8 @@ gem 'twitter-bootstrap-rails'
 gem 'sprockets', '3.7.1'
 gem 'autoprefixer-rails'
 
+# deploy with passenger and apache2
+#gem 'passenger'
 
 gem 'libv8'
 gem 'rails-i18n'
@@ -60,7 +62,7 @@ gem 'rails', '~> 5.0.2'
 
 gem 'mysql2'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'unicorn'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -78,8 +80,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'openssl'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -96,10 +96,6 @@ group :development do
   gem 'awesome_print'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.3", require: false
-  gem 'capistrano3-puma', require: false
-  gem 'capistrano-rvm', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
