@@ -11,6 +11,8 @@ class MessagesController < ApplicationController
     @message.ficha = @ficha
     @message.user = current_user
 
+    Thread.new { UserMailer.message_notification(@message).deliver }
+
     respond_to do |format|
       if !@message.message.blank? and @message.save
         format.js
