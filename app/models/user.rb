@@ -50,10 +50,6 @@ class User < ApplicationRecord
     return self.has_role?("appraiser")
   end
 
-  def counselor?
-    return self.has_role?("counselor")
-  end
-
   def teacher?
     return self.has_role?("teacher")
   end

@@ -4,8 +4,7 @@ class Role < ApplicationRecord
     teacher: "Professor",
     admin: "Administrador",
     appraiser: "Avaliador",
-    secretary: "Secretário",
-    counselor: "Conselheiro"}
+    secretary: "Secretário"}
 
   def self.permited_roles
     ROLES.map do |key, value|

@@ -62,7 +62,7 @@ namespace :import do
     xlsx = Roo::Excelx.new(path, extension: :xlsx)
 
     puts "\n============= USERS ============="
-    roles = ["appraiser", "admin", "secretary", "counselor"]
+    roles = ["appraiser", "admin", "secretary"]
 
     (xlsx.sheet(1).last_row - 1).times do |i|
       linha = xlsx.sheet(1).row(i+2)

@@ -5,23 +5,23 @@ class ManageOptionsPolicy < ApplicationPolicy
   end
 
   def search?
-    !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def find_pdf?
-    !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def send_ficha2_email?
-    !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def add_shortname?
-    !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def shortname?
-    !user.blank? and (user.has_any_role? ["admin", "secretary", "counselor"] and user.actived?)
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
   end
 
   def generate?
