@@ -38,7 +38,7 @@
     <% @fichas.each do |ficha| %>
       <tr data-href="<%= ficha_path(ficha) %>" >
 
-        <td><%= ficha.user.name %></td>
+          <td><%= ficha.user.name %></td>
 
         <td class="center"><span title="<%= ficha.group.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.group.matter.code %> </span></td>
 
