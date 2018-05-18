@@ -32,6 +32,10 @@ class ManageOptionsPolicy < ApplicationPolicy
     user_admin_or_adviser?
   end
 
+  def all_records?
+    !user.blank? and (user.has_any_role? ["admin", "secretary"] and user.actived?)
+  end
+
   def remove?
     user_admin_or_adviser? and Semester.current_semester.options_generated
   end

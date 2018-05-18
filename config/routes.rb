@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   match 'manage_options/send_ficha2_email' => 'manage_options#send_ficha2_email', via: [:get], as: :manage_options_send_ficha2_email
 
-  get 'manage_options/send_email', to: 'manage_options#send_email'
+  get 'manage_options/all_records', to: 'manage_options#all_records'
 
   match 'manage_options/add_shortname' => 'manage_options#add_shortname',via: [:post], as: :manage_options_add_shortname
   get 'manage_options/shortname', to: 'manage_options#shortname'

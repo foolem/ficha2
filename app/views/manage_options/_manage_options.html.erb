@@ -45,14 +45,13 @@
       </div>
       <div class="col-md-4">
         <div class="center">
-          <div class="manage-email">
-            <%= link_to manage_options_send_email_path,
-                id: "options_send_email", remote: true,
-                :"data-load" => "Enviando emails...",
-                class: 'btn big-btn blue-btn white' do %>
-                <%= big_user_button.html_safe %>
-                <h4 style="text-align:center;margin-top:10px">Enviar e-mail<br> aos docentes</h4>
-                <% end %>
+          <div class="manage-records">
+            <%= link_to "#{manage_options_all_records_path}.pdf",
+            :"data-load" => "Gerando relatório...",
+            class: 'btn big-btn blue-btn white m-r-10' do %>
+            <%= big_record_button.html_safe %>
+            <h4 style="text-align:center;margin-top:10px">Relatório<br>Fichas</h4>
+            <% end %>
           </div>
         </div>
       </div>
@@ -138,7 +137,7 @@
 
       <input id="selected" type="hidden" name="selected" value="">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="center report_generate">
             <%= link_to "#",
             :"data-load" => "Gerando relatório...",
@@ -149,7 +148,7 @@
               <% end %>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="center report_generate">
             <%= link_to "#",
             :"data-load" => "Gerando relatório...",
@@ -160,7 +159,7 @@
               <% end %>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="center report_generate">
             <%= link_to "#",
             :"data-load" => "Gerando relatório...",
@@ -171,6 +170,19 @@
               <% end %>
             </div>
         </div>
+        <div class="col-md-3">
+          <div class="center report_generate">
+            <%= link_to "#",
+            :"data-load" => "Gerando relatório...",
+            class: 'btn big-btn blue-btn white m-l-10',
+              id: 'all_records' do %>
+              <%= big_record_button.html_safe %>
+              <h4 style="text-align:center;margin-top:10px">Relatório<br>Fichas</h4>
+              <% end %>
+            </div>
+        </div>
+
+
       </div>
 
 
@@ -185,7 +197,7 @@
 </div>
 <script type="text/javascript">
   $("#form_semesters").hide();
-  $("#teachers, #matters, #final").on('click', function(){
+  $("#teachers, #matters, #final, #all_records").on('click', function(){
       $('#selected').val(this.id);
       this.closest('form').submit();
   });

@@ -672,7 +672,7 @@ li > a:hover{
   text-align: center;
 
 }
-.manage-start, .manage-end, .manage-remove, .manage-email {
+.manage-start, .manage-end, .manage-remove, .manage-records {
   display: inline-block;
   margin: 0 1%;
 }

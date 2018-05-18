@@ -21,20 +21,22 @@ class ManageOptionsController < ApplicationController
       Thread.new { UserMailer.send_password(user).deliver }
   end
 
-  def send_email
-    @action = :send_email
-    users = User.all
-    users.each do |user|
-      # >=5 para ignorar usuários padrão do sistema
-      #if user.id >= 5 && user.id <= 59
-      if user.id == 7
-        send_to(user)
-      end
-    end
-    respond_to do |format|
-      format.js { render :action => 'manage_result'}
-    end
-  end
+  # def send_email
+  #   @action = :send_email
+  #   users = User.all
+  #   users.each do |user|
+  #     # >=5 para ignorar usuários padrão do sistema
+  #     #if user.id >= 5 && user.id <= 59
+  #     if user.id == 7
+  #       send_to(user)
+  #     end
+  #   end
+  #   respond_to do |format|
+  #     format.js { render :action => 'manage_result'}
+  #   end
+  # end
+
+
 
   def generate
     @action = :generate
@@ -119,6 +121,27 @@ class ManageOptionsController < ApplicationController
     end
   end
 
+  def all_records(*args)
+    fichas = Ficha.where(status: "ready")
+    @fichas = []
+    if !args.first.blank?
+      fichas.each do |f|
+        @fichas.push f if f.group.semester_id == args.first.to_i
+      end
+    else
+      @fichas = Ficha.where(status: "ready")
+    end
+    respond_to do |format|
+      format.pdf do
+        pdf = AllRecordsPdf.new(@fichas)
+        send_data pdf.render,
+          filename: "Relatório fichas.pdf",
+          type: "application/pdf",
+          disposition: "inline"
+      end
+    end
+  end
+
   def index
     delivery
   end
@@ -141,6 +164,8 @@ class ManageOptionsController < ApplicationController
       final_report(semester)
     elsif btn == "matters"
       matter_report(semester)
+    elsif btn == "all_records"
+      all_records(semester)
     else
       teacher_report(semester)
     end

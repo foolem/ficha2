@@ -7,11 +7,11 @@ class FichasController < ApplicationController
   def index
     @q = Ficha.ransack(model_define("Ficha"))
     @fichas = getFichas
-    @elements = @fichas.length
-
-    @page = params[:page].to_i
-    @page = pages_verify(@page, @elements, page_length)
-    @fichas = @fichas.paginate(:per_page => page_length, :page => @page)
+    # @elements = @fichas.length
+    #
+    # @page = params[:page].to_i
+    # @page = pages_verify(@page, @elements, (Ficha.all.count + 20))
+    # @fichas = @fichas.paginate(:per_page => (Ficha.all.count + 20), :page => @page)
 
   end
 
