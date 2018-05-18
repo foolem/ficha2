@@ -7,7 +7,6 @@ class FichasController < ApplicationController
   def index
     @q = Ficha.ransack(model_define("Ficha"))
     @fichas = getFichas
-    
 
   end
 
