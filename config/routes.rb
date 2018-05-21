@@ -155,6 +155,8 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'fichas#search', via: [:get, :post], as: :search
       match "copy/:id/:copy_id" , :to => "fichas#copy", via: [:get, :post], :as => 'copy'
+      match 'choose_appraiser' => 'fichas#choose_appraiser', via: :post, as: :choose_appraiser
+      match 'choose_appraiser_modal/:id' => 'fichas#choose_appraiser_modal', via: [:get, :post], as: :choose_appraiser_modal
 
     end
   end

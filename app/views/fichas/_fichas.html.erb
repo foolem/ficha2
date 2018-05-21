@@ -1,8 +1,11 @@
+<div id="modal"></div>
 <table class="table table-striped">
   <thead>
     <tr class="header">
 
       <th><%= t('teacher') %></th>
+
+      <th width="10%"><center> Escolher avaliador </center></th>
 
       <th width="10%"><center><%= t('matter') %></center></th>
 
@@ -35,10 +38,16 @@
   </thead>
   <tbody id="tbody">
 
-    <% @fichas.each do |ficha| %>
-      <tr data-href="<%= ficha_path(ficha) %>" >
 
-          <td><%= ficha.user.name %></td>
+    <% @fichas.each do |ficha| %>
+      <tr>
+
+        <td><%= ficha.user.name %></td>
+
+        <td class="center">
+
+          <%= link_to "Escolher avaliador", choose_appraiser_modal_fichas_path(ficha), remote: true, class: "btn btn-default btn-sm" %>
+        </td>
 
         <td class="center"><span title="<%= ficha.group.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.group.matter.code %> </span></td>
 

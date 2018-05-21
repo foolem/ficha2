@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="modal fade" id="modal-1">
+		<div class="modal-dialog modal-xs">
+			<div class="modal-content">
+				 <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Escolher avaliador</h3>
+				 </div>
+				 <div class="modal-body">
+					 <div class="form-group">
+
+						 <%= form_tag(choose_appraiser_fichas_path, class: "form-horizontal group") do %>
+						 	<input type="hidden" name="appraiser[ficha_id]" value=" <%= @ficha %> ">
+				       <div class="col-xs-9">
+				         <%= collection_select(:appraiser, :id, appraisers, :id, :name) %>
+								 coeee
+				       </div>
+							 <%= submit_tag %>
+						 <% end %>
+			     </div>
+				 </div>
+
+				 <div class="modal-footer">
+					<a href="" class="btn btn-primary white" data-dismiss="modal">Close</a>
+				 </div>
+			</div>
+		</div>
+	</div>
+</div>

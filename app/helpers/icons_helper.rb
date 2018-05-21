@@ -60,6 +60,10 @@ module IconsHelper
     '<i class="glyphicon glyphicon-save"></i> Baixar'
   end
 
+  def choose_appraiser_button
+    '<i class="glyphicon glyphicon-user"></i> Escolher avaliador'
+  end
+
   def show_button
     '<i class="glyphicon glyphicon-eye-open"></i>'
   end

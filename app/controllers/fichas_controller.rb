@@ -53,7 +53,20 @@ class FichasController < ApplicationController
     @message = Message.new
     @ficha.messages.build
     coppy_bibliography
+  end
 
+  def choose_appraiser
+    puts "aeoooooooo"
+    puts
+    redirect_to fichas_url
+  end
+
+  def choose_appraiser_modal
+    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa #{params[:id]}"
+    @ficha = params[:id]
+    respond_to do |format|
+      format.js
+    end
   end
 
   #rever

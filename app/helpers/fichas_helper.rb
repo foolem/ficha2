@@ -85,6 +85,14 @@ module FichasHelper
     @show or (user_appriser? and ficha.user.id != current_user.id)
   end
 
+  def appraisers
+    appraisers = []
+    User.all.each do |u|
+      appraisers.push(u) if u.has_role?("appraiser")
+    end
+    appraisers
+  end
+
   #<td><center><%= ficha.created_at.strftime("%d/%m/%Y") %></center></td>
 
 end
