@@ -5,7 +5,6 @@ class User < ApplicationRecord
   has_many :wishes
   has_many :options, through: :wishes
   has_many :availabilities
-
   validates :name, presence: true
 
   # Include default devise modules. Others available are:

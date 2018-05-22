@@ -56,9 +56,13 @@ class FichasController < ApplicationController
   end
 
   def choose_appraiser
-    puts "aeoooooooo"
-    puts
-    redirect_to fichas_url
+    ficha = Ficha.find(params[:appraiser][:ficha_id])
+    ficha.appraiser_id = params[:appraiser][:id]
+    ficha.save
+    puts ficha.appraiser_id
+    respond_to do |format|
+      format.html { redirect_to fichas_url, notice: 'Avaliador designado com sucesso.' }
+    end
   end
 
   def choose_appraiser_modal

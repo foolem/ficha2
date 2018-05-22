@@ -5,7 +5,7 @@
 
       <th><%= t('teacher') %></th>
 
-      <th width="10%"><center> Escolher avaliador </center></th>
+      <th width="10%"><center> <% if user_signed_in? && current_user.admin? %> Escolher avaliador <% end %> </center></th>
 
       <th width="10%"><center><%= t('matter') %></center></th>
 
@@ -45,8 +45,11 @@
         <td><%= ficha.user.name %></td>
 
         <td class="center">
-
-          <%= link_to "Escolher avaliador", choose_appraiser_modal_fichas_path(ficha), remote: true, class: "btn btn-default btn-sm" %>
+          <% if user_signed_in? && !ficha.appraiser_id.blank? %>
+            <%= User.find(ficha.appraiser_id).shortname.blank? ? User.find(ficha.appraiser_id).name : User.find(ficha.appraiser_id).shortname %>
+          <% elsif user_signed_in? && current_user.has_role?("admin") && ficha.status != "ready" %>
+            <%= link_to "Escolher avaliador", choose_appraiser_modal_fichas_path(ficha), remote: true, class: "btn btn-default btn-sm" %>
+          <% end %>
         </td>
 
         <td class="center"><span title="<%= ficha.group.matter.name %>" data-toggle='tooltip', data-placement='right'> <%= ficha.group.matter.code %> </span></td>
@@ -64,10 +67,11 @@
           <% if ficha.ready? %>
             <%= link_to download_button.html_safe, ficha_path(ficha, format: "pdf"),
                 button_configs(:download, "btn btn-default simple_button") %>
-          <% elsif user_signed_in? %>
+          <% elsif user_signed_in? && (current_user.appraiser? && current_user.id == ficha.appraiser_id) || (current_user.teacher? && user_not_appriser?) || (current_user.admin? && user_not_appriser?) %>
             <%= link_to edit_button.html_safe, edit_ficha_path(ficha),
                 button_configs(:edit, "btn btn-default simple_button") %>
           <% end %>
+
 
           <% if user_not_appriser? && user_not_teacher? || user_admin? %>
             <%= link_to remove_button.html_safe, ficha_path(ficha),
@@ -76,7 +80,6 @@
 
         </td>
       </tr>
-
     <% end %>
 
   </tbody>
