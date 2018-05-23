@@ -1,6 +1,6 @@
 class FichasController < ApplicationController
   before_action :set_ficha, only: [:show, :edit, :update, :destroy, :create_message, :copy]
-  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy]
+  before_action :authorize_user, only: [:show, :new, :create, :edit, :update, :destroy, :copy, :choose_appraiser]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create, :import]
   before_action :bar_define
 
@@ -59,14 +59,12 @@ class FichasController < ApplicationController
     ficha = Ficha.find(params[:appraiser][:ficha_id])
     ficha.appraiser_id = params[:appraiser][:id]
     ficha.save
-    puts ficha.appraiser_id
     respond_to do |format|
       format.html { redirect_to fichas_url, notice: 'Avaliador designado com sucesso.' }
     end
   end
 
   def choose_appraiser_modal
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa #{params[:id]}"
     @ficha = params[:id]
     respond_to do |format|
       format.js

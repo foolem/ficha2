@@ -49,6 +49,10 @@ module UsersHelper
     !user.blank? and (user.has_any_role? ["admin", "adviser"] and user.actived?)
   end
 
+  def user_name_or_shortname?(ficha)
+    User.find(ficha.appraiser_id).shortname.blank? ? User.find(ficha.appraiser_id).name : User.find(ficha.appraiser_id).shortname
+  end
+
   def options_for_roles
     result  = {'Todos os tipos' => ''}
     roles = Role.all

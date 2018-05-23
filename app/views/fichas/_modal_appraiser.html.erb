@@ -11,11 +11,10 @@
 
 						 <%= form_tag(choose_appraiser_fichas_path, class: "form-horizontal group") do %>
 						 	<input type="hidden" name="appraiser[ficha_id]" value=" <%= @ficha %> ">
-				       <div class="col-xs-9">
-				         <%= collection_select(:appraiser, :id, appraisers, :id, :name) %>
-								 coeee
+				       <div class="form-group col-md-10 col-md-offset-1">
+				         <%= collection_select(:appraiser, :id, appraisers, :id, :name, {}, {class: "ml-20 form-control"}) %>
 				       </div>
-							 <%= submit_tag %>
+							 <%= submit_tag "Salvar", class: "ml-40 btn btn-default" %>
 						 <% end %>
 			     </div>
 				 </div>

@@ -87,6 +87,9 @@ body {
 .ml-20 {
   margin-left: 20px;
 }
+.ml-40 {
+  margin-left: 40px;
+}
 .mb-20 {
   margin-bottom: 20px !important;
 }
@@ -113,7 +116,9 @@ body {
   display: block;
   margin: 0 auto;
 }
-
+.btn-right {
+  float: right;
+}
 .input_file {
 	width: 0.1px;
 	height: 0.1px;

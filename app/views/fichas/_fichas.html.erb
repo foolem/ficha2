@@ -45,9 +45,10 @@
         <td><%= ficha.user.name %></td>
 
         <td class="center">
-          <% if user_signed_in? && !ficha.appraiser_id.blank? %>
-            <%= User.find(ficha.appraiser_id).shortname.blank? ? User.find(ficha.appraiser_id).name : User.find(ficha.appraiser_id).shortname %>
-          <% elsif user_signed_in? && current_user.has_role?("admin") && ficha.status != "ready" %>
+          <% if user_signed_in? && current_user.admin? && !ficha.appraiser_id.blank? %>
+            <%= user_name_or_shortname?(ficha) %>
+            <%= link_to simple_edit_button.html_safe, choose_appraiser_modal_fichas_path(ficha), remote: true, class: "btn btn-default btn-sm btn-right" %>
+          <% elsif user_signed_in? && current_user.admin? && ficha.status != "ready" %>
             <%= link_to "Escolher avaliador", choose_appraiser_modal_fichas_path(ficha), remote: true, class: "btn btn-default btn-sm" %>
           <% end %>
         </td>

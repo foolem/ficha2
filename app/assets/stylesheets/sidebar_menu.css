@@ -91,6 +91,9 @@ body, html{
     .forAnimate{
       opacity: 0;
     }
+    li.side_bar_mobile {
+      display: none;
+    }
   }
 
 
@@ -124,7 +127,11 @@ body, html{
     padding-bottom: 11px;
     padding-top: 11px;
   }
-
+  @media (max-width: 765px) {
+    li.side_bar_mobile {
+      display: block;
+    }
+}
   ul.dropdown-menu > li.divider {
     margin: 0px;
   }

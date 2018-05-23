@@ -69,7 +69,13 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
           <ul class="nav navbar-nav">
-
+            <% if !user_signed_in? %>
+              <li class="side_bar_mobile" ><%= link_to t('Login'), user_session_path %> </li>
+            <% else %>
+              <li class="side_bar_mobile">
+                <%= link_to user_button(current_user.name).html_safe, edit_user_path(current_user), :class => 'user_name_menu' %>
+              </li>
+            <% end %>
             <li class="side_bar <%= classes["home"] %>"><a href="/">Inicial<span class="<%=menu_icon(home_icon)%>"></span></a></li>
             <li class="side_bar <%= classes["ficha"] %>"><a href="<%= fichas_path %>"><%= t('fichas') %><span class="<%=menu_icon(ficha_icon)%>"></span></a></li>
             <li class="side_bar <%= classes["courses"] %>"><a href="<%= courses_path %>"><%= t('courses') %><span class="<%=menu_icon(course_icon)%>"></span></a></li>

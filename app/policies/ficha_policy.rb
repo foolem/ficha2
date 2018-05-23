@@ -24,6 +24,10 @@ class FichaPolicy < ApplicationPolicy
     !user.blank? and (user.has_any_role? ["secretary", "admin"] and user.actived? and !user.teacher?)
   end
 
+  def choose_appraiser?
+    !user.blank? and (user.has_role?("admin"))
+  end
+
   def show?
     true
   end
