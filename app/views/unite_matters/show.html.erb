@@ -18,6 +18,14 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <%= f.label t("semester"), :class => 'control-label col-xs-2' %>
+      <div class="col-xs-9">
+        <%= f.text_field 'semester', :value => @unite_matter.semester.semester_with_year,
+        :class => 'form-control semester-with-year', :readonly => true %>
+      </div>
+    </div>
+
     <div id="unite_matters_partial" class="less">
       <%= render "matters" %>
     </div>

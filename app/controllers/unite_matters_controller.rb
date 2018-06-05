@@ -87,7 +87,7 @@ class UniteMattersController < ApplicationController
     end
 
     def unite_matter_params
-      params.require(:unite_matter).permit(:name, :matter)
+      params.require(:unite_matter).permit(:name, :matter, :semester_id)
     end
 
 end

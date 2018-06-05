@@ -71,127 +71,70 @@
     </div>
   </div>
 
-  <% if options_started? or options_finished? %>
-    <div class="panel panel-default progress-panel">
-
-      <div class="row">
-        <!--<div class="col-md-offset-1 col-md-5">
-          <h4 class="center">Professores</h4>
-          <%= pie_chart({"Finalizados" => 5, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#57acfb", "#454545"]) %>
-        -->
-        <div class="col-md-4">
-          <div class="center report_generate">
-            <%= link_to "#{manage_options_teacher_report_path}.pdf",
-            :"data-load" => "Gerando relatório...",
-            class: 'btn big-btn blue-btn white m-r-10' do %>
-            <%= big_user_button.html_safe %>
-            <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
-            <% end %>
-          </div>
-
-        </div>
-
-          <!--
-          <h4 class="center">Opções</h4>
-          <%= pie_chart({"Finalizados" => 20, "Pendentes " => 30}, width: "230px", height: "230px", colors: ["#15489e", "#454545"]) %>
-        -->
-        <div class="col-md-4">
-
-          <div class="center report_generate">
-            <%= link_to "#{manage_options_matter_report_path}.pdf",
-                :"data-load" => "Gerando relatório...",
-                class: 'btn big-btn blue-btn white m-l-10' do %>
-                  <%= big_matter_button.html_safe %>
-                  <h4 style="text-align:center;margin-top:10px">Relatório<br>disciplinas</h4>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-
-          <div class="center report_generate">
-            <%= link_to "#{manage_options_final_report_path}.pdf",
-                :"data-load" => "Gerando relatório...",
-                class: 'btn big-btn blue-btn white m-l-10' do %>
-                  <%= big_record_button.html_safe %>
-                  <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
-            <% end %>
-          </div>
-        </div>
-
-
-
-
-
-      </div>
-    </div>
-    <div class="more-semesters disabled_btn" id="btn_trigger">
-      <h2 id="h2_text">Mais semestres</h2>
-      <i class="glyphicon glyphicon-menu-down blue" id="animation_icon"></i>
-    </div>
-
-    <%= form_tag("#{find_pdf_manage_options_path}.pdf", method: :get, id: "form_semesters") do %>
-
-      <%= select_tag( :semester_id, options_for_select(semester_options_diff, selected: @semester_id),
-          {:class => 'form form-control filter-box select-center'}) %>
-
-      <input id="selected" type="hidden" name="selected" value="">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="center report_generate">
-            <%= link_to "#",
-            :"data-load" => "Gerando relatório...",
-            class: 'btn big-btn blue-btn white m-r-10',
-              id: 'teachers' do %>
-              <%= big_user_button.html_safe %>
-              <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
-              <% end %>
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="center report_generate">
-            <%= link_to "#",
-            :"data-load" => "Gerando relatório...",
-            class: 'btn big-btn blue-btn white m-l-10',
-              id: 'matters' do %>
-              <%= big_matter_button.html_safe %>
-              <h4 style="text-align:center;margin-top:10px">Relatório<br>disciplinas</h4>
-              <% end %>
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="center report_generate">
-            <%= link_to "#",
-            :"data-load" => "Gerando relatório...",
-            class: 'btn big-btn blue-btn white m-l-10',
-              id: 'final' do %>
-              <%= big_record_button.html_safe %>
-              <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
-              <% end %>
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="center report_generate">
-            <%= link_to "#",
-            :"data-load" => "Gerando relatório...",
-            class: 'btn big-btn blue-btn white m-l-10',
-              id: 'all_records' do %>
-              <%= big_record_button.html_safe %>
-              <h4 style="text-align:center;margin-top:10px">Relatório<br>Fichas</h4>
-              <% end %>
-            </div>
-        </div>
-
-
-      </div>
-
-
-
-    <% end %>
-
-  <% end %>
+  
 
 <% end %>
+
+<div class="more-semesters disabled_btn" id="btn_trigger">
+  <h2 id="h2_text">Mais semestres</h2>
+  <i class="glyphicon glyphicon-menu-down blue" id="animation_icon"></i>
+</div>
+
+<%= form_tag("#{find_pdf_manage_options_path}.pdf", method: :get, id: "form_semesters") do %>
+
+  <%= select_tag( :semester_id, options_for_select(semester_options_diff, selected: @semester_id),
+      {:class => 'form form-control filter-box select-center'}) %>
+
+  <input id="selected" type="hidden" name="selected" value="">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="center report_generate">
+        <%= link_to "#",
+        :"data-load" => "Gerando relatório...",
+        class: 'btn big-btn blue-btn white m-r-10',
+          id: 'teachers' do %>
+          <%= big_user_button.html_safe %>
+          <h4 style="text-align:center;margin-top:10px">Relatório<br>docentes</h4>
+          <% end %>
+        </div>
+    </div>
+    <div class="col-md-3">
+      <div class="center report_generate">
+        <%= link_to "#",
+        :"data-load" => "Gerando relatório...",
+        class: 'btn big-btn blue-btn white m-l-10',
+          id: 'matters' do %>
+          <%= big_matter_button.html_safe %>
+          <h4 style="text-align:center;margin-top:10px">Relatório<br>disciplinas</h4>
+          <% end %>
+        </div>
+    </div>
+    <div class="col-md-3">
+      <div class="center report_generate">
+        <%= link_to "#",
+        :"data-load" => "Gerando relatório...",
+        class: 'btn big-btn blue-btn white m-l-10',
+          id: 'final' do %>
+          <%= big_record_button.html_safe %>
+          <h4 style="text-align:center;margin-top:10px">Relatório<br>final</h4>
+          <% end %>
+        </div>
+    </div>
+    <div class="col-md-3">
+      <div class="center report_generate">
+        <%= link_to "#",
+        :"data-load" => "Gerando relatório...",
+        class: 'btn big-btn blue-btn white m-l-10',
+          id: 'all_records' do %>
+          <%= big_record_button.html_safe %>
+          <h4 style="text-align:center;margin-top:10px">Relatório<br>Fichas</h4>
+          <% end %>
+        </div>
+    </div>
+
+
+  </div>
+  <% end %>
 
 
 </div>

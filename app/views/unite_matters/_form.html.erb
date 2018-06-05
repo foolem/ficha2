@@ -25,6 +25,14 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <%= f.label :semester, :class => 'control-label col-lg-2' %>
+      <div class="col-xs-5">
+        <%= f.collection_select(:semester_id, Semester.all, :id, :semester_with_year, {:prompt => "Selecione um semestre"} , { :class => ' form-control width-form-unite'}) %>
+        <%=f.error_span(:semester) %>
+      </div>
+    </div>
+
     <div class="field">
       <% if !@new %>
 

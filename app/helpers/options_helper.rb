@@ -107,8 +107,7 @@ module OptionsHelper
   end
 
   def matter_group(matter)
-
-    if matter.unite_matter.blank?
+    if (matter.unite_matter.blank? || (!(matter.unite_matter.blank?) && matter.unite_matter.semester.id != @semester_id.to_i))
       return matter.name_with_code
     end
 
@@ -121,13 +120,12 @@ module OptionsHelper
       end
       result << "#{matt.code}"
     end
-
     return result
   end
 
   def matter_options(matter)
     @options = []
-    @unites = [] # estudar esse erro de duplicação de turmas
+
     conn = ActiveRecord::Base.connection
     q = query(matter)
     if !q.blank?
@@ -144,10 +142,10 @@ module OptionsHelper
       @semester_id = Semester.current_semester.id
     end
 
-    if matter.unite_matter.blank?
+    if matter.unite_matter.blank? || matter.unite_matter.semester_id != @semester_id.to_i
       simple_query(matter)
-    elsif !@unites.include? matter.unite_matter
-      @unites << matter.unite_matter
+    elsif !@unites.include?(matter.unite_matter) && matter.unite_matter.semester_id == @semester_id.to_i
+      @unites.push(matter.unite_matter)
       unite_query(matter)
     end
   end

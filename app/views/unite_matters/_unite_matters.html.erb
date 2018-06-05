@@ -3,7 +3,8 @@
     <tr class="header">
 
       <th width="45%"><%= t('name') %></th>
-      <th width="40%"> <%= t('matters') %> </th>
+      <th width="30%"> <%= t('matters') %> </th>
+      <th width="10%"> <%= t('semester') %> </th>
 
         <th width="15%">
           <center>
@@ -26,6 +27,8 @@
           <td><%= unite_matter.name %></td>
 
           <td><%= unite_matter.matter_codes.join(", ") %></td>
+
+          <td><%= unite_matter.semester.semester_with_year_show %></td>
 
             <td id="actions">
               <center>
