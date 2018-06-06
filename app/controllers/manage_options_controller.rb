@@ -1,4 +1,5 @@
 class ManageOptionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :authorize_user
   before_action :set_semester
   before_action :bar_define

@@ -1,7 +1,7 @@
 class ManageOptionsPolicy < ApplicationPolicy
 
   def index?
-    user_admin_or_adviser?
+    !user.blank? and (user.admin? and user.actived?)
   end
 
   def search?

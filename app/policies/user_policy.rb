@@ -9,11 +9,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    !user.blank?
   end
 
   def update?
-    true
+    !user.blank?
   end
 
   def destroy?
@@ -21,7 +21,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    !user.blank?
   end
 
   class Scope < Scope

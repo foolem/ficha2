@@ -1,6 +1,7 @@
 class WishesController < ApplicationController
   before_action :set_wish, only: [:show, :edit, :update, :destroy]
   before_action :set_option, only: [:create, :remove]
+  skip_before_action :verify_authenticity_token
 
   def index
     @wishes = Wish.all
@@ -10,9 +11,9 @@ class WishesController < ApplicationController
     @wish = Wish.new
     @wish.semester_id = Semester.current_semester.id
   end
+
   def edit
   end
-
 
   def create
     @wish = Wish.new(wish_params)
