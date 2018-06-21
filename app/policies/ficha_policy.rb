@@ -21,7 +21,7 @@ class FichaPolicy < ApplicationPolicy
   end
 
   def destroy?
-    !user.blank? and (user.has_any_role? ["secretary", "admin"] and user.actived? and !user.teacher?)
+    !user.blank? and (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def choose_appraiser?

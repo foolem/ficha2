@@ -182,8 +182,10 @@ ActiveRecord::Schema.define(version: 20171006124656) do
 
   create_table "unite_matters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "semester_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["semester_id"], name: "index_unite_matters_on_semester_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -246,6 +248,7 @@ ActiveRecord::Schema.define(version: 20171006124656) do
   add_foreign_key "unavailabilities", "schedules"
   add_foreign_key "unite_groups", "matters"
   add_foreign_key "unite_groups", "semesters"
+  add_foreign_key "unite_matters", "semesters"
   add_foreign_key "wishes", "options"
   add_foreign_key "wishes", "semesters"
   add_foreign_key "wishes", "users"

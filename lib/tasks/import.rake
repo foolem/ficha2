@@ -201,40 +201,41 @@ namespace :import do
     (sheet.last_row() -1).times do |i|
       linha = sheet.row(i+2)
 
-      matter_code = linha[0].chomp.upcase
-      matter_name = name_pattern(linha[1].chomp)
-      matter = find_matter(matter_code, matter_name)
+      str = linha[10]
 
-      matters_item = "#{matter_code}\t#{matter_name}"
-      if !matters_list.include? matters_item
-        matters_list.push matters_item
+      if (!str.blank? && (str[0] != "S" || str[0] != "I"))
+        matter_code = linha[0].chomp.upcase
+        matter_name = name_pattern(linha[1].chomp)
+        matter = find_matter(matter_code, matter_name)
+
+        matters_item = "#{matter_code}\t#{matter_name}"
+        if !matters_list.include? matters_item
+          matters_list.push matters_item
+        end
+
+        course_code = linha[8].chomp[0 .. -2].to_i
+        course = find_course(course_code)
+
+        group_name = linha[2].chomp
+        group_vacancies = linha[3]
+        group = find_group(course ,matter, group_name, group_vacancies)
+
+        groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
+        if !groups_list.include? groups_item
+          groups_list.push groups_item
+        end
+
+        input_schedule = linha[4]
+        if !input_schedule.blank?
+          line_day = linha[4].first.to_i
+          schedule_begin = get_time(linha[5])
+          schedule_end = get_time(linha[6])
+          schedule_duration = get_duration(schedule_begin, schedule_end)
+          schedule = find_schedule(line_day -1, schedule_begin, schedule_duration)
+          print "."
+          add_schedule(group, schedule)
+        end
       end
-
-      course_code = linha[8].chomp[0 .. -2].to_i
-      course = find_course(course_code)
-
-      group_name = linha[2].chomp
-      group_vacancies = linha[3]
-      group = find_group(course ,matter, group_name, group_vacancies)
-
-
-
-      groups_item = "#{group.id}\t#{group.matter.code} - #{group.name}\t#{group.vacancies}\t#{group.course.name}"
-      if !groups_list.include? groups_item
-        groups_list.push groups_item
-      end
-
-      input_schedule = linha[4]
-      if !input_schedule.blank?
-        line_day = linha[4].first.to_i
-        schedule_begin = get_time(linha[5])
-        schedule_end = get_time(linha[6])
-        schedule_duration = get_duration(schedule_begin, schedule_end)
-        schedule = find_schedule(line_day -1, schedule_begin, schedule_duration)
-        print "."
-        add_schedule(group, schedule)
-      end
-
     end
 
     puts "\n============= MATTERS ============="
