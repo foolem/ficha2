@@ -6,7 +6,14 @@ class GroupsController < ApplicationController
 
   def index
     @q = Group.ransack(model_define("Group"))
-    @groups = @q.result.order(name: :asc)
+    puts "----------------------"
+    puts "aaa: #{@q.result.class}"
+
+    puts "aaa: #{@q.result}"
+    puts "#{@q.result.first.matter.code}"
+    puts "----------------------"
+
+    @groups = @q.result.joins(:matter).order('matters.code, name')
     @elements = @groups.length
 
     @page = params[:page].to_i
