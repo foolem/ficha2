@@ -7,12 +7,14 @@ class CoursesController < ApplicationController
 
   def index
     @q = Course.ransack(model_define("Course"))
-    @courses = @q.result.order(name: :desc)
-    @elements = @courses.length
-
-    @page = params[:page].to_i
-    @page = pages_verify(@page, @elements, page_length)
-    @courses = @courses.paginate(:per_page => page_length, :page => @page)
+    courses = @q.result.order(name: :asc)
+    @courses = []
+    courses.each do |c|
+      if !(c.name.include? ",")
+        @courses.push c
+      end
+    end
+    @courses
   end
 
   def search

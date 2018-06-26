@@ -6,12 +6,14 @@ class MattersController < ApplicationController
 
   def index
     @q = Matter.ransack(model_define("Matter"))
-    @matters = @q.result.order(code: :asc)
-    @elements = @matters.length
-
-    @page = params[:page].to_i
-    @page = pages_verify(@page, @elements, page_length)
-    @matters = @matters.paginate(:per_page => page_length, :page => @page)
+    matters = @q.result.order(code: :asc)
+    @matters = []
+    matters.each do |m|
+      if !(m.name.include? ",")
+        @matters.push m
+      end
+    end
+    @matters
   end
 
   def search
