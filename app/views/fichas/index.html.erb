@@ -18,7 +18,7 @@
 
       <% end %>
 
-      <%= f.select( :group_semester_id_eq, options_for_select(semester_options, current_semester.id), {}, {:class => 'form form-control filter-box'}) %>
+      <%= f.select( :group_semester_id_eq, options_for_select(semester_options, 0), {}, {:class => 'form form-control filter-box'}) %>
 
       <%= f.text_field :group_name_or_group_matter_name_or_group_matter_code_or_user_name_cont, :autofocus => true, placeholder: "Procurar", :autocomplete => "off", :class => 'form-control searcher', :id => "fichas_input_search" %>
 
