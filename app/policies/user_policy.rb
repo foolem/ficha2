@@ -17,7 +17,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    !user.blank? and (user.has_role? ("admin") and user.actived?)
+    !user.blank? and (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def show?

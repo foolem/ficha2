@@ -29,7 +29,7 @@ class ManageOptionsPolicy < ApplicationPolicy
   end
 
   def send_email?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def all_records?
@@ -37,51 +37,51 @@ class ManageOptionsPolicy < ApplicationPolicy
   end
 
   def remove?
-    user_admin_or_adviser? and Semester.current_semester.options_generated
+    (user.has_any_role? ["secretary", "admin"] and user.actived?) and Semester.current_semester.options_generated
   end
 
   def start?
-    user_admin_or_adviser? and Semester.current_semester.options_generated
+    (user.has_any_role? ["secretary", "admin"] and user.actived?) and Semester.current_semester.options_generated
   end
 
   def end?
-    user_admin_or_adviser? and Semester.current_semester.options_selection
+    (user.has_any_role? ["secretary", "admin"] and user.actived?) and Semester.current_semester.options_selection
   end
 
   def teacher_report?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def final_report?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def matter_report?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def delivery?
-    user_admin_or_adviser? && Semester.current_semester.options_generated
+    (user.has_any_role? ["secretary", "admin"] and user.actived?) && Semester.current_semester.options_generated
   end
 
   def select_teacher?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def edit_teacher?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def choose_teacher?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def edit_class_room?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def choose_class_room?
-    user_admin_or_adviser?
+    (user.has_any_role? ["secretary", "admin"] and user.actived?)
   end
 
   def user_admin_or_adviser?

@@ -184,7 +184,7 @@ class TeacherReportPdf < Prawn::Document
     text_box  @number.to_s, size: 11, :at => [530,11]
 
     move_down 15
-    query = User.where("id not in (?) and actived = true", @users.collect {|usr| usr.id}).map {|usr| [usr.name, usr.email] }
+    query = User.where("id not in (?) and actived = true and id != 1 and id != 2 and id != 3 and id != 4 and id != 7", @users.collect {|usr| usr.id}).map {|usr| [usr.name, usr.email] }
     table ([["Nome", "Email"]] + query),
     cell_style: {height: 18, size: 9}, column_widths: [250,250],position: 20
   end

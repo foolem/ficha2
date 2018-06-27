@@ -8,11 +8,7 @@ class GroupsController < ApplicationController
     @q = Group.ransack(model_define("Group"))
 
     @groups = @q.result.joins(:matter).order('matters.code, name')
-    @elements = @groups.length
 
-    @page = params[:page].to_i
-    @page = pages_verify(@page, @elements, page_length)
-    @groups = @groups.paginate(:per_page => page_length, :page => @page)
   end
 
   def show
