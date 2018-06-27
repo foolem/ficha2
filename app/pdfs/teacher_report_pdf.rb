@@ -116,7 +116,7 @@ class TeacherReportPdf < Prawn::Document
   def record_generate
     @users = User.joins(:availabilities).where("availabilities.semester_id = #{@semester.id}")
     @users.each do |user|
-      if user.id == 60
+      if user.id == 1 or user.id == 2 or user.id == 3 or user.id == 4 or user.id == 7 or user.id == 60
         next
       end
       @user = user
