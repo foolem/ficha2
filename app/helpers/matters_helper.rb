@@ -21,7 +21,7 @@ module MattersHelper
       if ma.unite_matter.blank?
         matters.push ma
       else
-        if ma.unite_matter.semester_id != Semester.current_semester.id
+        if ma.unite_matter.semester_id == Semester.current_semester.id
           matters.push ma
         end
       end

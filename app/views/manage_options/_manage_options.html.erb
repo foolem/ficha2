@@ -71,12 +71,12 @@
     </div>
   </div>
 
-  
+
 
 <% end %>
 
 <div class="more-semesters disabled_btn" id="btn_trigger">
-  <h2 id="h2_text">Mais semestres</h2>
+  <h2 id="h2_text">Mais Relatorios</h2>
   <i class="glyphicon glyphicon-menu-down blue" id="animation_icon"></i>
 </div>
 
@@ -151,7 +151,7 @@
     if (self.hasClass('actived')) {
       $("#form_semesters").slideUp(function() {
         self.find("#animation_icon").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
-        self.find("#h2_text").html("Mais semestres");
+        self.find("#h2_text").html("Mais relatórios");
 
       });
       $(this).removeClass("actived");
@@ -159,7 +159,7 @@
     else {
       $("#form_semesters").slideDown(function() {
         self.find("#animation_icon").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
-        self.find("#h2_text").html("Menos semestres");
+        self.find("#h2_text").html("Menos relatórios");
       });
       $(this).addClass("actived");
     }
