@@ -15,3 +15,4 @@ ADD . /app
 
 #(required) nginx port number
 EXPOSE 80
+EXPOSE 443

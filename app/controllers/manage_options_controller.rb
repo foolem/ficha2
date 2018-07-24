@@ -185,8 +185,8 @@ class ManageOptionsController < ApplicationController
 
   def edit_teacher
     @group = Group.find(params[:id])
-    #@group.ficha.destroy
-    #@group.save
+    @group.ficha.destroy
+    @group.save
     respond_to do |format|
       format.js
     end
